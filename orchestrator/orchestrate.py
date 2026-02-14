@@ -83,13 +83,36 @@ Output ONLY valid JSON. No markdown fences, no explanation."""
             "claude", "-p", full_prompt,
             "--model", "claude-opus-4-6",
             "--dangerously-skip-permissions",
-            "--output-format", "json",
+            "--output-format", "text",
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
         )
         stdout, stderr = await proc.communicate()
 
-        output = stdout.decode().strip()
+        raw_output = stdout.decode().strip()
+
+        # Try to extract JSON from the output
+        # Handle: raw JSON, ```json fences, or {"result":"..."} envelope
+        output = raw_output
+        try:
+            parsed = json.loads(raw_output)
+            # Check if it's a Claude CLI envelope
+            if "result" in parsed and isinstance(parsed["result"], str):
+                output = parsed["result"]
+                # The result itself might contain JSON
+                try:
+                    json.loads(output)
+                except json.JSONDecodeError:
+                    pass  # It's text, not JSON - we'll handle below
+        except json.JSONDecodeError:
+            pass
+
+        # Strip markdown fences if present
+        if "```json" in output:
+            output = output.split("```json", 1)[1].split("```", 1)[0].strip()
+        elif "```" in output:
+            output = output.split("```", 1)[1].split("```", 1)[0].strip()
+
         output_file.parent.mkdir(parents=True, exist_ok=True)
         output_file.write_text(output)
 

@@ -998,6 +998,29 @@
         return () => window.removeEventListener('hashchange', handleHashChange);
       }, []);
 
+      // Helper to fetch and unwrap JSON (handles Claude CLI envelope and markdown fences)
+      const fetchReport = async (url) => {
+        try {
+          const res = await fetch(url);
+          if (!res.ok) return null;
+          const text = await res.text();
+          let data;
+          try {
+            data = JSON.parse(text);
+          } catch {
+            // Try stripping markdown fences
+            const match = text.match(/```(?:json)?\s*([\s\S]*?)```/);
+            if (match) data = JSON.parse(match[1]);
+            else return null;
+          }
+          // Unwrap Claude CLI envelope
+          if (data && data.type === 'result' && typeof data.result === 'string') {
+            try { return JSON.parse(data.result); } catch { return null; }
+          }
+          return data;
+        } catch { return null; }
+      };
+
       // Data polling for mission control
       useEffect(() => {
         if (stage === 'launch' || stage === 'mission') {
@@ -1007,30 +1030,20 @@
               if (stateRes.ok) setState(await stateRes.json());
             } catch (e) {}
 
-            try {
-              const scoutRes = await fetch('data/scout-report.json');
-              if (scoutRes.ok) setScoutReport(await scoutRes.json());
-            } catch (e) {}
+            const scout = await fetchReport('data/scout-report.json');
+            if (scout) setScoutReport(scout);
 
-            try {
-              const connectorRes = await fetch('data/connector-report.json');
-              if (connectorRes.ok) setConnectorReport(await connectorRes.json());
-            } catch (e) {}
+            const connector = await fetchReport('data/connector-report.json');
+            if (connector) setConnectorReport(connector);
 
-            try {
-              const navigatorRes = await fetch('data/navigator-report.json');
-              if (navigatorRes.ok) setNavigatorReport(await navigatorRes.json());
-            } catch (e) {}
+            const navigator = await fetchReport('data/navigator-report.json');
+            if (navigator) setNavigatorReport(navigator);
 
-            try {
-              const mobilizerRes = await fetch('data/mobilizer-report.json');
-              if (mobilizerRes.ok) setMobilizerReport(await mobilizerRes.json());
-            } catch (e) {}
+            const mobilizer = await fetchReport('data/mobilizer-report.json');
+            if (mobilizer) setMobilizerReport(mobilizer);
 
-            try {
-              const strategistRes = await fetch('data/strategist-briefing.json');
-              if (strategistRes.ok) setStrategistBriefing(await strategistRes.json());
-            } catch (e) {}
+            const strategist = await fetchReport('data/strategist-briefing.json');
+            if (strategist) setStrategistBriefing(strategist);
           };
 
           pollData();
@@ -1370,7 +1383,7 @@
         { id: 'strategist', icon: '🎯', name: 'Strategist', color: '#f59e0b' }
       ];
 
-      const allComplete = state?.agents?.every(a => a.status === 'complete');
+      const allComplete = state?.agents && Object.values(state.agents).every(a => a.status === 'complete');
 
       useEffect(() => {
         if (allComplete) {
@@ -1394,7 +1407,7 @@
 
             <div className="status-grid">
               {agents.map((agent) => {
-                const agentState = state?.agents?.find(a => a.id === agent.id);
+                const agentState = state?.agents?.[agent.id];
                 const status = agentState?.status || 'idle';
                 const updates = agentState?.updates || [];
 
@@ -1570,13 +1583,18 @@
         });
       }
 
-      const agents = state?.agents || [
-        { id: 'scout', name: 'Scout', icon: '🔬', status: 'working', current_task: 'Monitoring new publications' },
-        { id: 'connector', name: 'Connector', icon: '🤝', status: 'complete', current_task: 'Draft emails ready' },
-        { id: 'navigator', name: 'Navigator', icon: '🧭', status: 'complete', current_task: 'Pathway mapped' },
-        { id: 'mobilizer', name: 'Mobilizer', icon: '💰', status: 'working', current_task: 'Researching grants' },
-        { id: 'strategist', name: 'Strategist', icon: '🎯', status: 'complete', current_task: 'Briefing ready' }
+      const AGENT_META = [
+        { id: 'scout', name: 'Scout', icon: '🔬' },
+        { id: 'connector', name: 'Connector', icon: '🤝' },
+        { id: 'navigator', name: 'Navigator', icon: '🧭' },
+        { id: 'mobilizer', name: 'Mobilizer', icon: '💰' },
+        { id: 'strategist', name: 'Strategist', icon: '🎯' }
       ];
+      const agents = AGENT_META.map(meta => ({
+        ...meta,
+        status: state?.agents?.[meta.id]?.status || 'idle',
+        current_task: state?.agents?.[meta.id]?.current_task || ''
+      }));
 
       const handleReview = (approval) => {
         setSelectedApproval(approval);

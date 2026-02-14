@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beacon — Mission Control</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    :root {
+      --bg: #faf8f5;
+      --card: #ffffff;
+      --text: #2d2a26;
+      --text-secondary: #6b6560;
+      --amber: #d97706;
+      --amber-light: #fef3c7;
+      --amber-glow: #f59e0b;
+      --green: #059669;
+      --green-light: #d1fae5;
+      --blue: #2563eb;
+      --blue-light: #dbeafe;
+      --purple: #7c3aed;
+      --purple-light: #ede9fe;
+      --rose: #e11d48;
+      --rose-light: #ffe4e6;
+      --border: #e8e4df;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-lg: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1e1b18 0%, #2d2a26 100%);
+      color: white;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header h1 {
+      font-size: 22px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header .beacon-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--amber);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 8px rgba(249, 168, 11, 0.4); }
+      50% { box-shadow: 0 0 20px rgba(249, 168, 11, 0.7); }
+    }
+
+    .header .subtitle {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 2px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .status-dot.running { background: var(--amber-glow); animation: pulse-glow 1.5s ease-in-out infinite; }
+    .status-dot.complete { background: var(--green); }
+    .status-dot.idle { background: var(--text-secondary); opacity: 0.4; }
+    .status-dot.error { background: var(--rose); }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr;
+      gap: 20px;
+    }
+
+    .timeline-section { grid-column: 1 / -1; }
+    .agents-section { grid-column: 1 / -1; }
+    .feed-section { grid-column: 1; }
+    .approval-section { grid-column: 2; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card h2 .icon { font-size: 18px; }
+
+    /* Timeline */
+    .timeline {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 8px 0;
+    }
+
+    .timeline-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+
+    .timeline-step::after {
+      content: '';
+      position: absolute;
+      top: 14px;
+      right: -50%;
+      width: 100%;
+      height: 3px;
+      background: var(--border);
+      z-index: 0;
+    }
+
+    .timeline-step:last-child::after { display: none; }
+
+    .timeline-step.complete::after { background: var(--green); }
+    .timeline-step.active::after { background: linear-gradient(90deg, var(--amber), var(--border)); }
+
+    .timeline-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      margin: 0 auto 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      position: relative;
+      z-index: 1;
+      border: 3px solid var(--border);
+      background: white;
+    }
+
+    .timeline-step.complete .timeline-dot { border-color: var(--green); background: var(--green-light); }
+    .timeline-step.active .timeline-dot { border-color: var(--amber); background: var(--amber-light); animation: pulse-glow 2s ease-in-out infinite; }
+
+    .timeline-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+    .timeline-step.active .timeline-label { color: var(--amber); font-weight: 600; }
+    .timeline-step.complete .timeline-label { color: var(--green); }
+
+    /* Agent cards */
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .agent-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .agent-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-1px); }
+    .agent-card.running { border-color: var(--amber); }
+
+    .agent-card .agent-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .agent-card .agent-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .agent-card .agent-role {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    .agent-card .agent-finding {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+    }
+
+    .agent-card .agent-time {
+      font-size: 10px;
+      color: var(--text-secondary);
+      margin-top: 8px;
+      opacity: 0.7;
+    }
+
+    /* Feed */
+    .feed-item {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      animation: fadeIn 0.5s ease;
+    }
+
+    .feed-item:last-child { border-bottom: none; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .feed-item .feed-agent {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .feed-item .feed-agent.scout { color: var(--blue); }
+    .feed-item .feed-agent.connector { color: var(--purple); }
+    .feed-item .feed-agent.navigator { color: var(--green); }
+    .feed-item .feed-agent.mobilizer { color: var(--rose); }
+    .feed-item .feed-agent.strategist { color: var(--amber); }
+
+    .feed-item .feed-title { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+    .feed-item .feed-summary { font-size: 12px; color: var(--text-secondary); }
+    .feed-item .feed-badge {
+      display: inline-block;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 500;
+      margin-left: 6px;
+    }
+    .feed-badge.high { background: #fef2f2; color: var(--rose); }
+    .feed-badge.medium { background: var(--amber-light); color: var(--amber); }
+    .feed-badge.low { background: #f0f9ff; color: var(--blue); }
+
+    /* Approval queue */
+    .approval-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 12px;
+      background: #fffbf0;
+    }
+
+    .approval-item .approval-type {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--amber);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .approval-item .approval-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+    .approval-item .approval-summary { font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; }
+
+    .approval-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-approve { background: var(--green); color: white; }
+    .btn-approve:hover { background: #047857; }
+    .btn-review { background: var(--amber-light); color: var(--amber); border: 1px solid var(--amber); }
+    .btn-review:hover { background: #fde68a; }
+    .btn-reject { background: white; color: var(--text-secondary); border: 1px solid var(--border); }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal {
+      background: white;
+      border-radius: 16px;
+      max-width: 640px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .modal h3 { font-size: 18px; margin-bottom: 6px; }
+    .modal .modal-meta { font-size: 12px; color: var(--text-secondary); margin-bottom: 20px; }
+
+    .modal .email-field { margin-bottom: 14px; }
+    .modal .email-field label { display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .modal .email-field input, .modal .email-field textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: inherit;
+      line-height: 1.5;
+    }
+    .modal .email-field textarea { min-height: 200px; resize: vertical; }
+
+    .modal .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 32px;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    /* Briefing section */
+    .briefing-section { grid-column: 1 / -1; }
+    .briefing-headline { font-size: 16px; font-weight: 600; color: var(--amber); margin-bottom: 12px; }
+    .briefing-message { font-size: 14px; line-height: 1.7; color: var(--text); white-space: pre-wrap; }
+    .priority-list { list-style: none; }
+    .priority-item { padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; font-size: 13px; }
+    .priority-number { background: var(--amber); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+    .priority-urgency { font-size: 10px; padding: 2px 6px; border-radius: 4px; background: var(--amber-light); color: var(--amber); font-weight: 500; margin-left: auto; white-space: nowrap; }
+
+    .loading-bar {
+      height: 3px;
+      background: linear-gradient(90deg, var(--amber) 0%, transparent 50%);
+      background-size: 200% 100%;
+      animation: loading 1.5s ease infinite;
+    }
+    @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useEffect, useCallback } = React;
+
+    const AGENT_META = {
+      scout:      { icon: '🔬', role: 'Research & Discovery',    color: '#2563eb' },
+      connector:  { icon: '🤝', role: 'Outreach & Relationships', color: '#7c3aed' },
+      navigator:  { icon: '🧭', role: 'Regulatory & Legal',       color: '#059669' },
+      mobilizer:  { icon: '💰', role: 'Fundraising & Community',   color: '#e11d48' },
+      strategist: { icon: '🎯', role: 'Strategy & Coordination',   color: '#d97706' },
+    };
+
+    function App() {
+      const [state, setState] = useState(null);
+      const [scoutReport, setScoutReport] = useState(null);
+      const [connectorReport, setConnectorReport] = useState(null);
+      const [navigatorReport, setNavigatorReport] = useState(null);
+      const [mobilizerReport, setMobilizerReport] = useState(null);
+      const [briefing, setBriefing] = useState(null);
+      const [modal, setModal] = useState(null);
+      const [lastUpdate, setLastUpdate] = useState(null);
+
+      const fetchJSON = useCallback(async (path) => {
+        try {
+          const res = await fetch(`data/${path}?t=${Date.now()}`);
+          if (!res.ok) return null;
+          const text = await res.text();
+          // Handle claude output format: may be wrapped in {"result":"..."} or raw JSON
+          try {
+            const parsed = JSON.parse(text);
+            if (parsed.result && typeof parsed.result === 'string') {
+              return JSON.parse(parsed.result);
+            }
+            return parsed;
+          } catch {
+            return null;
+          }
+        } catch { return null; }
+      }, []);
+
+      const poll = useCallback(async () => {
+        const [s, sc, co, nav, mob, br] = await Promise.all([
+          fetchJSON('state.json'),
+          fetchJSON('scout-report.json'),
+          fetchJSON('connector-report.json'),
+          fetchJSON('navigator-report.json'),
+          fetchJSON('mobilizer-report.json'),
+          fetchJSON('strategist-briefing.json'),
+        ]);
+        if (s) setState(s);
+        if (sc) setScoutReport(sc);
+        if (co) setConnectorReport(co);
+        if (nav) setNavigatorReport(nav);
+        if (mob) setMobilizerReport(mob);
+        if (br) setBriefing(br);
+        setLastUpdate(new Date());
+      }, [fetchJSON]);
+
+      useEffect(() => {
+        poll();
+        const interval = setInterval(poll, 2000);
+        return () => clearInterval(interval);
+      }, [poll]);
+
+      if (!state) return (
+        <div style={{display:'flex',alignItems:'center',justifyContent:'center',height:'100vh',flexDirection:'column',gap:'16px'}}>
+          <div className="beacon-icon" style={{width:48,height:48,background:'#d97706',borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:24}}>🔥</div>
+          <div style={{fontSize:16,color:'#6b6560'}}>Loading Beacon...</div>
+          <div className="loading-bar" style={{width:200}}></div>
+        </div>
+      );
+
+      const anyRunning = Object.values(state.agents).some(a => a.status === 'running');
+      const patientName = state.patient?.name || 'Patient';
+
+      // Build feed from all agent findings
+      const feed = [];
+      if (scoutReport?.findings) {
+        scoutReport.findings.forEach(f => feed.push({...f, agent: 'scout'}));
+      }
+      if (connectorReport?.contacts) {
+        connectorReport.contacts.forEach(c => feed.push({ agent: 'connector', type: 'contact', title: `Identified: ${c.name}`, summary: c.relevance, significance: c.priority }));
+      }
+      if (navigatorReport?.regulatoryPathways) {
+        feed.push({ agent: 'navigator', type: 'pathway', title: 'Regulatory Pathway Mapped', summary: navigatorReport.plainLanguageSummary?.substring(0, 150) + '...', significance: 'high' });
+      }
+      if (mobilizerReport?.grantOpportunities) {
+        mobilizerReport.grantOpportunities.forEach(g => feed.push({ agent: 'mobilizer', type: 'grant', title: g.name, summary: `${g.funder} — ${g.amount || 'Amount TBD'}`, significance: g.relevance }));
+      }
+
+      // Approval queue
+      const approvals = state.approvalQueue || [];
+      // Also merge from connector/mobilizer reports
+      const allApprovals = [...approvals];
+      if (connectorReport?.approvalItems) allApprovals.push(...connectorReport.approvalItems);
+      if (mobilizerReport?.approvalItems) allApprovals.push(...mobilizerReport.approvalItems);
+
+      const getAgentSummary = (name) => {
+        switch(name) {
+          case 'scout': return scoutReport ? `${scoutReport.findings?.length || 0} findings` : null;
+          case 'connector': return connectorReport ? `${connectorReport.contacts?.length || 0} contacts identified` : null;
+          case 'navigator': return navigatorReport ? 'Pathway mapped' : null;
+          case 'mobilizer': return mobilizerReport ? `${mobilizerReport.grantOpportunities?.length || 0} grants found` : null;
+          case 'strategist': return briefing ? 'Briefing ready' : null;
+          default: return null;
+        }
+      };
+
+      return (
+        <div>
+          <div className="header">
+            <div>
+              <h1>
+                <span className="beacon-icon">🔥</span>
+                Beacon — Mission Control
+              </h1>
+              <div className="subtitle">
+                {patientName}'s Team • {state.disease}
+              </div>
+            </div>
+            <div className="header-right">
+              {anyRunning && <><span className="status-dot running"></span> Agents working...</>}
+              {!anyRunning && <><span className="status-dot complete"></span> All agents idle</>}
+              {lastUpdate && <span>Updated {lastUpdate.toLocaleTimeString()}</span>}
+            </div>
+          </div>
+
+          {anyRunning && <div className="loading-bar"></div>}
+
+          <div className="container">
+            {/* Timeline */}
+            <div className="timeline-section card">
+              <h2><span className="icon">🗺️</span> Mission Timeline</h2>
+              <div className="timeline">
+                {(state.timeline || []).map((step, i) => (
+                  <div key={i} className={`timeline-step ${step.status}`}>
+                    <div className="timeline-dot">
+                      {step.status === 'complete' ? '✓' : step.status === 'active' ? '●' : '○'}
+                    </div>
+                    <div className="timeline-label">{step.phase}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Agent Status Cards */}
+            <div className="agents-section">
+              <div className="agents-grid">
+                {Object.entries(AGENT_META).map(([name, meta]) => {
+                  const agentState = state.agents[name] || {};
+                  return (
+                    <div key={name} className={`agent-card ${agentState.status || 'idle'}`}>
+                      <div className="agent-header">
+                        <span className="agent-name">{meta.icon} {name.charAt(0).toUpperCase() + name.slice(1)}</span>
+                        <span className={`status-dot ${agentState.status || 'idle'}`}></span>
+                      </div>
+                      <div className="agent-role">{meta.role}</div>
+                      <div className="agent-finding">
+                        {getAgentSummary(name) || (agentState.status === 'running' ? 'Working...' : 'Waiting to start')}
+                      </div>
+                      {agentState.lastRun && (
+                        <div className="agent-time">
+                          Last: {new Date(agentState.lastRun).toLocaleTimeString()}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Briefing */}
+            {briefing?.weeklyBriefing && (
+              <div className="briefing-section card">
+                <h2><span className="icon">🎯</span> {briefing.weeklyBriefing.title || 'Weekly Briefing'}</h2>
+                <div className="briefing-headline">{briefing.weeklyBriefing.headline}</div>
+
+                {briefing.weeklyBriefing.topPriorities && (
+                  <div style={{marginBottom: 16}}>
+                    <h3 style={{fontSize: 13, fontWeight: 600, marginBottom: 8, color: '#6b6560'}}>TOP PRIORITIES</h3>
+                    <ul className="priority-list">
+                      {briefing.weeklyBriefing.topPriorities.map((p, i) => (
+                        <li key={i} className="priority-item">
+                          <span className="priority-number">{p.priority || i+1}</span>
+                          <span>{p.action}</span>
+                          <span className="priority-urgency">{p.urgency}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {briefing.weeklyBriefing.familyMessage && (
+                  <div style={{background: '#fffbf0', borderRadius: 8, padding: 16, marginTop: 12}}>
+                    <div style={{fontSize: 12, fontWeight: 600, color: '#d97706', marginBottom: 8}}>MESSAGE FOR THE FAMILY</div>
+                    <div className="briefing-message">{briefing.weeklyBriefing.familyMessage}</div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Activity Feed */}
+            <div className="feed-section card">
+              <h2><span className="icon">📡</span> Activity Feed</h2>
+              {feed.length === 0 ? (
+                <div className="empty-state">Waiting for agents to report findings...</div>
+              ) : (
+                feed.slice(0, 20).map((item, i) => (
+                  <div key={i} className="feed-item">
+                    <div className={`feed-agent ${item.agent}`}>
+                      {AGENT_META[item.agent]?.icon} {item.agent}
+                    </div>
+                    <div className="feed-title">
+                      {item.title}
+                      {item.significance && <span className={`feed-badge ${item.significance}`}>{item.significance}</span>}
+                    </div>
+                    <div className="feed-summary">{item.summary}</div>
+                  </div>
+                ))
+              )}
+            </div>
+
+            {/* Approval Queue */}
+            <div className="approval-section card">
+              <h2><span className="icon">✋</span> Approval Queue ({allApprovals.length})</h2>
+              {allApprovals.length === 0 ? (
+                <div className="empty-state">No items pending approval</div>
+              ) : (
+                allApprovals.map((item, i) => (
+                  <div key={i} className="approval-item">
+                    <div className="approval-type">{item.type?.replace('_', ' ')}</div>
+                    <div className="approval-title">{item.title}</div>
+                    <div className="approval-summary">{item.summary}</div>
+                    <div className="approval-actions">
+                      <button className="btn btn-review" onClick={() => setModal(item)}>Review</button>
+                      <button className="btn btn-approve" onClick={() => {
+                        const newApprovals = allApprovals.filter((_, j) => j !== i);
+                        // In a real app, this would write back to state.json
+                        alert('Approved! In the full system, this would update state.json and notify the agent.');
+                      }}>Approve</button>
+                      <button className="btn btn-reject">Reject</button>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+
+          {/* Review Modal */}
+          {modal && (
+            <div className="modal-overlay" onClick={() => setModal(null)}>
+              <div className="modal" onClick={e => e.stopPropagation()}>
+                <h3>{modal.title}</h3>
+                <div className="modal-meta">From: {modal.agent} • Type: {modal.type?.replace('_', ' ')}</div>
+
+                {modal.content?.to && (
+                  <div className="email-field">
+                    <label>To</label>
+                    <input defaultValue={modal.content.to} />
+                  </div>
+                )}
+                {modal.content?.subject && (
+                  <div className="email-field">
+                    <label>Subject</label>
+                    <input defaultValue={modal.content.subject} />
+                  </div>
+                )}
+                <div className="email-field">
+                  <label>{modal.content?.body ? 'Email Body' : 'Content'}</label>
+                  <textarea defaultValue={modal.content?.body || (typeof modal.content === 'string' ? modal.content : JSON.stringify(modal.content, null, 2))} />
+                </div>
+
+                <div className="modal-actions">
+                  <button className="btn btn-reject" onClick={() => setModal(null)}>Cancel</button>
+                  <button className="btn btn-review" onClick={() => { alert('Saved edits.'); setModal(null); }}>Save Edits</button>
+                  <button className="btn btn-approve" onClick={() => { alert('Approved and queued for sending!'); setModal(null); }}>Approve & Send</button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

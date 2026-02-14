@@ -1,0 +1,23 @@
+{
+  "disease": "CLN3 Batten Disease",
+  "patient": {
+    "name": "Emma",
+    "age": 7,
+    "diagnosisDate": "2025-09-15"
+  },
+  "agents": {
+    "scout": { "status": "idle", "lastRun": null, "findings": [] },
+    "connector": { "status": "idle", "lastRun": null, "contacts": [] },
+    "navigator": { "status": "idle", "lastRun": null, "pathways": [] },
+    "mobilizer": { "status": "idle", "lastRun": null, "opportunities": [] },
+    "strategist": { "status": "idle", "lastRun": null, "priorities": [] }
+  },
+  "approvalQueue": [],
+  "timeline": [
+    { "phase": "Diagnosis", "status": "complete", "date": "2025-09-15" },
+    { "phase": "Research & Discovery", "status": "active", "date": null },
+    { "phase": "Preclinical Strategy", "status": "pending", "date": null },
+    { "phase": "IND Preparation", "status": "pending", "date": null },
+    { "phase": "Clinical Trial", "status": "pending", "date": null }
+  ]
+}

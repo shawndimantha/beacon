@@ -1,126 +1,208 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+# Beacon — Claude Code Project Brief
 
 ## Context
 
-Hackathon project for Claude Code + Opus 4.6 hackathon. Main deliverable: **3-minute demo video** of a working prototype. Judges: Claude Code team (Cat Wu, Boris Cherny, Lydia Hallie, Thariq, Shihipar).
+This is a hackathon project for a Claude Code + Opus 4.6 hackathon. The main deliverable is a **3-minute demo video** showing a working prototype. The judges are the Claude Code team (Cat Wu, Boris Cherny, Lydia Hallie, Thariq, Shihipar).
 
 ### Judging Criteria
-1. **Demo (30%)** — Working, impressive, holds up live, genuinely cool
-2. **Impact (25%)** — Real-world potential. Who benefits, how much does it matter
-3. **Opus 4.6 Use (25%)** — Creative use beyond basic integration. Surfacing surprising capabilities
-4. **Depth & Execution (20%)** — Engineering quality, thoughtful refinement, real craft
+1. **Demo (30%)** — Is this a working, impressive demo? Does it hold up live? Is it genuinely cool to watch?
+2. **Impact (25%)** — Real-world potential. Who benefits, how much does it matter?
+3. **Opus 4.6 Use (25%)** — Creative use of Opus 4.6. Beyond basic integration. Surfacing surprising capabilities.
+4. **Depth & Execution (20%)** — Engineering quality. Thoughtful refinement. Real craft.
 
 ### Problem Statement Fit
-- **Problem Statement Two: Break the Barriers** — unlocking expert knowledge (medical, regulatory, scientific, fundraising) for rare disease families
-- **Problem Statement Three: Amplify Human Judgment** — family stays in the loop making strategic decisions while AI handles research, outreach, coordination
+This project targets **Problem Statement Two: Break the Barriers** — taking expert knowledge locked behind medical, regulatory, scientific, and fundraising expertise and putting it in the hands of a rare disease patient's family member who desperately needs it.
+
+It also strongly fits **Problem Statement Three: Amplify Human Judgment** — the family member remains in the loop, making strategic decisions, while the AI team handles research, outreach, and coordination at a pace no individual could achieve.
+
+---
 
 ## Product Vision
 
-**Beacon** is an AI team (not a chatbot) that works continuously on behalf of a rare disease patient's family. It actively pursues treatment pathways — researching, reaching out to scientists, identifying funding, mapping regulatory paths, coordinating into an actionable, evolving plan.
-
-Family sees a **mission control dashboard** where agents report progress, surface discoveries, and request approval for consequential actions.
+**Beacon** is an AI team — not a chatbot — that works continuously on behalf of a rare disease patient's family. It doesn't just produce a research summary; it actively pursues treatment pathways by researching, reaching out to scientists, identifying funding, mapping regulatory paths, and coordinating all of this into an actionable, evolving plan.
 
 ### Core UX Principles
-- **Agents work in the background, not on demand.** Always running, no prompting needed.
-- **Proactive surfacing.** Agents notify when something important happens — new paper, researcher response, grant deadline.
-- **Human-in-the-loop for consequential actions.** Emails, applications, public posts require approval. Research/analysis is autonomous.
-- **Progressive trust.** Family can grant more autonomy over time for consistently approved action categories.
+- **Agents work in the background, not on demand.** The family member doesn't have to prompt anything. The agents are always running.
+- **Proactive surfacing.** Agents tap the family member on the shoulder when something important happens — a new paper, a researcher who responded, a grant deadline approaching.
+- **Human-in-the-loop for consequential actions.** Sending emails, submitting applications, making public posts — all require family member approval. Research and analysis happen autonomously.
+- **Progressive trust.** Over time, the family member can grant more autonomy to agents for categories of actions they've consistently approved.
+- **Emotional design.** Every screen should feel warm, hopeful, and empowering. This person is going through the hardest thing in their life. The UI should feel like a steady hand on their shoulder, not a cold clinical tool.
+
+---
+
+## The User Journey (5 Stages)
+
+This is the heart of the product. The user experience is a **narrative arc** — from overwhelm to empowerment. Each stage has a distinct emotional tone and visual design.
+
+---
+
+### Stage 1: Welcome & Intake (The Warm Hand)
+
+**Emotional tone:** Calm, warm, human. "You're not alone anymore."
+
+**What the user sees:**
+
+A clean, minimal welcome page. No dashboards, no complexity. Just warmth.
+
+**After entering the disease name**, a brief guided intake (conversational, not a form):
+- Who is the patient? (your child, yourself, a family member)
+- How old are they?
+- When was the diagnosis?
+- Where are you located? (for regulatory jurisdiction — FDA vs EMA vs other)
+- Do you have a care team currently? (neurologist, geneticist, etc.)
+- What matters most to you right now? (understanding the disease / finding treatment options / connecting with other families / all of the above)
+
+**Design notes:**
+- Large, readable typography. Lots of whitespace.
+- Warm color palette — soft blues, warm whites, gentle amber accents. NOT clinical white or sterile.
+- No jargon. Every question has a brief, kind explanation of why it's being asked.
+- A small "lighthouse" or beacon icon/animation as the brand mark — a light in the dark.
+- The intake should feel like talking to a compassionate, knowledgeable friend — not filling out a medical form.
+
+---
+
+### Stage 2: Meet Your Team (The Introduction)
+
+**Emotional tone:** Reassuring, empowering. "Here's who's going to help you."
+
+**Triggered:** Immediately after intake is complete.
+
+Agent team introduced one by one:
+- Scout — Your Research Scientist
+- Connector — Your Medical Liaison
+- Navigator — Your Regulatory Strategist
+- Mobilizer — Your Fundraising Coordinator
+- Strategist — Your Chief of Staff
+
+---
+
+### Stage 3: Agents Activating (The Launch Sequence)
+
+**Emotional tone:** Momentum, energy, hope. "Your team is on it."
+
+**Triggered:** Immediately after "Start the mission" is clicked. This is where the actual Claude Code sub-agents spin up.
+
+A **live status screen** showing each agent activating and beginning their first tasks. This is the "wow" moment in the demo.
+
+Each Claude Code sub-agent writes structured status updates to a shared JSON file as it works. The dashboard polls this file and renders updates in real time.
+
+---
+
+### Stage 4: Your Roadmap (The Plan Emerges)
+
+**Emotional tone:** Clarity, direction, hope. "Here's the path forward."
+
+**Triggered:** When the Strategist has synthesized initial findings from all agents.
+
+A **roadmap view** showing the journey from diagnosis to treatment, with milestones, timelines, and the first concrete action items.
+
+---
+
+### Stage 5: Mission Control (The Dashboard)
+
+**Emotional tone:** Empowered, in-control, active. "Your team is working. Here's what's happening."
+
+**This is the persistent view** the family member returns to every time they open Beacon.
+
+Key sections:
+1. **Needs Your Attention** — Items requiring human approval or decision.
+2. **Recent Discoveries** — Feed of significant findings from all agents.
+3. **Agent Status** — What each agent is doing right now.
+4. **Roadmap Progress** — Visual snapshot of mission progress.
+5. **Ask your team** — Chat input routed to the right agent.
+
+---
 
 ## Agent Architecture
 
-```
-Strategist (main orchestrator)
-├── Scout (research & discovery)
-├── Connector (outreach & relationships)
-├── Navigator (regulatory & legal strategy)
-└── Mobilizer (fundraising & community)
-```
-
 ### Agent 1: Scout (Research & Discovery)
-Continuously builds a living knowledge base. Searches PubMed, bioRxiv, ClinicalTrials.gov, patent databases, FDA orphan drug database. Builds knowledge graph (disease mechanism → targets → approaches → research groups → compounds). Monitors new publications, identifies drug repurposing opportunities, tracks competitive/collaborative landscape. Summarizes in plain language with technical depth on demand.
+Continuously builds a living knowledge base. Searches PubMed, bioRxiv, ClinicalTrials.gov, patent databases, FDA orphan drug database. Builds knowledge graph. Monitors new publications. Identifies drug repurposing opportunities. Summarizes in plain language.
 
 ### Agent 2: Connector (Outreach & Relationships)
-Identifies, contacts, manages relationships with researchers, clinicians, pharma, other families. Builds target lists from Scout's research, drafts personalized outreach emails demonstrating scientific understanding. Tracks pipeline: drafted → sent (pending approval) → awaiting response → responded → active. Connects with patient advocacy orgs, patient registries, specialized clinicians.
-
-**Requires approval:** Sending outreach emails, sharing patient medical info, making introductions.
+Identifies, contacts, manages relationships with researchers, clinicians, pharma, other families. Drafts personalized outreach emails. Tracks outreach pipeline. **Requires approval** for sending emails, sharing patient info.
 
 ### Agent 3: Navigator (Regulatory & Legal Strategy)
-Maps regulatory pathway from current state to clinical trial. Determines Orphan Drug Designation eligibility, maps expedited pathways (Breakthrough Therapy, Fast Track, Accelerated Approval, RMAT). Outlines IND process, researches entity formation options (501(c)(3), PBC, LLC), identifies pro-bono legal resources, estimates timelines/costs per phase.
+Maps regulatory pathway from current state to clinical trial. Orphan Drug Designation, expedited pathways, IND process, entity formation, pro-bono legal resources, timeline/cost estimates.
 
 ### Agent 4: Mobilizer (Fundraising & Community)
-Identifies grant opportunities (NIH/NCATS/NINDS, PCORI, DoD CDMRP, CZI Rare As One, disease-specific foundations). Drafts applications, builds multi-horizon fundraising strategy, connects with patient advocacy orgs, helps build patient registries.
-
-**Requires approval:** Submitting grant applications, publishing campaigns, committing to partnerships.
+Identifies grants (NIH, CZI, disease-specific foundations). Drafts applications. Multi-horizon fundraising strategy. Patient advocacy connections. **Requires approval** for submitting applications.
 
 ### Agent 5: Strategist (Orchestrator & Advisor)
-Coordinates all agents, maintains master roadmap (diagnosis → research → preclinical → IND → clinical trial), prioritizes across agents, resolves conflicts, generates weekly briefings, adapts strategy to new information, surfaces critical path items.
+Coordinates all agents. Master roadmap. Weekly briefings. Prioritization. Conflict resolution. Strategy adaptation.
+
+---
+
+## Anthropic Healthcare & Life Sciences Connectors
+
+Beacon should leverage Anthropic's native healthcare and life sciences connectors:
+
+**For Scout:** PubMed, bioRxiv & medRxiv, ClinicalTrials.gov, Open Targets, ChEMBL, ToolUniverse
+**For Connector:** PubMed, ClinicalTrials.gov, NPI Registry
+**For Navigator:** CMS Coverage Database, ICD-10 codes, ClinicalTrials.gov
+**For Mobilizer:** ClinicalTrials.gov, PubMed
+**For Patient:** Apple Health / Android Health Connect, HealthEx / Function
+
+---
 
 ## Technical Architecture
+
+### Frontend: Single React App
+The entire user journey (Stages 1-5) lives in one app with state-based transitions.
+
+### Backend: Claude Code Sub-Agent Orchestration
+Each agent is a Claude Code sub-agent with specialized system prompt, web search access, and structured JSON output.
+
+### State & Communication
+Agents write to a shared JSON state file that the frontend polls.
 
 ### File Structure
 ```
 beacon/
-├── agents/
-│   ├── strategist.md          # Strategist system prompt
-│   ├── scout.md               # Scout system prompt
-│   ├── connector.md           # Connector system prompt
-│   ├── navigator.md           # Navigator system prompt
-│   └── mobilizer.md           # Mobilizer system prompt
-├── orchestrator/
-│   ├── run.sh                 # Main entry point
-│   ├── orchestrate.py         # Coordination logic: runs agents, collects outputs, updates state
-│   └── state.json             # Shared state file agents read/write
-├── dashboard/
-│   ├── index.html             # React dashboard
-│   └── data/                  # Agent output JSONs the dashboard reads
-├── outputs/
-│   ├── briefings/             # Strategist weekly briefings
-│   ├── emails/                # Connector draft emails for approval
-│   ├── grants/                # Mobilizer draft applications
-│   └── reports/               # Scout research reports
+├── agents/           # Agent system prompts
+├── orchestrator/     # run.sh, orchestrate.py, state.json
+├── app/              # Single-page app — all 5 stages
+├── outputs/          # Agent outputs by type
 ├── CLAUDE.md
 └── README.md
 ```
 
-### Key Technical Decisions
-- **Use Opus 4.6 for all agent reasoning** — judging criterion; every agent uses Opus, not just orchestrator
-- **Sub-agents in Claude Code** are the core architecture. Use `claude --dangerously-skip-permissions` or programmatic sub-agent API for parallel execution
-- **Web search is critical for Scout** — real research, not mocked data. PubMed, ClinicalTrials.gov, etc.
-- **Structured JSON output** from each agent feeds the dashboard. Clear schemas per agent.
-- **Dashboard should feel alive** — polling JSON files, showing updates appearing, status changes, progress indicators
-- **Emotional design** — warm, hopeful, empowering; not clinical or overwhelming
-
 ### Demo Disease
-**CLN3 Batten Disease** (Juvenile Neuronal Ceroid Lipofuscinosis) — ~1 in 100,000 births, progressive neurodegeneration in children, active research community, no approved treatment, rich literature, real grant opportunities and advocacy orgs.
+**CLN3 Batten Disease** (Juvenile Neuronal Ceroid Lipofuscinosis) as test case.
+
+---
 
 ## Demo Script (3 minutes)
 
-- **0:00–0:20** — The Problem: child diagnosed with CLN3 Batten Disease, no treatment, parent alone. Show Google/ChatGPT producing passive text walls.
-- **0:20–0:50** — Meet Your Team: 5 AI agents working 24/7. Claude Code terminal spinning up agents in parallel, dashboard comes alive.
-- **0:50–1:40** — Agents at Work: dashboard populates in real time. Scout finds TRPML1 paper, Connector identifies top researchers + drafts emails, Navigator maps FDA orphan drug pathway, Mobilizer finds CZI grant + drafts LOI, Strategist synthesizes weekly plan. Key visual: months of work in minutes.
-- **1:40–2:20** — Human in the Loop: family reviews/approves Connector's email (adds personal note), asks Strategist follow-up on dual-track strategy, approves CZI LOI.
-- **2:20–2:50** — Two Weeks Later: Dr. Chen responded, CZI LOI submitted, 2 more papers found, 3 families identified, Orphan Drug app drafted, roadmap updated.
-- **2:50–3:00** — Close: "No family should fight a rare disease alone. Beacon gives every family a world-class team."
+- **0:00-0:15** — Stage 1: Welcome, type diagnosis, brief intake
+- **0:15-0:30** — Stage 2: Meet your team, click "Start the mission"
+- **0:30-1:15** — Stage 3: Live agent activation (the wow moment)
+- **1:15-1:35** — Stage 4: Roadmap materializes
+- **1:35-2:20** — Stage 5: Mission control, approve outreach email
+- **2:20-2:45** — "Two weeks later" evolved dashboard
+- **2:45-3:00** — Close: "No family should have to fight alone."
+
+---
 
 ## Implementation Priorities
 
-### Must-have (Core demo)
-1. Multi-agent orchestration — all 5 agents running, producing structured outputs
-2. Dashboard displaying agent outputs in real time (or near-real-time with file watching)
-3. At least 2 agents producing genuinely impressive outputs (Scout research + Connector outreach)
-4. Approval flow for at least one consequential action (reviewing/approving outreach email)
-5. Strategist weekly briefing synthesizing all outputs
+### Must-have
+1. Welcome page with disease input and brief intake (Stage 1)
+2. Team introduction screen (Stage 2)
+3. Live agent activation with streaming status updates (Stage 3) — centerpiece
+4. Basic roadmap view (Stage 4)
+5. Mission Control dashboard with approval queue, discovery feed, agent status (Stage 5)
+6. At least one working approval flow (outreach email review)
+7. Multi-agent orchestration — all 5 agents running with real web search
 
 ### Should-have
-6. Visual knowledge graph / disease landscape map
-7. Real web search powering Scout (not mocked)
-8. Before/after comparison: Google/ChatGPT vs Beacon dashboard
-9. Interactive drill-down into any agent's domain
+8. Smooth animated transitions between stages
+9. Real web search results powering Scout
+10. Interactive roadmap with clickable milestones
+11. Chat input routing questions to agents
+12. "Two weeks later" state showing evolution
 
 ### Nice-to-have
-10. Notification system / sidebar widget
-11. Progressive autonomy visualization
-12. Multiple disease support
-13. Timeline/Gantt for regulatory pathway
+13. Knowledge graph visualization
+14. Outreach pipeline tracker
+15. Notification/badge system
+16. Sound design for status updates

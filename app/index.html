@@ -472,6 +472,7 @@
       const [modalOpen, setModalOpen] = useState(false);
       const [selectedApproval, setSelectedApproval] = useState(null);
       const [activeTab, setActiveTab] = useState('dashboard');
+      const [communitySection, setCommunitySection] = useState('network');
 
       const demo = isDemo();
 
@@ -500,12 +501,14 @@
               setSelectedApproval={setSelectedApproval}
               activeTab={activeTab}
               setActiveTab={setActiveTab}
+              communitySection={communitySection}
+              setCommunitySection={setCommunitySection}
             />
           )}
           {modalOpen && selectedApproval && (
             <ApprovalModal approval={selectedApproval} onClose={() => setModalOpen(false)} />
           )}
-          <NarrationPlayer view={view} step={onboardingStep} activeTab={activeTab} />
+          <NarrationPlayer view={view} step={onboardingStep} activeTab={activeTab} communitySection={communitySection} />
         </>
       );
     }
@@ -524,11 +527,11 @@
       { key: 'lab_overview',      trigger: { view: 'dashboard', tab: 'lab' },                  text: "This is your Drug Discovery Lab. Your Biologist agent has identified protein targets linked to the disease. Your Chemist is screening hundreds of compounds. And your Preclinician is evaluating which ones are safe enough to test." },
       { key: 'lab_candidates',    trigger: { view: 'dashboard', tab: 'lab', delay: 15000 },    text: "Here's your candidate pipeline — compounds ranked by potential, with safety profiles and clinical precedent. Your team can even help you design experiments and find contract research labs." },
       { key: 'community_network', trigger: { view: 'dashboard', tab: 'community' },            text: "You're not the only family fighting this. Beacon's Connector agent has found twelve other CLN3 families — matched by geography, treatment stage, and willingness to share. Every introduction goes through you first." },
-      { key: 'community_data',    trigger: { view: 'dashboard', tab: 'community', delay: 15000 }, text: "When families share outcomes, patterns emerge. Your agents analyze this community data to identify what's working. And when enough evidence builds, they map the path from shared data to a formal clinical trial — regulatory steps, funding sources, everything." },
+      { key: 'community_data',    trigger: { view: 'dashboard', tab: 'community', communitySubTab: 'data' }, text: "When families share outcomes, patterns emerge. Your agents analyze this community data to identify what's working. And when enough evidence builds, they map the path from shared data to a formal clinical trial — regulatory steps, funding sources, everything." },
       { key: 'closing',           trigger: { auto_after: 'community_data' }, text: "No family should have to fight alone. Beacon is your team — researching, connecting, strategizing, and never stopping. This is just the beginning." },
     ];
 
-    function NarrationPlayer({ view, step, activeTab }) {
+    function NarrationPlayer({ view, step, activeTab, communitySection }) {
       const [currentIdx, setCurrentIdx] = useState(-1);
       const [playing, setPlaying] = useState(false);
       const [muted, setMuted] = useState(false);
@@ -553,7 +556,7 @@
           if (played.has(clip.key)) return;
           const t = clip.trigger;
           const viewMatch = (t.view === 'onboarding' && view === 'onboarding' && t.step === step) ||
-                            (t.view === 'dashboard' && view === 'dashboard' && (!t.tab || t.tab === activeTab));
+                            (t.view === 'dashboard' && view === 'dashboard' && (!t.tab || t.tab === activeTab) && (!t.communitySubTab || t.communitySubTab === communitySection));
           if (!viewMatch) return;
 
           const delay = t.delay || 0;
@@ -568,7 +571,7 @@
         });
 
         return () => timersRef.current.forEach(clearTimeout);
-      }, [view, step, activeTab, played]);
+      }, [view, step, activeTab, communitySection, played]);
 
       // Play audio when currentIdx changes
       useEffect(() => {
@@ -1027,7 +1030,7 @@
       );
     }
 
-    function DashboardView({ mission, demo, setModalOpen, setSelectedApproval, activeTab, setActiveTab }) {
+    function DashboardView({ mission, demo, setModalOpen, setSelectedApproval, activeTab, setActiveTab, communitySection, setCommunitySection }) {
       const [expandedSections, setExpandedSections] = useState({});
       const [expandedId, setExpandedId] = useState(null);
       const [laterItems, setLaterItems] = useState([]);
@@ -1234,7 +1237,7 @@
                 {/* ==========================================
                     SECTION 1: YOUR JOURNEY
                     ========================================== */}
-                <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
+                <div className="bg-white rounded-3xl p-5 sm:p-8 border border-slate-200 shadow-sm overflow-hidden">
                   <div className="flex items-center justify-between mb-6">
                     <h2 className="text-lg font-bold flex items-center gap-2">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" x2="9" y1="3" y2="18"/><line x1="15" x2="15" y1="6" y2="21"/></svg>
@@ -1243,7 +1246,7 @@
                   </div>
 
                   {/* Progress bars — animated */}
-                  <div className="flex gap-3 mb-6">
+                  <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 mb-6">
                     {['Research', 'Outreach', 'Regulatory', 'Funding', 'Treatment'].map((label) => {
                       const pct = progressBars[label] || 0;
                       const isComplete = progressStatus[label] === 'complete';
@@ -1261,7 +1264,7 @@
                   </div>
 
                   {/* Achievement cards — stream in one by one */}
-                  <div className="flex gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     {achievements.map((a, i) => (
                       <div key={i} className="flex-1 bg-emerald-50 rounded-xl p-3 border border-emerald-100 fade-up">
                         <div className="flex items-center gap-2 mb-1">
@@ -1282,7 +1285,7 @@
                 </div>{/* end left column */}
 
                 {/* Right column: Insights + Inbox */}
-                <div className="lg:col-span-2 space-y-6">
+                <div className="lg:col-span-2 space-y-6 min-w-0">
 
                 {/* ==========================================
                     SECTION 2: KEY INSIGHTS (Spatial Canvas)
@@ -1309,7 +1312,7 @@
 
                   {/* Insights board */}
                   {(visibleInsights.has('trial_match') || visibleInsights.has('repurposing')) && (
-                    <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl p-8 border border-slate-200">
+                    <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl p-4 sm:p-6 border border-slate-200 overflow-hidden">
                       <h2 className="text-lg font-bold flex items-center gap-2 mb-6">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
                         Key Insights
@@ -1346,7 +1349,7 @@
 
                   {/* Delegation Inbox */}
                   {showInbox && (
-                    <div className="bg-gradient-to-br from-amber-50/50 to-slate-50 rounded-3xl p-8 border border-amber-200/50">
+                    <div className="bg-gradient-to-br from-amber-50/50 to-slate-50 rounded-3xl p-4 sm:p-6 border border-amber-200/50 overflow-hidden">
                       <DelegationInbox
                         expandedId={expandedId}
                         onToggle={toggleAccordion}
@@ -1501,7 +1504,7 @@
 
             {activeTab === 'lab' && <LabTab labReady={labReady} />}
 
-            {activeTab === 'community' && <CommunityTab setActiveTab={setActiveTab} />}
+            {activeTab === 'community' && <CommunityTab setActiveTab={setActiveTab} communitySection={communitySection} setCommunitySection={setCommunitySection} />}
 
             </div>
           </main>
@@ -1908,8 +1911,7 @@
     // COMMUNITY TAB
     // ==========================================
 
-    function CommunityTab({ setActiveTab }) {
-      const [communitySection, setCommunitySection] = useState('network');
+    function CommunityTab({ setActiveTab, communitySection, setCommunitySection }) {
       const sectionBtns = [
         { id: 'network', label: 'Patient Network', icon: '\u{1F465}' },
         { id: 'data', label: 'Data Commons', icon: '\u{1F4CA}' },

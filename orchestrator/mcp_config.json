@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "clinical-trials": {
+      "type": "http",
+      "url": "https://mcp.deepsense.ai/clinical_trials/mcp"
+    },
+    "biorxiv": {
+      "type": "http",
+      "url": "https://mcp.deepsense.ai/biorxiv/mcp"
+    },
+    "chembl": {
+      "type": "http",
+      "url": "https://mcp.deepsense.ai/chembl/mcp"
+    },
+    "npi-registry": {
+      "type": "http",
+      "url": "https://mcp.deepsense.ai/npi_registry/mcp"
+    },
+    "cms-coverage": {
+      "type": "http",
+      "url": "https://mcp.deepsense.ai/cms_coverage/mcp"
+    }
+  }
+}

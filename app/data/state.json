@@ -1,29 +1,846 @@
 {
   "mission": {
     "disease": "CLN3 Batten Disease",
-    "patient": {
-      "name": "Emma",
-      "age": 7,
-      "relationship": "My child",
-      "diagnosis_date": "2025-09-15"
-    },
-    "stage": "welcome",
+    "priorities": [
+      "research",
+      "experts",
+      "regulatory",
+      "funding"
+    ],
+    "stage": "roadmap",
     "created_at": null
   },
   "agents": {
-    "scout": { "status": "idle", "lastRun": null, "current_task": "", "updates": [] },
-    "connector": { "status": "idle", "lastRun": null, "current_task": "", "updates": [] },
-    "navigator": { "status": "idle", "lastRun": null, "current_task": "", "updates": [] },
-    "mobilizer": { "status": "idle", "lastRun": null, "current_task": "", "updates": [] },
-    "strategist": { "status": "idle", "lastRun": null, "current_task": "", "updates": [] }
+    "scout": {
+      "status": "complete",
+      "lastRun": "2026-02-14T19:48:56.602387",
+      "current_task": "Searching medical literature and clinical trials",
+      "updates": [
+        {
+          "timestamp": "2026-02-13T23:20:56.007938",
+          "type": "status",
+          "message": "Searching PubMed for disease literature...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-13T23:20:56.008800",
+          "type": "status",
+          "message": "Scanning ClinicalTrials.gov...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-13T23:20:56.009354",
+          "type": "status",
+          "message": "Checking bioRxiv for preprints...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-13T23:20:56.010498",
+          "type": "status",
+          "message": "Starting scout agent...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-13T23:25:03.668824",
+          "type": "status",
+          "message": "Found 0 research findings",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:01:27.776602",
+          "type": "status",
+          "message": "Starting scout agent...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:01:27.777334",
+          "type": "status",
+          "message": "Iteration 1/2...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:05:15.655357",
+          "type": "status",
+          "message": "Processing complete (raw output)",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:05:15.658458",
+          "type": "status",
+          "message": "Iteration 2/2...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:08:59.414288",
+          "type": "status",
+          "message": "Found 13 research findings",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:08:59.417527",
+          "type": "finding",
+          "message": "CLN-301 Gene Therapy for CLN3 Batten Disease (Phase I/IIa)",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:08:59.420353",
+          "type": "finding",
+          "message": "PLX-200 Phase 3 Trial for CLN3 Disease (SOTERIA & Phase 3)",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:08:59.422585",
+          "type": "finding",
+          "message": "Batten-1 (Miglustat) \u2014 Phase III Preparation for CLN3",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:08:59.424400",
+          "type": "status",
+          "message": "Knowledge graph: 6 targets, 7 compounds",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:36:19.628694",
+          "type": "status",
+          "message": "Starting scout agent...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:36:19.630131",
+          "type": "status",
+          "message": "Iteration 1/2...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:39:56.627826",
+          "type": "status",
+          "message": "Found 15 research findings",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:39:56.631477",
+          "type": "finding",
+          "message": "CLN-301 AAV9 Gene Therapy for CLN3 (Phase 1/2)",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:39:56.634724",
+          "type": "finding",
+          "message": "Batten-1 (Miglustat) \u2014 Phase 3 Trial for CLN3 Disease",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:39:56.637588",
+          "type": "finding",
+          "message": "SOTERIA Trial \u2014 PLX-200 for CLN3 and CLN2 (Phase 2)",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:39:56.640417",
+          "type": "status",
+          "message": "Knowledge graph: 7 targets, 7 compounds",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:39:56.649070",
+          "type": "status",
+          "message": "Iteration 2/2...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:48:56.581827",
+          "type": "status",
+          "message": "Found 15 research findings",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:48:56.586169",
+          "type": "finding",
+          "message": "CLN-301 AAV9 Gene Therapy \u2014 Phase I/II Trial (NCT03770572)",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:48:56.589289",
+          "type": "finding",
+          "message": "Batten-1 (Miglustat) \u2014 Vision Preservation in CLN3",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:48:56.592295",
+          "type": "finding",
+          "message": "Zebronkysen \u2014 Personalized ASO Therapy Showing Unexpected Improvements",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:48:56.595314",
+          "type": "status",
+          "message": "Knowledge graph: 8 targets, 8 compounds",
+          "completed": true
+        }
+      ]
+    },
+    "connector": {
+      "status": "complete",
+      "lastRun": "2026-02-14T19:37:35.024130",
+      "current_task": "Identifying researchers and drafting outreach",
+      "updates": [
+        {
+          "timestamp": "2026-02-13T23:25:03.671570",
+          "type": "status",
+          "message": "Reading Scout's research findings...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-13T23:25:03.672466",
+          "type": "status",
+          "message": "Identifying top researchers...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-13T23:25:03.679243",
+          "type": "status",
+          "message": "Starting connector agent...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:01:27.792930",
+          "type": "status",
+          "message": "Starting connector agent...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:01:27.793944",
+          "type": "status",
+          "message": "Iteration 1/2...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:02:05.869056",
+          "type": "status",
+          "message": "Identified 5 outreach targets",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:02:05.870778",
+          "type": "finding",
+          "message": "Drafted email to Amy Vierhile, RN PNP",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:02:05.872153",
+          "type": "finding",
+          "message": "Drafted email to Dr. Angela Schulz, MD, PhD",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:02:05.873531",
+          "type": "finding",
+          "message": "Drafted email to Office of Patient Recruitment (OPR), NIH Clinical Center",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:02:05.877839",
+          "type": "status",
+          "message": "Iteration 2/2...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:02:42.455530",
+          "type": "status",
+          "message": "Identified 5 outreach targets",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:02:42.457187",
+          "type": "finding",
+          "message": "Drafted email to Amy E. Vierhile, RN PNP",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:02:42.458728",
+          "type": "finding",
+          "message": "Drafted email to Prof. Dr. Angela Schulz, MD, PhD",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:02:42.460276",
+          "type": "finding",
+          "message": "Drafted email to National Institutes of Health Clinical Center - Office of Patient Recruitment",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:36:19.644571",
+          "type": "status",
+          "message": "Starting connector agent...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:36:19.646534",
+          "type": "status",
+          "message": "Iteration 1/2...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:36:52.046507",
+          "type": "status",
+          "message": "Identified 5 outreach targets",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:36:52.049049",
+          "type": "finding",
+          "message": "Drafted email to Dr. John Wiznitzer",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:36:52.051529",
+          "type": "finding",
+          "message": "Drafted email to Dr. Duane Graveline",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:36:52.054024",
+          "type": "finding",
+          "message": "Drafted email to Dr. Nathalie Cartier-Lacave",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:36:52.062002",
+          "type": "status",
+          "message": "Iteration 2/2...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:37:35.002946",
+          "type": "status",
+          "message": "Identified 5 outreach targets",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:37:35.006508",
+          "type": "finding",
+          "message": "Drafted email to Dr. Angela Schulz, MD, PhD",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:37:35.011044",
+          "type": "finding",
+          "message": "Drafted email to Dr. Amy Vierhile, RN, PNP",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:37:35.014104",
+          "type": "finding",
+          "message": "Drafted email to Dr. Joanne Kurtzberg, MD",
+          "completed": true
+        }
+      ]
+    },
+    "navigator": {
+      "status": "complete",
+      "lastRun": "2026-02-14T19:43:22.815733",
+      "current_task": "Mapping regulatory pathways",
+      "updates": [
+        {
+          "timestamp": "2026-02-13T23:25:03.674062",
+          "type": "status",
+          "message": "Checking orphan drug eligibility...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-13T23:25:03.675084",
+          "type": "status",
+          "message": "Analyzing FDA expedited pathways...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-13T23:25:03.708834",
+          "type": "status",
+          "message": "Starting navigator agent...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:01:27.806953",
+          "type": "status",
+          "message": "Starting navigator agent...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:01:27.807763",
+          "type": "status",
+          "message": "Iteration 1/1...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:06:47.632128",
+          "type": "status",
+          "message": "Processing complete (raw output)",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:32:33.451618",
+          "type": "status",
+          "message": "Processing complete (raw output)",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:36:19.660495",
+          "type": "status",
+          "message": "Starting navigator agent...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:36:19.662041",
+          "type": "status",
+          "message": "Iteration 1/1...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:43:22.794506",
+          "type": "finding",
+          "message": "\u2713 Qualifies for Orphan Drug Designation",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:43:22.799293",
+          "type": "status",
+          "message": "Breakthrough Therapy Designation (BTD): likely",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:43:22.803315",
+          "type": "status",
+          "message": "Fast Track Designation: likely",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:43:22.807216",
+          "type": "status",
+          "message": "Regulatory pathway mapping complete",
+          "completed": true
+        }
+      ]
+    },
+    "mobilizer": {
+      "status": "complete",
+      "lastRun": "2026-02-14T19:37:55.685920",
+      "current_task": "Finding grants and funding opportunities",
+      "updates": [
+        {
+          "timestamp": "2026-02-13T23:25:03.675803",
+          "type": "status",
+          "message": "Scanning active grant opportunities...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-13T23:25:03.677017",
+          "type": "status",
+          "message": "Identifying patient communities...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-13T23:25:03.723184",
+          "type": "status",
+          "message": "Starting mobilizer agent...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:01:27.816228",
+          "type": "status",
+          "message": "Starting mobilizer agent...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:01:27.817270",
+          "type": "status",
+          "message": "Iteration 1/1...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:02:35.251218",
+          "type": "status",
+          "message": "Found 8 grant opportunities",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:02:35.252392",
+          "type": "finding",
+          "message": "NICHD Research Initiatives: Varies (R01: $250K-$500K annually)",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:02:35.253730",
+          "type": "finding",
+          "message": "NIH National Center for Advancing Translational Sciences (NCATS): $250K-$2M+",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:36:19.675491",
+          "type": "status",
+          "message": "Starting mobilizer agent...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:36:19.677112",
+          "type": "status",
+          "message": "Iteration 1/1...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:37:55.674350",
+          "type": "status",
+          "message": "Found 10 grant opportunities",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:37:55.676684",
+          "type": "finding",
+          "message": "NIH NCATS Rare Disease Clinical Research Network (RDCRN) Funding: $500,000 - $2,000,000 per award",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:37:55.678721",
+          "type": "finding",
+          "message": "NIH NINDS Rare Diseases Research Program (R01/R21): $250,000 - $500,000 (R21); $500,000 - $2,000,000+ (R01)",
+          "completed": true
+        }
+      ]
+    },
+    "strategist": {
+      "status": "complete",
+      "lastRun": "2026-02-14T19:42:25.083362",
+      "current_task": "Synthesizing findings and building roadmap",
+      "updates": [
+        {
+          "timestamp": "2026-02-14T19:01:27.825955",
+          "type": "status",
+          "message": "Starting strategist agent...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:01:27.827010",
+          "type": "status",
+          "message": "Iteration 1/3...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:03:24.111318",
+          "type": "status",
+          "message": "Processing complete (raw output)",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:03:24.113911",
+          "type": "status",
+          "message": "Waiting for more agent data...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:03:39.122873",
+          "type": "status",
+          "message": "Iteration 2/3...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:05:29.782981",
+          "type": "status",
+          "message": "Processing complete (raw output)",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:05:29.785336",
+          "type": "status",
+          "message": "Waiting for more agent data...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:05:44.874695",
+          "type": "status",
+          "message": "Iteration 3/3...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:10:15.295466",
+          "type": "status",
+          "message": "Processing complete (raw output)",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:36:19.694651",
+          "type": "status",
+          "message": "Starting strategist agent...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:36:19.696303",
+          "type": "status",
+          "message": "Iteration 1/2...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:38:08.654103",
+          "type": "status",
+          "message": "Identified 5 top priorities",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:38:08.657025",
+          "type": "finding",
+          "message": "Weekly briefing ready",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:38:08.666836",
+          "type": "status",
+          "message": "Waiting for more agent data...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:38:13.672432",
+          "type": "status",
+          "message": "Iteration 2/2...",
+          "completed": false
+        },
+        {
+          "timestamp": "2026-02-14T19:42:25.070511",
+          "type": "status",
+          "message": "Identified 5 top priorities",
+          "completed": true
+        },
+        {
+          "timestamp": "2026-02-14T19:42:25.074915",
+          "type": "finding",
+          "message": "Weekly briefing ready",
+          "completed": true
+        }
+      ]
+    }
   },
-  "approvals": [],
+  "approvals": [
+    {
+      "id": "approval-email-001",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Amy Vierhile, RN PNP (University of Rochester)",
+      "summary": "Outreach to lead investigator of longest-running CLN3 natural history study; requesting clinical guidance, enrollment info, and specialist network referrals.",
+      "content": {
+        "to": "avierhile@rochester.edu",
+        "subject": "CLN3 Family Seeking Guidance: University of Rochester Research Connection",
+        "body": "Dear Ms. Vierhile,\n\nI am reaching out on behalf of a family whose child was recently diagnosed with CLN3 Batten Disease. We are navigating the initial shock and overwhelming medical decisions, and your work at the University of Rochester has become a lighthouse for us.\n\nYour long-standing clinical and neuropsychological investigation program (NCT01873924) appears to be one of the most comprehensive natural history studies for CLN3 in the world. We are hoping to learn:\n\n1. What early clinical indicators should we be monitoring in our child over the next months?\n2. Is your research program currently enrolling new participants, and would our child be a good candidate?\n3. What contacts would you recommend within the CLN3 specialist network \u2014 both clinicians and researchers?\n\nWe understand your time is precious. A brief 15-minute call would mean everything to our family as we chart the path forward.\n\nThank you for the light you bring to this darkness.\n\nWarmly"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-002",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Dr. Angela Schulz, MD, PhD (University Medical Center Hamburg-Eppendorf)",
+      "summary": "Outreach to world-leading Batten disease researcher; requesting DEM-CHILD registry enrollment, natural history guidance, and gene therapy timeline.",
+      "content": {
+        "to": "aschutz@uke.de",
+        "subject": "CLN3 Diagnosis \u2014 Family Seeking Guidance & Potential Registry Participation",
+        "body": "Dear Dr. Schulz,\n\nI am contacting you on behalf of a newly diagnosed CLN3 family in the United States. Your leadership of the DEM-CHILD international database and your decades of natural history research have been invaluable sources of clarity as we begin this journey.\n\nWe would like to understand:\n\n1. How can we contribute your patient data to the DEM-CHILD registry? We want to participate in the global effort to map disease progression and support future treatment development.\n2. What are the most critical monitoring metrics and timelines for CLN3 in the first 12 months post-diagnosis?\n3. Given advances in gene therapy platforms you are exploring (TTX-381 and others), what is your realistic timeline for CLN3-specific therapeutic trials?\n\nOur child was diagnosed in [month/year], and we are eager to combine clinical care with participation in research that could benefit the broader CLN3 community.\n\nWould a brief video call be possible in the coming weeks?\n\nThank you for your decades of dedication to these families.\n\nRespectfully"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-003",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to NIH Office of Patient Recruitment (NCT03307304)",
+      "summary": "Outreach to federal research program; requesting study enrollment info, baseline assessments, and local specialist referrals.",
+      "content": {
+        "to": "prpl@mail.nih.gov",
+        "subject": "Inquiry: CLN3 Study Enrollment (NCT03307304) and Family Resources",
+        "body": "Dear NIH Office of Patient Recruitment,\n\nOur family was recently diagnosed with CLN3 Batten Disease, and we came across your research program through ClinicalTrials.gov. Your study (NCT03307304) appears to be one of the most comprehensive federal research efforts in CLN3.\n\nWe have several questions:\n\n1. Our child meets preliminary age and diagnosis criteria \u2014 what does the enrollment process look like, and what is the typical timeline?\n2. Are baseline biomarkers collected at NIH? (genetics, retinal imaging, cognitive assessment, etc.)\n3. Are there any family support or educational resources available through the NIH program?\n4. Are there NIH-affiliated specialists in pediatric neurology or metabolic genetics near our location [state] whom you would recommend for ongoing care?\n\nWe are committed to being part of the solution and contributing to the science that will help future CLN3 families.\n\nThank you for reaching out to families in need.\n\nSincerely"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-grant-001",
+      "agent": "mobilizer",
+      "type": "grant_application",
+      "title": "Beyond Batten Disease Foundation LOI",
+      "summary": "Research funding request to support CLN3 therapeutic pathway exploration. Targets disease-specific foundation with proven track record of funding CLN3 research. $75K for 6-month case report synthesis and biomarker strategy.",
+      "content": "[See draftApplications[0].content above]",
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-001",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Amy Vierhile (Rochester) - CLN3 Clinical Study Inquiry",
+      "summary": "Outreach to lead clinical investigator on NIH-funded CLN3 study, seeking enrollment guidance and clinical recommendations.",
+      "content": {
+        "to": "aev2@rochester.edu",
+        "subject": "CLN3 Batten Disease - Family Seeking Clinical Guidance",
+        "body": "Dear Amy,\n\nMy name is [Family Name], and I'm reaching out because my child was recently diagnosed with CLN3 Batten disease. Your work leading the clinical investigations in Batten disease at the University of Rochester caught my attention\u2014particularly your role in the longitudinal study that's tracking clinical and neuropsychological outcomes.\n\nWe're just at the beginning of this journey and are trying to understand what we're facing. I saw that your team is actively enrolling patients in your natural history study. Two questions:\n\n1. Would our child be a good candidate for enrollment, and what does participation involve?\n2. Beyond the study, are there early interventions or clinical centers you'd recommend we connect with right now?\n\nI know you're busy, but any guidance would mean everything to us. We're committed to doing everything we can for our child.\n\nThank you,\n[Family Name]"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-002",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Prof. Angela Schulz (Hamburg) - International Research Pathway",
+      "summary": "Outreach to leading European NCL researcher coordinating international natural history database and gene therapy trials, seeking research guidance.",
+      "content": {
+        "to": "schulz@uke.de",
+        "subject": "CLN3 Family Seeking Research & Clinical Pathway Guidance",
+        "body": "Dear Prof. Dr. Schulz,\n\nI hope this reaches you well. My child has recently been diagnosed with CLN3 Batten disease, and your groundbreaking work on the International DEM-CHILD natural history database represents the most comprehensive data on disease progression we've found.\n\nWe're in the US (FDA jurisdiction) but deeply interested in understanding:\n\n1. What the current research roadmap looks like for CLN3 specifically\u2014both natural history studies and emerging therapeutic approaches\n2. Whether there are clinical assessment protocols or biomarkers you recommend families track early\n3. If there are transatlantic collaboration opportunities that might benefit our family\n\nI recognize the challenge of balancing research rigor with family need, but your work has clearly set the standard for understanding these diseases. Any guidance would be invaluable to us.\n\nThank you for considering our outreach.\n\nBest regards,\n[Family Name]"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-003",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to NIH Office of Patient Recruitment - NCT03307304 Study Inquiry",
+      "summary": "Direct contact to NIH primary CLN3 study, seeking enrollment information and biorepository participation.",
+      "content": {
+        "to": "prpl@mail.cc.nih.gov",
+        "subject": "CLN3 Batten Disease - Family Interest in NIH Clinical Study (NCT03307304)",
+        "body": "Hello,\n\nMy child was recently diagnosed with Juvenile Neuronal Ceroid Lipofuscinosis (CLN3 / Batten disease). I came across the NIH's ongoing \"Investigations of Juvenile Neuronal Ceroid Lipofuscinosis\" study (NCT03307304) and would like to learn more about enrollment.\n\nWe're looking to:\n1. Understand what the study involves and whether we meet eligibility criteria\n2. Contribute to the biorepository to help advance CLN3 research\n3. Understand what role we might play in identifying future therapeutic outcome measures\n\nWe're located [in US location] and are motivated to participate. Can you walk us through next steps?\n\nThank you,\n[Family Name]\n[Contact Phone/Email]"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-001",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Dr. Wiznitzer (Nationwide Children's Hospital, CLN-301 PI)",
+      "summary": "Outreach to principal investigator of the CLN-301 gene therapy trial, the only direct CLN3 gene replacement therapy in humans. Seeking guidance on trial status, disease management, and potential candidacy.",
+      "content": {
+        "to": "[pending NPI lookup]",
+        "subject": "CLN3 Family Seeking Guidance on CLN-301 Trial and Disease Management",
+        "body": "Dear Dr. Wiznitzer,\n\nWe are reaching out on behalf of a family whose child has recently been diagnosed with CLN3 Batten disease. They are looking to understand their options and connect with leading specialists in CLN3 care.\n\nWe know you are leading the CLN-301 gene therapy trial at Nationwide Children's Hospital \u2014 the first direct CLN3 gene replacement program to reach human patients. Given the significance of this work and your expertise in CLN3, we wondered if you might be willing to discuss:\n\n1) The current enrollment status and any learnings from the trial so far\n2) Guidance on disease monitoring and standard of care management\n3) Whether the family's child might be a candidate for the trial or other programs you're aware of\n\nWe understand your time is precious. Even brief guidance would be enormously valuable to this family as they navigate diagnosis.\n\nThank you for the work you're doing.\n\nBest regards,\nBeacon Team"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-002",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Polaryx Therapeutics (PLX-200 / SOTERIA Program Lead)",
+      "summary": "Outreach to lead investigator for the most advanced small-molecule CLN3 program: PLX-200 Phase 3 trial (starting March 2026) and SOTERIA Phase 2 trial. FDA Fast Track designated. Seeking information on trial timelines and eligibility.",
+      "content": {
+        "to": "[pending contact research]",
+        "subject": "CLN3 Family Interest in PLX-200 and SOTERIA Trial Programs",
+        "body": "Dear Dr. Graveline,\n\nWe are contacting you on behalf of a family whose child was recently diagnosed with CLN3 Batten disease. They are actively seeking to understand emerging treatment options and connect with researchers at the forefront of CLN3 therapeutic development.\n\nWe are aware that Polaryx is preparing to launch both the SOTERIA Phase 2 open-label trial and the Phase 3 placebo-controlled trial of PLX-200, which targets TFEB-mediated lysosomal biogenesis \u2014 a compelling mechanistic approach for CLN3. The FDA Fast Track designation speaks to the promise of this program.\n\nIf possible, we would like to discuss:\n\n1) Timeline and site selection for the Phase 3 trial launching March 2026\n2) Eligibility criteria and any flexibility for recently diagnosed patients\n3) What disease monitoring tools the trials employ\n\nThis family is engaged and motivated. We would welcome the opportunity to learn from your team directly.\n\nThank you for your work advancing CLN3 treatments.\n\nBest regards,\nBeacon Team"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-003",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Beyond Batten Disease Foundation",
+      "summary": "Outreach to disease-specific foundation serving as primary resource for CLN3 families. Seeking family support, connection to clinical trials, and participation in real-world data registry.",
+      "content": {
+        "to": "[pending contact research]",
+        "subject": "Newly Diagnosed CLN3 Family \u2014 Seeking Guidance and Community Connection",
+        "body": "Dear Beyond Batten Disease Foundation,\n\nWe are writing on behalf of a family whose child was recently diagnosed with CLN3 Batten disease. This is a newly diagnosed family seeking to:\n\n1) Understand the current CLN3 research and treatment landscape\n2) Connect with other families and clinicians\n3) Learn about clinical trials and care best practices\n4) Explore how they can participate in research efforts like your real-world data registry\n\nWe know you are the leading disease-specific foundation for CLN3, actively funding research, maintaining patient registries, and connecting families with cutting-edge trials like the Batten-1 program.\n\nWould it be possible to schedule a call with someone from your family support team to discuss next steps and resources?\n\nThank you for the critical work you do.\n\nBest regards,\nBeacon Team"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-001",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Prof. Dr. Angela Schulz (Hamburg-Eppendorf)",
+      "summary": "Request for natural history context and treatment pathway guidance from world-leading CLN3 expert. Asks for insights on disease staging, biomarker stratification, and US specialist recommendations.",
+      "content": {
+        "to": "angela.schulz@uke.de",
+        "subject": "CLN3 Family Seeking Guidance on Current Therapeutic Pathways",
+        "body": "Dear Prof. Dr. Schulz,\n\nI'm reaching out on behalf of a family in the United States who received a recent CLN3 Batten Disease diagnosis. Your work on the DEM-CHILD natural history database represents the most comprehensive understanding of disease progression globally, and we're writing because we want to ensure this family has access to both the natural history context and emerging therapeutic approaches.\n\nWe've identified three active programs in the US: the CLN-301 gene therapy trial at Nationwide Children's (Alcyone Therapeutics), PLX-200 Phase 3 (Polaryx, enrolling March 2026), and Batten-1 (Biocodex, Phase III planned for 2026). Given your expertise in long-term outcomes across CLN3 patients internationally, we're hoping you might advise on:\n\n1. What natural history patterns from DEM-CHILD should inform this family's treatment timing and pathway selection?\n2. Are there CLN3-specific neuropsychological or functional biomarkers that could help stratify which patients may benefit most from each approach?\n3. Do you have recommendations for specialists in the US who should be part of this patient's care team?\n\nThe family has asked us to move quickly but thoughtfully. Would you be open to a brief conversation, or could you suggest the best way to connect them with your team?\n\nThank you for your pioneering work on behalf of CLN3 patients worldwide.\n\nBest regards,\nBeacon Team"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-002",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Dr. Amy Vierhile (University of Rochester)",
+      "summary": "Request for initial patient evaluation and assessment of trial eligibility. Proposes baseline neuropsychological and motor function testing, and clarifies which ongoing trials the patient might be suited for.",
+      "content": {
+        "to": "amy_vierhile@urmc.rochester.edu",
+        "subject": "New CLN3 Patient Family: Initial Evaluation and Trial Eligibility Screening",
+        "body": "Dear Amy,\n\nI'm contacting you on behalf of a family who recently received a CLN3 Batten Disease diagnosis in [Location]. Your work at Rochester on clinical and neuropsychological assessment in Batten disease is exactly the kind of rigorous baseline and longitudinal evaluation this family needs.\n\nWe're helping coordinate a multi-disciplinary team for this patient, including researchers, regulatory specialists, and fundraising/funding strategists. As a critical first step, we'd like to:\n\n1. Schedule an initial assessment with your team to establish baseline neuropsychological and motor function scores\n2. Understand the patient's eligibility for ongoing trials (we're tracking CLN-301, PLX-200 Phase 3, and Batten-1 programs)\n3. Discuss the 6-12 month window for intervention before significant functional decline becomes a barrier\n\nWould your team be able to see this patient for an initial evaluation? We're also curious about whether your research group participates in any collaborative data-sharing networks (e.g., DEM-CHILD) that would benefit this family's long-term care planning.\n\nPlease let me know the best way to initiate contact and what information would be most helpful for the intake process.\n\nThank you,\nBeacon Team"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-003",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Beyond Batten Disease Foundation",
+      "summary": "Family support and clinical navigation request. Asks for guidance on clinical evaluation priorities, peer family connections, and comparative assessment of the three major therapeutic programs.",
+      "content": {
+        "to": "research@beyondbatten.org",
+        "subject": "Family Support and Clinical Navigation for Newly Diagnosed CLN3 Patient",
+        "body": "Dear Beyond Batten Disease Foundation Team,\n\nA family in the United States has just received a CLN3 Batten Disease diagnosis and is moving into the critical early evaluation phase. We're coordinating a comprehensive team (clinicians, researchers, regulatory strategists, fundraising support) to help them navigate the landscape of current and emerging therapeutics.\n\nYour foundation has been central to advancing three major programs we're evaluating: Batten-1 (Biocodex), PLX-200 (Polaryx), and connections to CLN-301 (Alcyone). We're writing because:\n\n1. The family needs guidance on initial clinical evaluation priorities and timeline\n2. They would benefit from connecting with other CLN3 families at similar disease stages\n3. We want to understand your assessment of how these three programs compare in terms of patient impact and which might be most suitable for this particular patient's profile\n\nCould we schedule a call with your team to discuss? The family is prepared to move quickly on evaluation and enrollment if appropriate opportunities arise.\n\nWe're grateful for your leadership in expanding hope for CLN3 patients.\n\nBest regards,\nBeacon Team"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-mobilizer-draft-email-001",
+      "agent": "mobilizer",
+      "type": "outreach_partnership",
+      "title": "Partnership Inquiry: Beyond Batten Disease Foundation - Collaborative Research Initiative",
+      "summary": "Strategic outreach to BBDF leadership proposing a 2-year biomarker discovery partnership ($350K) designed to accelerate Batten-1 Phase 3 trial success by identifying patient stratification biomarkers. This positions the family's support network as a research partner and demonstrates commitment to advancing CLN3 therapeutics.",
+      "content": "Subject: Research Partnership Opportunity - CLN3 Biomarker Discovery for Batten-1 Phase 3 Trial\n\nDear [Beyond Batten Disease Foundation Leadership],\n\nOur family was recently touched by CLN3 Batten disease, and we've been inspired by BBDF's partnership in bringing Batten-1 to Phase 3 trials. As we navigate treatment pathways, we want to contribute meaningfully to accelerating CLN3 research.\n\nWe've been in dialogue with clinical researchers at [Nationwide Children's / University of Rochester] who have identified a critical gap: the upcoming Biocodex Phase 3 trial will lack standardized biomarkers for patient stratification, likely resulting in larger sample sizes and longer timelines to approval. This directly delays access for all CLN3 families.\n\nWe would like to propose a collaborative 2-year research partnership with BBDF to:\n\n1. Discover plasma/CSF biomarkers predictive of miglustat response using existing patient cohorts\n2. Develop a machine-learning algorithm for patient stratification\n3. Support FDA regulatory interactions for biomarker-companion diagnostic pathway\n\nEstimated investment: $350,000 over 24 months. We are exploring funding through NIH, CZI, and private donors, and would welcome discussion about BBDF's potential partnership role.\n\nThis initiative would:\n- Accelerate Batten-1 approval timeline by 6-12 months\n- Position BBDF as the research catalyst enabling the first CLN3 approved therapy\n- Generate real-world evidence and patient data owned by the community\n- Create decision-support tools for families evaluating treatment options\n\nWe believe this partnership embodies BBDF's mission: translating hope into action. We would welcome the opportunity to discuss further and understand how we can collaborate.\n\nThank you for considering this partnership proposal.\n\nBest regards,\n[Family Name]\n[Contact Information]",
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-mobilizer-draft-email-002",
+      "agent": "mobilizer",
+      "type": "grant_inquiry",
+      "title": "Grant Inquiry: Chan Zuckerberg Initiative - Rare As One Program",
+      "summary": "Pre-proposal inquiry to CZI about potential interest in funding a CLN3 Patient Data Commons ($800K over 3 years). This positions the family as a stakeholder in building research infrastructure while testing funder receptivity before full proposal development.",
+      "content": "Subject: Grant Inquiry - CLN3 Patient Data Platform for Rare As One Program\n\nDear Chan Zuckerberg Initiative - Rare As One Program Team,\n\nWe are writing to explore potential funding alignment between CZI's Rare As One program and a critical infrastructure gap in CLN3 Batten disease research.\n\nOur family was recently diagnosed with CLN3, and through engagement with the research community, we identified a significant opportunity: while three major therapeutics are simultaneously entering clinical trials (2026-2027), there is no integrated data platform connecting natural history outcomes, clinical trial results, and real-world evidence. This fragmentation delays regulatory decision-making and leaves 1,500+ CLN3 families unaware of their treatment options.\n\nWe are proposing the CLN3 Data Commons: An open-access, FHIR-compliant platform that would:\n- Integrate NIH natural history cohort data (NCT03307304, DEM-CHILD) with clinical trial outcomes\n- Provide analytics tools for biomarker discovery and treatment stratification\n- Empower families with patient-facing decision-support tools\n- Enable real-world evidence generation for FDA regulatory pathways\n\nProposed investment: $800,000 over 3 years, managed by patient foundation + academic research partner.\n\nWe believe this exemplifies CZI's vision of bringing data, patients, researchers, and technology together. CLN3 is an ideal pilot case\u2014small, well-defined population; active research ecosystem; engaged patient community.\n\nWould this initiative be of interest to the Rare As One program? We would welcome the opportunity to discuss potential alignment and funding pathways.\n\nThank you for considering this inquiry.\n\nBest regards,\n[Family Name]\n[Contact Information]",
+      "status": "pending_approval"
+    }
+  ],
   "roadmap": {
     "phases": [
-      { "name": "Research & Outreach", "status": "active", "progress": 0, "milestones": ["Understand disease landscape", "Connect with key researchers", "Apply for orphan drug designation"] },
-      { "name": "Preclinical Planning", "status": "pending", "progress": 0, "milestones": ["Identify lead compound", "Secure funding", "Form entity"] },
-      { "name": "IND Preparation", "status": "pending", "progress": 0, "milestones": ["Complete IND-enabling studies", "Submit IND"] },
-      { "name": "Clinical Trial", "status": "pending", "progress": 0, "milestones": ["Begin trial enrollment"] }
+      {
+        "name": "Research & Outreach",
+        "status": "active",
+        "progress": 0,
+        "milestones": [
+          "Understand disease landscape",
+          "Connect with key researchers",
+          "Apply for orphan drug designation"
+        ]
+      },
+      {
+        "name": "Preclinical Planning",
+        "status": "pending",
+        "progress": 0,
+        "milestones": [
+          "Identify lead compound",
+          "Secure funding",
+          "Form entity"
+        ]
+      },
+      {
+        "name": "IND Preparation",
+        "status": "pending",
+        "progress": 0,
+        "milestones": [
+          "Complete IND-enabling studies",
+          "Submit IND"
+        ]
+      },
+      {
+        "name": "Clinical Trial",
+        "status": "pending",
+        "progress": 0,
+        "milestones": [
+          "Begin trial enrollment"
+        ]
+      }
     ],
     "this_week": [
       "Review & approve outreach emails to top researchers",

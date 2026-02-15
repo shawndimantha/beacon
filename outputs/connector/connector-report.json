@@ -1,0 +1,138 @@
+{
+  "timestamp": "2026-02-13T12:30:00Z",
+  "contacts": [
+    {
+      "id": "contact-001",
+      "name": "Dr. Michelle Hastings, PhD",
+      "institution": "University of Michigan Medical School",
+      "role": "researcher",
+      "relevance": "World's leading expert on antisense oligonucleotide therapies for CLN3. Developed the exon-skipping approach for the common 1kb deletion (affecting ~85% of patients) and created Zebronkysen for the Kahn twins. Her lab's 2025 Nucleic Acids Research paper demonstrated ASO efficacy in a pig retinal model. If Emma carries the common CLN3 deletion, Dr. Hastings' work is directly relevant to her case.",
+      "email_draft": {
+        "subject": "A family's hope — asking about your CLN3 exon-skipping work",
+        "body": "Dear Dr. Hastings,\n\nI'm writing as the parent of Emma, who was recently diagnosed with CLN3 Batten disease. I've been following your work closely and wanted to reach out.\n\nYour group's exon-skipping approach for the common 1kb deletion is extraordinary — the fact that a single neonatal ASO treatment in mice produced robust exon skipping lasting over a year, with improved motor coordination and reduced brain pathology, gives families like ours real hope. And the news about Amelia and Makenzie Kahn's improvements on Zebronkysen — Makenzie walking farther, Amelia eating solid food — that's the kind of thing that keeps us going on the hardest days.\n\nYour recent paper in Nucleic Acids Research showing ASO efficacy in the pig retinal model was particularly meaningful to us, since Emma's vision is one of our deepest concerns. The translation from mouse to large animal feels like a critical step.\n\nI have a specific question: Emma carries [pending genetic confirmation of specific mutation]. As Project Four Leaf Clover advances VCRDF-CLN3 toward the clinic, is there anything families can do now to support or participate in the pathway — whether enrolling in natural history studies, contributing to the biorepository, or connecting with the Vanguard Foundation's efforts?\n\nWe understand you receive many messages, and we're deeply grateful for the work you and your team are doing. It matters more than you know.\n\nWith hope and respect,\n[Emma's parent]"
+      },
+      "status": "draft",
+      "priority": "high"
+    },
+    {
+      "id": "contact-002",
+      "name": "Dr. Yael Shiloh-Malawsky, MD",
+      "institution": "University of North Carolina School of Medicine",
+      "role": "clinician",
+      "relevance": "Board-certified pediatric neurologist (NPI: 1245431600) at UNC Chapel Hill, 170 Manning Dr. Principal investigator for the Zebronkysen personalized ASO treatment study — the first-of-its-kind personalized ASO clinical program for CLN3. Directly administering and monitoring ASO therapy in CLN3 patients with documented functional improvements.",
+      "email_draft": {
+        "subject": "CLN3 family seeking guidance — inspired by the Kahn twins' progress",
+        "body": "Dear Dr. Shiloh-Malawsky,\n\nI'm the parent of Emma, a child recently diagnosed with CLN3 Batten disease, and I'm writing because your work with Amelia and Makenzie Kahn has given our family something we desperately needed: a reason to believe things can get better, not just slower.\n\nThe improvements you've documented after one year of Zebronkysen — Makenzie walking farther independently, Amelia eating solid food including ice cream — these go beyond what the researchers initially hypothesized. As a family staring down this diagnosis, hearing about actual functional improvements rather than just slowed decline changes everything about how we think about the future.\n\nI understand that Zebronkysen was designed for the Kahn twins' unique mutation, and that personalized ASO development is a complex undertaking. My question is about the broader landscape you're navigating as a clinician at the front lines of this: for a family at the beginning of this journey, what would you recommend as the most important first steps? Should we prioritize genetic characterization of Emma's specific CLN3 variant? Are there specific natural history studies or biorepositories where enrollment now could position Emma for emerging therapies?\n\nWe're also located [within reasonable distance / willing to travel], and would welcome any guidance on establishing care with a center experienced in CLN3.\n\nThank you for the extraordinary work you're doing. The Kahn family's story has lit a path for all of us.\n\nWith gratitude,\n[Emma's parent]"
+      },
+      "status": "draft",
+      "priority": "high"
+    },
+    {
+      "id": "contact-003",
+      "name": "Polaryx Therapeutics — Clinical Team",
+      "institution": "Polaryx Therapeutics, Inc., Paramus, NJ",
+      "role": "organization",
+      "relevance": "Developing PLX-200, the first-ever Phase 3 trial specifically for CLN3 Batten disease (NCT04637282). Trial is planned to begin recruiting in March 2026 — imminent. Enrolling 39 patients aged 6-18 with mild-to-moderate disease. This is the most advanced CLN3-specific drug trial and Emma may be eligible.",
+      "email_draft": {
+        "subject": "Inquiry about PLX-200 Phase 3 enrollment for our daughter with CLN3",
+        "body": "Dear Polaryx Clinical Team,\n\nOur daughter Emma was recently diagnosed with CLN3 Batten disease, and we understand that your PLX-200 Phase 3 trial (NCT04637282) is expected to begin recruiting in March 2026. We are writing to express our family's strong interest in learning more about potential enrollment.\n\nWe've been following PLX-200's development with great interest. The fact that this will be the first Phase 3, randomized, double-blind, placebo-controlled trial specifically designed for CLN3 represents a milestone for every family affected by this disease. The oral administration and the well-characterized safety profile from PLX-200's history make this particularly compelling.\n\nEmma is [age] and her current disease presentation is [mild-to-moderate]. We understand the trial will enroll patients aged 6-18 with a 60-week maintenance period followed by a 36-week open-label extension, using the Hamburg Rating Scale motor score as the primary endpoint.\n\nCould you share information about:\n1. The timeline for site activation and when families should begin the screening process?\n2. Which clinical sites will be participating?\n3. Whether there are specific assessments or documentation we should have ready in advance?\n\nWe are prepared to travel to any trial site. This trial represents real hope for our family, and we want to be as prepared as possible.\n\nSincerely,\n[Emma's parent]"
+      },
+      "status": "draft",
+      "priority": "high"
+    },
+    {
+      "id": "contact-004",
+      "name": "Beyond Batten Disease Foundation",
+      "institution": "Beyond Batten Disease Foundation",
+      "role": "advocate",
+      "relevance": "The leading foundation specifically focused on CLN3 Batten disease research. Co-funding the Batten-1 (miglustat) program with Theranexus that showed near-stabilization of vision. Maintains the state-of-the-science roadmap for CLN3 treatments. Essential connection point for navigating the treatment landscape and connecting with the broader CLN3 community.",
+      "email_draft": {
+        "subject": "Newly diagnosed CLN3 family reaching out",
+        "body": "Dear Beyond Batten team,\n\nOur daughter Emma was recently diagnosed with CLN3 Batten disease. I'm writing because your foundation's work has been a lifeline as we've tried to understand what's ahead and what's possible.\n\nIn particular, the results you announced with Theranexus on Batten-1 — near-stabilization of visual acuity over 12 months in treated patients — gave us our first real moment of hope since the diagnosis. Vision loss is one of our greatest fears for Emma, and knowing that someone is making real progress on that front means everything.\n\nYour state-of-the-science roadmap has been incredibly helpful for us to understand the full landscape of CLN3 research. We can see that the field is moving faster than ever, and your foundation's role in making that happen is clear.\n\nWe're reaching out because we want to be active participants in this fight, not just bystanders. Specifically:\n- How can our family best connect with the BBDF community and other CLN3 families?\n- Are there research studies, natural history databases, or biorepositories where Emma's participation could contribute to advancing treatments?\n- As new families, what would you recommend as our most important first steps?\n\nWe're ready to contribute however we can — whether that's participating in research, sharing Emma's story, or supporting the foundation's mission.\n\nWith deep appreciation for everything you do,\n[Emma's parent]"
+      },
+      "status": "draft",
+      "priority": "high"
+    },
+    {
+      "id": "contact-005",
+      "name": "NIH Clinical Center — NICHD CLN3 Natural History Study",
+      "institution": "National Institutes of Health, Bethesda, Maryland",
+      "role": "clinician",
+      "relevance": "The NICHD is running the definitive CLN3 natural history study (NCT03307304) at the NIH Clinical Center. Currently recruiting, targeting 300 patients. This study is establishing the biomarkers and outcome measures essential for all future CLN3 clinical trials. Enrollment positions Emma to contribute to foundational research and stay connected to emerging trial opportunities.",
+      "email_draft": {
+        "subject": "Interest in enrolling in CLN3 natural history study (NCT03307304)",
+        "body": "Dear NIH Clinical Center Team,\n\nOur daughter Emma was recently diagnosed with CLN3 Batten disease (Juvenile Neuronal Ceroid Lipofuscinosis), and we would like to inquire about enrollment in your natural history study, \"Investigations of Juvenile Neuronal Ceroid Lipofuscinosis\" (NCT03307304).\n\nWe understand this study is identifying clinical and biochemical biomarkers for CLN3 disease and establishing a biorepository that will be foundational for future clinical trials. As a family navigating a new diagnosis, we believe participating in this research is one of the most meaningful things we can do — both for Emma and for every child who will be diagnosed after her.\n\nEmma is [age] years old and was diagnosed [timeframe]. We are willing to travel to the NIH Clinical Center in Bethesda for study visits.\n\nCould you provide information about:\n1. The enrollment process and any upcoming visit windows?\n2. What medical records or genetic testing results we should have prepared?\n3. Whether participation in this study would affect eligibility for interventional trials (such as PLX-200 or future ASO programs)?\n\nThank you for this critical work. The outcome measures and biomarkers you're developing will make every future treatment trial possible, and we want to be part of that.\n\nSincerely,\n[Emma's parent]"
+      },
+      "status": "draft",
+      "priority": "medium"
+    }
+  ],
+  "approvalItems": [
+    {
+      "id": "approval-email-001",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Dr. Michelle Hastings (University of Michigan)",
+      "summary": "Reaching out to the leading CLN3 ASO researcher about her exon-skipping work and how Emma's family can engage with Project Four Leaf Clover and related research.",
+      "content": {
+        "to": "Dr. Michelle Hastings, University of Michigan Medical School",
+        "subject": "A family's hope — asking about your CLN3 exon-skipping work",
+        "body": "Dear Dr. Hastings,\n\nI'm writing as the parent of Emma, who was recently diagnosed with CLN3 Batten disease. I've been following your work closely and wanted to reach out.\n\nYour group's exon-skipping approach for the common 1kb deletion is extraordinary — the fact that a single neonatal ASO treatment in mice produced robust exon skipping lasting over a year, with improved motor coordination and reduced brain pathology, gives families like ours real hope. And the news about Amelia and Makenzie Kahn's improvements on Zebronkysen — Makenzie walking farther, Amelia eating solid food — that's the kind of thing that keeps us going on the hardest days.\n\nYour recent paper in Nucleic Acids Research showing ASO efficacy in the pig retinal model was particularly meaningful to us, since Emma's vision is one of our deepest concerns. The translation from mouse to large animal feels like a critical step.\n\nI have a specific question: Emma carries [pending genetic confirmation of specific mutation]. As Project Four Leaf Clover advances VCRDF-CLN3 toward the clinic, is there anything families can do now to support or participate in the pathway — whether enrolling in natural history studies, contributing to the biorepository, or connecting with the Vanguard Foundation's efforts?\n\nWe understand you receive many messages, and we're deeply grateful for the work you and your team are doing. It matters more than you know.\n\nWith hope and respect,\n[Emma's parent]"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-002",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Dr. Yael Shiloh-Malawsky (UNC)",
+      "summary": "Reaching out to the pediatric neurologist administering Zebronkysen ASO therapy at UNC for clinical guidance on first steps and care coordination.",
+      "content": {
+        "to": "Dr. Yael Shiloh-Malawsky, UNC School of Medicine, 170 Manning Dr., Chapel Hill, NC",
+        "subject": "CLN3 family seeking guidance — inspired by the Kahn twins' progress",
+        "body": "Dear Dr. Shiloh-Malawsky,\n\nI'm the parent of Emma, a child recently diagnosed with CLN3 Batten disease, and I'm writing because your work with Amelia and Makenzie Kahn has given our family something we desperately needed: a reason to believe things can get better, not just slower.\n\nThe improvements you've documented after one year of Zebronkysen — Makenzie walking farther independently, Amelia eating solid food including ice cream — these go beyond what the researchers initially hypothesized. As a family staring down this diagnosis, hearing about actual functional improvements rather than just slowed decline changes everything about how we think about the future.\n\nI understand that Zebronkysen was designed for the Kahn twins' unique mutation, and that personalized ASO development is a complex undertaking. My question is about the broader landscape you're navigating as a clinician at the front lines of this: for a family at the beginning of this journey, what would you recommend as the most important first steps? Should we prioritize genetic characterization of Emma's specific CLN3 variant? Are there specific natural history studies or biorepositories where enrollment now could position Emma for emerging therapies?\n\nWe're also located [within reasonable distance / willing to travel], and would welcome any guidance on establishing care with a center experienced in CLN3.\n\nThank you for the extraordinary work you're doing. The Kahn family's story has lit a path for all of us.\n\nWith gratitude,\n[Emma's parent]"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-003",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Polaryx Therapeutics (PLX-200 Phase 3)",
+      "summary": "Inquiring about enrollment in the upcoming PLX-200 Phase 3 trial for CLN3, expected to begin recruiting March 2026.",
+      "content": {
+        "to": "Polaryx Therapeutics Clinical Team, Paramus, NJ",
+        "subject": "Inquiry about PLX-200 Phase 3 enrollment for our daughter with CLN3",
+        "body": "Dear Polaryx Clinical Team,\n\nOur daughter Emma was recently diagnosed with CLN3 Batten disease, and we understand that your PLX-200 Phase 3 trial (NCT04637282) is expected to begin recruiting in March 2026. We are writing to express our family's strong interest in learning more about potential enrollment.\n\nWe've been following PLX-200's development with great interest. The fact that this will be the first Phase 3, randomized, double-blind, placebo-controlled trial specifically designed for CLN3 represents a milestone for every family affected by this disease. The oral administration and the well-characterized safety profile from PLX-200's history make this particularly compelling.\n\nEmma is [age] and her current disease presentation is [mild-to-moderate]. We understand the trial will enroll patients aged 6-18 with a 60-week maintenance period followed by a 36-week open-label extension, using the Hamburg Rating Scale motor score as the primary endpoint.\n\nCould you share information about:\n1. The timeline for site activation and when families should begin the screening process?\n2. Which clinical sites will be participating?\n3. Whether there are specific assessments or documentation we should have ready in advance?\n\nWe are prepared to travel to any trial site. This trial represents real hope for our family, and we want to be as prepared as possible.\n\nSincerely,\n[Emma's parent]"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-004",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Beyond Batten Disease Foundation",
+      "summary": "Connecting with the leading CLN3-focused foundation for community support, research participation opportunities, and guidance for newly diagnosed families.",
+      "content": {
+        "to": "Beyond Batten Disease Foundation",
+        "subject": "Newly diagnosed CLN3 family reaching out",
+        "body": "Dear Beyond Batten team,\n\nOur daughter Emma was recently diagnosed with CLN3 Batten disease. I'm writing because your foundation's work has been a lifeline as we've tried to understand what's ahead and what's possible.\n\nIn particular, the results you announced with Theranexus on Batten-1 — near-stabilization of visual acuity over 12 months in treated patients — gave us our first real moment of hope since the diagnosis. Vision loss is one of our greatest fears for Emma, and knowing that someone is making real progress on that front means everything.\n\nYour state-of-the-science roadmap has been incredibly helpful for us to understand the full landscape of CLN3 research. We can see that the field is moving faster than ever, and your foundation's role in making that happen is clear.\n\nWe're reaching out because we want to be active participants in this fight, not just bystanders. Specifically:\n- How can our family best connect with the BBDF community and other CLN3 families?\n- Are there research studies, natural history databases, or biorepositories where Emma's participation could contribute to advancing treatments?\n- As new families, what would you recommend as our most important first steps?\n\nWe're ready to contribute however we can — whether that's participating in research, sharing Emma's story, or supporting the foundation's mission.\n\nWith deep appreciation for everything you do,\n[Emma's parent]"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-005",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to NIH Clinical Center — CLN3 Natural History Study",
+      "summary": "Inquiring about enrollment in the NICHD CLN3 natural history study at NIH (NCT03307304) to contribute biomarker data and stay connected to emerging trials.",
+      "content": {
+        "to": "NIH Clinical Center, Office of Patient Recruitment, Bethesda, MD",
+        "subject": "Interest in enrolling in CLN3 natural history study (NCT03307304)",
+        "body": "Dear NIH Clinical Center Team,\n\nOur daughter Emma was recently diagnosed with CLN3 Batten disease (Juvenile Neuronal Ceroid Lipofuscinosis), and we would like to inquire about enrollment in your natural history study, \"Investigations of Juvenile Neuronal Ceroid Lipofuscinosis\" (NCT03307304).\n\nWe understand this study is identifying clinical and biochemical biomarkers for CLN3 disease and establishing a biorepository that will be foundational for future clinical trials. As a family navigating a new diagnosis, we believe participating in this research is one of the most meaningful things we can do — both for Emma and for every child who will be diagnosed after her.\n\nEmma is [age] years old and was diagnosed [timeframe]. We are willing to travel to the NIH Clinical Center in Bethesda for study visits.\n\nCould you provide information about:\n1. The enrollment process and any upcoming visit windows?\n2. What medical records or genetic testing results we should have prepared?\n3. Whether participation in this study would affect eligibility for interventional trials (such as PLX-200 or future ASO programs)?\n\nThank you for this critical work. The outcome measures and biomarkers you're developing will make every future treatment trial possible, and we want to be part of that.\n\nSincerely,\n[Emma's parent]"
+      },
+      "status": "pending_approval"
+    }
+  ],
+  "summary": "Identified 5 priority outreach targets spanning the full CLN3 treatment landscape: (1) Dr. Michelle Hastings at University of Michigan — the world's leading CLN3 ASO researcher whose exon-skipping work underpins the most promising therapeutic approach for ~85% of patients; (2) Dr. Yael Shiloh-Malawsky at UNC (verified NPI: 1245431600, pediatric neurologist) — clinician administering the breakthrough Zebronkysen ASO therapy; (3) Polaryx Therapeutics — preparing the first-ever Phase 3 CLN3 trial (PLX-200) with recruitment starting March 2026, the most time-sensitive opportunity; (4) Beyond Batten Disease Foundation — the primary CLN3-specific advocacy organization funding Batten-1 vision preservation research; (5) NIH Clinical Center NICHD study — the foundational natural history study building the infrastructure all future trials depend on. Strategy prioritizes actionable near-term opportunities (PLX-200 trial enrollment, NIH study enrollment) while building relationships with the researchers most likely to drive long-term breakthroughs (Hastings, Shiloh-Malawsky). All emails reference specific published findings to demonstrate genuine engagement with the science. Next steps: await family approval on email drafts, then identify additional outreach to Alcyone Therapeutics (CLN-301 gene therapy), BDSRA, and the Hamburg DEM-CHILD consortium."
+}

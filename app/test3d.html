@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+</head>
+<body>
+<h3>3Dmol.js Test</h3>
+<div id="viewer" style="width:600px;height:400px;border:1px solid #ccc;"></div>
+<pre id="log"></pre>
+<script>
+const log = (msg) => { document.getElementById('log').textContent += msg + '\n'; console.log(msg); };
+
+log('3Dmol version: ' + ($3Dmol.version || 'unknown'));
+
+let viewer = $3Dmol.createViewer('viewer', {backgroundColor: 'white'});
+log('Viewer created');
+
+fetch('data/structures/CLN3.pdb')
+  .then(r => { log('Fetch status: ' + r.status); return r.text(); })
+  .then(pdb => {
+    log('PDB length: ' + pdb.length);
+    log('First line: ' + pdb.substring(0, 80));
+    let m = viewer.addModel(pdb, 'pdb');
+    log('Model added, atoms: ' + viewer.getModel().selectedAtoms().length);
+    viewer.setStyle({}, {cartoon: {color: 'spectrum'}});
+    viewer.zoomTo();
+    viewer.render();
+    log('Rendered!');
+  })
+  .catch(e => log('ERROR: ' + e));
+</script>
+</body>
+</html>

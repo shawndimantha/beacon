@@ -525,14 +525,14 @@
       { key: 'lab_candidates',    trigger: { view: 'dashboard', tab: 'lab', delay: 15000 },    text: "Here's your candidate pipeline — compounds ranked by potential, with safety profiles and clinical precedent. Your team can even help you design experiments and find contract research labs." },
       { key: 'community_network', trigger: { view: 'dashboard', tab: 'community' },            text: "You're not the only family fighting this. Beacon's Connector agent has found twelve other CLN3 families — matched by geography, treatment stage, and willingness to share. Every introduction goes through you first." },
       { key: 'community_data',    trigger: { view: 'dashboard', tab: 'community', delay: 15000 }, text: "When families share outcomes, patterns emerge. Your agents analyze this community data to identify what's working. And when enough evidence builds, they map the path from shared data to a formal clinical trial — regulatory steps, funding sources, everything." },
-      { key: 'closing',           trigger: { view: 'dashboard', tab: 'community', delay: 30000 }, text: "No family should have to fight alone. Beacon is your team — researching, connecting, strategizing, and never stopping. This is just the beginning." },
+      { key: 'closing',           trigger: { auto_after: 'community_data' }, text: "No family should have to fight alone. Beacon is your team — researching, connecting, strategizing, and never stopping. This is just the beginning." },
     ];
 
     function NarrationPlayer({ view, step, activeTab }) {
       const [currentIdx, setCurrentIdx] = useState(-1);
       const [playing, setPlaying] = useState(false);
       const [muted, setMuted] = useState(false);
-      const [transcriptVisible, setTranscriptVisible] = useState(true);
+      const [transcriptVisible, setTranscriptVisible] = useState(false);
       const [played, setPlayed] = useState(() => {
         try { return new Set(JSON.parse(sessionStorage.getItem('beacon_narration_played') || '[]')); } catch { return new Set(); }
       });
@@ -595,15 +595,19 @@
 
         audio.onended = () => {
           setPlaying(false);
-          // Auto-advance to next unplayed clip if it matches current context
+          // Auto-advance to next unplayed clip if it chains via auto_after or matches current context
           const next = currentIdx + 1;
           if (next < NARRATION_CLIPS.length) {
             const nc = NARRATION_CLIPS[next];
             const t = nc.trigger;
-            const viewMatch = (t.view === 'onboarding' && view === 'onboarding' && t.step === step) ||
-                              (t.view === 'dashboard' && view === 'dashboard' && (!t.tab || t.tab === activeTab));
-            if (viewMatch && !played.has(nc.key) && !t.delay) {
+            if (t.auto_after === clip.key && !played.has(nc.key)) {
               setCurrentIdx(next);
+            } else {
+              const viewMatch = (t.view === 'onboarding' && view === 'onboarding' && t.step === step) ||
+                                (t.view === 'dashboard' && view === 'dashboard' && (!t.tab || t.tab === activeTab));
+              if (viewMatch && !played.has(nc.key) && !t.delay) {
+                setCurrentIdx(next);
+              }
             }
           }
         };
@@ -649,7 +653,7 @@
       return (
         <>
           {/* Floating control pill */}
-          <div style={{position:'fixed', bottom:'24px', right:'24px', zIndex:9999}} className="flex items-center gap-2 bg-white/90 backdrop-blur-md shadow-xl rounded-full px-4 py-2.5 border border-slate-200">
+          <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-[9999] flex items-center gap-2 bg-white/90 backdrop-blur-md shadow-xl rounded-full px-3 sm:px-4 py-2 sm:py-2.5 border border-slate-200">
             <button onClick={togglePlay} className="w-8 h-8 flex items-center justify-center rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-colors" title={playing ? 'Pause' : 'Play'}>
               {playing ? (
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="2" y="1" width="3.5" height="12" rx="1"/><rect x="8.5" y="1" width="3.5" height="12" rx="1"/></svg>
@@ -668,14 +672,14 @@
               )}
             </button>
             <span className="text-xs text-slate-400 font-medium ml-1">{clipNum > 0 ? clipNum : '–'} / {totalClips}</span>
-            <button onClick={() => setTranscriptVisible(!transcriptVisible)} className="w-7 h-7 flex items-center justify-center rounded-full text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 transition-colors ml-1" title="Toggle subtitles">
+            <button onClick={() => setTranscriptVisible(!transcriptVisible)} className={`w-7 h-7 flex items-center justify-center rounded-full transition-colors ml-1 ${transcriptVisible ? 'text-indigo-600 bg-indigo-50' : 'text-slate-500 hover:text-indigo-600 hover:bg-indigo-50'}`} title="Toggle subtitles">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 15h4M13 15h4M7 11h10"/></svg>
             </button>
           </div>
 
           {/* Subtitle bar */}
           {transcriptVisible && currentClip && playing && (
-            <div style={{position:'fixed', bottom:'80px', left:'50%', transform:'translateX(-50%)', zIndex:9998, maxWidth:'700px', width:'90%'}} className="bg-black/75 text-white text-sm px-5 py-3 rounded-xl text-center backdrop-blur-sm leading-relaxed">
+            <div className="fixed bottom-32 md:bottom-20 left-1/2 -translate-x-1/2 z-[9998] max-w-[700px] w-[90%] bg-black/75 text-white text-xs sm:text-sm px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-center backdrop-blur-sm leading-relaxed">
               {currentClip.text}
             </div>
           )}
@@ -723,11 +727,11 @@
       ];
 
       return (
-        <div className="min-h-screen flex items-center justify-center p-6">
-          <div className="max-w-4xl w-full grid grid-cols-12 gap-8">
+        <div className="min-h-screen flex items-center justify-center p-4 sm:p-6">
+          <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
 
             {/* Left: Step sidebar */}
-            <div className="col-span-4 pt-10 space-y-6">
+            <div className="hidden md:block md:col-span-4 pt-10 space-y-6">
               <div className="flex items-center gap-3 mb-10">
                 <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg shadow-amber-200">B</div>
                 <span className="text-xl font-extrabold bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text text-transparent">Beacon</span>
@@ -745,13 +749,13 @@
             </div>
 
             {/* Right: Content cards */}
-            <div className="col-span-8">
+            <div className="md:col-span-8">
 
               {/* Step 1: Privacy */}
               {step === 1 && (
-                <div className="bg-white rounded-3xl p-10 shadow-xl border border-slate-200 fade-up">
-                  <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center text-white font-black text-4xl mb-6 shadow-lg shadow-amber-200">B</div>
-                  <h2 className="text-3xl font-bold mb-4">Your AI-powered team for rare disease.</h2>
+                <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200 fade-up">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center text-white font-black text-3xl sm:text-4xl mb-6 shadow-lg shadow-amber-200">B</div>
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-4">Your AI-powered team for rare disease.</h2>
                   <p className="text-slate-500 mb-8 leading-relaxed text-lg">Beacon coordinates research, outreach, regulatory strategy, and funding — so no family has to navigate the system alone.</p>
 
                   <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 mb-8 space-y-3">
@@ -771,8 +775,8 @@
 
               {/* Step 2: Situation */}
               {step === 2 && (
-                <div className="bg-white rounded-3xl p-10 shadow-xl border border-slate-200 fade-up">
-                  <h2 className="text-3xl font-bold mb-2">Tell us about your journey.</h2>
+                <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200 fade-up">
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-2">Tell us about your journey.</h2>
                   <p className="text-slate-500 mb-8">This helps your AI team personalize their research.</p>
 
                   {/* Journey stage */}
@@ -836,7 +840,7 @@
                   )}
 
                   {/* Quick intake */}
-                  <div className="grid grid-cols-2 gap-4 mb-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                     <div>
                       <label className="text-sm font-bold text-slate-700 block mb-2">Patient is</label>
                       <div className="flex gap-2">
@@ -1141,9 +1145,9 @@
       const showInbox = visibleInsights.has('email_decision') || visibleInsights.has('everycure_decision');
 
       return (
-        <div className="min-h-screen flex">
-          {/* Sidebar */}
-          <aside className="w-20 bg-indigo-900 flex flex-col items-center py-8 gap-8 h-screen sticky top-0">
+        <div className="min-h-screen flex flex-col md:flex-row">
+          {/* Sidebar — hidden on mobile, shown on md+ */}
+          <aside className="hidden md:flex w-20 bg-indigo-900 flex-col items-center py-8 gap-8 h-screen sticky top-0">
             <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-500 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg">B</div>
             <nav className="flex flex-col gap-4">
               <button onClick={() => setActiveTab('dashboard')} className={`p-3 rounded-xl ${activeTab === 'dashboard' ? 'bg-indigo-800 text-white shadow-lg' : 'text-indigo-300 hover:text-white'} transition-colors`} title="Mission Control">
@@ -1160,15 +1164,30 @@
             </nav>
           </aside>
 
+          {/* Mobile bottom nav */}
+          <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-indigo-900 flex items-center justify-around py-3 z-50 border-t border-indigo-800">
+            <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-amber-500 rounded-lg flex items-center justify-center text-white font-black text-sm">B</div>
+            <button onClick={() => setActiveTab('dashboard')} className={`p-2.5 rounded-xl ${activeTab === 'dashboard' ? 'bg-indigo-800 text-white' : 'text-indigo-300'}`}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+            </button>
+            <button onClick={() => setActiveTab('lab')} className={`p-2.5 rounded-xl relative ${activeTab === 'lab' ? 'bg-indigo-800 text-white' : 'text-indigo-300'}`}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg>
+              {labReady && activeTab !== 'lab' && <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full"></span>}
+            </button>
+            <button onClick={() => setActiveTab('community')} className={`p-2.5 rounded-xl ${activeTab === 'community' ? 'bg-indigo-800 text-white' : 'text-indigo-300'}`}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </button>
+          </nav>
+
           {/* Main */}
-          <main className="flex-1 flex flex-col">
+          <main className="flex-1 flex flex-col pb-16 md:pb-0">
             {/* Header */}
-            <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 shrink-0">
-              <div className="flex items-center gap-4">
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Patient:</span>
-                <span className="text-sm font-bold px-3 py-1 bg-slate-100 rounded-full">{mission.disease || 'CLN3 Batten Disease'}</span>
+            <header className="h-14 sm:h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 sm:px-8 shrink-0">
+              <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider hidden sm:inline">Patient:</span>
+                <span className="text-xs sm:text-sm font-bold px-2 sm:px-3 py-1 bg-slate-100 rounded-full truncate">{mission.disease || 'CLN3 Batten Disease'}</span>
               </div>
-              <div className="flex items-center gap-6">
+              <div className="hidden sm:flex items-center gap-6">
                 <div className="flex -space-x-2">
                   {Object.entries(AGENT_COLORS).map(([name, color]) => (
                     <div key={name} className={`w-7 h-7 rounded-full bg-${color}-500 border-2 border-white flex items-center justify-center text-[8px] text-white font-bold`} title={name}>
@@ -1183,9 +1202,9 @@
             <div className="flex-1 overflow-y-auto">
 
             {activeTab === 'dashboard' && (
-              <div className="max-w-7xl mx-auto px-8 py-8 space-y-8">
+              <div className="max-w-7xl mx-auto px-4 sm:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8">
 
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8">
 
                 {/* Left column: Hero + Journey */}
                 <div className="lg:col-span-3 space-y-8">
@@ -1572,10 +1591,10 @@
       const ratingDot = (r) => r === 'green' ? 'bg-emerald-500' : r === 'amber' ? 'bg-amber-500' : 'bg-red-500';
 
       return (
-        <div className="max-w-7xl mx-auto px-8 py-8 space-y-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8">
 
           {/* Lab Header */}
-          <div className="bg-gradient-to-r from-cyan-50 via-indigo-50 to-violet-50 rounded-3xl p-8 border border-indigo-200 shadow-sm">
+          <div className="bg-gradient-to-r from-cyan-50 via-indigo-50 to-violet-50 rounded-3xl p-5 sm:p-8 border border-indigo-200 shadow-sm">
             <div className="flex items-center gap-4 mb-2">
               <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500 to-indigo-600 flex items-center justify-center text-white shadow-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg>
@@ -1587,7 +1606,7 @@
             </div>
 
             {/* Sub-nav */}
-            <div className="flex gap-2 mt-4">
+            <div className="flex flex-wrap gap-2 mt-4">
               {[{id:'overview',label:'Overview & Targets'},{id:'candidates',label:'Candidate Pipeline'},{id:'experiments',label:'Lab Testing'}].map(tab => (
                 <button key={tab.id} onClick={() => setLabSection(tab.id)}
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${labSection === tab.id ? 'bg-indigo-600 text-white shadow-md' : 'bg-white/70 text-indigo-600 hover:bg-white'}`}>
@@ -1599,13 +1618,13 @@
 
           {/* OVERVIEW SECTION */}
           {labSection === 'overview' && (
-            <div className="grid grid-cols-12 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
 
               {/* 3D Viewer */}
-              <div className="col-span-7 bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-                <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+              <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                <div className="px-4 sm:px-6 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div>
-                    <h3 className="font-bold text-slate-800">Protein Target: {LAB_TARGETS[selectedTarget].name}</h3>
+                    <h3 className="font-bold text-slate-800 text-sm sm:text-base">Protein Target: {LAB_TARGETS[selectedTarget].name}</h3>
                     <p className="text-[11px] text-slate-400">{LAB_TARGETS[selectedTarget].gene} — AlphaFold predicted structure</p>
                   </div>
                   <div className="flex gap-2">
@@ -1628,7 +1647,7 @@
               </div>
 
               {/* Target List + Pipeline Funnel */}
-              <div className="col-span-5 space-y-6">
+              <div className="lg:col-span-5 space-y-6">
 
                 {/* Target selector */}
                 <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
@@ -1750,8 +1769,8 @@
                   {(() => {
                     const c = LAB_CANDIDATES[selectedCandidate];
                     return (
-                      <div className="grid grid-cols-12 gap-6">
-                        <div className="col-span-5">
+                      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                        <div className="md:col-span-5">
                           <h4 className="font-bold text-lg text-slate-900 mb-1">{c.name}</h4>
                           <p className="text-xs text-slate-400 mb-4">{c.chembl_id} — pChEMBL {c.pchembl}</p>
                           <div className="space-y-3">
@@ -1773,7 +1792,7 @@
                             </div>
                           </div>
                         </div>
-                        <div className="col-span-7">
+                        <div className="md:col-span-7">
                           <h5 className="text-xs font-bold text-slate-500 uppercase mb-3">ADMET Profile</h5>
                           <div className="grid grid-cols-2 gap-2">
                             {Object.entries(c.scores).map(([key, s]) => (
@@ -1805,16 +1824,16 @@
                 <div className="space-y-3">
                   {LAB_EXPERIMENTS.map((exp, i) => (
                     <div key={i} className={`p-5 rounded-2xl border-2 transition-all ${exp.status === 'ready' ? 'border-indigo-500 bg-indigo-50' : 'border-slate-200'}`}>
-                      <div className="flex items-center justify-between mb-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-2">
                         <div className="flex items-center gap-3">
-                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-black ${exp.status === 'ready' ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-500'}`}>T{exp.tier}</div>
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-black shrink-0 ${exp.status === 'ready' ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-500'}`}>T{exp.tier}</div>
                           <div>
                             <h4 className="font-bold text-sm text-slate-800">{exp.name}</h4>
                             <p className="text-[10px] text-slate-400">Compounds: {exp.compounds}</p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-4">
-                          <div className="text-right">
+                        <div className="flex items-center gap-4 ml-11 sm:ml-0">
+                          <div className="text-left sm:text-right">
                             <p className="text-sm font-bold text-slate-800">{exp.cost}</p>
                             <p className="text-[10px] text-slate-400">{exp.timeline}</p>
                           </div>
@@ -1898,7 +1917,7 @@
       ];
 
       return (
-        <div className="max-w-6xl mx-auto px-8 py-8 space-y-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 py-6 sm:py-8 space-y-6">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold text-slate-800">Community & Funding</h2>
@@ -1928,7 +1947,7 @@
           </div>
 
           {/* Section tabs */}
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {sectionBtns.map(s => (
               <button key={s.id} onClick={() => setCommunitySection(s.id)}
                 className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${communitySection === s.id ? 'bg-indigo-600 text-white shadow-md' : 'bg-white text-slate-600 border border-slate-200 hover:border-indigo-300'}`}>

@@ -539,11 +539,13 @@
       const [played, setPlayed] = useState(() => {
         try { return new Set(JSON.parse(sessionStorage.getItem('beacon_narration_played') || '[]')); } catch { return new Set(); }
       });
+      const playedRef = useRef(played);
       const audioRef = useRef(null);
       const timersRef = useRef([]);
 
-      // Persist played state
+      // Persist played state and sync ref
       useEffect(() => {
+        playedRef.current = played;
         sessionStorage.setItem('beacon_narration_played', JSON.stringify([...played]));
       }, [played]);
 
@@ -553,16 +555,16 @@
         timersRef.current = [];
 
         NARRATION_CLIPS.forEach((clip, idx) => {
-          if (played.has(clip.key)) return;
           const t = clip.trigger;
+          if (t.auto_after) return; // auto_after clips are handled in onended
           const viewMatch = (t.view === 'onboarding' && view === 'onboarding' && t.step === step) ||
                             (t.view === 'dashboard' && view === 'dashboard' && (!t.tab || t.tab === activeTab) && (!t.communitySubTab || t.communitySubTab === communitySection));
           if (!viewMatch) return;
 
           const delay = t.delay || 0;
           const timer = setTimeout(() => {
+            if (playedRef.current.has(clip.key)) return; // check at fire time, not schedule time
             setCurrentIdx(prev => {
-              // Only auto-advance if nothing is currently playing or this is the next in sequence
               if (prev === -1 || prev < idx) return idx;
               return prev;
             });
@@ -571,7 +573,7 @@
         });
 
         return () => timersRef.current.forEach(clearTimeout);
-      }, [view, step, activeTab, communitySection, played]);
+      }, [view, step, activeTab, communitySection]);
 
       // Play audio when currentIdx changes
       useEffect(() => {

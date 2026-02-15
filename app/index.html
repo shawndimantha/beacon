@@ -436,7 +436,9 @@
     ];
 
     function isDemo() {
-      return new URLSearchParams(window.location.search).has('demo');
+      const params = new URLSearchParams(window.location.search);
+      // Default to demo mode unless ?live is set (for local dev with running orchestrator)
+      return !params.has('live');
     }
 
     // Helper to fetch and unwrap JSON

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beacon Prototype: Living Timeline Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .agent-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+        .timeline-line::before { content: ''; position: absolute; left: 19px; top: 0; bottom: 0; width: 2px; background: #e2e8f0; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-900">
+
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <aside class="w-20 bg-indigo-900 flex flex-col items-center py-8 gap-8 h-screen sticky top-0">
+            <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-500 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg">B</div>
+            <nav class="flex flex-col gap-4">
+                <button class="p-3 bg-indigo-800 rounded-xl text-white shadow-lg" title="Dashboard"><i data-lucide="layout-grid" class="w-5 h-5"></i></button>
+                <button class="p-3 text-indigo-300 hover:text-white transition-colors rounded-xl" title="Timeline"><i data-lucide="git-branch" class="w-5 h-5"></i></button>
+                <button class="p-3 text-indigo-300 hover:text-white transition-colors rounded-xl" title="Research"><i data-lucide="microscope" class="w-5 h-5"></i></button>
+                <button class="p-3 text-indigo-300 hover:text-white transition-colors rounded-xl" title="Repurposing"><i data-lucide="pill" class="w-5 h-5"></i></button>
+            </nav>
+        </aside>
+
+        <!-- Main -->
+        <main class="flex-1 flex flex-col">
+            <!-- Header -->
+            <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 shrink-0">
+                <div class="flex items-center gap-4">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Patient:</span>
+                    <span class="text-sm font-bold px-3 py-1 bg-slate-100 rounded-full">CLN3 Batten Disease</span>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="flex -space-x-2">
+                        <div class="w-7 h-7 rounded-full bg-violet-500 border-2 border-white flex items-center justify-center text-[8px] text-white font-bold" title="Scout">S</div>
+                        <div class="w-7 h-7 rounded-full bg-pink-500 border-2 border-white flex items-center justify-center text-[8px] text-white font-bold" title="Connector">C</div>
+                        <div class="w-7 h-7 rounded-full bg-blue-500 border-2 border-white flex items-center justify-center text-[8px] text-white font-bold" title="Navigator">N</div>
+                        <div class="w-7 h-7 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center text-[8px] text-white font-bold" title="Mobilizer">M</div>
+                        <div class="w-7 h-7 rounded-full bg-amber-500 border-2 border-white flex items-center justify-center text-[8px] text-white font-bold" title="Strategist">&#9733;</div>
+                    </div>
+                    <button class="text-slate-400 hover:text-indigo-600 transition-colors"><i data-lucide="settings" class="w-5 h-5"></i></button>
+                </div>
+            </header>
+
+            <!-- Content Grid -->
+            <div class="flex-1 p-8 grid grid-cols-12 gap-8 overflow-y-auto">
+
+                <!-- Left: Living Timeline (7 cols) -->
+                <div class="col-span-7 space-y-6">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-xl font-bold flex items-center gap-2">
+                            <i data-lucide="history" class="w-5 h-5 text-indigo-600"></i> Mission Timeline
+                        </h2>
+                        <span class="text-xs text-slate-400 font-medium">Updated 2 min ago</span>
+                    </div>
+
+                    <div class="relative pl-10 timeline-line space-y-10">
+
+                        <!-- Milestone 1: Initial Analysis -->
+                        <div class="relative">
+                            <div class="absolute -left-[30px] w-10 h-10 bg-white border-2 border-emerald-500 rounded-full flex items-center justify-center z-10 shadow-sm">
+                                <i data-lucide="file-check" class="w-5 h-5 text-emerald-500"></i>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                                <div class="flex justify-between items-start mb-3">
+                                    <h3 class="font-bold text-slate-800">Initial Analysis Complete</h3>
+                                    <span class="text-[10px] text-slate-400 font-medium">12 min ago</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-4">Scout analyzed 127 papers, 8 active trials, and 34 compounds across 3 databases.</p>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                        <span class="text-[10px] font-bold text-slate-400 uppercase">Key Target</span>
+                                        <p class="text-sm font-semibold">CLN3 / Battenin protein</p>
+                                    </div>
+                                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                        <span class="text-[10px] font-bold text-slate-400 uppercase">Active Trials</span>
+                                        <p class="text-sm font-semibold">3 recruiting</p>
+                                    </div>
+                                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                        <span class="text-[10px] font-bold text-slate-400 uppercase">Approaches</span>
+                                        <p class="text-sm font-semibold">Gene therapy, Small mol.</p>
+                                    </div>
+                                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                        <span class="text-[10px] font-bold text-slate-400 uppercase">Top Researcher</span>
+                                        <p class="text-sm font-semibold">Dr. J. Cooper, Weill Cornell</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Milestone 2: Drug Repurposing — MAJOR -->
+                        <div class="relative">
+                            <div class="absolute -left-[30px] w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center z-10 shadow-lg shadow-indigo-200 text-white">
+                                <i data-lucide="microscope" class="w-5 h-5"></i>
+                            </div>
+                            <div class="bg-indigo-50 p-6 rounded-2xl border-2 border-indigo-200 shadow-md">
+                                <div class="flex justify-between items-start mb-4">
+                                    <h3 class="font-bold text-indigo-900">Drug Repurposing Candidate Found</h3>
+                                    <span class="bg-indigo-600 text-white text-[9px] font-black px-2.5 py-0.5 rounded-md uppercase tracking-wide">Major Milestone</span>
+                                </div>
+
+                                <!-- Council Discourse -->
+                                <div class="space-y-4 border-l-2 border-indigo-200 pl-4 py-2 mb-4">
+                                    <div class="flex gap-3">
+                                        <div class="text-[10px] font-bold text-violet-600 uppercase w-20 shrink-0 pt-0.5">Scout</div>
+                                        <p class="text-sm text-slate-700">"Tamoxifen shows TRPML1 agonist activity at clinically achievable doses. Found 2 off-label case reports in adult NCL patients with positive safety data."</p>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <div class="text-[10px] font-bold text-blue-600 uppercase w-20 shrink-0 pt-0.5">Navigator</div>
+                                        <p class="text-sm text-slate-700">"Tamoxifen is FDA-approved since 1977. Existing pediatric dosing data from precocious puberty studies. Off-label use needs physician agreement only &mdash; no IND required."</p>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <div class="text-[10px] font-bold text-amber-600 uppercase w-20 shrink-0 pt-0.5">Strategist</div>
+                                        <p class="text-sm text-slate-700">"Recommend dual track: pursue tamoxifen as near-term option (months) while AAV9 gene therapy trial continues as long-term strategy."</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-3">
+                                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-colors">Generate Specialist Briefing</button>
+                                    <button class="bg-white text-indigo-600 px-4 py-2 rounded-xl text-xs font-bold border border-indigo-200 hover:bg-indigo-50 transition-colors">See 5 Sources</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Milestone 3: Clinical Trial Match -->
+                        <div class="relative">
+                            <div class="absolute -left-[30px] w-10 h-10 bg-white border-2 border-blue-500 rounded-full flex items-center justify-center z-10 shadow-sm">
+                                <i data-lucide="flask-conical" class="w-5 h-5 text-blue-500"></i>
+                            </div>
+                            <div class="bg-slate-900 p-6 rounded-2xl shadow-lg text-white">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div>
+                                        <p class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-1">Clinical Trial Match</p>
+                                        <h3 class="font-bold">Phase I/II AAV9-CLN3 Gene Therapy</h3>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed mb-4">Weill Cornell &mdash; intrathecal AAV9 delivery targeting CLN3 protein restoration. Your child meets <strong class="text-white">8 of 9</strong> eligibility criteria.</p>
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="flex-1 bg-white/10 h-2 rounded-full"><div class="bg-indigo-500 h-full w-[89%] rounded-full"></div></div>
+                                    <span class="text-xs font-bold text-indigo-400">89%</span>
+                                </div>
+                                <div class="flex gap-3">
+                                    <button class="bg-white text-slate-900 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-wide hover:bg-slate-100 transition-colors">Pre-Screen Now</button>
+                                    <button class="text-indigo-300 px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wide hover:text-white transition-colors">View Full Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Milestone 4: Outreach Drafted -->
+                        <div class="relative">
+                            <div class="absolute -left-[30px] w-10 h-10 bg-white border-2 border-pink-500 rounded-full flex items-center justify-center z-10 shadow-sm">
+                                <i data-lucide="mail" class="w-5 h-5 text-pink-500"></i>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-bold text-slate-800">Outreach Email Drafted</h3>
+                                    <span class="bg-amber-100 text-amber-800 text-[9px] font-black px-2 py-0.5 rounded-md uppercase">Needs Approval</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-3">Connector drafted a personalized email to Dr. Jonathan Cooper at Weill Cornell about the AAV9-CLN3 gene therapy trial.</p>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md hover:bg-indigo-700 transition-colors">Review & Approve</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Action Panel (5 cols) -->
+                <div class="col-span-5 space-y-6">
+
+                    <!-- Approvals -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                        <h4 class="font-bold mb-4 flex items-center gap-2"><i data-lucide="check-square" class="w-5 h-5 text-emerald-500"></i> Needs Your Attention</h4>
+                        <div class="space-y-3">
+                            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 group hover:border-indigo-300 transition-all cursor-pointer">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs font-bold">Email to Dr. Cooper</span>
+                                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:text-indigo-600 transition-colors"></i>
+                                </div>
+                                <p class="text-[11px] text-slate-500">Review outreach email about AAV9-CLN3 gene therapy research.</p>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 group hover:border-indigo-300 transition-all cursor-pointer">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs font-bold">EveryCure Consultation</span>
+                                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:text-indigo-600 transition-colors"></i>
+                                </div>
+                                <p class="text-[11px] text-slate-500">Mobilizer wants to contact EveryCure for repurposing guidance.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Drug Repurposing ROADMAP -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                        <h4 class="font-bold mb-1 flex items-center gap-2"><i data-lucide="pill" class="w-5 h-5 text-indigo-600"></i> Drug Repurposing</h4>
+                        <p class="text-[11px] text-slate-400 mb-5">EveryCure ROADMAP Framework</p>
+
+                        <div class="space-y-4 relative">
+                            <!-- Vertical connector -->
+                            <div class="absolute left-[11px] top-2 bottom-2 w-0.5 bg-slate-200"></div>
+
+                            <div class="flex items-start gap-3 relative">
+                                <div class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center z-10 shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-white"></i></div>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-800">Supporting Repurposing</p>
+                                    <p class="text-[10px] text-slate-400">Disease characterized, org ready</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 relative">
+                                <div class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center z-10 shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-white"></i></div>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-800">Identifying the Drug</p>
+                                    <p class="text-[10px] text-slate-400">47 compounds screened, 2 candidates</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 relative">
+                                <div class="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center z-10 shrink-0 mt-0.5 shadow-md shadow-amber-200 ring-2 ring-amber-200">
+                                    <span class="text-[9px] font-black text-white">3</span>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-amber-700">Validating the Drug</p>
+                                    <p class="text-[10px] text-amber-600">Drafting validation study protocol...</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 relative opacity-40">
+                                <div class="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center z-10 shrink-0 mt-0.5">
+                                    <span class="text-[9px] font-bold text-slate-400">4</span>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-500">Clinical Access</p>
+                                    <p class="text-[10px] text-slate-400">Off-label use, compassionate access</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 relative opacity-40">
+                                <div class="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center z-10 shrink-0 mt-0.5">
+                                    <span class="text-[9px] font-bold text-slate-400">5</span>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-500">Reaching an Endpoint</p>
+                                    <p class="text-[10px] text-slate-400">Label expansion, guideline inclusion</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Lead candidate mini-card -->
+                        <div class="mt-5 p-4 bg-emerald-50 rounded-2xl border border-emerald-200">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-emerald-600 text-white text-[8px] font-black px-2 py-0.5 rounded uppercase">Lead</span>
+                                <span class="text-sm font-bold text-emerald-900">Tamoxifen</span>
+                            </div>
+                            <p class="text-[11px] text-emerald-700 leading-relaxed">TRPML1 agonist &middot; FDA-approved &middot; Pediatric data available</p>
+                        </div>
+                    </div>
+
+                    <!-- Next Big Step -->
+                    <div class="bg-slate-900 p-6 rounded-3xl text-white">
+                        <div class="flex justify-between items-center mb-5">
+                            <h4 class="font-bold flex items-center gap-2">
+                                <i data-lucide="trending-up" class="w-5 h-5 text-indigo-400"></i> Next Big Step
+                            </h4>
+                        </div>
+                        <p class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-2">This Week</p>
+                        <h5 class="text-base font-bold mb-3">Review & Send Dr. Cooper Email</h5>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-5">Connector drafted a personalized email introducing your family and expressing interest in the AAV9-CLN3 trial. One click to review and send.</p>
+                        <button class="w-full bg-white text-slate-900 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-slate-100 transition-colors">Review Now</button>
+                    </div>
+
+                    <!-- Agent Status -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                        <h4 class="font-bold mb-4 flex items-center gap-2"><i data-lucide="users" class="w-5 h-5 text-slate-600"></i> Your Team</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+                                <span class="text-xs font-bold text-slate-800 w-20">Scout</span>
+                                <span class="text-[11px] text-slate-500">Monitoring new publications</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2.5 h-2.5 rounded-full bg-amber-500 agent-pulse"></div>
+                                <span class="text-xs font-bold text-slate-800 w-20">Connector</span>
+                                <span class="text-[11px] text-slate-500">Awaiting Dr. Cooper response</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+                                <span class="text-xs font-bold text-slate-800 w-20">Navigator</span>
+                                <span class="text-[11px] text-slate-500">Pathway mapped</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2.5 h-2.5 rounded-full bg-amber-500 agent-pulse"></div>
+                                <span class="text-xs font-bold text-slate-800 w-20">Mobilizer</span>
+                                <span class="text-[11px] text-slate-500">Drafting CZI grant application</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+                                <span class="text-xs font-bold text-slate-800 w-20">Strategist</span>
+                                <span class="text-[11px] text-slate-500">Weekly briefing ready</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

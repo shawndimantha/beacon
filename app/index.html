@@ -12,1581 +12,54 @@
   <!-- Babel Standalone for JSX -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
-    /* Reset & Base Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-      background: #faf8f5;
-      color: #1f2937;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Typography */
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: #111827;
-    }
-
-    h2 {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      color: #111827;
-    }
-
-    h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: #1f2937;
-    }
-
-    p {
-      font-size: 1.125rem;
-      color: #4b5563;
-      margin-bottom: 1rem;
-    }
-
-    /* Layout Containers */
-    .stage {
-      min-height: 100vh;
-      padding: 3rem 2rem;
-      opacity: 0;
-      animation: fadeIn 0.6s ease-in forwards;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-    }
-
-    .container-narrow {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .container-centered {
-      max-width: 720px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 80vh;
-      text-align: center;
-    }
-
-    /* Beacon Logo */
-    .beacon-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .beacon-icon {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
-    }
-
-    .beacon-title {
-      font-size: 3rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* Buttons */
-    .btn {
-      padding: 1rem 2.5rem;
-      font-size: 1.125rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
-    }
-
-    .btn-secondary {
-      background: white;
-      color: #d97706;
-      border: 2px solid #d97706;
-    }
-
-    .btn-secondary:hover {
-      background: #fef3c7;
-    }
-
-    .btn-small {
-      padding: 0.5rem 1.5rem;
-      font-size: 0.95rem;
-    }
-
-    /* Input Fields */
-    .input-field {
-      width: 100%;
-      padding: 1rem 1.5rem;
-      font-size: 1.125rem;
-      border: 2px solid #e5e7eb;
-      border-radius: 12px;
-      margin-bottom: 1.5rem;
-      transition: border-color 0.3s ease;
-      background: white;
-    }
-
-    .input-field:focus {
-      outline: none;
-      border-color: #d97706;
-    }
-
-    /* Button Group */
-    .button-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .btn-option {
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      background: white;
-      border: 2px solid #e5e7eb;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .btn-option:hover {
-      border-color: #d97706;
-      background: #fef3c7;
-    }
-
-    .btn-option.selected {
-      background: #d97706;
-      color: white;
-      border-color: #d97706;
-    }
-
-    /* Checkbox Group */
-    .checkbox-group {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      align-items: flex-start;
-      margin-bottom: 2rem;
-    }
-
-    .checkbox-label {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 1.125rem;
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-
-    .checkbox-label input {
-      width: 24px;
-      height: 24px;
-      cursor: pointer;
-    }
-
-    /* Intake Questions */
-    .intake-question {
-      margin-bottom: 3rem;
-      opacity: 0;
-      animation: slideInUp 0.5s ease-out forwards;
-    }
-
-    @keyframes slideInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .question-label {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #111827;
-      margin-bottom: 1.5rem;
-      display: block;
-    }
-
-    /* Agent Cards */
-    .agent-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .agent-card {
-      background: white;
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      opacity: 0;
-      animation: cardAppear 0.6s ease-out forwards;
-      transition: transform 0.3s ease;
-    }
-
-    .agent-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .agent-card:nth-child(1) { animation-delay: 0s; }
-    .agent-card:nth-child(2) { animation-delay: 0.3s; }
-    .agent-card:nth-child(3) { animation-delay: 0.6s; }
-    .agent-card:nth-child(4) { animation-delay: 0.9s; }
-    .agent-card:nth-child(5) { animation-delay: 1.2s; }
-
-    @keyframes cardAppear {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .agent-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    .agent-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: #111827;
-    }
-
-    .agent-role {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #6b7280;
-      margin-bottom: 1rem;
-    }
-
-    .agent-description {
-      font-size: 1rem;
-      color: #4b5563;
-      line-height: 1.5;
-    }
-
-    /* Agent Colors */
-    .agent-card.scout { border-top: 4px solid #8b5cf6; }
-    .agent-card.connector { border-top: 4px solid #ec4899; }
-    .agent-card.navigator { border-top: 4px solid #3b82f6; }
-    .agent-card.mobilizer { border-top: 4px solid #10b981; }
-    .agent-card.strategist { border-top: 4px solid #f59e0b; }
-
-    /* Launch Status Panels */
-    .status-grid {
-      display: grid;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .status-panel {
-      background: white;
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-    }
-
-    .status-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .status-icon {
-      font-size: 2rem;
-    }
-
-    .status-info h3 {
-      font-size: 1.25rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .status-label {
-      font-size: 0.95rem;
-      color: #6b7280;
-      font-weight: 500;
-    }
-
-    .status-label.working {
-      color: #d97706;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    .status-updates {
-      list-style: none;
-      font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
-      font-size: 0.95rem;
-    }
-
-    .status-update {
-      padding: 0.5rem 0;
-      color: #4b5563;
-      opacity: 0;
-      animation: fadeSlideIn 0.4s ease-out forwards;
-    }
-
-    @keyframes fadeSlideIn {
-      from {
-        opacity: 0;
-        transform: translateX(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    .status-update.completed {
-      color: #10b981;
-    }
-
-    .status-update.finding {
-      color: #d97706;
-      font-weight: 600;
-    }
-
-    /* Header Bar */
-    .header-bar {
-      background: white;
-      border-bottom: 2px solid #f3f4f6;
-      padding: 1.5rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    }
-
-    .header-title {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    .header-icon {
-      font-size: 1.75rem;
-    }
-
-    .notification-badge {
-      background: #d97706;
-      color: white;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    /* Timeline */
-    .timeline {
-      display: flex;
-      justify-content: space-between;
-      margin: 3rem 0;
-      position: relative;
-      padding: 2rem 0;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      top: 2.5rem;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: #e5e7eb;
-      z-index: 0;
-    }
-
-    .timeline-phase {
-      flex: 1;
-      position: relative;
-      z-index: 1;
-    }
-
-    .timeline-marker {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: white;
-      border: 4px solid #e5e7eb;
-      margin: 0 auto 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-    }
-
-    .timeline-phase.active .timeline-marker {
-      background: #d97706;
-      border-color: #d97706;
-      color: white;
-    }
-
-    .timeline-label {
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-align: center;
-      color: #6b7280;
-      margin-bottom: 0.5rem;
-    }
-
-    .timeline-phase.active .timeline-label {
-      color: #d97706;
-    }
-
-    .timeline-title {
-      font-weight: 700;
-      font-size: 1.1rem;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .timeline-milestones {
-      list-style: none;
-      font-size: 0.9rem;
-      color: #6b7280;
-      text-align: center;
-    }
-
-    .timeline-milestones li {
-      margin-bottom: 0.5rem;
-    }
-
-    /* Priorities Section */
-    .priorities-section {
-      background: white;
-      border-radius: 16px;
-      padding: 2rem;
-      margin: 3rem 0;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    .priority-list {
-      list-style: none;
-      counter-reset: priority-counter;
-    }
-
-    .priority-item {
-      counter-increment: priority-counter;
-      position: relative;
-      padding-left: 3rem;
-      margin-bottom: 1.5rem;
-      font-size: 1.1rem;
-    }
-
-    .priority-item::before {
-      content: counter(priority-counter);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 2rem;
-      height: 2rem;
-      background: #d97706;
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-    }
-
-    /* Mission Control Layout */
-    .mission-control {
-      padding: 2rem;
-    }
-
-    .attention-section {
-      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-      border-radius: 16px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      border-left: 6px solid #d97706;
-    }
-
-    .approval-cards {
-      display: grid;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .approval-card {
-      background: white;
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .approval-info {
-      flex: 1;
-    }
-
-    .approval-badge {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      background: #dbeafe;
-      color: #1e40af;
-    }
-
-    .approval-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .approval-summary {
-      font-size: 0.95rem;
-      color: #6b7280;
-    }
-
-    .main-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .feed-section {
-      background: white;
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-    }
-
-    .feed-items {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .feed-item {
-      padding: 1.5rem;
-      border-radius: 12px;
-      background: #fafafa;
-      border-left: 4px solid #d97706;
-      opacity: 0;
-      animation: fadeSlideIn 0.5s ease-out forwards;
-    }
-
-    .feed-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .feed-agent {
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .feed-time {
-      color: #9ca3af;
-      font-size: 0.85rem;
-    }
-
-    .feed-title {
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .feed-summary {
-      font-size: 0.95rem;
-      color: #4b5563;
-      margin-bottom: 0.75rem;
-    }
-
-    .significance-badge {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .agent-status-section {
-      background: white;
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-      height: fit-content;
-    }
-
-    .agent-status-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .agent-status-row {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .status-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .status-dot.complete { background: #10b981; }
-    .status-dot.working { background: #f59e0b; animation: pulse 2s ease-in-out infinite; }
-    .status-dot.idle { background: #9ca3af; }
-
-    .agent-status-info {
-      flex: 1;
-    }
-
-    .agent-status-name {
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .agent-status-task {
-      font-size: 0.85rem;
-      color: #6b7280;
-    }
-
-    .progress-section {
-      background: white;
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-    }
-
-    .progress-bars {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .progress-bar-item {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .progress-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    .progress-bar-bg {
-      height: 12px;
-      background: #f3f4f6;
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #d97706 0%, #f59e0b 100%);
-      border-radius: 6px;
-      transition: width 0.5s ease;
-    }
-
-    .chat-input-section {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: white;
-      border-top: 2px solid #f3f4f6;
-      padding: 1.5rem 2rem;
-      box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
-    }
-
-    .chat-input-wrapper {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: flex;
-      gap: 1rem;
-    }
-
-    .chat-input {
-      flex: 1;
-      padding: 1rem 1.5rem;
-      font-size: 1rem;
-      border: 2px solid #e5e7eb;
-      border-radius: 12px;
-      background: #fafafa;
-    }
-
-    .chat-input:focus {
-      outline: none;
-      border-color: #d97706;
-      background: white;
-    }
-
-    /* Modal */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+
+    .step-inactive { opacity: 0.3; filter: grayscale(1); pointer-events: none; }
+    .agent-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up { animation: fadeUp 0.5s ease-out forwards; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .fade-in { animation: fadeIn 0.6s ease-in forwards; }
+
+    .timeline-line::before { content: ''; position: absolute; left: 19px; top: 0; bottom: 0; width: 2px; background: #e2e8f0; }
+    [data-expand-target] { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s ease; opacity: 0; }
+    [data-expand-target].open { max-height: 3000px; opacity: 1; }
+    .chevron-icon { transition: transform 0.3s ease; }
+    .chevron-icon.rotated { transform: rotate(180deg); }
+
+    /* Modal styles (reused from original) */
     .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      opacity: 0;
-      animation: fadeIn 0.3s ease-out forwards;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center;
+      z-index: 1000; opacity: 0; animation: fadeIn 0.3s ease-out forwards;
     }
-
     .modal {
-      background: white;
-      border-radius: 20px;
-      padding: 2.5rem;
-      max-width: 700px;
-      width: 90%;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      transform: scale(0.9);
-      animation: modalAppear 0.3s ease-out forwards;
-    }
-
-    @keyframes modalAppear {
-      to {
-        transform: scale(1);
-      }
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-
-    .modal-title {
-      font-size: 1.75rem;
-      font-weight: 700;
-    }
-
-    .modal-close {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #9ca3af;
-      transition: color 0.2s;
-    }
-
-    .modal-close:hover {
-      color: #1f2937;
-    }
-
-    .modal-field {
-      margin-bottom: 1.5rem;
-    }
-
-    .modal-label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: #374151;
-    }
-
-    .modal-input {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 2px solid #e5e7eb;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-
-    .modal-textarea {
-      width: 100%;
-      padding: 1rem;
-      border: 2px solid #e5e7eb;
-      border-radius: 8px;
-      font-size: 1rem;
-      min-height: 200px;
-      font-family: inherit;
-      resize: vertical;
-    }
-
-    .modal-input:focus,
-    .modal-textarea:focus {
-      outline: none;
-      border-color: #d97706;
-    }
-
-    .modal-note {
-      background: #fef3c7;
-      padding: 1rem;
-      border-radius: 8px;
-      border-left: 4px solid #d97706;
-      margin-bottom: 1.5rem;
-    }
-
-    .modal-note-label {
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: #92400e;
-      margin-bottom: 0.5rem;
-    }
-
-    .modal-note-text {
-      font-size: 0.95rem;
-      color: #78350f;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .btn-approve {
-      background: #10b981;
-      color: white;
-    }
-
-    .btn-approve:hover {
-      background: #059669;
-    }
-
-    .btn-cancel {
-      background: #e5e7eb;
-      color: #374151;
-    }
-
-    .btn-cancel:hover {
-      background: #d1d5db;
-    }
-
-    /* Utility Classes */
-    .text-center {
-      text-align: center;
-    }
-
-    .mt-2 { margin-top: 2rem; }
-    .mt-3 { margin-top: 3rem; }
-    .mb-2 { margin-bottom: 2rem; }
-    .mb-3 { margin-bottom: 3rem; }
-
-    /* Typeahead */
-    .typeahead-wrapper {
-      position: relative;
-      width: 100%;
-    }
-
-    .typeahead-input-wrapper {
-      position: relative;
-    }
-
-    .typeahead-icon {
-      position: absolute;
-      left: 1.25rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1.1rem;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .typeahead-input {
-      padding-left: 3rem !important;
-    }
-
-    .typeahead-dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: white;
-      border: 2px solid #e5e7eb;
-      border-top: none;
-      border-radius: 0 0 12px 12px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-      z-index: 100;
-      max-height: 360px;
-      overflow-y: auto;
-      animation: dropdownAppear 0.2s ease-out;
-    }
-
-    @keyframes dropdownAppear {
-      from { opacity: 0; transform: translateY(-4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .typeahead-option {
-      padding: 0.85rem 1.25rem;
-      cursor: pointer;
-      transition: background 0.15s;
-      border-bottom: 1px solid #f3f4f6;
-      text-align: left;
-    }
-
-    .typeahead-option:last-child {
-      border-bottom: none;
-    }
-
-    .typeahead-option:hover {
-      background: #fef3c7;
-    }
-
-    .typeahead-option-name {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #111827;
-      margin-bottom: 0.15rem;
-    }
-
-    .typeahead-option-aliases {
-      font-size: 0.85rem;
-      color: #9ca3af;
-    }
-
-    /* Focus Area Cards */
-    .focus-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      width: 100%;
-      max-width: 600px;
-      margin-bottom: 1rem;
-    }
-
-    .focus-card {
-      background: white;
-      border: 2px solid #e5e7eb;
-      border-radius: 14px;
-      padding: 1.5rem 1.25rem;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      text-align: left;
-    }
-
-    .focus-card:hover {
-      border-color: #d97706;
-      background: #fffbeb;
-    }
-
-    .focus-card.selected {
-      border-color: #d97706;
-      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.15);
-    }
-
-    .focus-card-all {
-      width: 100%;
-      max-width: 600px;
-      text-align: center;
-      border-style: dashed;
-    }
-
-    .focus-card-all.selected {
-      border-style: solid;
-    }
-
-    .focus-card-icon {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .focus-card-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #111827;
-      margin-bottom: 0.35rem;
-    }
-
-    .focus-card-desc {
-      font-size: 0.9rem;
-      color: #6b7280;
-      line-height: 1.4;
-    }
-
-    /* Launch Notify Card */
-    .launch-notify {
-      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-      border-radius: 16px;
-      padding: 2rem 2.5rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      box-shadow: 0 2px 12px rgba(217, 119, 6, 0.1);
-    }
-
-    .launch-notify h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .launch-notify p {
-      color: #78350f;
-      margin-bottom: 1.25rem;
-    }
-
-    .launch-notify-form {
-      display: flex;
-      gap: 0.75rem;
-      justify-content: center;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    .launch-notify-form input {
-      flex: 1;
-      padding: 0.75rem 1rem;
-      border: 2px solid #e5e7eb;
-      border-radius: 10px;
-      font-size: 1rem;
-      background: white;
-    }
-
-    .launch-notify-form input:focus {
-      outline: none;
-      border-color: #d97706;
-    }
-
-    .launch-notify-success {
-      color: #166534;
-      font-weight: 600;
-      font-size: 1.05rem;
-    }
-
-    /* Overall Progress Bar */
-    .launch-progress-bar {
-      background: white;
-      border-radius: 16px;
-      padding: 1.5rem 2rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-    }
-
-    .launch-progress-bar .progress-text {
-      font-weight: 600;
-      font-size: 1.05rem;
-      color: #374151;
-      margin-bottom: 0.75rem;
-    }
-
-    .launch-progress-track {
-      height: 14px;
-      background: #f3f4f6;
-      border-radius: 7px;
-      overflow: hidden;
-    }
-
-    .launch-progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #d97706 0%, #f59e0b 100%);
-      border-radius: 7px;
-      transition: width 0.6s ease;
-    }
-
-    /* Agent Circles Row */
-    .agent-circles {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .agent-circle {
-      position: relative;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: all 0.25s ease;
-      border: 3px solid transparent;
-    }
-
-    .agent-circle:hover {
-      transform: scale(1.1);
-    }
-
-    .agent-circle.expanded {
-      border-color: #d97706;
-      box-shadow: 0 4px 16px rgba(217, 119, 6, 0.25);
-    }
-
-    .agent-circle-dot {
-      position: absolute;
-      bottom: -2px;
-      right: -2px;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      border: 2px solid white;
-    }
-
-    .agent-circle-dot.complete { background: #10b981; }
-    .agent-circle-dot.working { background: #f59e0b; animation: pulse 2s ease-in-out infinite; }
-    .agent-circle-dot.idle { background: #d1d5db; }
-
-    .agent-circle-name {
-      position: absolute;
-      bottom: -22px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: #6b7280;
-      white-space: nowrap;
-    }
-
-    /* Agent Detail Panel (expandable) */
-    .agent-detail-panel {
-      background: white;
-      border-radius: 16px;
-      padding: 1.5rem 2rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-      animation: fadeSlideIn 0.3s ease-out forwards;
-    }
-
-    /* Countdown Banner */
-    .countdown-banner {
-      background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-      color: white;
-      padding: 1rem 2rem;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-      font-size: 1.15rem;
-      font-weight: 600;
-      animation: fadeIn 0.4s ease-out forwards;
-    }
-
-    .countdown-banner button {
-      background: rgba(255,255,255,0.25);
-      border: 2px solid white;
-      color: white;
-      padding: 0.4rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: background 0.2s;
-    }
-
-    .countdown-banner button:hover {
-      background: rgba(255,255,255,0.4);
-    }
-
-    /* Loading Animation */
-    .loading-spinner {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: white;
-      animation: spin 1s ease-in-out infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    /* ===== Mobile Responsive ===== */
-    @media (max-width: 768px) {
-      h1 { font-size: 1.75rem; }
-      h2 { font-size: 1.5rem; }
-      h3 { font-size: 1.25rem; }
-      p { font-size: 1rem; }
-
-      .stage { padding: 2rem 1rem; }
-
-      .container-centered {
-        min-height: auto;
-        padding: 2rem 0;
-      }
-
-      .beacon-icon { width: 56px; height: 56px; font-size: 1.75rem; }
-      .beacon-title { font-size: 2rem; }
-      .beacon-logo { gap: 0.75rem; margin-bottom: 1.5rem; }
-
-      /* Buttons */
-      .btn { padding: 0.85rem 1.75rem; font-size: 1rem; }
-
-      /* Agent grid */
-      .agent-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-
-      .agent-card { padding: 1.5rem; }
-      .agent-icon { font-size: 2rem; }
-      .agent-name { font-size: 1.25rem; }
-
-      /* Focus area cards */
-      .focus-grid {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-      }
-
-      .focus-card { padding: 1.25rem 1rem; }
-      .focus-card-icon { font-size: 1.5rem; }
-
-      /* Timeline */
-      .timeline {
-        flex-direction: column;
-        gap: 2rem;
-        padding: 1rem 0;
-      }
-
-      .timeline::before {
-        display: none;
-      }
-
-      .timeline-phase {
-        display: flex;
-        align-items: flex-start;
-        gap: 1rem;
-        text-align: left;
-      }
-
-      .timeline-marker {
-        margin: 0;
-        flex-shrink: 0;
-      }
-
-      .timeline-label,
-      .timeline-title,
-      .timeline-milestones { text-align: left; }
-
-      /* Mission control */
-      .main-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .header-bar {
-        padding: 1rem;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-
-      .header-title { font-size: 1.15rem; }
-
-      .mission-control { padding: 1rem; }
-
-      .attention-section { padding: 1.25rem; }
-
-      .approval-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-      }
-
-      /* Chat input */
-      .chat-input-section { padding: 1rem; }
-      .chat-input-wrapper { flex-direction: column; }
-      .chat-input { font-size: 1rem; }
-
-      /* Launch notify */
-      .launch-notify { padding: 1.5rem 1rem; }
-      .launch-notify-form { flex-direction: column; }
-      .agent-circles { gap: 1rem; }
-      .agent-circle { width: 48px; height: 48px; font-size: 1.25rem; }
-      .countdown-banner { flex-direction: column; gap: 0.75rem; font-size: 1rem; }
-
-      /* Status panels */
-      .status-panel { padding: 1.25rem; }
-
-      /* Modal */
-      .modal {
-        padding: 1.5rem;
-        width: 95%;
-        border-radius: 16px;
-      }
-
-      .modal-actions {
-        flex-direction: column;
-      }
-
-      .modal-actions .btn { width: 100%; text-align: center; }
-
-      /* Priorities section */
-      .priorities-section { padding: 1.25rem; }
-      .priority-item { font-size: 1rem; }
-    }
-
-    @media (max-width: 480px) {
-      h1 { font-size: 1.4rem; }
-      .beacon-title { font-size: 1.6rem; }
-      .beacon-icon { width: 44px; height: 44px; font-size: 1.4rem; }
-      .question-label { font-size: 1.25rem; }
-    }
+      background: white; border-radius: 20px; padding: 2.5rem; max-width: 700px; width: 90%;
+      max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      transform: scale(0.9); animation: modalAppear 0.3s ease-out forwards;
+    }
+    @keyframes modalAppear { to { transform: scale(1); } }
   </style>
 </head>
-<body>
+<body class="bg-slate-100 min-h-screen text-slate-900">
   <div id="root"></div>
 
   <script type="text/babel">
-    const { useState, useEffect, useCallback } = React;
+    const { useState, useEffect, useCallback, useRef } = React;
 
-    // Main App Component
-    function App() {
-      const [stage, setStage] = useState('welcome');
-      const [mission, setMission] = useState({
-        disease: '',
-        priorities: []
-      });
-      const [state, setState] = useState(null);
-      const [scoutReport, setScoutReport] = useState(null);
-      const [connectorReport, setConnectorReport] = useState(null);
-      const [navigatorReport, setNavigatorReport] = useState(null);
-      const [mobilizerReport, setMobilizerReport] = useState(null);
-      const [strategistBriefing, setStrategistBriefing] = useState(null);
-      const [modalOpen, setModalOpen] = useState(false);
-      const [selectedApproval, setSelectedApproval] = useState(null);
+    // ==========================================
+    // DATA CONSTANTS
+    // ==========================================
 
-      // Hash-based routing
-      useEffect(() => {
-        const handleHashChange = () => {
-          const hash = window.location.hash.slice(1) || 'welcome';
-          setStage(hash);
-        };
-
-        window.addEventListener('hashchange', handleHashChange);
-        handleHashChange();
-
-        return () => window.removeEventListener('hashchange', handleHashChange);
-      }, []);
-
-      // Helper to fetch and unwrap JSON (handles Claude CLI envelope and markdown fences)
-      const fetchReport = async (url) => {
-        try {
-          const res = await fetch(url);
-          if (!res.ok) return null;
-          const text = await res.text();
-          let data;
-          try {
-            data = JSON.parse(text);
-          } catch {
-            // Try stripping markdown fences
-            const match = text.match(/```(?:json)?\s*([\s\S]*?)```/);
-            if (match) data = JSON.parse(match[1]);
-            else return null;
-          }
-          // Unwrap Claude CLI envelope
-          if (data && data.type === 'result' && typeof data.result === 'string') {
-            try { return JSON.parse(data.result); } catch { return null; }
-          }
-          return data;
-        } catch { return null; }
-      };
-
-      const demo = isDemo();
-
-      // In demo mode, pre-populate mission data
-      useEffect(() => {
-        if (demo && !mission.disease) {
-          setMission({ disease: 'Batten Disease (CLN3)', priorities: ['research', 'experts', 'regulatory', 'funding'] });
-        }
-      }, [demo]);
-
-      // Demo mode: set pre-baked data when reaching mission control
-      useEffect(() => {
-        if (demo && (stage === 'roadmap' || stage === 'mission')) {
-          setState({
-            mission: { disease: 'CLN3 Batten Disease' },
-            agents: {
-              scout: { status: 'complete', current_task: 'Monitoring new publications' },
-              connector: { status: 'working', current_task: 'Awaiting response from Dr. Cooper' },
-              navigator: { status: 'complete', current_task: 'Pathway mapped' },
-              mobilizer: { status: 'working', current_task: 'Drafting CZI grant application' },
-              strategist: { status: 'complete', current_task: 'Weekly briefing ready' },
-            },
-            approvals: [
-              {
-                type: 'Outreach Email',
-                title: 'Email to Dr. Jonathan Cooper — Weill Cornell',
-                summary: 'Personalized introduction about your family\'s CLN3 journey and interest in his AAV9 gene therapy research.',
-                to: 'jonathan.cooper@weillcornell.edu',
-                subject: 'Parent of CLN3 patient — interested in your gene therapy research',
-                body: 'Dear Dr. Cooper,\n\nI am writing as a parent of a child recently diagnosed with CLN3 Batten Disease. I\'ve been following your groundbreaking work on AAV9-mediated gene therapy for neuronal ceroid lipofuscinoses with great interest.\n\nYour 2024 paper on intrathecal delivery showing restored CLN3 protein expression in the murine model was particularly encouraging. I would be grateful for the opportunity to discuss your research and learn about any upcoming clinical trial opportunities.\n\nWould you be available for a brief conversation?\n\nWith hope,\n[Your name]',
-                note: 'Dr. Cooper leads the only active AAV9-CLN3 gene therapy program. His lab published promising preclinical results in 2024. High priority contact.',
-                reviewed: false,
-              }
-            ]
-          });
-          setScoutReport({
-            findings: [
-              { title: 'AAV9-CLN3 Gene Therapy — Phase I/II Trial', summary: 'Weill Cornell team enrolling patients for intrathecal AAV9 delivery targeting CLN3 protein restoration. First-in-human data expected Q3 2026.', significance: 'Breakthrough' },
-              { title: 'Small Molecule TRPML1 Activator', summary: 'New paper demonstrates lysosomal calcium channel activation as potential therapeutic target. Early-stage but mechanistically promising.', significance: 'High Impact' },
-              { title: 'Antisense Oligonucleotide Approach', summary: 'Ionis Pharmaceuticals exploring ASO-based strategy for CLN3 splicing correction. Preclinical stage.', significance: 'Emerging' },
-            ]
-          });
-          setConnectorReport({
-            contacts: [
-              { name: 'Dr. Jonathan Cooper', institution: 'Weill Cornell Medicine — Gene Therapy Lab' },
-              { name: 'Dr. Sara Bhatt', institution: 'UCL Great Ormond Street — NCL Research Group' },
-              { name: 'Dr. Mark Bhatt', institution: 'Nationwide Children\'s Hospital — Rare Disease Center' },
-            ]
-          });
-          return;
-        }
-      }, [demo, stage]);
-
-      // Data polling for mission control (non-demo mode)
-      useEffect(() => {
-        if (demo) return;
-        if (stage === 'launch' || stage === 'mission') {
-          const pollData = async () => {
-            try {
-              const stateRes = await fetch('data/state.json');
-              if (stateRes.ok) setState(await stateRes.json());
-            } catch (e) {}
-
-            const scout = await fetchReport('data/scout-report.json');
-            if (scout) setScoutReport(scout);
-
-            const connector = await fetchReport('data/connector-report.json');
-            if (connector) setConnectorReport(connector);
-
-            const navigator = await fetchReport('data/navigator-report.json');
-            if (navigator) setNavigatorReport(navigator);
-
-            const mobilizer = await fetchReport('data/mobilizer-report.json');
-            if (mobilizer) setMobilizerReport(mobilizer);
-
-            const strategist = await fetchReport('data/strategist-briefing.json');
-            if (strategist) setStrategistBriefing(strategist);
-          };
-
-          pollData();
-          const interval = setInterval(pollData, 2000);
-          return () => clearInterval(interval);
-        }
-      }, [stage, demo]);
-
-      const navigateTo = (newStage) => {
-        window.location.hash = newStage;
-      };
-
-      const renderStage = () => {
-        switch (stage) {
-          case 'welcome':
-            return <WelcomeStage mission={mission} setMission={setMission} navigateTo={navigateTo} />;
-          case 'team':
-            return <TeamStage navigateTo={navigateTo} />;
-          case 'launch':
-            return <LaunchStage state={state} navigateTo={navigateTo} />;
-          case 'roadmap':
-            return <RoadmapStage mission={mission} navigateTo={navigateTo} />;
-          case 'mission':
-            return (
-              <MissionControlStage
-                mission={mission}
-                state={state}
-                scoutReport={scoutReport}
-                connectorReport={connectorReport}
-                navigatorReport={navigatorReport}
-                mobilizerReport={mobilizerReport}
-                strategistBriefing={strategistBriefing}
-                setModalOpen={setModalOpen}
-                setSelectedApproval={setSelectedApproval}
-              />
-            );
-          default:
-            return <WelcomeStage mission={mission} setMission={setMission} navigateTo={navigateTo} />;
-        }
-      };
-
-      return (
-        <>
-          {renderStage()}
-          {modalOpen && selectedApproval && (
-            <ApprovalModal
-              approval={selectedApproval}
-              onClose={() => setModalOpen(false)}
-            />
-          )}
-        </>
-      );
-    }
-
-    // Curated rare disease list for typeahead
     const RARE_DISEASES = [
       { name: "Batten Disease (CLN3)", aliases: ["CLN3", "Juvenile Neuronal Ceroid Lipofuscinosis", "JNCL", "Batten Disease"] },
       { name: "Batten Disease (CLN1)", aliases: ["CLN1", "Infantile Neuronal Ceroid Lipofuscinosis"] },
@@ -1596,67 +69,214 @@
       { name: "Cystic Fibrosis", aliases: ["CF", "Mucoviscidosis"] },
       { name: "Huntington's Disease", aliases: ["HD", "Huntington Chorea"] },
       { name: "Rett Syndrome", aliases: ["MECP2", "Rett"] },
-      { name: "Dravet Syndrome", aliases: ["SCN1A", "Severe Myoclonic Epilepsy of Infancy", "SMEI"] },
+      { name: "Dravet Syndrome", aliases: ["SCN1A", "Severe Myoclonic Epilepsy of Infancy"] },
       { name: "Fragile X Syndrome", aliases: ["FXS", "Martin-Bell Syndrome"] },
-      { name: "Tay-Sachs Disease", aliases: ["Hexosaminidase A Deficiency", "GM2 Gangliosidosis"] },
+      { name: "Tay-Sachs Disease", aliases: ["Hexosaminidase A Deficiency"] },
       { name: "Gaucher Disease", aliases: ["Glucocerebrosidase Deficiency"] },
-      { name: "Pompe Disease", aliases: ["Glycogen Storage Disease Type II", "Acid Maltase Deficiency"] },
-      { name: "Fabry Disease", aliases: ["Alpha-Galactosidase A Deficiency", "Anderson-Fabry Disease"] },
-      { name: "Phenylketonuria (PKU)", aliases: ["PKU", "Phenylalanine Hydroxylase Deficiency"] },
-      { name: "Niemann-Pick Disease", aliases: ["NPD", "Sphingomyelinase Deficiency"] },
-      { name: "Angelman Syndrome", aliases: ["AS", "Happy Puppet Syndrome"] },
+      { name: "Pompe Disease", aliases: ["Glycogen Storage Disease Type II"] },
+      { name: "Fabry Disease", aliases: ["Alpha-Galactosidase A Deficiency"] },
+      { name: "Phenylketonuria (PKU)", aliases: ["PKU"] },
+      { name: "Niemann-Pick Disease", aliases: ["NPD"] },
+      { name: "Angelman Syndrome", aliases: ["AS"] },
       { name: "Prader-Willi Syndrome", aliases: ["PWS"] },
-      { name: "Williams Syndrome", aliases: ["Williams-Beuren Syndrome", "WBS"] },
-      { name: "Marfan Syndrome", aliases: ["FBN1", "Marfan"] },
-      { name: "Ehlers-Danlos Syndrome", aliases: ["EDS", "Hypermobility"] },
-      { name: "Tuberous Sclerosis Complex", aliases: ["TSC", "Tuberous Sclerosis"] },
-      { name: "Sickle Cell Disease", aliases: ["SCD", "Sickle Cell Anemia"] },
-      { name: "Thalassemia", aliases: ["Cooley's Anemia", "Mediterranean Anemia"] },
-      { name: "Hemophilia A", aliases: ["Factor VIII Deficiency", "Classic Hemophilia"] },
-      { name: "Hemophilia B", aliases: ["Factor IX Deficiency", "Christmas Disease"] },
-      { name: "Charcot-Marie-Tooth Disease", aliases: ["CMT", "Hereditary Motor Sensory Neuropathy"] },
-      { name: "Friedreich's Ataxia", aliases: ["FA", "FRDA"] },
-      { name: "Amyotrophic Lateral Sclerosis (ALS)", aliases: ["ALS", "Lou Gehrig's Disease", "Motor Neurone Disease"] },
-      { name: "Wilson's Disease", aliases: ["Hepatolenticular Degeneration"] },
-      { name: "Epidermolysis Bullosa", aliases: ["EB", "Butterfly Disease"] },
-      { name: "Progeria", aliases: ["Hutchinson-Gilford Progeria Syndrome", "HGPS"] },
-      { name: "Osteogenesis Imperfecta", aliases: ["OI", "Brittle Bone Disease"] },
-      { name: "Achondroplasia", aliases: ["Dwarfism", "ACH"] },
-      { name: "Krabbe Disease", aliases: ["Globoid Cell Leukodystrophy", "Galactosylceramidase Deficiency"] },
-      { name: "Adrenoleukodystrophy (ALD)", aliases: ["ALD", "X-linked ALD", "Lorenzo's Oil Disease"] },
-      { name: "Metachromatic Leukodystrophy", aliases: ["MLD", "Arylsulfatase A Deficiency"] },
-      { name: "Canavan Disease", aliases: ["Aspartoacylase Deficiency", "Spongy Degeneration"] },
-      { name: "Alexander Disease", aliases: ["AxD", "Fibrinoid Leukodystrophy"] },
-      { name: "Zellweger Spectrum Disorder", aliases: ["ZSD", "Peroxisomal Biogenesis Disorders"] },
+      { name: "Sanfilippo Syndrome", aliases: ["MPS III"] },
+      { name: "Krabbe Disease", aliases: ["Globoid Cell Leukodystrophy"] },
       { name: "CDKL5 Deficiency Disorder", aliases: ["CDKL5", "CDD"] },
-      { name: "Sanfilippo Syndrome", aliases: ["MPS III", "Mucopolysaccharidosis Type III"] },
-      { name: "Hunter Syndrome", aliases: ["MPS II", "Mucopolysaccharidosis Type II"] },
-      { name: "Hurler Syndrome", aliases: ["MPS I", "Mucopolysaccharidosis Type I"] },
-      { name: "Leigh Syndrome", aliases: ["Subacute Necrotizing Encephalomyelopathy"] },
-      { name: "AADC Deficiency", aliases: ["Aromatic L-Amino Acid Decarboxylase Deficiency"] },
       { name: "Giant Axonal Neuropathy", aliases: ["GAN"] },
-      { name: "Ataxia-Telangiectasia", aliases: ["A-T", "Louis-Bar Syndrome"] },
-      { name: "Cockayne Syndrome", aliases: ["CS", "Neill-Dingwall Syndrome"] },
-      { name: "Alagille Syndrome", aliases: ["ALGS", "Arteriohepatic Dysplasia"] },
+      { name: "AADC Deficiency", aliases: ["Aromatic L-Amino Acid Decarboxylase Deficiency"] },
+      { name: "Epidermolysis Bullosa", aliases: ["EB", "Butterfly Disease"] },
+      { name: "Sickle Cell Disease", aliases: ["SCD"] },
     ];
 
-    // Stage 1: Welcome
-    function WelcomeStage({ mission, setMission, navigateTo }) {
-      const [step, setStep] = useState(0);
-      const [searchQuery, setSearchQuery] = useState('');
+    const JOURNEY_STAGES = [
+      { id: 'pre-diagnosis', emoji: '\u{1F50D}', title: "Still searching for answers", desc: "Symptoms but no clear diagnosis yet" },
+      { id: 'just-diagnosed', emoji: '\u{1F4CB}', title: "Just received a diagnosis", desc: "Need to make sense of it and build a plan" },
+      { id: 'established', emoji: '\u{1F6E4}\u{FE0F}', title: "We've known for a while", desc: "Go deeper on treatment pathways and trials" },
+    ];
+
+    const DEMO_SCRIPT = [
+      { t: 0, agents: [
+        { name: 'Scout', status: 'Initializing literature search...', done: false },
+        { name: 'Connector', status: 'Initializing investigator database...', done: false },
+        { name: 'Navigator', status: 'Initializing regulatory scan...', done: false },
+        { name: 'Mobilizer', status: 'Initializing funding search...', done: false },
+        { name: 'Strategist', status: 'Initializing coordination...', done: false },
+      ]},
+      { t: 2000, agents: [
+        { name: 'Scout', status: 'Searching bioRxiv for CLN3 preprints...', done: false },
+        { name: 'Connector', status: 'Querying NPI Registry for CLN3 specialists...', done: false },
+        { name: 'Navigator', status: 'Checking FDA orphan drug database...', done: false },
+        { name: 'Mobilizer', status: 'Scanning NIH and CZI grant opportunities...', done: false },
+        { name: 'Strategist', status: 'Building preliminary framework...', done: false },
+      ]},
+      { t: 5000, agents: [
+        { name: 'Scout', status: 'Found 12 preprints on CLN3 gene therapy', done: false },
+        { name: 'Connector', status: 'Identified 8 principal investigators', done: false },
+        { name: 'Navigator', status: 'CLN3 qualifies for Orphan Drug Designation', done: true },
+        { name: 'Mobilizer', status: 'Found $4.2M in active NIH grants', done: true },
+        { name: 'Strategist', status: 'Synthesizing agent findings...', done: false },
+      ]},
+      { t: 9000, agents: [
+        { name: 'Scout', status: 'AAV9-CLN3 gene therapy trial identified', done: true },
+        { name: 'Connector', status: 'Drafting outreach to Dr. Cooper...', done: false },
+        { name: 'Navigator', status: 'Pathway mapped — 3 expedited routes', done: true },
+        { name: 'Mobilizer', status: 'CZI deadline March 15 flagged', done: true },
+        { name: 'Strategist', status: 'Building final roadmap...', done: false },
+      ]},
+      { t: 13000, agents: [
+        { name: 'Scout', status: 'Drug repurposing screen: Tamoxifen identified', done: true },
+        { name: 'Connector', status: '5 outreach emails drafted', done: true },
+        { name: 'Navigator', status: 'Pathway mapped — 3 expedited routes', done: true },
+        { name: 'Mobilizer', status: 'Grant strategy ready', done: true },
+        { name: 'Strategist', status: 'Roadmap complete', done: true },
+      ]},
+    ];
+
+    const AGENT_COLORS = {
+      Scout: 'violet', Connector: 'pink', Navigator: 'blue', Mobilizer: 'emerald', Strategist: 'amber'
+    };
+    const AGENT_EMOJIS = {
+      Scout: '\u{1F52C}', Connector: '\u{1F91D}', Navigator: '\u{1F9ED}', Mobilizer: '\u{1F4B0}', Strategist: '\u{1F3AF}'
+    };
+
+    const REPURPOSING_DEMO_DATA = {
+      steps: [
+        { name: 'Supporting Repurposing', desc: 'Disease characterized', done: true },
+        { name: 'Identifying the Drug', desc: '47 screened, 2 candidates', done: true },
+        { name: 'Validating the Drug', desc: 'Drafting protocol...', active: true },
+        { name: 'Clinical Access', desc: '', done: false },
+        { name: 'Reaching an Endpoint', desc: '', done: false },
+      ],
+      candidates: [
+        { name: 'Tamoxifen', stage: 'Lead', mechanism: 'TRPML1 agonist', fdaApproved: true, pediatricData: true },
+        { name: '4-Phenylbutyrate (4-PBA)', stage: 'Early', mechanism: 'Chemical chaperone', fdaApproved: true, pediatricData: false },
+      ],
+      council: [
+        { agent: 'Scout', text: 'ChEMBL screen returned 47 compounds. Tamoxifen shows TRPML1 agonist activity at clinically achievable doses. Found 2 off-label case reports in adult NCL patients.' },
+        { agent: 'Navigator', text: 'FDA-approved since 1977. Pediatric dosing from precocious puberty studies. Off-label use needs physician agreement only \u2014 no IND required.' },
+        { agent: 'Strategist', text: 'Dual track: tamoxifen near-term (months) + AAV9 gene therapy long-term. These are complementary, not competing.' },
+        { agent: 'Scout', text: '4-PBA is a secondary candidate \u2014 chemical chaperone that may stabilize misfolded CLN3 protein. Less evidence but worth monitoring.' },
+        { agent: 'Connector', text: 'Dr. Bhatt at UCL has published on lysosomal channel modulators in NCL models. Recommending outreach.' },
+        { agent: 'Navigator', text: 'For tamoxifen: off-label prescribing is the fastest path. Compassionate use (FDA Form 3926) as backup if physician is hesitant.' },
+        { agent: 'Mobilizer', text: 'EveryCure offers free consultation for rare disease drug repurposing using their ROADMAP framework. Recommending outreach.' },
+        { agent: 'Strategist', text: 'Action items: (1) Specialist briefing on tamoxifen for your neurologist, (2) EveryCure outreach, (3) Continue gene therapy trial pre-screening.' },
+      ],
+    };
+
+    const TIMELINE_MILESTONES = [
+      { icon: 'file-check', color: 'emerald', title: 'Initial Analysis Complete', desc: '127 papers, 8 trials, 34 compounds analyzed', major: false, stats: [{ label: 'Target', value: 'CLN3 / Battenin' }, { label: 'Trials', value: '3 recruiting' }] },
+      { icon: 'microscope', color: 'indigo', title: 'Drug Repurposing Candidate Found', desc: 'Tamoxifen identified via ChEMBL screen', major: true },
+      { icon: 'flask-conical', color: 'blue', title: 'Clinical Trial Match: 89%', desc: 'Phase I/II AAV9-CLN3 at Weill Cornell \u2014 8/9 criteria met', major: false },
+      { icon: 'mail', color: 'pink', title: 'Outreach Email Drafted', desc: 'Email to Dr. Cooper about AAV9-CLN3 trial', major: false, pending: true },
+    ];
+
+    const JOURNEY_ACHIEVEMENTS = [
+      { text: 'Found active gene therapy trial at Weill Cornell' },
+      { text: 'Identified tamoxifen as repurposing candidate' },
+      { text: 'FDA orphan drug pathway confirmed viable' },
+    ];
+
+    function isDemo() {
+      return new URLSearchParams(window.location.search).has('demo');
+    }
+
+    // Helper to fetch and unwrap JSON
+    const fetchReport = async (url) => {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) return null;
+        const text = await res.text();
+        let data;
+        try { data = JSON.parse(text); } catch {
+          const match = text.match(/```(?:json)?\s*([\s\S]*?)```/);
+          if (match) data = JSON.parse(match[1]); else return null;
+        }
+        if (data && data.type === 'result' && typeof data.result === 'string') {
+          try { return JSON.parse(data.result); } catch { return null; }
+        }
+        return data;
+      } catch { return null; }
+    };
+
+    // ==========================================
+    // MAIN APP
+    // ==========================================
+
+    function App() {
+      const [view, setView] = useState('onboarding'); // 'onboarding' | 'dashboard'
+      const [onboardingStep, setOnboardingStep] = useState(1);
+      const [mission, setMission] = useState({
+        disease: '', journeyStage: 'just-diagnosed', patient: 'child', location: 'us',
+      });
+      const [modalOpen, setModalOpen] = useState(false);
+      const [selectedApproval, setSelectedApproval] = useState(null);
+
+      const demo = isDemo();
+
+      useEffect(() => {
+        if (demo && !mission.disease) {
+          setMission({ disease: 'Batten Disease (CLN3)', journeyStage: 'just-diagnosed', patient: 'child', location: 'us' });
+        }
+      }, [demo]);
+
+      return (
+        <>
+          {view === 'onboarding' ? (
+            <OnboardingView
+              step={onboardingStep}
+              setStep={setOnboardingStep}
+              mission={mission}
+              setMission={setMission}
+              onEnterDashboard={() => setView('dashboard')}
+              demo={demo}
+            />
+          ) : (
+            <DashboardView
+              mission={mission}
+              demo={demo}
+              setModalOpen={setModalOpen}
+              setSelectedApproval={setSelectedApproval}
+            />
+          )}
+          {modalOpen && selectedApproval && (
+            <ApprovalModal approval={selectedApproval} onClose={() => setModalOpen(false)} />
+          )}
+        </>
+      );
+    }
+
+    // ==========================================
+    // ONBOARDING VIEW (3 steps, single page)
+    // ==========================================
+
+    function OnboardingView({ step, setStep, mission, setMission, onEnterDashboard, demo }) {
+      const [searchQuery, setSearchQuery] = useState(demo ? 'Batten Disease (CLN3)' : '');
       const [showDropdown, setShowDropdown] = useState(false);
       const [filteredDiseases, setFilteredDiseases] = useState([]);
+      const [agentStates, setAgentStates] = useState(DEMO_SCRIPT[0].agents);
+      const [showInsight, setShowInsight] = useState(false);
+
+      // Agent awakening simulation (step 3)
+      useEffect(() => {
+        if (step !== 3) return;
+        const timers = DEMO_SCRIPT.map(frame =>
+          setTimeout(() => {
+            setAgentStates(frame.agents);
+          }, frame.t)
+        );
+        // Show insight after all agents done
+        const insightTimer = setTimeout(() => setShowInsight(true), 14000);
+        return () => { timers.forEach(clearTimeout); clearTimeout(insightTimer); };
+      }, [step]);
 
       const handleSearchChange = (e) => {
         const query = e.target.value;
         setSearchQuery(query);
         setMission({ ...mission, disease: query });
-
         if (query.trim().length > 0) {
           const q = query.toLowerCase();
           const matches = RARE_DISEASES.filter(d =>
-            d.name.toLowerCase().includes(q) ||
-            d.aliases.some(a => a.toLowerCase().includes(q))
+            d.name.toLowerCase().includes(q) || d.aliases.some(a => a.toLowerCase().includes(q))
           ).slice(0, 8);
           setFilteredDiseases(matches);
           setShowDropdown(true);
@@ -1666,894 +286,679 @@
         }
       };
 
-      const selectDisease = (disease) => {
-        setSearchQuery(disease.name);
-        setMission({ ...mission, disease: disease.name });
+      const selectDisease = (d) => {
+        setSearchQuery(d.name);
+        setMission({ ...mission, disease: d.name });
         setShowDropdown(false);
-        setStep(1);
       };
 
-      const handleDiseaseSubmit = (e) => {
-        e.preventDefault();
-        if (mission.disease.trim()) {
-          setShowDropdown(false);
-          setStep(1);
-        }
-      };
+      const goStep = (n) => setStep(n);
 
-      const highlightMatch = (text, query) => {
-        if (!query) return text;
-        const idx = text.toLowerCase().indexOf(query.toLowerCase());
-        if (idx === -1) return text;
-        return React.createElement('span', null,
-          text.slice(0, idx),
-          React.createElement('strong', { style: { color: '#d97706' } }, text.slice(idx, idx + query.length)),
-          text.slice(idx + query.length)
-        );
-      };
-
-      const FOCUS_AREAS = [
-        { id: 'research', icon: '🔬', title: 'Research & Science', desc: 'Find the latest papers, trials, and treatment approaches' },
-        { id: 'experts', icon: '🤝', title: 'Expert Connections', desc: 'Identify and reach out to researchers and clinicians' },
-        { id: 'regulatory', icon: '🧭', title: 'Regulatory Path', desc: 'Map FDA pathways, orphan drug designation, and legal structure' },
-        { id: 'funding', icon: '💰', title: 'Funding & Community', desc: 'Find grants, build fundraising strategy, connect with other families' },
+      const stepNav = [
+        { num: 1, label: 'Welcome', sub: 'Privacy Covenant' },
+        { num: 2, label: 'Connect', sub: 'Your Situation' },
+        { num: 3, label: 'Awakening', sub: 'Agent Synthesis' },
       ];
 
-      const toggleFocus = (id) => {
-        if (id === 'all') {
-          const allIds = FOCUS_AREAS.map(f => f.id);
-          const allSelected = allIds.every(fid => mission.priorities.includes(fid));
-          if (allSelected) {
-            setMission({ ...mission, priorities: [] });
-          } else {
-            setMission({ ...mission, priorities: [...allIds] });
-          }
-          return;
-        }
-        const newPriorities = mission.priorities.includes(id)
-          ? mission.priorities.filter(p => p !== id)
-          : [...mission.priorities, id];
-        setMission({ ...mission, priorities: newPriorities });
-      };
-
-      const allSelected = FOCUS_AREAS.every(f => mission.priorities.includes(f.id));
-
       return (
-        <div className="stage">
-          <div className="container-centered">
-            {step === 0 && (
-              <>
-                <div className="beacon-logo">
-                  <div className="beacon-icon">🔆</div>
-                  <div className="beacon-title">Beacon</div>
-                </div>
-                <h1>You've just received a diagnosis that changed everything.</h1>
-                <p style={{ fontSize: '1.25rem', maxWidth: '600px' }}>
-                  We're here to help. Beacon is a team of AI agents that works around the clock to
-                  find treatments, connect with researchers, navigate regulatory pathways, and raise funds.
-                </p>
-                <form onSubmit={handleDiseaseSubmit} style={{ width: '100%', maxWidth: '500px', marginTop: '2rem', position: 'relative' }}>
-                  <div className="typeahead-wrapper">
-                    <div className="typeahead-input-wrapper">
-                      <span className="typeahead-icon">🔍</span>
-                      <input
-                        type="text"
-                        className="input-field typeahead-input"
-                        placeholder="Search for a rare disease..."
-                        value={searchQuery}
-                        onChange={handleSearchChange}
-                        onFocus={() => { if (filteredDiseases.length > 0) setShowDropdown(true); }}
-                        onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
-                        autoFocus
-                      />
-                    </div>
-                    {showDropdown && filteredDiseases.length > 0 && (
-                      <div className="typeahead-dropdown">
-                        {filteredDiseases.map((d, i) => (
-                          <div key={i} className="typeahead-option" onMouseDown={() => selectDisease(d)}>
-                            <div className="typeahead-option-name">{highlightMatch(d.name, searchQuery)}</div>
-                            <div className="typeahead-option-aliases">{d.aliases.join(' · ')}</div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+        <div className="min-h-screen flex items-center justify-center p-6">
+          <div className="max-w-4xl w-full grid grid-cols-12 gap-8">
+
+            {/* Left: Step sidebar */}
+            <div className="col-span-4 pt-10 space-y-6">
+              <div className="flex items-center gap-3 mb-10">
+                <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg shadow-amber-200">B</div>
+                <span className="text-xl font-extrabold bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text text-transparent">Beacon</span>
+              </div>
+
+              {stepNav.map(s => (
+                <div key={s.num} className={`flex items-center gap-4 ${step < s.num ? 'step-inactive' : ''}`}>
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-white ${step >= s.num ? 'bg-indigo-600 shadow-md shadow-indigo-200' : 'bg-slate-300'}`}>{s.num}</div>
+                  <div>
+                    <p className={`text-[10px] font-bold uppercase tracking-wider ${step >= s.num ? 'text-indigo-600' : 'text-slate-400'}`}>{s.label}</p>
+                    <p className="text-sm font-semibold text-slate-800">{s.sub}</p>
                   </div>
-                  <p style={{ fontSize: '0.9rem', color: '#9ca3af', marginTop: '0.5rem', marginBottom: '1.5rem' }}>
-                    Don't see your disease? Type it in and press Continue.
-                  </p>
-                  <button type="submit" className="btn btn-primary" style={{ width: '100%' }} disabled={!mission.disease.trim()}>
-                    Continue
-                  </button>
-                </form>
-              </>
-            )}
-
-            {step === 1 && (
-              <div className="intake-question">
-                <label className="question-label">What should your team focus on?</label>
-                <p style={{ color: '#6b7280', marginBottom: '2rem', fontSize: '1.05rem' }}>
-                  Select one or more areas. You can change these anytime.
-                </p>
-
-                <div className="focus-grid">
-                  {FOCUS_AREAS.map(area => (
-                    <div
-                      key={area.id}
-                      className={`focus-card ${mission.priorities.includes(area.id) ? 'selected' : ''}`}
-                      onClick={() => toggleFocus(area.id)}
-                    >
-                      <div className="focus-card-icon">{area.icon}</div>
-                      <div className="focus-card-title">{area.title}</div>
-                      <div className="focus-card-desc">{area.desc}</div>
-                    </div>
-                  ))}
-                </div>
-
-                <div
-                  className={`focus-card focus-card-all ${allSelected ? 'selected' : ''}`}
-                  onClick={() => toggleFocus('all')}
-                >
-                  <div className="focus-card-icon">🚀</div>
-                  <div className="focus-card-title">All of the Above</div>
-                  <div className="focus-card-desc">Give me the full team — recommended for most families</div>
-                </div>
-
-                <button
-                  className="btn btn-primary"
-                  style={{ marginTop: '2rem', width: '100%', maxWidth: '400px', fontSize: '1.15rem', padding: '1.1rem 2rem' }}
-                  onClick={() => { if (mission.priorities.length > 0) navigateTo('team'); }}
-                  disabled={mission.priorities.length === 0}
-                >
-                  Assemble my team →
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      );
-    }
-
-    // Stage 2: Team
-    function TeamStage({ navigateTo }) {
-      return (
-        <div className="stage">
-          <div className="container">
-            <div className="text-center mb-3">
-              <h1>We're assembling your team.</h1>
-              <p style={{ fontSize: '1.25rem', color: '#6b7280' }}>
-                Five AI agents, each an expert in their domain, working together on your mission.
-              </p>
-            </div>
-
-            <div className="agent-grid">
-              <div className="agent-card scout">
-                <div className="agent-icon">🔬</div>
-                <div className="agent-name">Scout</div>
-                <div className="agent-role">Your Research Scientist</div>
-                <div className="agent-description">
-                  Searches the global literature, finds the latest discoveries, and identifies promising treatment approaches.
-                </div>
-              </div>
-
-              <div className="agent-card connector">
-                <div className="agent-icon">🤝</div>
-                <div className="agent-name">Connector</div>
-                <div className="agent-role">Your Medical Liaison</div>
-                <div className="agent-description">
-                  Finds and reaches out to the world's leading researchers and clinicians working on this disease.
-                </div>
-              </div>
-
-              <div className="agent-card navigator">
-                <div className="agent-icon">🧭</div>
-                <div className="agent-name">Navigator</div>
-                <div className="agent-role">Your Regulatory Strategist</div>
-                <div className="agent-description">
-                  Maps the path from where you are now to a clinical trial. Knows FDA pathways and orphan drug programs.
-                </div>
-              </div>
-
-              <div className="agent-card mobilizer">
-                <div className="agent-icon">💰</div>
-                <div className="agent-name">Mobilizer</div>
-                <div className="agent-role">Your Fundraising Coordinator</div>
-                <div className="agent-description">
-                  Finds grants, builds fundraising strategy, and connects you with the rare disease community.
-                </div>
-              </div>
-
-              <div className="agent-card strategist">
-                <div className="agent-icon">🎯</div>
-                <div className="agent-name">Strategist</div>
-                <div className="agent-role">Your Chief of Staff</div>
-                <div className="agent-description">
-                  Coordinates the whole team. Makes sure you see the right information at the right time.
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center mt-3">
-              <button className="btn btn-primary" onClick={() => navigateTo('launch')} style={{ fontSize: '1.25rem', padding: '1.25rem 3rem' }}>
-                Start the mission →
-              </button>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    // Demo mode simulation data
-    const DEMO_SCRIPT = [
-      // [delayMs, agentId, status, current_task, updates]
-      { t: 0, agents: {
-        scout: { status: 'idle', current_task: '', updates: [] },
-        connector: { status: 'idle', current_task: '', updates: [] },
-        navigator: { status: 'idle', current_task: '', updates: [] },
-        mobilizer: { status: 'idle', current_task: '', updates: [] },
-        strategist: { status: 'idle', current_task: '', updates: [] },
-      }},
-      { t: 1500, agents: {
-        scout: { status: 'working', current_task: 'Searching bioRxiv & PubMed...', updates: [
-          { message: 'Querying PubMed for CLN3 Batten Disease...', completed: false }
-        ]},
-        connector: { status: 'idle', current_task: '', updates: [] },
-        navigator: { status: 'idle', current_task: '', updates: [] },
-        mobilizer: { status: 'idle', current_task: '', updates: [] },
-        strategist: { status: 'idle', current_task: '', updates: [] },
-      }},
-      { t: 4000, agents: {
-        scout: { status: 'working', current_task: 'Analyzing gene therapy literature...', updates: [
-          { message: 'Querying PubMed for CLN3 Batten Disease...', completed: true },
-          { message: 'Found 847 publications spanning 1995-2025', completed: true },
-          { message: 'Analyzing AAV9-based gene therapy approaches...', completed: false },
-        ]},
-        connector: { status: 'working', current_task: 'Identifying key researchers...', updates: [
-          { message: 'Scanning ClinicalTrials.gov for CLN3 investigators...', completed: false },
-        ]},
-        navigator: { status: 'working', current_task: 'Mapping FDA orphan drug pathways...', updates: [
-          { message: 'Checking FDA Orphan Drug Database...', completed: false },
-        ]},
-        mobilizer: { status: 'idle', current_task: '', updates: [] },
-        strategist: { status: 'idle', current_task: '', updates: [] },
-      }},
-      { t: 8000, agents: {
-        scout: { status: 'complete', current_task: 'Research complete', updates: [
-          { message: 'Querying PubMed for CLN3 Batten Disease...', completed: true },
-          { message: 'Found 847 publications spanning 1995-2025', completed: true },
-          { message: 'Analyzing AAV9-based gene therapy approaches...', completed: true },
-          { message: 'Identified 3 promising therapeutic strategies', type: 'finding', completed: true },
-          { message: 'Gene therapy (AAV9-CLN3) — Phase I/II trial active', type: 'finding', completed: true },
-        ]},
-        connector: { status: 'working', current_task: 'Drafting outreach emails...', updates: [
-          { message: 'Scanning ClinicalTrials.gov for CLN3 investigators...', completed: true },
-          { message: 'Identified Dr. Jonathan Cooper — Weill Cornell', type: 'finding', completed: true },
-          { message: 'Drafting personalized outreach to 5 researchers...', completed: false },
-        ]},
-        navigator: { status: 'working', current_task: 'Analyzing expedited pathways...', updates: [
-          { message: 'Checking FDA Orphan Drug Database...', completed: true },
-          { message: 'CLN3 has Orphan Drug Designation — eligible for incentives', type: 'finding', completed: true },
-          { message: 'Evaluating Accelerated Approval pathway...', completed: false },
-        ]},
-        mobilizer: { status: 'working', current_task: 'Finding grant opportunities...', updates: [
-          { message: 'Searching NIH Reporter for NCL funding...', completed: false },
-        ]},
-        strategist: { status: 'idle', current_task: '', updates: [] },
-      }},
-      { t: 14000, agents: {
-        scout: { status: 'complete', current_task: 'Research complete', updates: [
-          { message: 'Querying PubMed for CLN3 Batten Disease...', completed: true },
-          { message: 'Found 847 publications spanning 1995-2025', completed: true },
-          { message: 'Analyzing AAV9-based gene therapy approaches...', completed: true },
-          { message: 'Identified 3 promising therapeutic strategies', type: 'finding', completed: true },
-          { message: 'Gene therapy (AAV9-CLN3) — Phase I/II trial active', type: 'finding', completed: true },
-        ]},
-        connector: { status: 'complete', current_task: 'Outreach ready', updates: [
-          { message: 'Scanning ClinicalTrials.gov for CLN3 investigators...', completed: true },
-          { message: 'Identified Dr. Jonathan Cooper — Weill Cornell', type: 'finding', completed: true },
-          { message: 'Drafting personalized outreach to 5 researchers...', completed: true },
-          { message: '5 outreach emails ready for your review', type: 'finding', completed: true },
-        ]},
-        navigator: { status: 'complete', current_task: 'Pathway mapped', updates: [
-          { message: 'Checking FDA Orphan Drug Database...', completed: true },
-          { message: 'CLN3 has Orphan Drug Designation — eligible for incentives', type: 'finding', completed: true },
-          { message: 'Evaluating Accelerated Approval pathway...', completed: true },
-          { message: 'Recommended: Rare Pediatric Disease Priority Review Voucher', type: 'finding', completed: true },
-        ]},
-        mobilizer: { status: 'complete', current_task: 'Strategy ready', updates: [
-          { message: 'Searching NIH Reporter for NCL funding...', completed: true },
-          { message: 'Found $4.2M in active NIH grants for CLN3 research', type: 'finding', completed: true },
-          { message: 'Identified CZI Rare As One Network — deadline March 15', type: 'finding', completed: true },
-        ]},
-        strategist: { status: 'working', current_task: 'Synthesizing roadmap...', updates: [
-          { message: 'Integrating findings from all agents...', completed: false },
-        ]},
-      }},
-      { t: 20000, agents: {
-        scout: { status: 'complete', current_task: 'Research complete', updates: [
-          { message: 'Querying PubMed for CLN3 Batten Disease...', completed: true },
-          { message: 'Found 847 publications spanning 1995-2025', completed: true },
-          { message: 'Analyzing AAV9-based gene therapy approaches...', completed: true },
-          { message: 'Identified 3 promising therapeutic strategies', type: 'finding', completed: true },
-          { message: 'Gene therapy (AAV9-CLN3) — Phase I/II trial active', type: 'finding', completed: true },
-        ]},
-        connector: { status: 'complete', current_task: 'Outreach ready', updates: [
-          { message: 'Scanning ClinicalTrials.gov for CLN3 investigators...', completed: true },
-          { message: 'Identified Dr. Jonathan Cooper — Weill Cornell', type: 'finding', completed: true },
-          { message: 'Drafting personalized outreach to 5 researchers...', completed: true },
-          { message: '5 outreach emails ready for your review', type: 'finding', completed: true },
-        ]},
-        navigator: { status: 'complete', current_task: 'Pathway mapped', updates: [
-          { message: 'Checking FDA Orphan Drug Database...', completed: true },
-          { message: 'CLN3 has Orphan Drug Designation — eligible for incentives', type: 'finding', completed: true },
-          { message: 'Evaluating Accelerated Approval pathway...', completed: true },
-          { message: 'Recommended: Rare Pediatric Disease Priority Review Voucher', type: 'finding', completed: true },
-        ]},
-        mobilizer: { status: 'complete', current_task: 'Strategy ready', updates: [
-          { message: 'Searching NIH Reporter for NCL funding...', completed: true },
-          { message: 'Found $4.2M in active NIH grants for CLN3 research', type: 'finding', completed: true },
-          { message: 'Identified CZI Rare As One Network — deadline March 15', type: 'finding', completed: true },
-        ]},
-        strategist: { status: 'complete', current_task: 'Roadmap ready', updates: [
-          { message: 'Integrating findings from all agents...', completed: true },
-          { message: 'Roadmap generated with 4 phases and 12 milestones', type: 'finding', completed: true },
-        ]},
-      }},
-    ];
-
-    function isDemo() {
-      return new URLSearchParams(window.location.search).has('demo');
-    }
-
-    // Stage 3: Launch
-    function LaunchStage({ state, navigateTo }) {
-      const agents = [
-        { id: 'scout', icon: '🔬', name: 'Scout', color: '#8b5cf6' },
-        { id: 'connector', icon: '🤝', name: 'Connector', color: '#ec4899' },
-        { id: 'navigator', icon: '🧭', name: 'Navigator', color: '#3b82f6' },
-        { id: 'mobilizer', icon: '💰', name: 'Mobilizer', color: '#10b981' },
-        { id: 'strategist', icon: '🎯', name: 'Strategist', color: '#f59e0b' }
-      ];
-
-      const [email, setEmail] = useState('');
-      const [emailSubmitted, setEmailSubmitted] = useState(false);
-      const [expandedAgent, setExpandedAgent] = useState(null);
-      const [countdown, setCountdown] = useState(null);
-      const [cancelledAutoAdvance, setCancelledAutoAdvance] = useState(false);
-      const [demoState, setDemoState] = useState(null);
-
-      const demo = isDemo();
-
-      // Demo mode: run scripted simulation
-      useEffect(() => {
-        if (!demo) return;
-        const timers = DEMO_SCRIPT.map(frame =>
-          setTimeout(() => {
-            setDemoState({ agents: frame.agents, mission: { disease: 'CLN3 Batten Disease' } });
-          }, frame.t)
-        );
-        return () => timers.forEach(clearTimeout);
-      }, [demo]);
-
-      const effectiveState = demo ? demoState : state;
-
-      const agentStates = agents.map(a => ({
-        ...a,
-        status: effectiveState?.agents?.[a.id]?.status || 'idle',
-        current_task: effectiveState?.agents?.[a.id]?.current_task || '',
-        updates: effectiveState?.agents?.[a.id]?.updates || [],
-      }));
-
-      const completeCount = agentStates.filter(a => a.status === 'complete').length;
-      const allComplete = completeCount === 5;
-
-      // Auto-advance countdown
-      useEffect(() => {
-        if (allComplete && !cancelledAutoAdvance) {
-          setCountdown(3);
-        }
-      }, [allComplete]);
-
-      useEffect(() => {
-        if (countdown === null || countdown <= 0) return;
-        const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
-        return () => clearTimeout(timer);
-      }, [countdown]);
-
-      useEffect(() => {
-        if (countdown === 0 && !cancelledAutoAdvance) {
-          navigateTo('roadmap');
-        }
-      }, [countdown, cancelledAutoAdvance]);
-
-      const handleEmailSubmit = (e) => {
-        e.preventDefault();
-        if (email.trim()) {
-          localStorage.setItem('beacon_notify_email', email);
-          setEmailSubmitted(true);
-        }
-      };
-
-      const toggleAgent = (id) => {
-        setExpandedAgent(expandedAgent === id ? null : id);
-      };
-
-      return (
-        <div className="stage">
-          <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <div className="text-center mb-3">
-              <h1>🔆 Beacon — Mission Active</h1>
-              <p style={{ fontSize: '1.25rem', color: '#6b7280' }}>
-                {effectiveState?.mission?.disease || 'Your team is working'}
-              </p>
-            </div>
-
-            {/* Countdown banner */}
-            {allComplete && !cancelledAutoAdvance && countdown !== null && (
-              <div className="countdown-banner">
-                <span>Your roadmap is ready! Redirecting in {countdown}...</span>
-                <button onClick={() => navigateTo('roadmap')}>Go now →</button>
-                <button onClick={() => { setCancelledAutoAdvance(true); setCountdown(null); }}>Stay here</button>
-              </div>
-            )}
-
-            {/* Email notification opt-in */}
-            {!allComplete && (
-              <div className="launch-notify">
-                <h2>Your team is on it.</h2>
-                {!emailSubmitted ? (
-                  <>
-                    <p>This usually takes about 10 minutes. We'll email you when your roadmap is ready.</p>
-                    <form className="launch-notify-form" onSubmit={handleEmailSubmit}>
-                      <input
-                        type="email"
-                        placeholder="your@email.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                      <button type="submit" className="btn btn-primary btn-small">Notify me</button>
-                    </form>
-                  </>
-                ) : (
-                  <p className="launch-notify-success">✓ We'll let you know! Feel free to close this tab.</p>
-                )}
-              </div>
-            )}
-
-            {/* Overall progress bar */}
-            <div className="launch-progress-bar">
-              <div className="progress-text">{completeCount} of 5 agents complete</div>
-              <div className="launch-progress-track">
-                <div className="launch-progress-fill" style={{ width: `${(completeCount / 5) * 100}%` }}></div>
-              </div>
-            </div>
-
-            {/* Agent circles */}
-            <div className="agent-circles">
-              {agentStates.map(a => (
-                <div
-                  key={a.id}
-                  className={`agent-circle ${expandedAgent === a.id ? 'expanded' : ''}`}
-                  onClick={() => toggleAgent(a.id)}
-                  title={a.name}
-                >
-                  {a.icon}
-                  <div className={`agent-circle-dot ${a.status}`}></div>
-                  <div className="agent-circle-name">{a.name}</div>
                 </div>
               ))}
             </div>
 
-            {/* Expanded agent detail panel (accordion) */}
-            {expandedAgent && (() => {
-              const a = agentStates.find(ag => ag.id === expandedAgent);
-              if (!a) return null;
-              return (
-                <div className="agent-detail-panel">
-                  <div className="status-header">
-                    <div className="status-icon">{a.icon}</div>
-                    <div className="status-info">
-                      <h3>{a.name}</h3>
-                      <div className={`status-label ${a.status === 'working' ? 'working' : ''}`}>
-                        {a.status === 'working' ? a.current_task : a.status === 'complete' ? 'Complete' : 'Initializing'}
+            {/* Right: Content cards */}
+            <div className="col-span-8">
+
+              {/* Step 1: Privacy */}
+              {step === 1 && (
+                <div className="bg-white rounded-3xl p-10 shadow-xl border border-slate-200 fade-up">
+                  <div className="w-16 h-16 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+                  </div>
+                  <h2 className="text-3xl font-bold mb-4">First, your safety.</h2>
+                  <p className="text-slate-500 mb-8 leading-relaxed text-lg">Rare disease data is the most sensitive information you own. Beacon's agents operate in a <strong className="text-slate-700">Secure Sandbox</strong>. Your data is encrypted and only your team sees it.</p>
+
+                  <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 mb-8 space-y-4">
+                    {['Your data is never used to train models.', 'All actions requiring external contact need your approval.', 'Revoke agent access or delete everything at any time.'].map((t, i) => (
+                      <div key={i} className="flex items-center gap-3 text-sm font-medium text-slate-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        {t}
+                      </div>
+                    ))}
+                  </div>
+
+                  <button onClick={() => goStep(2)} className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold text-lg hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200">
+                    I Agree. Let's Begin.
+                  </button>
+                </div>
+              )}
+
+              {/* Step 2: Situation */}
+              {step === 2 && (
+                <div className="bg-white rounded-3xl p-10 shadow-xl border border-slate-200 fade-up">
+                  <h2 className="text-3xl font-bold mb-2">Tell us about your journey.</h2>
+                  <p className="text-slate-500 mb-8">This helps your AI team personalize their research.</p>
+
+                  {/* Journey stage */}
+                  <div className="space-y-3 mb-8">
+                    {JOURNEY_STAGES.map(js => (
+                      <button
+                        key={js.id}
+                        onClick={() => setMission({ ...mission, journeyStage: js.id })}
+                        className={`w-full flex items-center gap-4 p-4 rounded-2xl border-2 transition-all text-left ${mission.journeyStage === js.id ? 'border-indigo-600 bg-indigo-50' : 'border-slate-200 hover:border-indigo-300'}`}
+                      >
+                        <span className="text-2xl">{js.emoji}</span>
+                        <div>
+                          <div className="font-bold text-slate-800">{js.title}</div>
+                          <div className="text-xs text-slate-500">{js.desc}</div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Disease input */}
+                  {mission.journeyStage !== 'pre-diagnosis' && (
+                    <div className="mb-8">
+                      <label className="text-sm font-bold text-slate-700 block mb-2">Condition</label>
+                      <div className="relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-4 top-1/2 -translate-y-1/2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <input
+                          type="text"
+                          placeholder="Search for a rare disease..."
+                          value={searchQuery}
+                          onChange={handleSearchChange}
+                          onFocus={() => { if (filteredDiseases.length > 0) setShowDropdown(true); }}
+                          onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
+                          className="w-full pl-12 pr-4 py-3.5 border-2 border-slate-200 rounded-xl text-base focus:outline-none focus:border-indigo-500 bg-slate-50"
+                          autoFocus
+                        />
+                        {showDropdown && filteredDiseases.length > 0 && (
+                          <div className="absolute top-full left-0 right-0 bg-white border-2 border-slate-200 border-t-0 rounded-b-xl shadow-lg z-50 max-h-72 overflow-y-auto">
+                            {filteredDiseases.map((d, i) => (
+                              <div key={i} className="px-4 py-3 cursor-pointer hover:bg-amber-50 border-b border-slate-100 last:border-0" onMouseDown={() => selectDisease(d)}>
+                                <div className="font-semibold text-slate-800">{d.name}</div>
+                                <div className="text-xs text-slate-400">{d.aliases.join(' \u00B7 ')}</div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Upload zone for pre-dx */}
+                  {mission.journeyStage === 'pre-diagnosis' && (
+                    <div className="mb-8">
+                      <label className="text-sm font-bold text-slate-700 block mb-2">Medical Records</label>
+                      <div className="border-2 border-dashed border-slate-300 rounded-2xl p-8 flex flex-col items-center bg-slate-50 hover:border-indigo-300 hover:bg-indigo-50/30 transition-all cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg>
+                        <p className="font-bold text-slate-600 text-sm mt-3">Drop files here</p>
+                        <p className="text-[11px] text-slate-400 mt-1">PDF, JPG, PNG, or Medical XML</p>
+                      </div>
+                      <textarea placeholder="Or describe symptoms and timeline in your own words..." className="mt-3 w-full p-3 border-2 border-slate-200 rounded-xl text-sm resize-none h-20 focus:outline-none focus:border-indigo-500"></textarea>
+                    </div>
+                  )}
+
+                  {/* Quick intake */}
+                  <div className="grid grid-cols-2 gap-4 mb-8">
+                    <div>
+                      <label className="text-sm font-bold text-slate-700 block mb-2">Patient is</label>
+                      <div className="flex gap-2">
+                        {['My child', 'Myself'].map(label => {
+                          const id = label === 'My child' ? 'child' : 'myself';
+                          return (
+                            <button key={id} onClick={() => setMission({ ...mission, patient: id })}
+                              className={`flex-1 py-2 rounded-lg border-2 text-sm font-semibold ${mission.patient === id ? 'border-indigo-600 bg-indigo-50 text-indigo-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'}`}>
+                              {label}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <div>
+                      <label className="text-sm font-bold text-slate-700 block mb-2">Location</label>
+                      <div className="flex gap-2">
+                        {['US', 'EU', 'Other'].map(label => {
+                          const id = label.toLowerCase();
+                          return (
+                            <button key={id} onClick={() => setMission({ ...mission, location: id })}
+                              className={`flex-1 py-2 rounded-lg border-2 text-sm font-semibold ${mission.location === id ? 'border-indigo-600 bg-indigo-50 text-indigo-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'}`}>
+                              {label}
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
-                  <ul className="status-updates">
-                    {a.updates.map((update, i) => (
-                      <li
-                        key={i}
-                        className={`status-update ${update.completed ? 'completed' : ''} ${update.type === 'finding' ? 'finding' : ''}`}
-                        style={{ animationDelay: `${i * 0.1}s` }}
-                      >
-                        {i === a.updates.length - 1 ? '└─ ' : '├─ '}
-                        {update.completed && '✓ '}
-                        {update.message}
-                      </li>
-                    ))}
-                    {a.updates.length === 0 && (
-                      <li className="status-update" style={{ color: '#9ca3af' }}>Waiting to start...</li>
-                    )}
-                  </ul>
+
+                  <button
+                    onClick={() => goStep(3)}
+                    disabled={mission.journeyStage !== 'pre-diagnosis' && !mission.disease}
+                    className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold text-lg hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    Start Analysis &rarr;
+                  </button>
                 </div>
-              );
-            })()}
+              )}
 
-            {/* Manual advance button if auto-advance cancelled */}
-            {allComplete && cancelledAutoAdvance && (
-              <div className="text-center mt-3">
-                <button
-                  className="btn btn-primary"
-                  onClick={() => navigateTo('roadmap')}
-                  style={{ fontSize: '1.25rem', padding: '1.25rem 3rem' }}
-                >
-                  View your roadmap →
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      );
-    }
+              {/* Step 3: Agent Awakening */}
+              {step === 3 && (
+                <div className="bg-slate-900 rounded-3xl p-10 shadow-xl border border-zinc-700 text-white fade-up">
+                  <div className="flex justify-between items-center mb-8">
+                    <h2 className="text-2xl font-bold">Your Team is Awakening...</h2>
+                    <div className="flex gap-2">
+                      {['violet', 'pink', 'blue', 'emerald', 'amber'].map((c, i) => (
+                        <span key={c} className={`w-2.5 h-2.5 rounded-full bg-${c}-500 agent-pulse`} style={{ animationDelay: `${i * 0.3}s` }}></span>
+                      ))}
+                    </div>
+                  </div>
 
-    // Stage 4: Roadmap
-    function RoadmapStage({ mission, navigateTo }) {
-      return (
-        <div className="stage">
-          <div className="container">
-            <div className="text-center mb-3">
-              <h1>Your Roadmap</h1>
-              <p style={{ fontSize: '1.25rem', color: '#6b7280' }}>
-                {mission.disease}
-              </p>
-            </div>
+                  <div className="space-y-3 mb-8">
+                    {agentStates.map((a, i) => {
+                      const color = Object.values(AGENT_COLORS)[i];
+                      return (
+                        <div key={a.name} className="p-4 bg-white/5 border border-white/10 rounded-2xl flex items-center gap-4">
+                          <div className={`w-8 h-8 rounded-lg bg-${color}-500/20 text-${color}-400 flex items-center justify-center text-sm`}>
+                            {Object.values(AGENT_EMOJIS)[i]}
+                          </div>
+                          <div className="flex-1">
+                            <p className={`text-xs font-bold text-${color}-300`}>{a.name}</p>
+                            <p className="text-[11px] text-zinc-400">{a.status}</p>
+                          </div>
+                          {a.done ? (
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                          ) : (
+                            <div className={`w-2 h-2 rounded-full bg-${color}-500 agent-pulse`}></div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
 
-            <div className="timeline">
-              <div className="timeline-phase active">
-                <div className="timeline-marker">1</div>
-                <div className="timeline-label">NOW</div>
-                <div className="timeline-title">Research & Outreach</div>
-                <ul className="timeline-milestones">
-                  <li>Map disease landscape</li>
-                  <li>Identify key researchers</li>
-                  <li>Initial outreach</li>
-                </ul>
-              </div>
+                  {/* First insight */}
+                  {showInsight && (
+                    <div className="text-center p-6 bg-indigo-600 rounded-2xl shadow-xl shadow-indigo-900/40 fade-up">
+                      <p className="text-[10px] font-black text-indigo-200 uppercase tracking-widest mb-2">First Insight</p>
+                      <h3 className="font-bold text-lg mb-2">AAV9 Gene Therapy Trial Enrolling</h3>
+                      <p className="text-sm text-indigo-100 opacity-80 mb-6">"Weill Cornell is actively enrolling CLN3 patients for a Phase I/II intrathecal AAV9 gene therapy trial. Your child may be eligible."</p>
+                      <button onClick={onEnterDashboard} className="w-full bg-white text-indigo-600 py-3 rounded-xl font-black uppercase text-xs tracking-widest hover:bg-indigo-50 transition-colors">
+                        Enter Dashboard &rarr;
+                      </button>
+                    </div>
+                  )}
 
-              <div className="timeline-phase">
-                <div className="timeline-marker">2</div>
-                <div className="timeline-label">3 MONTHS</div>
-                <div className="timeline-title">Preclinical Planning</div>
-                <ul className="timeline-milestones">
-                  <li>Target validation</li>
-                  <li>Model selection</li>
-                  <li>Grant applications</li>
-                </ul>
-              </div>
-
-              <div className="timeline-phase">
-                <div className="timeline-marker">3</div>
-                <div className="timeline-label">12 MONTHS</div>
-                <div className="timeline-title">IND Filing</div>
-                <ul className="timeline-milestones">
-                  <li>Orphan drug designation</li>
-                  <li>Manufacturing plan</li>
-                  <li>FDA pre-IND meeting</li>
-                </ul>
-              </div>
-
-              <div className="timeline-phase">
-                <div className="timeline-marker">4</div>
-                <div className="timeline-label">24 MONTHS</div>
-                <div className="timeline-title">Clinical Trial</div>
-                <ul className="timeline-milestones">
-                  <li>Site selection</li>
-                  <li>Patient enrollment</li>
-                  <li>Trial initiation</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="priorities-section">
-              <h2>This Week's Priorities</h2>
-              <ul className="priority-list">
-                <li className="priority-item">
-                  Review outreach emails to top 5 researchers and approve for sending
-                </li>
-                <li className="priority-item">
-                  Evaluate dual-track strategy: gene therapy vs. small molecule approach
-                </li>
-                <li className="priority-item">
-                  Review and submit Letter of Intent for CZI Rare As One Network grant
-                </li>
-              </ul>
-            </div>
-
-            <div className="text-center mt-3">
-              <button
-                className="btn btn-primary"
-                onClick={() => navigateTo('mission')}
-                style={{ fontSize: '1.25rem', padding: '1.25rem 3rem' }}
-              >
-                Go to Mission Control →
-              </button>
+                  {/* Fallback enter button before insight shows */}
+                  {!showInsight && agentStates.every(a => a.done) && (
+                    <button onClick={onEnterDashboard} className="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold hover:bg-indigo-700 transition-colors">
+                      Enter Dashboard &rarr;
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
       );
     }
 
-    // Stage 5: Mission Control
-    function MissionControlStage({
-      mission,
-      state,
-      scoutReport,
-      connectorReport,
-      navigatorReport,
-      mobilizerReport,
-      strategistBriefing,
-      setModalOpen,
-      setSelectedApproval
-    }) {
-      const approvals = state?.approvals || [];
-      const newCount = approvals.filter(a => !a.reviewed).length;
+    // ==========================================
+    // DASHBOARD VIEW
+    // ==========================================
 
-      const allFindings = [];
+    function DashboardView({ mission, demo, setModalOpen, setSelectedApproval }) {
+      const [expandedSections, setExpandedSections] = useState({});
+      const [state, setState] = useState(null);
 
-      if (scoutReport?.findings) {
-        scoutReport.findings.forEach(f => {
-          allFindings.push({
-            agent: 'Scout',
-            icon: '🔬',
-            time: '2 hours ago',
-            ...f
-          });
-        });
-      }
+      // Data polling (non-demo)
+      useEffect(() => {
+        if (demo) return;
+        const poll = async () => {
+          try {
+            const res = await fetch('data/state.json');
+            if (res.ok) setState(await res.json());
+          } catch {}
+        };
+        poll();
+        const interval = setInterval(poll, 3000);
+        return () => clearInterval(interval);
+      }, [demo]);
 
-      if (connectorReport?.contacts) {
-        connectorReport.contacts.slice(0, 2).forEach(c => {
-          allFindings.push({
-            agent: 'Connector',
-            icon: '🤝',
-            time: '3 hours ago',
-            title: `Identified: ${c.name}`,
-            summary: c.institution,
-            significance: 'High Priority'
-          });
-        });
-      }
+      const toggleExpand = (name) => {
+        setExpandedSections(prev => ({ ...prev, [name]: !prev[name] }));
+      };
 
-      const AGENT_META = [
-        { id: 'scout', name: 'Scout', icon: '🔬' },
-        { id: 'connector', name: 'Connector', icon: '🤝' },
-        { id: 'navigator', name: 'Navigator', icon: '🧭' },
-        { id: 'mobilizer', name: 'Mobilizer', icon: '💰' },
-        { id: 'strategist', name: 'Strategist', icon: '🎯' }
-      ];
-      const agents = AGENT_META.map(meta => ({
-        ...meta,
-        status: state?.agents?.[meta.id]?.status || 'idle',
-        current_task: state?.agents?.[meta.id]?.current_task || ''
-      }));
-
-      const handleReview = (approval) => {
+      const handleApproval = (approval) => {
         setSelectedApproval(approval);
         setModalOpen(true);
       };
 
-      return (
-        <>
-          <div className="header-bar">
-            <div className="header-title">
-              <span className="header-icon">🔆</span>
-              <span>Beacon — {mission.disease || 'Mission Control'}</span>
-            </div>
-            {newCount > 0 && (
-              <div className="notification-badge">
-                🔔 {newCount} new
-              </div>
-            )}
-          </div>
+      const demoApproval = {
+        type: 'Outreach Email',
+        title: 'Email to Dr. Jonathan Cooper \u2014 Weill Cornell',
+        summary: "Personalized introduction about your family's CLN3 journey.",
+        to: 'jonathan.cooper@weillcornell.edu',
+        subject: "Parent of CLN3 patient \u2014 interested in your gene therapy research",
+        body: "Dear Dr. Cooper,\n\nI am writing as a parent of a child recently diagnosed with CLN3 Batten Disease. I've been following your groundbreaking work on AAV9-mediated gene therapy with great interest.\n\nYour 2024 paper on intrathecal delivery showing restored CLN3 protein expression in the murine model was particularly encouraging. I would be grateful for the opportunity to discuss your research.\n\nWith hope,\n[Your name]",
+        note: "Dr. Cooper leads the only active AAV9-CLN3 gene therapy program. High priority contact.",
+      };
 
-          <div className="mission-control">
-            {approvals.length > 0 && (
-              <div className="attention-section">
-                <h2>Needs Your Attention</h2>
-                <div className="approval-cards">
-                  {approvals.map((approval, i) => (
-                    <div key={i} className="approval-card">
-                      <div className="approval-info">
-                        <div className="approval-badge">{approval.type}</div>
-                        <div className="approval-title">{approval.title}</div>
-                        <div className="approval-summary">{approval.summary}</div>
+      return (
+        <div className="min-h-screen flex">
+          {/* Sidebar */}
+          <aside className="w-20 bg-indigo-900 flex flex-col items-center py-8 gap-8 h-screen sticky top-0">
+            <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-500 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg">B</div>
+            <nav className="flex flex-col gap-4">
+              {[
+                { icon: 'M4 4h16v16H4z M4 4l8 8 8-8', label: 'Dashboard', active: true },
+              ].map((item, i) => (
+                <button key={i} className={`p-3 rounded-xl ${item.active ? 'bg-indigo-800 text-white shadow-lg' : 'text-indigo-300 hover:text-white'} transition-colors`} title={item.label}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+                </button>
+              ))}
+            </nav>
+          </aside>
+
+          {/* Main */}
+          <main className="flex-1 flex flex-col">
+            {/* Header */}
+            <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 shrink-0">
+              <div className="flex items-center gap-4">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Patient:</span>
+                <span className="text-sm font-bold px-3 py-1 bg-slate-100 rounded-full">{mission.disease || 'CLN3 Batten Disease'}</span>
+              </div>
+              <div className="flex items-center gap-6">
+                <div className="flex -space-x-2">
+                  {Object.entries(AGENT_COLORS).map(([name, color]) => (
+                    <div key={name} className={`w-7 h-7 rounded-full bg-${color}-500 border-2 border-white flex items-center justify-center text-[8px] text-white font-bold`} title={name}>
+                      {name[0]}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </header>
+
+            {/* Scrollable content */}
+            <div className="flex-1 overflow-y-auto">
+              <div className="max-w-5xl mx-auto px-8 py-8 space-y-8">
+
+                {/* ==========================================
+                    SECTION 1: YOUR JOURNEY
+                    ========================================== */}
+                <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-lg font-bold flex items-center gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" x2="9" y1="3" y2="18"/><line x1="15" x2="15" y1="6" y2="21"/></svg>
+                      Your Journey
+                    </h2>
+                    <span className="text-[11px] text-slate-400 font-medium">Day 3 of your mission</span>
+                  </div>
+
+                  {/* Progress bars */}
+                  <div className="flex gap-3 mb-6">
+                    {[
+                      { label: 'Research', status: 'complete', sub: 'Complete' },
+                      { label: 'Outreach', pct: 60, sub: '3 contacts identified' },
+                      { label: 'Regulatory', pct: 40, sub: 'Pathways mapped' },
+                      { label: 'Funding', pct: 0, sub: 'Starting soon' },
+                      { label: 'Treatment', pct: 0, sub: 'Long-term goal' },
+                    ].map((p, i) => (
+                      <div key={i} className="flex-1">
+                        <div className={`h-2 rounded-full mb-3 ${p.status === 'complete' ? 'bg-emerald-500' : p.pct > 0 ? 'bg-amber-400 overflow-hidden' : 'bg-slate-200'}`}>
+                          {p.pct > 0 && <div className="h-full bg-amber-500 rounded-full" style={{ width: `${p.pct}%` }}></div>}
+                        </div>
+                        <p className={`text-[10px] font-bold uppercase tracking-wider ${p.status === 'complete' ? 'text-emerald-600' : p.pct > 0 ? 'text-amber-600' : 'text-slate-400'}`}>{p.label}</p>
+                        <p className={`text-xs font-semibold mt-0.5 ${p.status === 'complete' || p.pct > 0 ? 'text-slate-600' : 'text-slate-500'}`}>{p.sub}</p>
                       </div>
-                      <button className="btn btn-primary btn-small" onClick={() => handleReview(approval)}>
-                        Review →
+                    ))}
+                  </div>
+
+                  {/* Achievement cards with green checkmarks */}
+                  <div className="flex gap-3">
+                    {JOURNEY_ACHIEVEMENTS.map((a, i) => (
+                      <div key={i} className="flex-1 bg-emerald-50 rounded-xl p-3 border border-emerald-100">
+                        <div className="flex items-center gap-2 mb-1">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                          <span className="text-[10px] font-bold text-emerald-700 uppercase">Done</span>
+                        </div>
+                        <p className="text-xs text-emerald-800 font-semibold">{a.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* ==========================================
+                    SECTION 2: KEY INSIGHTS & DECISIONS
+                    ========================================== */}
+                <div className="space-y-4">
+                  <h2 className="text-lg font-bold flex items-center gap-2 px-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                    Key Insights & Decisions
+                  </h2>
+
+                  {/* Drug Repurposing Breakthrough */}
+                  <div className="bg-indigo-50 rounded-2xl p-6 border-2 border-indigo-200 shadow-sm">
+                    <div className="flex justify-between items-start mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-indigo-900">Drug Repurposing Candidate: Tamoxifen</h3>
+                          <p className="text-[11px] text-indigo-500">Scout + Navigator + Strategist &middot; 12 min ago</p>
+                        </div>
+                      </div>
+                      <span className="bg-indigo-600 text-white text-[9px] font-black px-2.5 py-0.5 rounded-md uppercase tracking-wide shrink-0">Breakthrough</span>
+                    </div>
+                    <p className="text-sm text-slate-700 leading-relaxed mb-4">Tamoxifen activates the TRPML1 lysosomal channel that CLN3 patients are missing. It's FDA-approved with existing pediatric safety data. Your team recommends a dual-track strategy: pursue tamoxifen as a near-term option while the gene therapy trial continues.</p>
+                    <div className="flex gap-3">
+                      <button className="bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md hover:bg-indigo-700 transition-colors">Generate Specialist Briefing</button>
+                      <button onClick={() => toggleExpand('repurpose')} className="text-indigo-600 px-4 py-2 rounded-xl text-xs font-bold border border-indigo-200 hover:bg-white transition-colors flex items-center gap-1">
+                        See Agent Reasoning
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`chevron-icon ${expandedSections.repurpose ? 'rotated' : ''}`}><path d="m6 9 6 6 6-6"/></svg>
                       </button>
                     </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <div className="main-grid">
-              <div className="feed-section">
-                <h2>Recent Discoveries</h2>
-                <div className="feed-items">
-                  {allFindings.length > 0 ? (
-                    allFindings.map((finding, i) => (
-                      <div key={i} className="feed-item" style={{ animationDelay: `${i * 0.1}s` }}>
-                        <div className="feed-header">
-                          <span>{finding.icon}</span>
-                          <span className="feed-agent">{finding.agent}</span>
-                          <span className="feed-time">{finding.time}</span>
-                        </div>
-                        <div className="feed-title">{finding.title}</div>
-                        <div className="feed-summary">{finding.summary}</div>
-                        {finding.significance && (
-                          <div className="significance-badge">{finding.significance}</div>
-                        )}
-                      </div>
-                    ))
-                  ) : (
-                    <div className="feed-item">
-                      <div className="feed-header">
-                        <span>🔬</span>
-                        <span className="feed-agent">Scout</span>
-                        <span className="feed-time">1 hour ago</span>
-                      </div>
-                      <div className="feed-title">TRPML1 Channel Activation Shows Promise</div>
-                      <div className="feed-summary">
-                        New paper demonstrates lysosomal calcium channel activation as potential therapeutic target for CLN3 disease.
-                      </div>
-                      <div className="significance-badge">High Impact</div>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div className="agent-status-section">
-                <h2>Agent Status</h2>
-                <div className="agent-status-list">
-                  {agents.map((agent) => (
-                    <div key={agent.id} className="agent-status-row">
-                      <div className={`status-dot ${agent.status}`}></div>
-                      <div className="agent-status-info">
-                        <div className="agent-status-name">
-                          {agent.icon} {agent.name}
-                        </div>
-                        <div className="agent-status-task">{agent.current_task}</div>
+                    {/* Expandable council discourse */}
+                    <div data-expand-target="repurpose" className={expandedSections.repurpose ? 'open mt-4' : 'mt-4'}>
+                      <div className="space-y-3 border-l-2 border-indigo-200 pl-4 py-2 bg-white/60 rounded-xl p-4">
+                        {REPURPOSING_DEMO_DATA.council.map((msg, i) => (
+                          <div key={i} className="flex gap-3">
+                            <div className={`text-[10px] font-bold text-${AGENT_COLORS[msg.agent]}-600 uppercase w-20 shrink-0 pt-0.5`}>{msg.agent}</div>
+                            <p className="text-sm text-slate-700">"{msg.text}"</p>
+                          </div>
+                        ))}
                       </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+                  </div>
 
-            <div className="progress-section">
-              <h2>Roadmap Progress</h2>
-              <div className="progress-bars">
-                <div className="progress-bar-item">
-                  <div className="progress-label">
-                    <span>Research & Literature Mapping</span>
-                    <span>73%</span>
+                  {/* Clinical Trial Match */}
+                  <div className="bg-slate-900 rounded-2xl p-6 text-white shadow-md">
+                    <div className="flex justify-between items-start mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-indigo-500/30 rounded-lg flex items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#818cf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg>
+                        </div>
+                        <div>
+                          <p className="text-[10px] font-black text-indigo-400 uppercase tracking-widest">Clinical Trial Match</p>
+                          <h3 className="font-bold">Phase I/II AAV9-CLN3 Gene Therapy &mdash; Weill Cornell</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-xs text-slate-300 leading-relaxed mb-4">Intrathecal AAV9 delivery targeting CLN3 protein restoration. Your child meets <strong className="text-white">8 of 9</strong> eligibility criteria. First-in-human data expected Q3 2026.</p>
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="flex-1 bg-white/10 h-2 rounded-full"><div className="bg-indigo-500 h-full w-[89%] rounded-full"></div></div>
+                      <span className="text-xs font-bold text-indigo-400">89% match</span>
+                    </div>
+                    <div className="flex gap-3">
+                      <button className="bg-white text-slate-900 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-wide">Pre-Screen Now</button>
+                      <button className="text-indigo-300 px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wide hover:text-white transition-colors">View Full Details</button>
+                    </div>
                   </div>
-                  <div className="progress-bar-bg">
-                    <div className="progress-bar-fill" style={{ width: '73%' }}></div>
-                  </div>
-                </div>
-                <div className="progress-bar-item">
-                  <div className="progress-label">
-                    <span>Researcher Outreach</span>
-                    <span>45%</span>
-                  </div>
-                  <div className="progress-bar-bg">
-                    <div className="progress-bar-fill" style={{ width: '45%' }}></div>
-                  </div>
-                </div>
-                <div className="progress-bar-item">
-                  <div className="progress-label">
-                    <span>Regulatory Pathway Mapping</span>
-                    <span>82%</span>
-                  </div>
-                  <div className="progress-bar-bg">
-                    <div className="progress-bar-fill" style={{ width: '82%' }}></div>
-                  </div>
-                </div>
-              </div>
-              <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
-                <a href="#roadmap" style={{ color: '#d97706', fontWeight: 600, textDecoration: 'none' }}>
-                  View full roadmap →
-                </a>
-              </div>
-            </div>
-          </div>
 
-          <div className="chat-input-section">
-            <div className="chat-input-wrapper">
-              <input
-                type="text"
-                className="chat-input"
-                placeholder="Ask your team anything..."
-              />
-              <button className="btn btn-primary">Send</button>
+                  {/* Decision: Outreach Email */}
+                  <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                    <div className="flex justify-between items-start mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-slate-800">Email to Dr. Jonathan Cooper</h3>
+                          <p className="text-[11px] text-slate-400">Connector &middot; Needs your approval</p>
+                        </div>
+                      </div>
+                      <span className="bg-amber-100 text-amber-800 text-[9px] font-black px-2.5 py-0.5 rounded-md uppercase">Decision</span>
+                    </div>
+                    <p className="text-sm text-slate-600 leading-relaxed mb-4">Personalized introduction about your family's CLN3 journey and interest in his AAV9 gene therapy research. Includes Scout's evidence summary.</p>
+                    <div className="flex gap-3">
+                      <button onClick={() => handleApproval(demoApproval)} className="bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md hover:bg-indigo-700 transition-colors">Review & Approve</button>
+                      <button className="text-slate-500 px-4 py-2 rounded-xl text-xs font-bold border border-slate-200 hover:bg-slate-50 transition-colors">Skip for Now</button>
+                    </div>
+                  </div>
+
+                  {/* Decision: EveryCure */}
+                  <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                    <div className="flex justify-between items-start mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-slate-800">Contact EveryCure for Repurposing Guidance</h3>
+                          <p className="text-[11px] text-slate-400">Mobilizer &middot; Needs your approval</p>
+                        </div>
+                      </div>
+                      <span className="bg-amber-100 text-amber-800 text-[9px] font-black px-2.5 py-0.5 rounded-md uppercase">Decision</span>
+                    </div>
+                    <p className="text-sm text-slate-600 leading-relaxed mb-4">EveryCure offers free consultation for rare disease drug repurposing using their ROADMAP framework. They can help validate the tamoxifen pathway.</p>
+                    <div className="flex gap-3">
+                      <button className="bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md hover:bg-indigo-700 transition-colors">Approve Outreach</button>
+                      <button className="text-slate-500 px-4 py-2 rounded-xl text-xs font-bold border border-slate-200 hover:bg-slate-50 transition-colors">Skip for Now</button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ==========================================
+                    SECTION 3: DETAILED VIEW (Expandable)
+                    ========================================== */}
+                <div className="border border-slate-200 rounded-3xl bg-white shadow-sm overflow-hidden">
+                  <button onClick={() => toggleExpand('detail')} className="w-full flex items-center justify-between px-8 py-5 hover:bg-slate-50 transition-colors">
+                    <h2 className="text-lg font-bold flex items-center gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+                      Detailed View
+                      <span className="text-xs font-medium text-slate-400 ml-2">Agent activity, timeline, repurposing tracker</span>
+                    </h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`chevron-icon ${expandedSections.detail ? 'rotated' : ''}`}><path d="m6 9 6 6 6-6"/></svg>
+                  </button>
+
+                  <div data-expand-target="detail" className={expandedSections.detail ? 'open' : ''}>
+                    <div className="px-8 pb-8 grid grid-cols-12 gap-8 border-t border-slate-100 pt-6">
+
+                      {/* Left: Living Timeline */}
+                      <div className="col-span-7 space-y-6">
+                        <div className="flex items-center justify-between">
+                          <h3 className="text-base font-bold flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+                            Mission Timeline
+                          </h3>
+                          <span className="text-[11px] text-slate-400">Updated 2 min ago</span>
+                        </div>
+
+                        <div className="relative pl-10 timeline-line space-y-8">
+                          {TIMELINE_MILESTONES.map((m, i) => (
+                            <div key={i} className="relative">
+                              <div className={`absolute -left-[30px] w-10 h-10 ${m.major ? `bg-${m.color}-600 text-white shadow-lg shadow-${m.color}-200` : `bg-white border-2 border-${m.color}-500 text-${m.color}-500`} rounded-full flex items-center justify-center z-10`}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  {m.icon === 'file-check' && <><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></>}
+                                  {m.icon === 'microscope' && <><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/></>}
+                                  {m.icon === 'flask-conical' && <><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></>}
+                                  {m.icon === 'mail' && <><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></>}
+                                </svg>
+                              </div>
+                              <div className={`${m.major ? 'bg-indigo-50 border-2 border-indigo-200' : 'bg-white border border-slate-200'} p-5 rounded-2xl`}>
+                                <div className="flex justify-between items-start mb-1">
+                                  <h4 className={`font-bold text-sm ${m.major ? 'text-indigo-900' : 'text-slate-800'}`}>{m.title}</h4>
+                                  {m.major && <span className="bg-indigo-600 text-white text-[8px] font-black px-2 py-0.5 rounded uppercase">Major</span>}
+                                  {m.pending && <span className="bg-amber-100 text-amber-700 text-[8px] font-black px-1.5 py-0.5 rounded uppercase">Pending</span>}
+                                </div>
+                                <p className="text-[11px] text-slate-500">{m.desc}</p>
+                                {m.stats && (
+                                  <div className="grid grid-cols-2 gap-2 mt-3">
+                                    {m.stats.map((s, j) => (
+                                      <div key={j} className="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                                        <span className="text-[9px] font-bold text-slate-400 uppercase">{s.label}</span>
+                                        <p className="text-xs font-semibold">{s.value}</p>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                                {m.major && (
+                                  <div className="space-y-2 border-l-2 border-indigo-200 pl-3 py-1 text-xs mt-3">
+                                    {REPURPOSING_DEMO_DATA.council.slice(0, 3).map((msg, j) => (
+                                      <div key={j} className="flex gap-2">
+                                        <span className={`font-bold text-${AGENT_COLORS[msg.agent]}-600 uppercase w-16 shrink-0 text-[9px]`}>{msg.agent}</span>
+                                        <p className="text-slate-600">"{msg.text.substring(0, 80)}..."</p>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Right: ROADMAP + Team Status */}
+                      <div className="col-span-5 space-y-6">
+
+                        {/* ROADMAP Tracker */}
+                        <div className="bg-white p-5 rounded-2xl border border-slate-200">
+                          <h4 className="font-bold text-sm mb-1 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
+                            Repurposing ROADMAP
+                          </h4>
+                          <p className="text-[10px] text-slate-400 mb-4">EveryCure Framework</p>
+
+                          <div className="space-y-3 relative">
+                            <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-slate-200"></div>
+                            {REPURPOSING_DEMO_DATA.steps.map((s, i) => (
+                              <div key={i} className={`flex items-start gap-3 relative ${!s.done && !s.active ? 'opacity-40' : ''}`}>
+                                {s.done ? (
+                                  <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center z-10 shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                  </div>
+                                ) : s.active ? (
+                                  <div className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center z-10 shrink-0 ring-2 ring-amber-200">
+                                    <span className="text-[9px] font-black text-white">{i + 1}</span>
+                                  </div>
+                                ) : (
+                                  <div className="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center z-10 shrink-0">
+                                    <span className="text-[9px] font-bold text-slate-400">{i + 1}</span>
+                                  </div>
+                                )}
+                                <div>
+                                  <p className={`text-[11px] font-bold ${s.active ? 'text-amber-700' : s.done ? 'text-slate-700' : 'text-slate-500'}`}>{s.name}</p>
+                                  {s.desc && <p className={`text-[10px] ${s.active ? 'text-amber-600' : 'text-slate-400'}`}>{s.desc}</p>}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="mt-4 p-3 bg-emerald-50 rounded-xl border border-emerald-100">
+                            <div className="flex items-center gap-2 mb-0.5">
+                              <span className="bg-emerald-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded uppercase">Lead</span>
+                              <span className="text-xs font-bold text-emerald-900">Tamoxifen</span>
+                            </div>
+                            <p className="text-[10px] text-emerald-700">TRPML1 agonist &middot; FDA-approved &middot; Ped. data</p>
+                          </div>
+                        </div>
+
+                        {/* Team Status */}
+                        <div className="bg-white p-5 rounded-2xl border border-slate-200">
+                          <h4 className="font-bold text-sm mb-4 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            Your Team
+                          </h4>
+                          <div className="space-y-2.5">
+                            {[
+                              { name: 'Scout', status: 'active', task: 'Monitoring publications' },
+                              { name: 'Connector', status: 'waiting', task: 'Awaiting Dr. Cooper' },
+                              { name: 'Navigator', status: 'active', task: 'Pathway mapped' },
+                              { name: 'Mobilizer', status: 'waiting', task: 'Drafting CZI grant' },
+                              { name: 'Strategist', status: 'active', task: 'Briefing ready' },
+                            ].map(a => (
+                              <div key={a.name} className="flex items-center gap-3">
+                                <div className={`w-2 h-2 rounded-full ${a.status === 'active' ? 'bg-emerald-500' : 'bg-amber-500 agent-pulse'}`}></div>
+                                <span className="text-[11px] font-bold text-slate-700 w-20">{a.name}</span>
+                                <span className="text-[11px] text-slate-400">{a.task}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             </div>
-          </div>
-        </>
+          </main>
+        </div>
       );
     }
 
-    // Approval Modal
+    // ==========================================
+    // APPROVAL MODAL (reused)
+    // ==========================================
+
     function ApprovalModal({ approval, onClose }) {
-      const [editedApproval, setEditedApproval] = useState({ ...approval });
+      const [edited, setEdited] = useState({ ...approval });
 
       const handleApprove = () => {
-        console.log('Approved:', editedApproval);
+        console.log('Approved:', edited);
         alert('Email approved and queued for sending!');
         onClose();
       };
 
       return (
         <div className="modal-overlay" onClick={onClose}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h2 className="modal-title">Review & Approve</h2>
-              <button className="modal-close" onClick={onClose}>×</button>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold">Review & Approve</h2>
+              <button onClick={onClose} className="text-slate-400 hover:text-slate-800 text-2xl leading-none">&times;</button>
             </div>
 
-            <div className="modal-field">
-              <label className="modal-label">To:</label>
-              <input
-                type="text"
-                className="modal-input"
-                value={editedApproval.to || ''}
-                onChange={(e) => setEditedApproval({ ...editedApproval, to: e.target.value })}
-              />
+            <div className="mb-4">
+              <label className="block font-semibold text-sm text-slate-700 mb-1">To:</label>
+              <input type="text" value={edited.to || ''} onChange={e => setEdited({ ...edited, to: e.target.value })}
+                className="w-full px-3 py-2 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500" />
             </div>
 
-            <div className="modal-field">
-              <label className="modal-label">Subject:</label>
-              <input
-                type="text"
-                className="modal-input"
-                value={editedApproval.subject || editedApproval.title}
-                onChange={(e) => setEditedApproval({ ...editedApproval, subject: e.target.value })}
-              />
+            <div className="mb-4">
+              <label className="block font-semibold text-sm text-slate-700 mb-1">Subject:</label>
+              <input type="text" value={edited.subject || ''} onChange={e => setEdited({ ...edited, subject: e.target.value })}
+                className="w-full px-3 py-2 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500" />
             </div>
 
-            <div className="modal-field">
-              <label className="modal-label">Message:</label>
-              <textarea
-                className="modal-textarea"
-                value={editedApproval.body || editedApproval.content || ''}
-                onChange={(e) => setEditedApproval({ ...editedApproval, body: e.target.value })}
-              />
+            <div className="mb-4">
+              <label className="block font-semibold text-sm text-slate-700 mb-1">Message:</label>
+              <textarea value={edited.body || ''} onChange={e => setEdited({ ...edited, body: e.target.value })}
+                className="w-full px-3 py-3 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500 min-h-[200px] font-sans" />
             </div>
 
             {approval.note && (
-              <div className="modal-note">
-                <div className="modal-note-label">Connector's Note:</div>
-                <div className="modal-note-text">{approval.note}</div>
+              <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-lg mb-4">
+                <div className="font-semibold text-sm text-amber-800 mb-1">Connector's Note:</div>
+                <div className="text-sm text-amber-700">{approval.note}</div>
               </div>
             )}
 
-            <div className="modal-actions">
-              <button className="btn btn-approve" onClick={handleApprove}>
-                Approve & Send
-              </button>
-              <button className="btn btn-primary btn-small" onClick={() => alert('Edits saved!')}>
-                Save Edits
-              </button>
-              <button className="btn btn-cancel btn-small" onClick={onClose}>
-                Cancel
-              </button>
+            <div className="flex gap-3 mt-6">
+              <button onClick={handleApprove} className="px-6 py-3 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-600 transition-colors shadow-md">Approve & Send</button>
+              <button onClick={() => alert('Edits saved!')} className="px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold text-sm hover:bg-indigo-700 transition-colors">Save Edits</button>
+              <button onClick={onClose} className="px-6 py-3 bg-slate-200 text-slate-700 rounded-xl font-bold text-sm hover:bg-slate-300 transition-colors">Cancel</button>
             </div>
           </div>
         </div>
       );
     }
 
-    // Render App
+    // Render
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<App />);
   </script>

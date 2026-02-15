@@ -18,47 +18,47 @@ const OUTPUT_DIR = path.join(__dirname, '..', 'app', 'audio');
 const NARRATIONS = [
   {
     key: 'welcome',
-    text: "Welcome to Beacon. When your child is diagnosed with a rare disease, the world gets very quiet. Beacon changes that. Let's get started.",
+    text: "Every year, 300 million people worldwide are affected by rare diseases. Most have no approved treatment. When a family gets this diagnosis, they're on their own — navigating science, regulation, and funding with no expertise. Beacon changes that. Built almost entirely with Claude Code and Opus 4.6, Beacon is a team of AI agents that works continuously on a family's behalf.",
   },
   {
     key: 'intake',
-    text: "Tell us a little about your situation. This helps your team know exactly where to focus — no detail is shared without your permission.",
+    text: "The journey starts with a simple intake — disease name, patient context, location. Behind the scenes, this seeds every agent's system prompt with structured context, so Opus 4.6 can reason about jurisdiction-specific regulatory paths and personalized research strategies from the first query.",
   },
   {
     key: 'agents_activating',
-    text: "Meet your team — eight AI agents, each with a specialty, all working for you right now. Scout is searching the latest research. Connector is finding families and clinicians. Navigator is mapping the regulatory path. Watch them work.",
+    text: "When the family clicks Launch, Beacon's orchestrator spins up eight Claude Code sub-agents in parallel — each powered by Opus 4.6 with a specialized system prompt. Scout searches bioRxiv, PubMed, and ClinicalTrials.gov through Anthropic's healthcare MCP connectors. Navigator queries the CMS Coverage database and maps FDA orphan drug pathways. Connector cross-references the NPI Registry to verify physician credentials. Each agent writes structured JSON that the dashboard polls in real time.",
   },
   {
     key: 'progress',
-    text: "As your agents make discoveries, you'll see progress here. Each breakthrough — a new clinical trial, a promising compound, a connected family — appears in real time. This isn't a static report. Your team never stops.",
+    text: "What you're watching is live agent output streaming into the UI. Each progress bar, each status update, each achievement — those are real structured outputs from Opus 4.6 sub-agents writing to shared state files. The orchestrator coordinates task dependencies so agents can hand off findings to each other.",
   },
   {
     key: 'insights',
-    text: "These are your key insights — the most important findings your agents have surfaced. You can dig deeper into any of them, or save them for later. Everything is written in plain language, not medical jargon.",
+    text: "These insights are the cross-agent synthesis — Scout found a clinical trial, Navigator checked the regulatory precedent, Mobilizer identified matching grant funding. This research-to-action chain is what sets Beacon apart. Other tools stop at search results. Beacon executes the full pipeline.",
   },
   {
     key: 'approvals',
-    text: "Some actions need your approval — like sending an email to a researcher, or submitting a grant application. Your team drafts it. You decide. You're always in control.",
+    text: "Human-in-the-loop for consequential actions. The agent drafts an outreach email to a researcher it identified through PubMed and verified through the NPI Registry. The family reviews and approves. Progressive trust — the AI proposes, the human decides.",
   },
   {
     key: 'lab_overview',
-    text: "This is your Drug Discovery Lab. Your Biologist agent has identified protein targets linked to the disease. Your Chemist is screening hundreds of compounds. And your Preclinician is evaluating which ones are safe enough to test.",
+    text: "The Drug Discovery Lab pushes Opus 4.6 further. Three specialized agents — Biologist, Chemist, Preclinician — use the ChEMBL MCP connector to search bioactive compounds, retrieve IC50 values, and evaluate ADMET properties. This is real drug discovery reasoning, not keyword search.",
   },
   {
     key: 'lab_candidates',
-    text: "Here's your candidate pipeline — compounds ranked by potential, with safety profiles and clinical precedent. Your team can even help you design experiments and find contract research labs.",
+    text: "The candidate pipeline ranks compounds by predicted efficacy, safety profile, and clinical precedent — all extracted from ChEMBL's curated database of bioactive molecules. Each agent's reasoning chain is fully traceable.",
   },
   {
     key: 'community_network',
-    text: "You're not the only family fighting this. Beacon's Connector agent has found twelve other CLN3 families — matched by geography, treatment stage, and willingness to share. Every introduction goes through you first.",
+    text: "Beacon's Connector agent builds a family network — matching by geography, disease variant, and treatment stage. Every connection requires family approval. Privacy by design.",
   },
   {
     key: 'community_data',
-    text: "When families share outcomes, patterns emerge. Your agents analyze this community data to identify what's working. And when enough evidence builds, they map the path from shared data to a formal clinical trial — regulatory steps, funding sources, everything.",
+    text: "When families opt in to share outcomes, Beacon's agents analyze the pooled data — identifying treatment patterns, adverse events, and response rates. For ultra-rare diseases, this community evidence may be the only data that exists.",
   },
   {
     key: 'closing',
-    text: "No family should have to fight alone. Beacon is your team — researching, connecting, strategizing, and never stopping. This is just the beginning.",
+    text: "Beacon is a team of AI agents that never stops working — researching, connecting, strategizing, funding — all orchestrated by Claude Code and powered by Opus 4.6. No family should have to fight alone.",
   },
 ];
 

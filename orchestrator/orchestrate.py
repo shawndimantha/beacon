@@ -45,7 +45,7 @@ ITERATIONS = {
 
 DEMO_ITERATIONS = {
     "scout": 1, "connector": 1, "navigator": 1, "mobilizer": 1, "strategist": 1,
-    "biologist": 1, "chemist": 1, "preclinician": 1,
+    "biologist": 1, "chemist": 2, "preclinician": 2,
 }
 
 DEMO_MODELS = {
@@ -405,6 +405,19 @@ ITERATION: {iteration} of {ITERATIONS[agent_name] - 1} (0-indexed)
 
 Output ONLY valid JSON. No markdown fences, no explanation."""
 
+    if agent_name == "preclinician":
+        chemist_data = shared_plan["knowledge"].get("chemist", {})
+        candidates = chemist_data.get("repurposing_candidates", []) + chemist_data.get("novel_candidates", [])
+        if not candidates:
+            full_prompt += """
+
+NOTE: The chemist has not identified drug candidates yet. Instead of ADMET evaluation, focus on:
+1. Map existing clinical trials for this disease (use clinical-trials tools)
+2. Evaluate any existing approved/off-label treatments
+3. Design a clinical baseline assessment for the patient
+4. Identify what biomarkers and tests should be established now
+Output your findings in the standard JSON format with candidate_evaluations (for any existing treatments you find) and experiment_design (for baseline assessments)."""
+
     return full_prompt
 
 
@@ -458,6 +471,23 @@ async def run_agent_loop(agent_name):
     num_iterations = (DEMO_ITERATIONS if DEMO_MODE else ITERATIONS)[agent_name]
     try:
         for i in range(num_iterations):
+            # Dependency waits: biologist → chemist → preclinician
+            if agent_name == "chemist" and i > 0:
+                add_agent_update(agent_name, "Waiting for biologist data...")
+                for _ in range(12):  # up to 60s
+                    plan = load_shared_plan()
+                    if plan["knowledge"].get("biologist", {}).get("updated_at"):
+                        break
+                    await asyncio.sleep(5)
+
+            if agent_name == "preclinician" and i > 0:
+                add_agent_update(agent_name, "Waiting for chemist data...")
+                for _ in range(12):  # up to 60s
+                    plan = load_shared_plan()
+                    if plan["knowledge"].get("chemist", {}).get("updated_at"):
+                        break
+                    await asyncio.sleep(5)
+
             # Strategist waits on later iterations to let data accumulate
             if agent_name == "strategist" and i > 0:
                 add_agent_update(agent_name, "Waiting for more agent data...")

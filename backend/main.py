@@ -629,9 +629,9 @@ def get_tools_for_agent(agent_name: str) -> list[dict]:
     return deduped
 
 
-async def run_agent_conversation(agent_name: str, prompt: str, model: str) -> str:
+async def run_agent_conversation(agent_name: str, prompt: str, model: str, api_key: str | None = None) -> str:
     """Run a multi-turn conversation with an agent, handling tool_use blocks."""
-    client = anthropic.AsyncAnthropic()
+    client = anthropic.AsyncAnthropic(**({"api_key": api_key} if api_key else {}))
     tools = get_tools_for_agent(agent_name)
     messages = [{"role": "user", "content": prompt}]
 
@@ -892,7 +892,7 @@ TASK_DESCRIPTIONS = {
 }
 
 
-async def run_agent_loop(agent_name: str, demo: bool = True, mission_id: str = None):
+async def run_agent_loop(agent_name: str, demo: bool = True, mission_id: str = None, api_key: str | None = None):
     """Run all iterations of an agent."""
     await update_agent_status(agent_name, "working", TASK_DESCRIPTIONS.get(agent_name, "Working..."), mission_id=mission_id)
     alive = await add_agent_update(agent_name, f"Starting {agent_name} agent...", mission_id=mission_id)
@@ -922,7 +922,7 @@ async def run_agent_loop(agent_name: str, demo: bool = True, mission_id: str = N
                     return
                 prompt = build_prompt(agent_name, shared_plan, i, num_iterations)
 
-            raw_output, tc_count = await run_agent_conversation(agent_name, prompt, model)
+            raw_output, tc_count = await run_agent_conversation(agent_name, prompt, model, api_key=api_key)
 
             # Check again after long API call
             if mission_id and current_mission_id != mission_id:
@@ -980,6 +980,9 @@ async def run_agent_loop(agent_name: str, demo: bool = True, mission_id: str = N
 # API routes
 # ---------------------------------------------------------------------------
 
+BEACON_TOKEN = os.environ.get("BEACON_TOKEN", "beacon2026")
+
+
 class LaunchRequest(BaseModel):
     disease: str = "CLN3 Batten Disease"
     priorities: list[str] = ["research", "experts", "regulatory", "funding"]
@@ -987,14 +990,29 @@ class LaunchRequest(BaseModel):
     patient: str = ""
     location: str = "us"
     demo: bool = True
+    api_key: str | None = None
+    token: str | None = None
 
 
 current_mission_id = None
+current_api_key: str | None = None  # resolved API key for current mission
 
 @app.post("/api/launch")
 async def launch(req: LaunchRequest):
     """Launch all agents for a mission."""
-    global app_state, shared_plan, current_mission_id
+    from fastapi.responses import JSONResponse
+    global app_state, shared_plan, current_mission_id, current_api_key
+
+    # --- BYOK / token auth ---
+    resolved_key: str | None = None
+    if req.token and req.token == BEACON_TOKEN:
+        resolved_key = None  # use server's ANTHROPIC_API_KEY (env var)
+    elif req.api_key and req.api_key.startswith("sk-ant-"):
+        resolved_key = req.api_key
+    else:
+        return JSONResponse(status_code=403, content={"error": "Provide a valid token or Anthropic API key to launch agents."})
+
+    current_api_key = resolved_key
 
     import uuid
     mission_id = str(uuid.uuid4())[:8]
@@ -1040,7 +1058,7 @@ async def launch(req: LaunchRequest):
         token_estimate = len(all_knowledge) // 4  # rough char-to-token ratio
         print(f"  🧠 Synthesis pass: ~{token_estimate:,} tokens from 8 agents")
 
-        client = anthropic.AsyncAnthropic()
+        client = anthropic.AsyncAnthropic(**({"api_key": resolved_key} if resolved_key else {}))
         try:
             response = await client.messages.create(
                 model="claude-opus-4-6",
@@ -1084,7 +1102,7 @@ Write for a non-expert family member. Be warm, clear, and action-oriented.
         print("  ✅ Lab summaries pre-generated")
 
     async def run_all():
-        await asyncio.gather(*[run_agent_loop(name, demo=req.demo, mission_id=mission_id) for name in agent_names])
+        await asyncio.gather(*[run_agent_loop(name, demo=req.demo, mission_id=mission_id, api_key=resolved_key) for name in agent_names])
         if current_mission_id != mission_id:
             return  # Mission changed, skip synthesis
         # Run synthesis and pre-generate summaries in parallel
@@ -1136,7 +1154,7 @@ async def lab_summary():
 
     lab_data = json.dumps({"biologist": bio, "chemist": chem, "preclinician": prec}, indent=1, default=str)[:50000]
 
-    client = anthropic.AsyncAnthropic()
+    client = anthropic.AsyncAnthropic(**({"api_key": current_api_key} if current_api_key else {}))
     try:
         response = await client.messages.create(
             model="claude-sonnet-4-5-20250929",
@@ -1192,7 +1210,7 @@ async def researcher_briefing():
 
     all_data = json.dumps({"scout": scout, "biologist": bio, "chemist": chem, "preclinician": prec, "connector": connector}, indent=1, default=str)[:60000]
 
-    client = anthropic.AsyncAnthropic()
+    client = anthropic.AsyncAnthropic(**({"api_key": current_api_key} if current_api_key else {}))
     try:
         response = await client.messages.create(
             model="claude-sonnet-4-5-20250929",

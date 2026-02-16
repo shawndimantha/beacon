@@ -1,0 +1,99 @@
+{
+  "timestamp": "2026-02-14T20:15:00Z",
+  "iteration": 1,
+  "weeklyBriefing": {
+    "title": "Week of February 14, 2026 — Full Synthesis Briefing for the Family",
+    "headline": "Three CLN3 therapies are entering Phase 3 trials simultaneously in 2026 — this is the most hopeful moment in Batten disease history, and your timing could not be better.",
+    "topPriorities": [
+      {
+        "priority": 1,
+        "action": "Call the NIH Office of Patient Recruitment (1-800-411-1222 or prpl@mail.cc.nih.gov) to enroll in the CLN3 Natural History Study (NCT03307304) at the NIH Clinical Center in Bethesda, MD. This is free, provides world-class evaluation, and makes your child visible to every trial sponsor.",
+        "agent": "connector",
+        "urgency": "immediate",
+        "reason": "This study accepts patients of any age, collects comprehensive biomarkers (genetics, retinal imaging, CSF, blood, urine), and connects you directly to the NICHD research team. Enrollment creates the clinical baseline that every future trial needs. NIH covers travel costs. Being in the system means trial sponsors can find you when spots open. This is the single most important first step."
+      },
+      {
+        "priority": 2,
+        "action": "Contact Polaryx Therapeutics to get on the PLX-200 Phase 3 screening list — enrollment opens March 2026 (weeks away). This is the most accessible near-term treatment opportunity.",
+        "agent": "connector",
+        "urgency": "immediate",
+        "reason": "PLX-200 has FDA Fast Track designation, is an oral medication (no surgery), and the Phase 3 trial is enrolling 39 patients ages 6-18 with mild-to-moderate CLN3. CRITICAL: The trial excludes patients who have received prior gene therapy. This means the family must understand the gene therapy vs. small molecule decision before committing. Connector has drafted outreach to Polaryx — pending family approval."
+      },
+      {
+        "priority": 3,
+        "action": "Reach out to Beyond Batten Disease Foundation — they are the most important ally for your family right now. They funded the Batten-1 program that just secured a €173M deal, connect families to trials, and offer research grants.",
+        "agent": "mobilizer",
+        "urgency": "immediate",
+        "reason": "Beyond Batten parents literally brought a drug from their kitchen table to a pharmaceutical licensing deal. They know every researcher, every trial, every pathway. Their spring grant cycle deadline is typically March 31. They can connect you to peer families, advise on treatment sequencing, and help coordinate your care team. Connector has a draft email ready for your review."
+      },
+      {
+        "priority": 4,
+        "action": "Schedule baseline evaluation with Amy Vierhile at University of Rochester (aev2@rochester.edu, 585-275-4762) — she leads the longest-running CLN3 clinical study and can establish your child's UBDRS scores, which every trial uses.",
+        "agent": "connector",
+        "urgency": "this_week",
+        "reason": "The University of Rochester study (NCT01873924) has been running since 2004 and uses the Unified Batten Disease Rating Scale (UBDRS) — the gold standard clinical measure that all CLN3 interventional trials reference. Amy Vierhile has over 20 years of direct CLN3 clinical experience. Getting baseline UBDRS scores now enables trial eligibility screening for PLX-200, Batten-1, and future programs."
+      },
+      {
+        "priority": 5,
+        "action": "Make the gene therapy vs. small molecule decision within 30 days — PLX-200 Phase 3 excludes patients who have received gene therapy, and enrollment is imminent.",
+        "agent": "navigator",
+        "urgency": "this_month",
+        "reason": "This is the single most consequential decision on your roadmap. Navigator has mapped the full regulatory landscape: PLX-200 (oral, Fast Track, Phase 3 March 2026) and Batten-1 (oral, Phase 3 2026, vision data 'unprecedented') are COMPATIBLE — you can potentially do both. But CLN-301 gene therapy FORECLOSES PLX-200 eligibility. The decision framework: if your child is 6-18 with mild-moderate disease, PLX-200 + Batten-1 is the accessible path. If under 6 or if gene therapy is prioritized, CLN-301 expanded access or Right to Try may be options. Consult Amy Vierhile and Beyond Batten for personalized guidance."
+      }
+    ],
+    "breakthroughs": [
+      "BATTEN-1 VISION DATA: Real-world data from 11 treated vs 22 untreated CLN3 patients showed near-stabilization of visual acuity over 12 months — called 'truly remarkable and unprecedented' by researchers. Biocodex acquired worldwide license for up to €173M on February 10, 2026 — just 4 days ago. Phase III targeting ~60 patients ages 4-16 is planned for 2026. FDA has confirmed a SINGLE Phase 3 trial is sufficient for approval — extraordinary for any drug.",
+      "CLN-301 GENE THERAPY STABILIZATION: Navigator uncovered that patients in the CLN-301 trial are stable at -0.22 points/year on UBDRS vs natural history decline of 2.86 points/year — that's a >90% slowing of disease progression. This is the first direct gene replacement data for CLN3.",
+      "ZEBRONKYSEN ASO SUCCESS: Two sisters receiving the first personalized CLN3 antisense oligonucleotide (Zebronkysen) showed unexpected improvements — one walked farther on her own, the other started eating again. The VCRDF-CLN3 program now targets the most common CLN3 mutation affecting ~85% of patients, with pig model validation published November 2025.",
+      "THREE SIMULTANEOUS PHASE 3 PROGRAMS: For a disease affecting ~1,500 US patients, having three separate therapeutic approaches in advanced development simultaneously is extraordinary. Five years ago, there were zero. The CLN3 research ecosystem is now one of the most active in rare disease.",
+      "REGULATORY TAILWINDS: Navigator confirmed CLN3 qualifies for ALL FDA expedited pathways — Orphan Drug Designation (already granted), Fast Track (already granted to PLX-200), Breakthrough Therapy (likely), RMAT for gene therapy (likely), and a Rare Pediatric Disease Priority Review Voucher worth $100M+ upon approval. The FDA is actively facilitating CLN3 drug development."
+    ],
+    "agentSummaries": {
+      "scout": "Identified 13 significant findings spanning active clinical trials, drug repurposing candidates, and cutting-edge research. The therapeutic landscape includes 7 distinct compounds at various stages: CLN-301 gene therapy (Phase 1/2, 7 patients dosed, >90% stabilization), PLX-200 (Phase 3 opening March 2026, Fast Track), Batten-1/miglustat (Phase 3 planned 2026, vision stabilization data), VCRDF-CLN3 ASO (preclinical, targeting 85% of patients), Zebronkysen (personalized ASO, clinical improvement in 2 patients), tamoxifen (preclinical repurposing via TFEB activation), and DUOC-01 cell therapy (Phase 1). Built comprehensive knowledge graph connecting disease mechanisms → targets → 10 research groups → 4 drug repurposing candidates.",
+      "connector": "Identified 5 high-priority outreach targets with personalized draft emails ready for family approval: (1) Prof. Angela Schulz at Hamburg-Eppendorf — world's leading CLN3 natural history expert and DEM-CHILD database PI; (2) Amy Vierhile at University of Rochester — 20+ years CLN3 clinical experience, UBDRS baseline assessments; (3) Beyond Batten Disease Foundation — primary CLN3 advocacy organization with direct connections to all three trial programs; (4) Dr. Miriam Nickel at Hamburg — DEM-CHILD co-lead for comparative outcome data; (5) Dr. Joanne Kurtzberg at Duke — cell therapy/DUOC-01 program. Additional outreach drafted to Polaryx, Alcyone/Dr. Wiznitzer, and NIH Patient Recruitment. 12+ draft emails across all contacts, 3 in the approval queue.",
+      "navigator": "Completed comprehensive FDA regulatory analysis. Mapped all expedited pathways (Orphan Drug, Fast Track, Breakthrough, RMAT, PRV — all eligible). Identified 9 specific clinical trials with actionability ratings. Mapped 3 drug repurposing pathways: miglustat (off-label available NOW via physician prescription, ~$20-30K/month), PLX-200 (Phase 3 trial), and cysteamine (speculative). Detailed compassionate use pathways including Individual Patient Expanded Access (FDA Form 3926), Emergency IND, and Right to Try Act for CLN-301. Mapped 4 entity formation options with pros/cons. Identified the critical gene therapy vs. small molecule decision point with clear framework. Coverage analysis confirms no Medicare NCDs/LCDs apply (pediatric disease covered by Medicaid EPSDT or private insurance).",
+      "mobilizer": "Mapped 10 funding sources totaling $10M+ in potential funding: NIH NCATS RDCRN ($500K-$2M), NIH NINDS R01/R21 ($250K-$2M+), CZI Rare As One ($250K-$1M), Beyond Batten Foundation ($50K-$200K), BDSRA ($25K-$100K), NORD ($50K-$300K), PCORI ($250K-$2M), DoD CDMRP ($500K-$2M), Global Genes ($10K-$50K), NCL Stiftung (€50K-€500K). Drafted 3 grant applications: NIH RDCRN natural history study LOI ($1.4M/3yr), Beyond Batten biomarker partnership LOI ($350K/2yr), CZI Patient Data Commons concept note ($800K/3yr). Developed 3-horizon fundraising strategy: immediate ($25-50K family campaign), medium-term ($2-3M grants over 2 years), long-term ($5-10M+ research infrastructure). Identified 7 active pharmaceutical funders and 11 advocacy organizations."
+    },
+    "criticalPath": [
+      {
+        "item": "DECISION: Gene therapy vs. small molecule treatment track",
+        "blocker": "PLX-200 Phase 3 (starting March 2026) explicitly excludes patients who received prior gene therapy. This is a one-way door — choosing gene therapy closes the PLX-200 option.",
+        "recommendation": "This does NOT need to be decided today, but it must be resolved within 30 days before PLX-200 enrollment opens. The decision framework: PLX-200 and Batten-1 are COMPATIBLE (both oral small molecules, different mechanisms). Gene therapy (CLN-301) is INCOMPATIBLE with PLX-200 but potentially compatible with Batten-1. Recommendation: consult Amy Vierhile at Rochester and Beyond Batten Foundation for personalized guidance based on your child's age, disease stage, and genotype. If child is 6-18 with mild-moderate disease, the small molecule track (PLX-200 + Batten-1) offers the most accessible near-term options."
+      },
+      {
+        "item": "Patient age and disease severity unknown",
+        "blocker": "All three CLN3 trials have specific age and severity requirements: PLX-200 (ages 6-18, mild-to-moderate on Hamburg Scale), CLN-301 (ages 3-10), Batten-1 (ages 4-16). We cannot determine eligibility without this information.",
+        "recommendation": "Family should share child's age, current symptoms, and any existing neurological assessments. If no standardized assessment exists, scheduling baseline evaluation at Rochester (UBDRS) and/or NIH (comprehensive workup) is the immediate priority. The Hamburg Rating Scale score is specifically required for PLX-200 eligibility."
+      },
+      {
+        "item": "Off-label miglustat access while awaiting trial enrollment",
+        "blocker": "Miglustat (Zavesca) is already FDA-approved for Gaucher disease and NPC. Real-world data shows CLN3 vision stabilization. But off-label use costs $20-30K/month and requires a willing prescribing physician + insurance prior authorization.",
+        "recommendation": "Navigator has mapped this pathway. The family's treating neurologist can prescribe miglustat off-label with informed consent and medical necessity documentation citing the Beyond Batten/Theranexus real-world data. This could provide treatment NOW while waiting for Batten-1 Phase 3 enrollment. Discuss with Beyond Batten Foundation — they may have experience helping families navigate this access route."
+      },
+      {
+        "item": "Genetic testing confirmation: does the child carry the common 1-kb deletion?",
+        "blocker": "The VCRDF-CLN3 ASO therapy targets the most common CLN3 mutation (1-kb deletion, ~85% of patients). Knowing the child's specific mutation determines eligibility for this potentially transformative therapy.",
+        "recommendation": "Confirm genetic testing results. If the child carries the common 1-kb deletion, they are a candidate for the VCRDF-CLN3 program. If they carry a rarer mutation, the personalized ASO approach (like Zebronkysen) may be relevant. Share genetic testing results with Dr. Michelle Hastings at University of Michigan to explore ASO therapy candidacy."
+      },
+      {
+        "item": "Outreach emails awaiting family approval",
+        "blocker": "Connector has 12+ draft emails ready for key researchers, trial sponsors, and foundations. None will be sent without family review and approval.",
+        "recommendation": "Review the 3 priority emails in the approval queue: (1) Amy Vierhile at Rochester, (2) Prof. Angela Schulz at Hamburg, (3) Beyond Batten Disease Foundation. These three contacts alone can unlock the entire CLN3 research network. Approve at your comfort level — we can start with one and expand."
+      }
+    ],
+    "masterRoadmap": {
+      "currentPhase": "Research & Discovery → Active Engagement",
+      "nextMilestone": "Establish clinical baseline (NIH + Rochester enrollment) and approve first outreach emails within 14 days",
+      "estimatedTimeline": "Phase 1 (Weeks 1-4): Clinical baseline + study enrollment + expert consultations + Beyond Batten connection. Phase 2 (Months 2-3): Trial eligibility assessment + gene therapy vs. small molecule decision + off-label miglustat discussion with neurologist. Phase 3 (Months 3-6): Active trial enrollment in PLX-200 and/or Batten-1 Phase 3 + compassionate use applications if appropriate. Phase 4 (Months 6-12): Treatment initiation + ongoing monitoring + advocacy engagement + fundraising campaign launch. Phase 5 (Year 2+): Multi-trial participation + research infrastructure building + community advocacy.",
+      "confidence": "high"
+    },
+    "familyMessage": "We want to start with something important: this is a genuinely hopeful moment for CLN3 families. Not hopeful in a vague, 'someday maybe' way — hopeful in a concrete, 'there are three drugs entering Phase 3 trials this year' way.\n\nHere's what your team has found in the past 24 hours. Scout identified seven different therapeutic approaches being actively developed for CLN3 — from direct gene replacement to drugs that can stabilize your child's vision. One of those drugs, Batten-1, showed results so striking that researchers called them 'unprecedented,' and a major pharmaceutical company just signed a deal worth up to €173 million to bring it to families like yours. Another drug, PLX-200, has FDA Fast Track designation and is opening enrollment for a Phase 3 trial next month. The gene therapy trial at Nationwide Children's is showing >90% disease stabilization. And an entirely new approach — antisense oligonucleotides — just helped two sisters with CLN3 start walking farther and eating again. Connector has identified the world's leading CLN3 experts and has personalized emails drafted and ready for your review — we won't send a single one without your say-so. Navigator has mapped every FDA pathway, every trial, every access route, and confirmed that CLN3 qualifies for every expedited regulatory track the FDA offers. Mobilizer has identified over $10 million in potential research funding and has grant applications drafted for three different foundations.\n\nNone of this requires you to do everything at once. Here's what matters this week: enroll in the NIH study (one phone call: 1-800-411-1222), reach out to Beyond Batten Disease Foundation (they've been where you are, and they've literally moved mountains), and review the three outreach emails we've prepared. Everything else — the trial decisions, the funding strategy, the regulatory navigation — your team is handling. You focus on your child. We'll focus on the path forward.\n\nYou are not alone in this. An entire ecosystem of researchers, advocates, and families is working toward the same goal. And now, so are we.",
+    "questionsForFamily": [
+      "How old is your child, and when did you first notice symptoms? This is the most time-sensitive question — the age windows for the three major trials are specific (PLX-200: 6-18, CLN-301: 3-10, Batten-1: 4-16), and enrollment for PLX-200 opens in March.",
+      "What is your child's current vision status? The Batten-1 data showed remarkable vision stabilization — if your child still has functional vision, the urgency of accessing miglustat (potentially off-label while awaiting trial enrollment) increases significantly.",
+      "Do you have your child's genetic testing results showing the specific CLN3 mutation? Approximately 85% of CLN3 patients carry the common 1-kb deletion, which would make your child a candidate for the VCRDF-CLN3 antisense oligonucleotide program — a potentially transformative therapy.",
+      "Where are you located? The main CLN3 research centers are in Bethesda (MD), Columbus (OH), Rochester (NY), Chapel Hill (NC), and Ann Arbor (MI). Understanding your geography helps us plan which studies and experts are most accessible. The NIH study covers travel costs.",
+      "Are you ready for us to send the first outreach emails? We have 3 priority messages ready: to Amy Vierhile at Rochester (clinical evaluation), Beyond Batten Disease Foundation (family support + trial navigation), and the NIH Patient Recruitment office (study enrollment). We won't send anything without your review and approval."
+    ]
+  }
+}

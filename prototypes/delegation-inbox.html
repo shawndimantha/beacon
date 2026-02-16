@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype: Delegation Inbox</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-up { animation: fadeUp 0.4s ease-out forwards; }
+        @keyframes slideOut { to { opacity: 0; transform: translateX(200px) rotate(10deg); } }
+        .slide-out { animation: slideOut 0.3s ease-in forwards; }
+        @keyframes slideOutLeft { to { opacity: 0; transform: translateX(-200px) rotate(-10deg); } }
+        .slide-out-left { animation: slideOutLeft 0.3s ease-in forwards; }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen flex flex-col items-center justify-center p-8">
+    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Prototype: Delegation Inbox</p>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useCallback } = React;
+
+        const DECISIONS = [
+            {
+                type: 'Outreach Email',
+                icon: 'mail',
+                title: 'Email to Dr. Jonathan Cooper',
+                subtitle: 'Weill Cornell Gene Therapy Lab',
+                agent: 'Connector',
+                priority: 'HIGH PRIORITY',
+                priorityColor: 'indigo',
+                body: "Personalized introduction about your family's CLN3 journey and interest in his AAV9 gene therapy research. Includes Scout's evidence summary and trial eligibility match.",
+                note: 'Dr. Cooper leads the only active AAV9-CLN3 gene therapy program.',
+            },
+            {
+                type: 'Partnership Outreach',
+                icon: 'pill',
+                title: 'Contact EveryCure',
+                subtitle: 'Drug Repurposing Consultation',
+                agent: 'Mobilizer',
+                priority: 'RECOMMENDED',
+                priorityColor: 'emerald',
+                body: "EveryCure offers free consultation for rare disease drug repurposing using their ROADMAP framework. They can help validate the tamoxifen pathway and connect you with researchers.",
+                note: 'Free service — no cost to your family.',
+            },
+            {
+                type: 'Specialist Briefing',
+                icon: 'file',
+                title: 'Tamoxifen Briefing for Neurologist',
+                subtitle: 'For Dr. Miller — your care team',
+                agent: 'Navigator',
+                priority: 'READY TO SEND',
+                priorityColor: 'amber',
+                body: "A 2-page PDF summarizing the evidence for tamoxifen as a TRPML1 agonist in CLN3, including dosing from pediatric precocious puberty studies and 2 published case reports in adult NCL patients.",
+                note: 'Your neurologist needs this to consider off-label prescribing.',
+            },
+        ];
+
+        function DelegationInbox() {
+            const [queue, setQueue] = useState(DECISIONS);
+            const [animating, setAnimating] = useState(null); // 'approve' | 'reject' | null
+            const [history, setHistory] = useState([]);
+
+            const handleAction = useCallback((action) => {
+                setAnimating(action);
+                setTimeout(() => {
+                    setHistory(prev => [...prev, { ...queue[0], action }]);
+                    setQueue(prev => prev.slice(1));
+                    setAnimating(null);
+                }, 300);
+            }, [queue]);
+
+            if (queue.length === 0) {
+                return (
+                    <div className="text-center fade-up">
+                        <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <h3 className="text-xl font-bold mb-2">All caught up!</h3>
+                        <p className="text-slate-500 text-sm">Your agents will notify you when new items need attention.</p>
+                        <div className="mt-6 space-y-2">
+                            {history.map((h, i) => (
+                                <div key={i} className="flex items-center gap-3 text-xs text-slate-400">
+                                    <span className={h.action === 'approve' ? 'text-emerald-500 font-bold' : 'text-red-400 font-bold'}>
+                                        {h.action === 'approve' ? '✓' : '✗'}
+                                    </span>
+                                    <span>{h.title}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                );
+            }
+
+            const current = queue[0];
+
+            return (
+                <div className="w-full max-w-lg">
+                    <div className="text-center mb-6">
+                        <h2 className="text-2xl font-black">Your Pending Actions</h2>
+                        <p className="text-slate-500 text-sm">Your agents prepared these for your sign-off.</p>
+                    </div>
+
+                    <div className="relative h-[420px] w-full">
+                        {/* Shadow cards behind */}
+                        {queue.length > 2 && (
+                            <div className="absolute inset-0 translate-y-6 scale-[0.9] bg-white/30 rounded-[40px] border border-slate-200 z-10"></div>
+                        )}
+                        {queue.length > 1 && (
+                            <div className="absolute inset-0 translate-y-3 scale-[0.95] bg-white/50 rounded-[40px] border border-slate-200 z-20"></div>
+                        )}
+
+                        {/* Front card */}
+                        <div className={`absolute inset-0 bg-white rounded-[40px] shadow-2xl border border-slate-200 p-8 flex flex-col z-30 ${animating === 'approve' ? 'slide-out' : animating === 'reject' ? 'slide-out-left' : 'fade-up'}`}>
+                            <div className="flex justify-between items-start mb-6">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            {current.icon === 'mail' && <><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></>}
+                                            {current.icon === 'pill' && <><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></>}
+                                            {current.icon === 'file' && <><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></>}
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-black text-lg leading-tight">{current.title}</h4>
+                                        <p className="text-xs text-slate-400 font-medium">{current.subtitle}</p>
+                                    </div>
+                                </div>
+                                <span className={`bg-${current.priorityColor}-50 text-${current.priorityColor}-600 px-3 py-1 rounded-full text-[10px] font-black shrink-0`}>{current.priority}</span>
+                            </div>
+
+                            <div className="flex-1 bg-slate-50 rounded-3xl p-5 mb-4">
+                                <p className="text-sm text-slate-600 leading-relaxed">{current.body}</p>
+                                {current.note && (
+                                    <div className="mt-3 pt-3 border-t border-slate-200">
+                                        <p className="text-[11px] text-slate-400"><strong className="text-slate-500">{current.agent}:</strong> {current.note}</p>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4">
+                                <button onClick={() => handleAction('reject')} className="py-4 bg-slate-100 text-slate-500 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-red-50 hover:text-red-500 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                                    Skip
+                                </button>
+                                <button onClick={() => handleAction('approve')} className="py-4 bg-indigo-600 text-white rounded-2xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    Approve
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p className="mt-6 text-center text-xs text-slate-400 font-bold uppercase tracking-widest">
+                        {queue.length - 1} more item{queue.length - 1 !== 1 ? 's' : ''} in queue
+                    </p>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<DelegationInbox />);
+    </script>
+</body>
+</html>

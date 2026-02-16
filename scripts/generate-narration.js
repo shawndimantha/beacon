@@ -18,7 +18,7 @@ const OUTPUT_DIR = path.join(__dirname, '..', 'app', 'audio');
 const NARRATIONS = [
   {
     key: 'welcome',
-    text: "Every year, 300 million people worldwide are affected by rare diseases. Most have no approved treatment. When a family gets this diagnosis, they're on their own — navigating science, regulation, and funding with no expertise. Beacon changes that. Built almost entirely with Claude Code and Opus 4.6, Beacon is a team of AI agents that works continuously on a family's behalf.",
+    text: "Every year, 300 million people worldwide are affected by rare diseases. Most have no approved treatment. When a family gets this diagnosis, they're on their own — navigating science, regulation, and funding with no expertise. Beacon changes that. Let me walk you through the architecture first. Beacon is a multi-agent system built almost entirely with Claude Code. A FastAPI backend on Railway orchestrates eight specialized Opus 4.6 sub-agents, each with its own system prompt and tool access. The agents communicate through a shared state file — structured JSON that the React frontend polls every two seconds from a Vercel deployment. The agents use Anthropic's healthcare MCP connectors — ClinicalTrials.gov, ChEMBL, bioRxiv, the NPI Registry, and the CMS Coverage database — so every data point is sourced from real medical infrastructure, not hallucinated.",
   },
   {
     key: 'intake',
@@ -26,15 +26,15 @@ const NARRATIONS = [
   },
   {
     key: 'agents_activating',
-    text: "When the family clicks Launch, Beacon's orchestrator spins up eight Claude Code sub-agents in parallel — each powered by Opus 4.6 with a specialized system prompt. Scout searches bioRxiv, PubMed, and ClinicalTrials.gov through Anthropic's healthcare MCP connectors. Navigator queries the CMS Coverage database and maps FDA orphan drug pathways. Connector cross-references the NPI Registry to verify physician credentials. Each agent writes structured JSON that the dashboard polls in real time.",
+    text: "When the family clicks Launch, the orchestrator spins up all eight agents in parallel via asyncio. Three of them — Scout, Navigator, and Strategist — run on Opus 4.6 for deep scientific reasoning. The others use Haiku for speed. Each agent runs a multi-turn conversation loop with up to 15 tool calls per iteration. You can see the tool call counts updating live on each agent's status card — that's Opus 4.6's agentic search capability in action, leading all benchmarks on BrowseComp and DeepSearchQA.",
   },
   {
     key: 'progress',
-    text: "What you're watching is live agent output streaming into the UI. Each progress bar, each status update, each achievement — those are real structured outputs from Opus 4.6 sub-agents writing to shared state files. The orchestrator coordinates task dependencies so agents can hand off findings to each other.",
+    text: "What you're watching is live agent output streaming into the UI. Each progress bar, each status update, each achievement — those are real structured outputs from Opus 4.6 sub-agents writing to shared state. The orchestrator coordinates task dependencies so agents can hand off findings to each other. Notice the Opus 4.6 Multidisciplinary Reasoning panel — Opus 4.6 scored two-x better than its predecessor on computational biology, structural biology, and organic chemistry. Our Biologist, Chemist, and Preclinician agents chain these capabilities together: targets to compounds to safety profiles.",
   },
   {
     key: 'insights',
-    text: "These insights are the cross-agent synthesis — Scout found a clinical trial, Navigator checked the regulatory precedent, Mobilizer identified matching grant funding. This research-to-action chain is what sets Beacon apart. Other tools stop at search results. Beacon executes the full pipeline.",
+    text: "These insights are the cross-agent synthesis. When all eight agents complete, we trigger an extended context synthesis pass — concatenating every agent's full output into a single Opus 4.6 call. With the one-million-token context window and 76% eight-needle retrieval accuracy, Opus 4.6 produces a unified family briefing that no single agent could create alone. This is the research-to-action chain that sets Beacon apart.",
   },
   {
     key: 'approvals',
@@ -42,23 +42,15 @@ const NARRATIONS = [
   },
   {
     key: 'lab_overview',
-    text: "The Drug Discovery Lab pushes Opus 4.6 further. Three specialized agents — Biologist, Chemist, Preclinician — use the ChEMBL MCP connector to search bioactive compounds, retrieve IC50 values, and evaluate ADMET properties. This is real drug discovery reasoning, not keyword search.",
-  },
-  {
-    key: 'lab_candidates',
-    text: "The candidate pipeline ranks compounds by predicted efficacy, safety profile, and clinical precedent — all extracted from ChEMBL's curated database of bioactive molecules. Each agent's reasoning chain is fully traceable.",
+    text: "The Drug Discovery Lab uses ChEMBL MCP connectors for real compound screening and ADMET evaluation. When agents complete, this tab populates with live targets, candidates, and safety profiles for the specific disease entered. The 3D protein structures come from AlphaFold.",
   },
   {
     key: 'community_network',
-    text: "Beacon's Connector agent builds a family network — matching by geography, disease variant, and treatment stage. Every connection requires family approval. Privacy by design.",
-  },
-  {
-    key: 'community_data',
-    text: "When families opt in to share outcomes, Beacon's agents analyze the pooled data — identifying treatment patterns, adverse events, and response rates. For ultra-rare diseases, this community evidence may be the only data that exists.",
+    text: "Community features — patient matching, data commons, and clinical trial planning — are coming soon. The current view shows our design direction.",
   },
   {
     key: 'closing',
-    text: "Beacon is a team of AI agents that never stops working — researching, connecting, strategizing, funding — all orchestrated by Claude Code and powered by Opus 4.6. No family should have to fight alone.",
+    text: "To recap the Opus 4.6 showcase — multidisciplinary scientific reasoning across biology, chemistry, and pharmacology. Agentic tool use with live MCP connectors to real medical databases. Extended context synthesis across one million tokens from eight parallel agents. And all of it orchestrated by Claude Code. Beacon is a team of AI agents that never stops working. No family should have to fight alone.",
   },
 ];
 

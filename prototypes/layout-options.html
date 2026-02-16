@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype: Layout Options A/B/C</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15); }
+        .chevron { transition: transform 0.3s ease; display: inline-block; }
+        .chevron.rotated { transform: rotate(180deg); }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-up { animation: fadeUp 0.4s ease-out forwards; }
+        @keyframes slideOut { to { opacity: 0; transform: translateX(200px) rotate(10deg); } }
+        .slide-out { animation: slideOut 0.3s ease-in forwards; }
+        @keyframes slideOutLeft { to { opacity: 0; transform: translateX(-200px) rotate(-10deg); } }
+        .slide-out-left { animation: slideOutLeft 0.3s ease-in forwards; }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // Shared data
+        const INSIGHTS = [
+            {
+                id: 'trial', kind: 'insight',
+                badge: 'Clinical Trial Match', badgeColor: 'indigo',
+                title: 'Phase I/II AAV9-CLN3 Gene Therapy',
+                subtitle: 'Weill Cornell Medical Center',
+                description: 'Intrathecal AAV9 delivery targeting CLN3 protein restoration. Your child meets 8 of 9 eligibility criteria.',
+                matchBar: { pct: 89, label: '89% match' },
+                cta: 'Start Pre-Screening',
+                whatItMeans: {
+                    summary: "This is an experimental treatment being tested for the first time in children with CLN3. Doctors insert a corrected copy of the CLN3 gene using a harmless virus.",
+                    proceed: "We'll help you contact the trial team and start a pre-screening conversation. No commitment yet.",
+                    timeline: "Pre-screening takes 2-4 weeks. Enrollment decisions are made by the trial team, not us.",
+                    caveat: "This is Phase I/II — safety is still being evaluated. Your care team should be part of this conversation.",
+                },
+            },
+            {
+                id: 'repurpose', kind: 'insight',
+                badge: 'Breakthrough', badgeColor: 'indigo',
+                title: 'Drug Repurposing: Tamoxifen',
+                subtitle: 'Scout + Navigator + Strategist',
+                description: 'Tamoxifen activates the TRPML1 lysosomal channel that CLN3 patients are missing. FDA-approved with existing pediatric safety data.',
+                cta: 'Generate Specialist Briefing',
+                whatItMeans: {
+                    summary: "Tamoxifen is a well-known, safe medication already approved by the FDA for other conditions. Researchers found it may also help with the specific protein problem in CLN3.",
+                    proceed: "We'll generate a briefing document your neurologist can review. They would decide if it's appropriate for your child.",
+                    timeline: "This could move fast — weeks, not months. It's a conversation with your existing doctor, not a new trial.",
+                    caveat: "This is \"off-label\" use — legal and common, but not specifically tested for CLN3 in clinical trials yet.",
+                },
+            },
+        ];
+
+        const DECISIONS = [
+            {
+                id: 'email', kind: 'decision',
+                badge: 'Needs Your Approval', badgeColor: 'amber',
+                title: 'Email to Dr. Jonathan Cooper',
+                subtitle: 'Connector agent',
+                description: "Personalized introduction about your family's CLN3 journey and interest in his AAV9 gene therapy research at Weill Cornell.",
+                cta: 'Review & Approve',
+                whatItMeans: {
+                    summary: "Your Connector agent drafted a professional, warm email introducing your family to the lead researcher on the gene therapy trial your child matched with.",
+                    proceed: "You'll see the full email and can edit it before sending. Nothing goes out without your OK.",
+                    timeline: "Researchers typically respond within 1-2 weeks. We'll follow up if needed.",
+                    caveat: "This is an introduction, not a commitment. You're starting a conversation, not signing up for anything.",
+                },
+            },
+            {
+                id: 'everycure', kind: 'decision',
+                badge: 'Needs Your Approval', badgeColor: 'amber',
+                title: 'Contact EveryCure for Repurposing Guidance',
+                subtitle: 'Mobilizer agent',
+                description: 'EveryCure offers free consultation for rare disease drug repurposing using their ROADMAP framework. They can help validate the tamoxifen pathway.',
+                cta: 'Approve Outreach',
+                whatItMeans: {
+                    summary: "EveryCure is a nonprofit that helps families find existing drugs that might work for their child's condition. Their service is completely free.",
+                    proceed: "We'll send a brief outreach to EveryCure explaining your situation. They'll schedule a consultation call with you.",
+                    timeline: "They typically respond within a few days. The consultation itself is about 30 minutes.",
+                    caveat: "EveryCure provides guidance, not medical advice. Any treatment decisions still go through your doctor.",
+                },
+            },
+        ];
+
+        // Reusable card
+        function Card({ item, expandedId, onToggle, onLater, stacked }) {
+            const isDecision = item.kind === 'decision';
+            const expanded = expandedId === item.id;
+            return (
+                <div className={`bg-white rounded-3xl p-6 shadow-xl border ${isDecision ? 'border-amber-200' : 'border-slate-200'} card-hover flex flex-col relative`}>
+                    {stacked && (
+                        <>
+                            <div className="absolute inset-0 translate-y-2 scale-[0.97] bg-white/50 rounded-3xl border border-slate-200 -z-10"></div>
+                            <div className="absolute inset-0 translate-y-4 scale-[0.94] bg-white/30 rounded-3xl border border-slate-200 -z-20"></div>
+                        </>
+                    )}
+                    <span className={`bg-${item.badgeColor}-${isDecision ? '100' : '600'} text-${isDecision ? item.badgeColor + '-800' : 'white'} text-[9px] font-black px-2.5 py-0.5 rounded-md uppercase self-start`}>{item.badge}</span>
+                    <h3 className="font-bold text-slate-900 text-lg mt-3 mb-1">{item.title}</h3>
+                    <p className="text-[11px] text-slate-400 font-medium mb-3">{item.subtitle}</p>
+                    <p className="text-sm text-slate-600 leading-relaxed mb-4">{item.description}</p>
+
+                    {item.matchBar && (
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="flex-1 bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div className="bg-indigo-500 h-full rounded-full" style={{ width: `${item.matchBar.pct}%` }}></div>
+                            </div>
+                            <span className="text-xs font-bold text-indigo-600">{item.matchBar.label}</span>
+                        </div>
+                    )}
+
+                    <button onClick={() => onToggle(item.id)} className="flex items-center gap-1.5 text-slate-400 text-[11px] font-bold mb-3 hover:text-indigo-600 transition-colors self-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                        What this means for your family
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`chevron ${expanded ? 'rotated' : ''}`}><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+                    {expanded && (
+                        <div className="bg-slate-50 rounded-2xl p-4 mb-4 border border-slate-100 fade-up">
+                            <p className="text-sm text-slate-700 leading-relaxed mb-3">{item.whatItMeans.summary}</p>
+                            <div className="space-y-2.5">
+                                <div className="flex items-start gap-2.5">
+                                    <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </div>
+                                    <p className="text-xs text-slate-600"><strong className="text-slate-800">If you proceed:</strong> {item.whatItMeans.proceed}</p>
+                                </div>
+                                <div className="flex items-start gap-2.5">
+                                    <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                    </div>
+                                    <p className="text-xs text-slate-600"><strong className="text-slate-800">Timeline:</strong> {item.whatItMeans.timeline}</p>
+                                </div>
+                                <div className="flex items-start gap-2.5">
+                                    <div className="w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-0.5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                                    </div>
+                                    <p className="text-xs text-slate-600"><strong className="text-slate-800">Good to know:</strong> {item.whatItMeans.caveat}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="mt-auto flex gap-3">
+                        <button className={`flex-1 ${isDecision ? 'bg-amber-500 hover:bg-amber-600' : 'bg-indigo-600 hover:bg-indigo-700'} text-white py-3 rounded-xl text-xs font-bold shadow-md transition-colors`}>{item.cta}</button>
+                        <button onClick={() => onLater(item)} className="px-4 py-3 text-slate-400 rounded-xl text-xs font-bold border border-slate-200 hover:bg-slate-50 hover:text-slate-600 transition-colors flex items-center gap-1.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            Later
+                        </button>
+                    </div>
+                </div>
+            );
+        }
+
+        // Tinder inbox for Option B
+        function TinderInbox({ decisions, expandedId, onToggle, onAction }) {
+            const [queue, setQueue] = useState(decisions);
+            const [animating, setAnimating] = useState(null);
+
+            const handleAction = (action) => {
+                setAnimating(action);
+                setTimeout(() => {
+                    onAction(queue[0], action);
+                    setQueue(prev => prev.slice(1));
+                    setAnimating(null);
+                }, 300);
+            };
+
+            if (queue.length === 0) {
+                return (
+                    <div className="text-center py-8 fade-up">
+                        <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <h3 className="font-bold text-slate-700">All caught up!</h3>
+                        <p className="text-xs text-slate-400 mt-1">Your agents will notify you when new items need attention.</p>
+                    </div>
+                );
+            }
+
+            const current = queue[0];
+            const expanded = expandedId === current.id;
+
+            return (
+                <div className="max-w-md mx-auto">
+                    <div className="text-center mb-5">
+                        <p className="text-[10px] font-black text-amber-600 uppercase tracking-widest">Needs Your Sign-Off</p>
+                    </div>
+                    <div className="relative" style={{ minHeight: '320px' }}>
+                        {queue.length > 2 && <div className="absolute inset-0 translate-y-5 scale-[0.92] bg-white/30 rounded-[32px] border border-slate-200 z-10"></div>}
+                        {queue.length > 1 && <div className="absolute inset-0 translate-y-2.5 scale-[0.96] bg-white/50 rounded-[32px] border border-slate-200 z-20"></div>}
+
+                        <div className={`relative z-30 bg-white rounded-[32px] shadow-2xl border border-amber-200 p-6 flex flex-col ${animating === 'approve' ? 'slide-out' : animating === 'reject' ? 'slide-out-left' : 'fade-up'}`}>
+                            <span className="bg-amber-100 text-amber-800 text-[9px] font-black px-2.5 py-0.5 rounded-md uppercase self-start">{current.badge}</span>
+                            <h3 className="font-bold text-slate-900 text-lg mt-3 mb-1">{current.title}</h3>
+                            <p className="text-[11px] text-slate-400 font-medium mb-3">{current.subtitle}</p>
+                            <p className="text-sm text-slate-600 leading-relaxed mb-4">{current.description}</p>
+
+                            <button onClick={() => onToggle(current.id)} className="flex items-center gap-1.5 text-slate-400 text-[11px] font-bold mb-3 hover:text-indigo-600 transition-colors self-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                                What this means for your family
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`chevron ${expanded ? 'rotated' : ''}`}><path d="m6 9 6 6 6-6"/></svg>
+                            </button>
+                            {expanded && (
+                                <div className="bg-slate-50 rounded-2xl p-4 mb-4 border border-slate-100 fade-up">
+                                    <p className="text-sm text-slate-700 leading-relaxed mb-3">{current.whatItMeans.summary}</p>
+                                    <div className="space-y-2.5">
+                                        <div className="flex items-start gap-2.5">
+                                            <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                            </div>
+                                            <p className="text-xs text-slate-600"><strong className="text-slate-800">If you proceed:</strong> {current.whatItMeans.proceed}</p>
+                                        </div>
+                                        <div className="flex items-start gap-2.5">
+                                            <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                            </div>
+                                            <p className="text-xs text-slate-600"><strong className="text-slate-800">Timeline:</strong> {current.whatItMeans.timeline}</p>
+                                        </div>
+                                        <div className="flex items-start gap-2.5">
+                                            <div className="w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-0.5">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                                            </div>
+                                            <p className="text-xs text-slate-600"><strong className="text-slate-800">Good to know:</strong> {current.whatItMeans.caveat}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            <div className="grid grid-cols-2 gap-3 mt-auto">
+                                <button onClick={() => handleAction('reject')} className="py-3 bg-slate-100 text-slate-500 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 hover:bg-red-50 hover:text-red-500 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                    Later
+                                </button>
+                                <button onClick={() => handleAction('approve')} className="py-3 bg-amber-500 text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-amber-200 hover:bg-amber-600 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    {current.cta}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <p className="mt-4 text-center text-[11px] text-slate-400 font-bold">{queue.length - 1} more in queue</p>
+                </div>
+            );
+        }
+
+        function App() {
+            const [tab, setTab] = useState('A');
+            const [expandedId, setExpandedId] = useState(null);
+
+            const toggleExpand = (id) => setExpandedId(prev => prev === id ? null : id);
+            const handleLater = () => {};
+            const handleInboxAction = () => {};
+
+            const allCards = [...INSIGHTS, ...DECISIONS];
+
+            const tabs = [
+                { id: 'A', label: 'A: All in one grid' },
+                { id: 'B', label: 'B: Grid + Inbox below' },
+                { id: 'C', label: 'C: Grid + stacked decisions' },
+            ];
+
+            return (
+                <div>
+                    {/* Tab bar */}
+                    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 flex gap-2 p-1.5 bg-white/90 backdrop-blur rounded-2xl shadow-xl border border-slate-200">
+                        {tabs.map(t => (
+                            <button key={t.id} onClick={() => { setTab(t.id); setExpandedId(null); }}
+                                className={`px-5 py-2 rounded-xl text-xs font-black transition-all ${tab === t.id ? 'bg-slate-900 text-white' : 'text-slate-500 hover:bg-slate-100'}`}>
+                                {t.label}
+                            </button>
+                        ))}
+                    </nav>
+
+                    <div className="max-w-5xl mx-auto pt-24 px-8 pb-16">
+
+                        {/* ==================== OPTION A ==================== */}
+                        {tab === 'A' && (
+                            <div className="space-y-4">
+                                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Option A: Everything in one spatial grid</p>
+                                <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl p-8 border border-slate-200">
+                                    <h2 className="text-lg font-bold mb-6">Key Insights & Decisions</h2>
+                                    <div className="grid grid-cols-2 gap-6 items-start">
+                                        {allCards.map(item => (
+                                            <Card key={item.id} item={item} expandedId={expandedId} onToggle={toggleExpand} onLater={handleLater} />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* ==================== OPTION B ==================== */}
+                        {tab === 'B' && (
+                            <div className="space-y-4">
+                                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Option B: Insights grid, then Tinder inbox for decisions</p>
+                                <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl p-8 border border-slate-200">
+                                    <h2 className="text-lg font-bold mb-6">Key Insights</h2>
+                                    <div className="grid grid-cols-2 gap-6 items-start">
+                                        {INSIGHTS.map(item => (
+                                            <Card key={item.id} item={item} expandedId={expandedId} onToggle={toggleExpand} onLater={handleLater} />
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="bg-gradient-to-br from-amber-50/50 to-slate-50 rounded-3xl p-8 border border-amber-200/50">
+                                    <TinderInbox decisions={DECISIONS} expandedId={expandedId} onToggle={toggleExpand} onAction={handleInboxAction} />
+                                </div>
+                            </div>
+                        )}
+
+                        {/* ==================== OPTION C ==================== */}
+                        {tab === 'C' && (
+                            <div className="space-y-4">
+                                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Option C: Same grid, but decision cards have stacked visual</p>
+                                <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl p-8 border border-slate-200">
+                                    <h2 className="text-lg font-bold mb-6">Key Insights & Decisions</h2>
+                                    <div className="grid grid-cols-2 gap-6 items-start">
+                                        {INSIGHTS.map(item => (
+                                            <Card key={item.id} item={item} expandedId={expandedId} onToggle={toggleExpand} onLater={handleLater} />
+                                        ))}
+                                        {DECISIONS.map(item => (
+                                            <Card key={item.id} item={item} expandedId={expandedId} onToggle={toggleExpand} onLater={handleLater} stacked />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

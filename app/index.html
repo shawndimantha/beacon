@@ -436,9 +436,7 @@
     ];
 
     function isDemo() {
-      const params = new URLSearchParams(window.location.search);
-      // Default to demo mode unless ?live is set (for local dev with running orchestrator)
-      return !params.has('live');
+      return new URLSearchParams(window.location.search).has('demo');
     }
 
     // Helper to fetch and unwrap JSON
@@ -471,8 +469,6 @@
       });
       const [modalOpen, setModalOpen] = useState(false);
       const [selectedApproval, setSelectedApproval] = useState(null);
-      const [activeTab, setActiveTab] = useState('dashboard');
-      const [communitySection, setCommunitySection] = useState('network');
 
       const demo = isDemo();
 
@@ -499,195 +495,10 @@
               demo={demo}
               setModalOpen={setModalOpen}
               setSelectedApproval={setSelectedApproval}
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-              communitySection={communitySection}
-              setCommunitySection={setCommunitySection}
             />
           )}
           {modalOpen && selectedApproval && (
             <ApprovalModal approval={selectedApproval} onClose={() => setModalOpen(false)} />
-          )}
-          <NarrationPlayer view={view} step={onboardingStep} activeTab={activeTab} communitySection={communitySection} />
-        </>
-      );
-    }
-
-    // ==========================================
-    // NARRATION SYSTEM
-    // ==========================================
-
-    const NARRATION_CLIPS = [
-      { key: 'welcome',           trigger: { view: 'onboarding', step: 1 },                    text: "Every year, 300 million people worldwide are affected by rare diseases. Most have no approved treatment. When a family gets this diagnosis, they're on their own — navigating science, regulation, and funding with no expertise. Beacon changes that. Built almost entirely with Claude Code and Opus 4.6, Beacon is a team of AI agents that works continuously on a family's behalf." },
-      { key: 'intake',            trigger: { view: 'onboarding', step: 2 },                    text: "The journey starts with a simple intake — disease name, patient context, location. Behind the scenes, this seeds every agent's system prompt with structured context, so Opus 4.6 can reason about jurisdiction-specific regulatory paths and personalized research strategies from the first query." },
-      { key: 'agents_activating', trigger: { view: 'dashboard', tab: 'dashboard', delay: 500 }, text: "When the family clicks Launch, Beacon's orchestrator spins up eight Claude Code sub-agents in parallel — each powered by Opus 4.6 with a specialized system prompt. Scout searches bioRxiv, PubMed, and ClinicalTrials.gov through Anthropic's healthcare MCP connectors. Navigator queries the CMS Coverage database and maps FDA orphan drug pathways. Connector cross-references the NPI Registry to verify physician credentials. Each agent writes structured JSON that the dashboard polls in real time." },
-      { key: 'progress',          trigger: { view: 'dashboard', tab: 'dashboard', delay: 20000 }, text: "What you're watching is live agent output streaming into the UI. Each progress bar, each status update, each achievement — those are real structured outputs from Opus 4.6 sub-agents writing to shared state files. The orchestrator coordinates task dependencies so agents can hand off findings to each other." },
-      { key: 'insights',          trigger: { view: 'dashboard', tab: 'dashboard', delay: 40000 }, text: "These insights are the cross-agent synthesis — Scout found a clinical trial, Navigator checked the regulatory precedent, Mobilizer identified matching grant funding. This research-to-action chain is what sets Beacon apart. Other tools stop at search results. Beacon executes the full pipeline." },
-      { key: 'approvals',         trigger: { view: 'dashboard', tab: 'dashboard', delay: 55000 }, text: "Human-in-the-loop for consequential actions. The agent drafts an outreach email to a researcher it identified through PubMed and verified through the NPI Registry. The family reviews and approves. Progressive trust — the AI proposes, the human decides." },
-      { key: 'lab_overview',      trigger: { view: 'dashboard', tab: 'lab' },                  text: "The Drug Discovery Lab pushes Opus 4.6 further. Three specialized agents — Biologist, Chemist, Preclinician — use the ChEMBL MCP connector to search bioactive compounds, retrieve IC50 values, and evaluate ADMET properties. This is real drug discovery reasoning, not keyword search." },
-      { key: 'lab_candidates',    trigger: { view: 'dashboard', tab: 'lab', delay: 15000 },    text: "The candidate pipeline ranks compounds by predicted efficacy, safety profile, and clinical precedent — all extracted from ChEMBL's curated database of bioactive molecules. Each agent's reasoning chain is fully traceable." },
-      { key: 'community_network', trigger: { view: 'dashboard', tab: 'community' },            text: "Beacon's Connector agent builds a family network — matching by geography, disease variant, and treatment stage. Every connection requires family approval. Privacy by design." },
-      { key: 'community_data',    trigger: { view: 'dashboard', tab: 'community', communitySubTab: 'data' }, text: "When families opt in to share outcomes, Beacon's agents analyze the pooled data — identifying treatment patterns, adverse events, and response rates. For ultra-rare diseases, this community evidence may be the only data that exists." },
-      { key: 'closing',           trigger: { auto_after: 'community_data' }, text: "Beacon is a team of AI agents that never stops working — researching, connecting, strategizing, funding — all orchestrated by Claude Code and powered by Opus 4.6. No family should have to fight alone." },
-    ];
-
-    function NarrationPlayer({ view, step, activeTab, communitySection }) {
-      const [currentIdx, setCurrentIdx] = useState(-1);
-      const [playing, setPlaying] = useState(false);
-      const [muted, setMuted] = useState(false);
-      const [transcriptVisible, setTranscriptVisible] = useState(false);
-      const [played, setPlayed] = useState(() => {
-        try { return new Set(JSON.parse(sessionStorage.getItem('beacon_narration_played') || '[]')); } catch { return new Set(); }
-      });
-      const playedRef = useRef(played);
-      const audioRef = useRef(null);
-      const timersRef = useRef([]);
-
-      // Persist played state and sync ref
-      useEffect(() => {
-        playedRef.current = played;
-        sessionStorage.setItem('beacon_narration_played', JSON.stringify([...played]));
-      }, [played]);
-
-      // Determine which clip should play based on current view/tab
-      useEffect(() => {
-        timersRef.current.forEach(clearTimeout);
-        timersRef.current = [];
-
-        NARRATION_CLIPS.forEach((clip, idx) => {
-          const t = clip.trigger;
-          if (t.auto_after) return; // auto_after clips are handled in onended
-          const viewMatch = (t.view === 'onboarding' && view === 'onboarding' && t.step === step) ||
-                            (t.view === 'dashboard' && view === 'dashboard' && (!t.tab || t.tab === activeTab) && (!t.communitySubTab || t.communitySubTab === communitySection));
-          if (!viewMatch) return;
-
-          const delay = t.delay || 0;
-          const timer = setTimeout(() => {
-            if (playedRef.current.has(clip.key)) return; // check at fire time, not schedule time
-            setCurrentIdx(prev => {
-              if (prev === -1 || prev < idx) return idx;
-              return prev;
-            });
-          }, delay);
-          timersRef.current.push(timer);
-        });
-
-        return () => timersRef.current.forEach(clearTimeout);
-      }, [view, step, activeTab, communitySection]);
-
-      // Play audio when currentIdx changes
-      useEffect(() => {
-        if (currentIdx < 0 || currentIdx >= NARRATION_CLIPS.length) return;
-        const clip = NARRATION_CLIPS[currentIdx];
-        if (played.has(clip.key)) return;
-
-        if (audioRef.current) {
-          audioRef.current.pause();
-          audioRef.current = null;
-        }
-
-        const audio = new Audio(`audio/${clip.key}.mp3`);
-        audio.muted = muted;
-        audioRef.current = audio;
-
-        audio.play().then(() => {
-          setPlaying(true);
-          setPlayed(prev => new Set([...prev, clip.key]));
-        }).catch(() => {
-          // Autoplay blocked — user hasn't interacted yet
-          setPlaying(false);
-        });
-
-        audio.onended = () => {
-          setPlaying(false);
-          // Auto-advance to next unplayed clip if it chains via auto_after or matches current context
-          const next = currentIdx + 1;
-          if (next < NARRATION_CLIPS.length) {
-            const nc = NARRATION_CLIPS[next];
-            const t = nc.trigger;
-            if (t.auto_after === clip.key && !played.has(nc.key)) {
-              setCurrentIdx(next);
-            } else {
-              const viewMatch = (t.view === 'onboarding' && view === 'onboarding' && t.step === step) ||
-                                (t.view === 'dashboard' && view === 'dashboard' && (!t.tab || t.tab === activeTab));
-              if (viewMatch && !played.has(nc.key) && !t.delay) {
-                setCurrentIdx(next);
-              }
-            }
-          }
-        };
-
-        return () => { audio.pause(); };
-      }, [currentIdx]);
-
-      // Sync mute state
-      useEffect(() => {
-        if (audioRef.current) audioRef.current.muted = muted;
-      }, [muted]);
-
-      const togglePlay = () => {
-        if (!audioRef.current) {
-          // Try playing current clip
-          if (currentIdx >= 0) {
-            const clip = NARRATION_CLIPS[currentIdx];
-            const audio = new Audio(`audio/${clip.key}.mp3`);
-            audio.muted = muted;
-            audioRef.current = audio;
-            audio.play().then(() => setPlaying(true)).catch(() => {});
-            audio.onended = () => setPlaying(false);
-          }
-          return;
-        }
-        if (playing) { audioRef.current.pause(); setPlaying(false); }
-        else { audioRef.current.play().then(() => setPlaying(true)).catch(() => {}); }
-      };
-
-      const skipForward = () => {
-        if (audioRef.current) { audioRef.current.pause(); audioRef.current = null; }
-        setPlaying(false);
-        const next = currentIdx + 1;
-        if (next < NARRATION_CLIPS.length) setCurrentIdx(next);
-      };
-
-      const currentClip = currentIdx >= 0 && currentIdx < NARRATION_CLIPS.length ? NARRATION_CLIPS[currentIdx] : null;
-      const clipNum = currentIdx + 1;
-      const totalClips = NARRATION_CLIPS.length;
-
-      if (!currentClip && played.size === 0) return null;
-
-      return (
-        <>
-          {/* Floating Guide pill */}
-          <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-[9999] flex items-center gap-2 bg-white/90 backdrop-blur-md shadow-xl rounded-full px-3 sm:px-4 py-2 sm:py-2.5 border border-slate-200">
-            <span className="text-[10px] font-semibold text-indigo-500 uppercase tracking-wider mr-0.5">Guide</span>
-            <button onClick={togglePlay} className="w-8 h-8 flex items-center justify-center rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-colors" title={playing ? 'Pause' : 'Play'}>
-              {playing ? (
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="2" y="1" width="3.5" height="12" rx="1"/><rect x="8.5" y="1" width="3.5" height="12" rx="1"/></svg>
-              ) : (
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><polygon points="3,1 13,7 3,13"/></svg>
-              )}
-            </button>
-            <button onClick={skipForward} className="w-7 h-7 flex items-center justify-center rounded-full text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 transition-colors" title="Skip">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><polygon points="1,1 9,7 1,13"/><rect x="10" y="1" width="3" height="12" rx="1"/></svg>
-            </button>
-            <button onClick={() => setMuted(!muted)} className="w-7 h-7 flex items-center justify-center rounded-full text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 transition-colors" title={muted ? 'Unmute' : 'Mute'}>
-              {muted ? (
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-              ) : (
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
-              )}
-            </button>
-            <span className="text-xs text-slate-400 font-medium ml-1">{clipNum > 0 ? clipNum : '–'} / {totalClips}</span>
-            <button onClick={() => setTranscriptVisible(!transcriptVisible)} className={`w-7 h-7 flex items-center justify-center rounded-full transition-colors ml-1 ${transcriptVisible ? 'text-indigo-600 bg-indigo-50' : 'text-slate-500 hover:text-indigo-600 hover:bg-indigo-50'}`} title="Toggle subtitles">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 15h4M13 15h4M7 11h10"/></svg>
-            </button>
-          </div>
-
-          {/* Subtitle bar */}
-          {transcriptVisible && currentClip && playing && (
-            <div className="fixed bottom-32 md:bottom-20 left-1/2 -translate-x-1/2 z-[9998] max-w-[700px] w-[90%] bg-black/75 text-white text-xs sm:text-sm px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-center backdrop-blur-sm leading-relaxed">
-              {currentClip.text}
-            </div>
           )}
         </>
       );
@@ -733,11 +544,11 @@
       ];
 
       return (
-        <div className="min-h-screen flex items-center justify-center p-4 sm:p-6">
-          <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+        <div className="min-h-screen flex items-center justify-center p-6">
+          <div className="max-w-4xl w-full grid grid-cols-12 gap-8">
 
             {/* Left: Step sidebar */}
-            <div className="hidden md:block md:col-span-4 pt-10 space-y-6">
+            <div className="col-span-4 pt-10 space-y-6">
               <div className="flex items-center gap-3 mb-10">
                 <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg shadow-amber-200">B</div>
                 <span className="text-xl font-extrabold bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text text-transparent">Beacon</span>
@@ -755,13 +566,13 @@
             </div>
 
             {/* Right: Content cards */}
-            <div className="md:col-span-8">
+            <div className="col-span-8">
 
               {/* Step 1: Privacy */}
               {step === 1 && (
-                <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200 fade-up">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center text-white font-black text-3xl sm:text-4xl mb-6 shadow-lg shadow-amber-200">B</div>
-                  <h2 className="text-2xl sm:text-3xl font-bold mb-4">Your AI-powered team for rare disease.</h2>
+                <div className="bg-white rounded-3xl p-10 shadow-xl border border-slate-200 fade-up">
+                  <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center text-white font-black text-4xl mb-6 shadow-lg shadow-amber-200">B</div>
+                  <h2 className="text-3xl font-bold mb-4">Your AI-powered team for rare disease.</h2>
                   <p className="text-slate-500 mb-8 leading-relaxed text-lg">Beacon coordinates research, outreach, regulatory strategy, and funding — so no family has to navigate the system alone.</p>
 
                   <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 mb-8 space-y-3">
@@ -781,8 +592,8 @@
 
               {/* Step 2: Situation */}
               {step === 2 && (
-                <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200 fade-up">
-                  <h2 className="text-2xl sm:text-3xl font-bold mb-2">Tell us about your journey.</h2>
+                <div className="bg-white rounded-3xl p-10 shadow-xl border border-slate-200 fade-up">
+                  <h2 className="text-3xl font-bold mb-2">Tell us about your journey.</h2>
                   <p className="text-slate-500 mb-8">This helps your AI team personalize their research.</p>
 
                   {/* Journey stage */}
@@ -846,7 +657,7 @@
                   )}
 
                   {/* Quick intake */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                  <div className="grid grid-cols-2 gap-4 mb-8">
                     <div>
                       <label className="text-sm font-bold text-slate-700 block mb-2">Patient is</label>
                       <div className="flex gap-2">
@@ -939,7 +750,7 @@
     // ==========================================
     // INSIGHT CARD (spatial canvas style)
     // ==========================================
-    function InsightCard({ insight, expanded, onToggle, onLater }) {
+    function InsightCard({ insight, expanded, onToggle, onLater, onAction }) {
       return (
         <div className="bg-white rounded-3xl p-6 shadow-xl border border-slate-200 card-hover flex flex-col fade-up">
           <span className={`bg-${insight.badgeColor}-600 text-white text-[9px] font-black px-2.5 py-0.5 rounded-md uppercase self-start`}>{insight.badge}</span>
@@ -956,7 +767,7 @@
           )}
           <WhatItMeansAccordion item={insight} expanded={expanded} onToggle={onToggle} />
           <div className="mt-auto flex gap-3">
-            <button className="flex-1 bg-indigo-600 text-white py-3 rounded-xl text-xs font-bold shadow-md hover:bg-indigo-700 transition-colors">{insight.cta}</button>
+            <button onClick={() => onAction && onAction(insight)} className="flex-1 bg-indigo-600 text-white py-3 rounded-xl text-xs font-bold shadow-md hover:bg-indigo-700 transition-colors">{insight.cta}</button>
             <button onClick={onLater} className="px-4 py-3 text-slate-400 rounded-xl text-xs font-bold border border-slate-200 hover:bg-slate-50 hover:text-slate-600 transition-colors flex items-center gap-1.5">
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               Later
@@ -1033,7 +844,8 @@
       );
     }
 
-    function DashboardView({ mission, demo, setModalOpen, setSelectedApproval, activeTab, setActiveTab, communitySection, setCommunitySection }) {
+    function DashboardView({ mission, demo, setModalOpen, setSelectedApproval }) {
+      const [activeTab, setActiveTab] = useState('dashboard');
       const [expandedSections, setExpandedSections] = useState({});
       const [expandedId, setExpandedId] = useState(null);
       const [laterItems, setLaterItems] = useState([]);
@@ -1046,6 +858,8 @@
       const [progressBars, setProgressBars] = useState({ Research: 0, Outreach: 0, Regulatory: 0, Funding: 0, Treatment: 0 });
       const [progressStatus, setProgressStatus] = useState({});
       const [labReady, setLabReady] = useState(false);
+      const [actionModal, setActionModal] = useState(null);
+      const [showArch, setShowArch] = useState(false);
       const [agentStatuses, setAgentStatuses] = useState(
         Object.fromEntries(['Scout','Connector','Navigator','Mobilizer','Strategist','Biologist','Chemist','Preclinician'].map(n => [n, { status: 'Initializing...', done: false }]))
       );
@@ -1133,12 +947,27 @@
         note: "Dr. Cooper leads the only active AAV9-CLN3 gene therapy program. High priority contact.",
       };
 
+      const handleInsightAction = (insight) => {
+        if (insight.id === 'trial') {
+          setActionModal({ type: 'pre-screening' });
+        } else if (insight.id === 'repurpose') {
+          setActionModal({ type: 'briefing' });
+        }
+      };
+
       const handleApproveDecision = (decision) => {
         if (decision.id === 'email') {
           setSelectedApproval(demoApproval);
           setModalOpen(true);
+        } else if (decision.id === 'everycure') {
+          setActionModal({
+            type: 'outreach',
+            to: 'intake@everycure.org',
+            subject: 'CLN3 Batten Disease — Drug Repurposing Consultation Request',
+            body: "Dear EveryCure Team,\n\nI am the parent of a child diagnosed with CLN3 Batten Disease (Juvenile Neuronal Ceroid Lipofuscinosis). Through our research, we have identified tamoxifen as a potential repurposing candidate based on its TRPML1 activation mechanism.\n\nWe would greatly appreciate a consultation through your ROADMAP framework to help validate this pathway and identify any additional repurposing candidates we may have missed.\n\nOur child's treating neurologist is supportive of exploring off-label options and would be available for a joint call if helpful.\n\nThank you for the work you do for rare disease families.\n\nWith gratitude,\n[Your name]",
+            note: "EveryCure's ROADMAP framework has identified repurposing candidates for 12,000+ diseases. Their consultation is free and typically takes 2-4 weeks."
+          });
         }
-        // For everycure, just mark as approved
       };
 
       // Which insight cards are visible (not later'd)
@@ -1151,9 +980,9 @@
       const showInbox = visibleInsights.has('email_decision') || visibleInsights.has('everycure_decision');
 
       return (
-        <div className="min-h-screen flex flex-col md:flex-row">
-          {/* Sidebar — hidden on mobile, shown on md+ */}
-          <aside className="hidden md:flex w-20 bg-indigo-900 flex-col items-center py-8 gap-8 h-screen sticky top-0">
+        <div className="min-h-screen flex">
+          {/* Sidebar */}
+          <aside className="w-20 bg-indigo-900 flex flex-col items-center py-8 gap-8 h-screen sticky top-0">
             <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-500 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg">B</div>
             <nav className="flex flex-col gap-4">
               <button onClick={() => setActiveTab('dashboard')} className={`p-3 rounded-xl ${activeTab === 'dashboard' ? 'bg-indigo-800 text-white shadow-lg' : 'text-indigo-300 hover:text-white'} transition-colors`} title="Mission Control">
@@ -1170,30 +999,15 @@
             </nav>
           </aside>
 
-          {/* Mobile bottom nav */}
-          <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-indigo-900 flex items-center justify-around py-3 z-50 border-t border-indigo-800">
-            <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-amber-500 rounded-lg flex items-center justify-center text-white font-black text-sm">B</div>
-            <button onClick={() => setActiveTab('dashboard')} className={`p-2.5 rounded-xl ${activeTab === 'dashboard' ? 'bg-indigo-800 text-white' : 'text-indigo-300'}`}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
-            </button>
-            <button onClick={() => setActiveTab('lab')} className={`p-2.5 rounded-xl relative ${activeTab === 'lab' ? 'bg-indigo-800 text-white' : 'text-indigo-300'}`}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg>
-              {labReady && activeTab !== 'lab' && <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full"></span>}
-            </button>
-            <button onClick={() => setActiveTab('community')} className={`p-2.5 rounded-xl ${activeTab === 'community' ? 'bg-indigo-800 text-white' : 'text-indigo-300'}`}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </button>
-          </nav>
-
           {/* Main */}
-          <main className="flex-1 flex flex-col pb-16 md:pb-0">
+          <main className="flex-1 flex flex-col">
             {/* Header */}
-            <header className="h-14 sm:h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 sm:px-8 shrink-0">
-              <div className="flex items-center gap-2 sm:gap-4 min-w-0">
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider hidden sm:inline">Patient:</span>
-                <span className="text-xs sm:text-sm font-bold px-2 sm:px-3 py-1 bg-slate-100 rounded-full truncate">{mission.disease || 'CLN3 Batten Disease'}</span>
+            <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 shrink-0">
+              <div className="flex items-center gap-4">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Patient:</span>
+                <span className="text-sm font-bold px-3 py-1 bg-slate-100 rounded-full">{mission.disease || 'CLN3 Batten Disease'}</span>
               </div>
-              <div className="hidden sm:flex items-center gap-6">
+              <div className="flex items-center gap-4">
                 <div className="flex -space-x-2">
                   {Object.entries(AGENT_COLORS).map(([name, color]) => (
                     <div key={name} className={`w-7 h-7 rounded-full bg-${color}-500 border-2 border-white flex items-center justify-center text-[8px] text-white font-bold`} title={name}>
@@ -1201,6 +1015,11 @@
                     </div>
                   ))}
                 </div>
+                <button
+                  onClick={() => setShowArch(true)}
+                  className="w-7 h-7 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 hover:border-indigo-200 transition-colors text-xs font-bold"
+                  title="Architecture"
+                >i</button>
               </div>
             </header>
 
@@ -1208,9 +1027,9 @@
             <div className="flex-1 overflow-y-auto">
 
             {activeTab === 'dashboard' && (
-              <div className="max-w-7xl mx-auto px-4 sm:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8">
+              <div className="max-w-7xl mx-auto px-8 py-8 space-y-8">
 
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
 
                 {/* Left column: Hero + Journey */}
                 <div className="lg:col-span-3 space-y-8">
@@ -1240,7 +1059,7 @@
                 {/* ==========================================
                     SECTION 1: YOUR JOURNEY
                     ========================================== */}
-                <div className="bg-white rounded-3xl p-5 sm:p-8 border border-slate-200 shadow-sm overflow-hidden">
+                <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
                   <div className="flex items-center justify-between mb-6">
                     <h2 className="text-lg font-bold flex items-center gap-2">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" x2="9" y1="3" y2="18"/><line x1="15" x2="15" y1="6" y2="21"/></svg>
@@ -1249,7 +1068,7 @@
                   </div>
 
                   {/* Progress bars — animated */}
-                  <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 mb-6">
+                  <div className="flex gap-3 mb-6">
                     {['Research', 'Outreach', 'Regulatory', 'Funding', 'Treatment'].map((label) => {
                       const pct = progressBars[label] || 0;
                       const isComplete = progressStatus[label] === 'complete';
@@ -1267,7 +1086,7 @@
                   </div>
 
                   {/* Achievement cards — stream in one by one */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  <div className="flex gap-3">
                     {achievements.map((a, i) => (
                       <div key={i} className="flex-1 bg-emerald-50 rounded-xl p-3 border border-emerald-100 fade-up">
                         <div className="flex items-center gap-2 mb-1">
@@ -1288,7 +1107,7 @@
                 </div>{/* end left column */}
 
                 {/* Right column: Insights + Inbox */}
-                <div className="lg:col-span-2 space-y-6 min-w-0">
+                <div className="lg:col-span-2 space-y-6">
 
                 {/* ==========================================
                     SECTION 2: KEY INSIGHTS (Spatial Canvas)
@@ -1315,7 +1134,7 @@
 
                   {/* Insights board */}
                   {(visibleInsights.has('trial_match') || visibleInsights.has('repurposing')) && (
-                    <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl p-4 sm:p-6 border border-slate-200 overflow-hidden">
+                    <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl p-8 border border-slate-200">
                       <h2 className="text-lg font-bold flex items-center gap-2 mb-6">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
                         Key Insights
@@ -1330,6 +1149,7 @@
                               expanded={expandedId === insight.id}
                               onToggle={() => toggleAccordion(insight.id)}
                               onLater={() => handleLaterInsight(insight)}
+                              onAction={handleInsightAction}
                             />
                           ))}
                         </div>
@@ -1352,7 +1172,7 @@
 
                   {/* Delegation Inbox */}
                   {showInbox && (
-                    <div className="bg-gradient-to-br from-amber-50/50 to-slate-50 rounded-3xl p-4 sm:p-6 border border-amber-200/50 overflow-hidden">
+                    <div className="bg-gradient-to-br from-amber-50/50 to-slate-50 rounded-3xl p-8 border border-amber-200/50">
                       <DelegationInbox
                         expandedId={expandedId}
                         onToggle={toggleAccordion}
@@ -1507,10 +1327,72 @@
 
             {activeTab === 'lab' && <LabTab labReady={labReady} />}
 
-            {activeTab === 'community' && <CommunityTab setActiveTab={setActiveTab} communitySection={communitySection} setCommunitySection={setCommunitySection} />}
+            {activeTab === 'community' && <CommunityTab setActiveTab={setActiveTab} />}
 
             </div>
           </main>
+
+          {actionModal && (
+            <ActionModal action={actionModal} onClose={() => setActionModal(null)} />
+          )}
+
+          {showArch && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', background: 'rgba(15, 23, 42, 0.6)' }} onClick={() => setShowArch(false)}>
+              <div className="bg-white/95 rounded-3xl shadow-2xl border border-slate-200 p-8 max-w-lg w-[90%] fade-up" onClick={e => e.stopPropagation()}>
+                <div className="flex justify-between items-start mb-6">
+                  <h3 className="font-bold text-lg text-slate-800 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                    Built with Claude Code + Opus 4.6
+                  </h3>
+                  <button onClick={() => setShowArch(false)} className="text-slate-400 hover:text-slate-800 text-xl leading-none">&times;</button>
+                </div>
+
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white font-bold px-4 py-2 rounded-xl text-sm shadow-lg">React Frontend</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  <div className="bg-gradient-to-br from-violet-500 to-violet-600 text-white font-bold px-4 py-2 rounded-xl text-sm shadow-lg">FastAPI Backend</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  <div className="bg-gradient-to-br from-amber-500 to-amber-600 text-white font-bold px-4 py-2 rounded-xl text-sm shadow-lg">8 Agents</div>
+                </div>
+
+                <div className="mb-5">
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Opus 4.6 Agents</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {Object.entries(AGENT_COLORS).map(([name, color]) => (
+                      <span key={name} className={`text-[10px] font-bold px-3 py-1 rounded-full bg-${color}-100 text-${color}-700 border border-${color}-200`}>{name}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mb-5">
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">MCP Connectors</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {['ClinicalTrials.gov', 'ChEMBL', 'PubMed', 'bioRxiv', 'Open Targets', 'NPI Registry'].map(c => (
+                      <span key={c} className="text-[10px] font-semibold px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200">{c}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-indigo-50 to-violet-50 rounded-xl p-4 border border-indigo-100">
+                  <p className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-2">Why Opus 4.6</p>
+                  <div className="flex gap-4 text-xs text-indigo-700 font-medium">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-indigo-400"></div>
+                      2x computational biology
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-violet-400"></div>
+                      1M token context
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-amber-400"></div>
+                      BrowseComp #1
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Toast notification */}
           {showToast && (
@@ -1597,10 +1479,10 @@
       const ratingDot = (r) => r === 'green' ? 'bg-emerald-500' : r === 'amber' ? 'bg-amber-500' : 'bg-red-500';
 
       return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8">
+        <div className="max-w-7xl mx-auto px-8 py-8 space-y-8">
 
           {/* Lab Header */}
-          <div className="bg-gradient-to-r from-cyan-50 via-indigo-50 to-violet-50 rounded-3xl p-5 sm:p-8 border border-indigo-200 shadow-sm">
+          <div className="bg-gradient-to-r from-cyan-50 via-indigo-50 to-violet-50 rounded-3xl p-8 border border-indigo-200 shadow-sm">
             <div className="flex items-center gap-4 mb-2">
               <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500 to-indigo-600 flex items-center justify-center text-white shadow-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg>
@@ -1612,7 +1494,7 @@
             </div>
 
             {/* Sub-nav */}
-            <div className="flex flex-wrap gap-2 mt-4">
+            <div className="flex gap-2 mt-4">
               {[{id:'overview',label:'Overview & Targets'},{id:'candidates',label:'Candidate Pipeline'},{id:'experiments',label:'Lab Testing'}].map(tab => (
                 <button key={tab.id} onClick={() => setLabSection(tab.id)}
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${labSection === tab.id ? 'bg-indigo-600 text-white shadow-md' : 'bg-white/70 text-indigo-600 hover:bg-white'}`}>
@@ -1624,13 +1506,13 @@
 
           {/* OVERVIEW SECTION */}
           {labSection === 'overview' && (
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
+            <div className="grid grid-cols-12 gap-8">
 
               {/* 3D Viewer */}
-              <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-                <div className="px-4 sm:px-6 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div className="col-span-7 bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
                   <div>
-                    <h3 className="font-bold text-slate-800 text-sm sm:text-base">Protein Target: {LAB_TARGETS[selectedTarget].name}</h3>
+                    <h3 className="font-bold text-slate-800">Protein Target: {LAB_TARGETS[selectedTarget].name}</h3>
                     <p className="text-[11px] text-slate-400">{LAB_TARGETS[selectedTarget].gene} — AlphaFold predicted structure</p>
                   </div>
                   <div className="flex gap-2">
@@ -1653,7 +1535,7 @@
               </div>
 
               {/* Target List + Pipeline Funnel */}
-              <div className="lg:col-span-5 space-y-6">
+              <div className="col-span-5 space-y-6">
 
                 {/* Target selector */}
                 <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
@@ -1775,8 +1657,8 @@
                   {(() => {
                     const c = LAB_CANDIDATES[selectedCandidate];
                     return (
-                      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-                        <div className="md:col-span-5">
+                      <div className="grid grid-cols-12 gap-6">
+                        <div className="col-span-5">
                           <h4 className="font-bold text-lg text-slate-900 mb-1">{c.name}</h4>
                           <p className="text-xs text-slate-400 mb-4">{c.chembl_id} — pChEMBL {c.pchembl}</p>
                           <div className="space-y-3">
@@ -1798,7 +1680,7 @@
                             </div>
                           </div>
                         </div>
-                        <div className="md:col-span-7">
+                        <div className="col-span-7">
                           <h5 className="text-xs font-bold text-slate-500 uppercase mb-3">ADMET Profile</h5>
                           <div className="grid grid-cols-2 gap-2">
                             {Object.entries(c.scores).map(([key, s]) => (
@@ -1830,16 +1712,16 @@
                 <div className="space-y-3">
                   {LAB_EXPERIMENTS.map((exp, i) => (
                     <div key={i} className={`p-5 rounded-2xl border-2 transition-all ${exp.status === 'ready' ? 'border-indigo-500 bg-indigo-50' : 'border-slate-200'}`}>
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-2">
+                      <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-3">
-                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-black shrink-0 ${exp.status === 'ready' ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-500'}`}>T{exp.tier}</div>
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-black ${exp.status === 'ready' ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-500'}`}>T{exp.tier}</div>
                           <div>
                             <h4 className="font-bold text-sm text-slate-800">{exp.name}</h4>
                             <p className="text-[10px] text-slate-400">Compounds: {exp.compounds}</p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-4 ml-11 sm:ml-0">
-                          <div className="text-left sm:text-right">
+                        <div className="flex items-center gap-4">
+                          <div className="text-right">
                             <p className="text-sm font-bold text-slate-800">{exp.cost}</p>
                             <p className="text-[10px] text-slate-400">{exp.timeline}</p>
                           </div>
@@ -1914,7 +1796,8 @@
     // COMMUNITY TAB
     // ==========================================
 
-    function CommunityTab({ setActiveTab, communitySection, setCommunitySection }) {
+    function CommunityTab({ setActiveTab }) {
+      const [communitySection, setCommunitySection] = useState('network');
       const sectionBtns = [
         { id: 'network', label: 'Patient Network', icon: '\u{1F465}' },
         { id: 'data', label: 'Data Commons', icon: '\u{1F4CA}' },
@@ -1922,7 +1805,7 @@
       ];
 
       return (
-        <div className="max-w-6xl mx-auto px-4 sm:px-8 py-6 sm:py-8 space-y-6">
+        <div className="max-w-6xl mx-auto px-8 py-8 space-y-6">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold text-slate-800">Community & Funding</h2>
@@ -1952,7 +1835,7 @@
           </div>
 
           {/* Section tabs */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex gap-2">
             {sectionBtns.map(s => (
               <button key={s.id} onClick={() => setCommunitySection(s.id)}
                 className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${communitySection === s.id ? 'bg-indigo-600 text-white shadow-md' : 'bg-white text-slate-600 border border-slate-200 hover:border-indigo-300'}`}>
@@ -2232,6 +2115,230 @@
               </div>
             </div>
           )}
+        </div>
+      );
+    }
+
+    // ==========================================
+    // ACTION MODAL (for insight & decision CTAs)
+    // ==========================================
+
+    function ActionModal({ action, onClose }) {
+      const [success, setSuccess] = useState(false);
+
+      const showSuccess = (msg) => {
+        setSuccess(msg || 'Done!');
+        setTimeout(() => onClose(), 1500);
+      };
+
+      if (success) {
+        return (
+          <div className="modal-overlay" onClick={onClose}>
+            <div className="modal text-center" onClick={e => e.stopPropagation()}>
+              <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <h3 className="text-xl font-bold text-slate-800">{success}</h3>
+            </div>
+          </div>
+        );
+      }
+
+      if (action.type === 'pre-screening') return <PreScreeningModal action={action} onClose={onClose} onSuccess={showSuccess} />;
+      if (action.type === 'briefing') return <BriefingModal action={action} onClose={onClose} onSuccess={showSuccess} />;
+      if (action.type === 'outreach') return <OutreachModal action={action} onClose={onClose} onSuccess={showSuccess} />;
+      return null;
+    }
+
+    function PreScreeningModal({ action, onClose, onSuccess }) {
+      const [checks, setChecks] = useState({});
+      const toggle = (k) => setChecks(prev => ({ ...prev, [k]: !prev[k] }));
+
+      const criteria = [
+        { key: 'age', label: 'Patient age 3-18 years' },
+        { key: 'diagnosis', label: 'Confirmed CLN3 genetic diagnosis' },
+        { key: 'ambulatory', label: 'Ambulatory or semi-ambulatory' },
+        { key: 'vision', label: 'Documented vision assessment within 6 months' },
+        { key: 'noother', label: 'Not enrolled in another interventional trial' },
+        { key: 'travel', label: 'Able to travel to Weill Cornell (New York, NY)' },
+      ];
+
+      const docs = [
+        'Genetic testing report (CLN3 mutation confirmation)',
+        'Recent medical records & neuropsych evaluation',
+        'Insurance information & pre-authorization',
+        'List of current medications',
+      ];
+
+      return (
+        <div className="modal-overlay" onClick={onClose}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-6">
+              <div>
+                <span className="bg-indigo-100 text-indigo-700 text-[10px] font-black px-2 py-0.5 rounded uppercase">Pre-Screening</span>
+                <h2 className="text-xl font-bold mt-2">Phase I/II AAV9-CLN3 Gene Therapy</h2>
+                <p className="text-xs text-slate-400 mt-1">NCT-2024-CLN3-001 · Weill Cornell Medical Center</p>
+              </div>
+              <button onClick={onClose} className="text-slate-400 hover:text-slate-800 text-2xl leading-none">&times;</button>
+            </div>
+
+            <div className="mb-6">
+              <h3 className="font-bold text-sm text-slate-700 mb-3">Eligibility Checklist</h3>
+              <div className="space-y-2">
+                {criteria.map(c => (
+                  <label key={c.key} className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-slate-50 cursor-pointer">
+                    <input type="checkbox" checked={!!checks[c.key]} onChange={() => toggle(c.key)}
+                      className="w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500" />
+                    <span className="text-sm text-slate-700">{c.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-6 bg-slate-50 rounded-xl p-4">
+              <h3 className="font-bold text-sm text-slate-700 mb-3">What to Prepare</h3>
+              <ul className="space-y-2">
+                {docs.map((d, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6366f1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    {d}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex gap-3">
+              <button onClick={() => onSuccess('Pre-screening request sent!')} className="px-6 py-3 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-600 transition-colors shadow-md">Request Pre-Screening Call</button>
+              <button onClick={onClose} className="px-6 py-3 bg-slate-200 text-slate-700 rounded-xl font-bold text-sm hover:bg-slate-300 transition-colors">Cancel</button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function BriefingModal({ action, onClose, onSuccess }) {
+      const briefingText = `SPECIALIST BRIEFING: Drug Repurposing Candidate
+══════════════════════════════════════════════
+
+Patient: CLN3 Batten Disease (Juvenile Neuronal Ceroid Lipofuscinosis)
+
+CANDIDATE: Tamoxifen (FDA-approved, existing pediatric safety data)
+
+MECHANISM OF ACTION:
+Tamoxifen activates TRPML1 (mucolipin-1), a lysosomal cation channel. In CLN3 disease, loss of CLN3 protein disrupts lysosomal calcium homeostasis. TRPML1 activation by tamoxifen bypasses this defect, restoring lysosomal calcium signaling and reducing ceroid lipofuscin accumulation.
+
+KEY EVIDENCE:
+• Bhattacharyya et al. (2024) - Demonstrated tamoxifen-mediated TRPML1 activation clears stored material in CLN3-deficient neuronal cultures
+• Bhattacharyya et al. (2023) - Murine CLN3 model showed 40% reduction in storage material after 8-week treatment course
+• Established pediatric safety profile from oncology use (10+ years of data)
+
+PROPOSED APPROACH:
+Off-label use under treating physician supervision. Starting dose: 10mg daily, with monitoring of lysosomal biomarkers (SCMAS, subunit c levels) at baseline and 3-month intervals.
+
+REGULATORY NOTE:
+Off-label use is legal and common. No IND required. Insurance coverage possible with physician letter of medical necessity.
+
+RECOMMENDED NEXT STEPS:
+1. Review evidence with patient's neurologist
+2. Baseline biomarker panel
+3. Discuss risk/benefit with family
+4. If proceeding, start low-dose trial with 3-month reassessment
+
+Generated by Beacon AI · Scout + Navigator agents`;
+
+      const handleCopy = () => {
+        navigator.clipboard.writeText(briefingText);
+        onSuccess('Copied to clipboard!');
+      };
+
+      const handleDownload = () => {
+        const blob = new Blob([briefingText], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'CLN3-Tamoxifen-Specialist-Briefing.txt';
+        a.click();
+        URL.revokeObjectURL(url);
+        onSuccess('Briefing downloaded!');
+      };
+
+      return (
+        <div className="modal-overlay" onClick={onClose}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-6">
+              <div>
+                <span className="bg-indigo-100 text-indigo-700 text-[10px] font-black px-2 py-0.5 rounded uppercase">Specialist Briefing</span>
+                <h2 className="text-xl font-bold mt-2">Drug Repurposing: Tamoxifen for CLN3</h2>
+                <p className="text-xs text-slate-400 mt-1">For your child's neurologist or treating physician</p>
+              </div>
+              <button onClick={onClose} className="text-slate-400 hover:text-slate-800 text-2xl leading-none">&times;</button>
+            </div>
+
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 mb-6 max-h-[45vh] overflow-y-auto">
+              <pre className="text-xs text-slate-700 whitespace-pre-wrap font-mono leading-relaxed">{briefingText}</pre>
+            </div>
+
+            <div className="flex gap-3 flex-wrap">
+              <button onClick={handleCopy} className="px-5 py-3 bg-indigo-600 text-white rounded-xl font-bold text-sm hover:bg-indigo-700 transition-colors shadow-md flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                Copy to Clipboard
+              </button>
+              <button onClick={handleDownload} className="px-5 py-3 bg-emerald-500 text-white rounded-xl font-bold text-sm hover:bg-emerald-600 transition-colors shadow-md flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                Download
+              </button>
+              <button onClick={onClose} className="px-5 py-3 bg-slate-200 text-slate-700 rounded-xl font-bold text-sm hover:bg-slate-300 transition-colors">Cancel</button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function OutreachModal({ action, onClose, onSuccess }) {
+      const [edited, setEdited] = useState({ ...action });
+
+      return (
+        <div className="modal-overlay" onClick={onClose}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-6">
+              <div>
+                <span className="bg-amber-100 text-amber-700 text-[10px] font-black px-2 py-0.5 rounded uppercase">Outreach Approval</span>
+                <h2 className="text-xl font-bold mt-2">Contact EveryCure</h2>
+                <p className="text-xs text-slate-400 mt-1">Mobilizer agent · Drug repurposing consultation</p>
+              </div>
+              <button onClick={onClose} className="text-slate-400 hover:text-slate-800 text-2xl leading-none">&times;</button>
+            </div>
+
+            <div className="mb-4">
+              <label className="block font-semibold text-sm text-slate-700 mb-1">To:</label>
+              <input type="text" value={edited.to || ''} onChange={e => setEdited({ ...edited, to: e.target.value })}
+                className="w-full px-3 py-2 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500" />
+            </div>
+
+            <div className="mb-4">
+              <label className="block font-semibold text-sm text-slate-700 mb-1">Subject:</label>
+              <input type="text" value={edited.subject || ''} onChange={e => setEdited({ ...edited, subject: e.target.value })}
+                className="w-full px-3 py-2 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500" />
+            </div>
+
+            <div className="mb-4">
+              <label className="block font-semibold text-sm text-slate-700 mb-1">Message:</label>
+              <textarea value={edited.body || ''} onChange={e => setEdited({ ...edited, body: e.target.value })}
+                className="w-full px-3 py-3 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500 min-h-[180px] font-sans" />
+            </div>
+
+            {edited.note && (
+              <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-lg mb-4">
+                <div className="font-semibold text-sm text-amber-800 mb-1">Mobilizer's Note:</div>
+                <div className="text-sm text-amber-700">{edited.note}</div>
+              </div>
+            )}
+
+            <div className="flex gap-3">
+              <button onClick={() => onSuccess('Outreach approved and queued!')} className="px-6 py-3 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-600 transition-colors shadow-md">Approve & Send</button>
+              <button onClick={onClose} className="px-6 py-3 bg-slate-200 text-slate-700 rounded-xl font-bold text-sm hover:bg-slate-300 transition-colors">Cancel</button>
+            </div>
+          </div>
         </div>
       );
     }

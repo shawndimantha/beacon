@@ -1072,11 +1072,23 @@ Write for a non-expert family member. Be warm, clear, and action-oriented.
             async with state_lock:
                 app_state["synthesis"] = {"status": "error", "result": str(e)[:200]}
 
+    async def pre_generate_summaries():
+        """Pre-generate lab summary and researcher briefing after agents complete."""
+        try:
+            from starlette.testclient import TestClient
+        except ImportError:
+            pass
+        # Just call the endpoint functions directly
+        await lab_summary()
+        await researcher_briefing()
+        print("  ✅ Lab summaries pre-generated")
+
     async def run_all():
         await asyncio.gather(*[run_agent_loop(name, demo=req.demo, mission_id=mission_id) for name in agent_names])
         if current_mission_id != mission_id:
             return  # Mission changed, skip synthesis
-        await run_synthesis()
+        # Run synthesis and pre-generate summaries in parallel
+        await asyncio.gather(run_synthesis(), pre_generate_summaries())
         if current_mission_id == mission_id:
             async with state_lock:
                 app_state["mission"]["stage"] = "roadmap"

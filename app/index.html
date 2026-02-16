@@ -1266,7 +1266,13 @@
                             <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-amber-400 rounded-full border border-white animate-pulse"></span>
                           )}
                         </div>
-                        <div className="absolute top-9 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[9px] px-2 py-1.5 rounded-lg whitespace-nowrap opacity-0 pointer-events-none group-hover/agents:opacity-0 hover:!opacity-100 transition-opacity z-50 shadow-lg max-w-[200px]">
+                        <div className="absolute top-9 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[9px] px-2 py-1.5 rounded-lg whitespace-nowrap z-50 shadow-lg max-w-[200px] transition-opacity duration-150" style={{opacity: 0, pointerEvents: 'none'}}
+                          ref={el => {
+                            if (!el) return;
+                            const parent = el.parentElement;
+                            parent.onmouseenter = () => { el.style.opacity = 1; el.style.pointerEvents = 'auto'; };
+                            parent.onmouseleave = () => { el.style.opacity = 0; el.style.pointerEvents = 'none'; };
+                          }}>
                           <span className="font-bold">{name}</span>
                           <span className={`ml-1.5 ${done ? 'text-emerald-300' : 'text-amber-300'}`}>{done ? 'Done' : 'Working'}</span>
                           <div className="text-slate-300 mt-0.5 truncate">{statusText.length > 50 ? statusText.slice(0, 50) + '...' : statusText}</div>

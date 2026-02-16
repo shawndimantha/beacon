@@ -686,8 +686,10 @@ async def run_agent_conversation(agent_name: str, prompt: str, model: str) -> st
 # State helpers (async-safe)
 # ---------------------------------------------------------------------------
 
-async def add_agent_update(agent_name: str, message: str, update_type: str = "status", completed: bool = False):
+async def add_agent_update(agent_name: str, message: str, update_type: str = "status", completed: bool = False, mission_id: str = None):
     async with state_lock:
+        if mission_id and current_mission_id != mission_id:
+            return False  # Stale agent, stop writing
         agent = app_state["agents"].get(agent_name, {})
         if "updates" not in agent:
             agent["updates"] = []
@@ -697,17 +699,21 @@ async def add_agent_update(agent_name: str, message: str, update_type: str = "st
             "message": message,
             "completed": completed,
         })
+    return True
         app_state["agents"][agent_name] = agent
 
 
-async def update_agent_status(agent_name: str, status: str, current_task: str = ""):
+async def update_agent_status(agent_name: str, status: str, current_task: str = "", mission_id: str = None):
     async with state_lock:
+        if mission_id and current_mission_id != mission_id:
+            return False  # Stale agent
         if agent_name not in app_state["agents"]:
             app_state["agents"][agent_name] = {}
         app_state["agents"][agent_name]["status"] = status
         app_state["agents"][agent_name]["lastRun"] = datetime.now().isoformat()
         if current_task:
             app_state["agents"][agent_name]["current_task"] = current_task
+    return True
 
 
 def build_prompt(agent_name: str, plan: dict, iteration: int, num_iterations: int) -> str:
@@ -886,10 +892,12 @@ TASK_DESCRIPTIONS = {
 }
 
 
-async def run_agent_loop(agent_name: str, demo: bool = True):
+async def run_agent_loop(agent_name: str, demo: bool = True, mission_id: str = None):
     """Run all iterations of an agent."""
-    await update_agent_status(agent_name, "working", TASK_DESCRIPTIONS.get(agent_name, "Working..."))
-    await add_agent_update(agent_name, f"Starting {agent_name} agent...")
+    await update_agent_status(agent_name, "working", TASK_DESCRIPTIONS.get(agent_name, "Working..."), mission_id=mission_id)
+    alive = await add_agent_update(agent_name, f"Starting {agent_name} agent...", mission_id=mission_id)
+    if alive is False:
+        return  # Mission changed, abort
 
     models = DEMO_MODELS if demo else MODELS
     iterations = DEMO_ITERATIONS if demo else ITERATIONS
@@ -898,18 +906,32 @@ async def run_agent_loop(agent_name: str, demo: bool = True):
 
     try:
         for i in range(num_iterations):
+            # Check if mission has changed
+            if mission_id and current_mission_id != mission_id:
+                print(f"  🛑 {agent_name} aborted — mission changed")
+                return
+
             if agent_name == "strategist" and i > 0:
-                await add_agent_update(agent_name, "Waiting for more agent data...")
+                await add_agent_update(agent_name, "Waiting for more agent data...", mission_id=mission_id)
                 await asyncio.sleep(5)
 
-            await add_agent_update(agent_name, f"Iteration {i+1}/{num_iterations}...")
+            await add_agent_update(agent_name, f"Iteration {i+1}/{num_iterations}...", mission_id=mission_id)
 
             async with state_lock:
+                if mission_id and current_mission_id != mission_id:
+                    return
                 prompt = build_prompt(agent_name, shared_plan, i, num_iterations)
 
             raw_output, tc_count = await run_agent_conversation(agent_name, prompt, model)
 
+            # Check again after long API call
+            if mission_id and current_mission_id != mission_id:
+                print(f"  🛑 {agent_name} aborted after API call — mission changed")
+                return
+
             async with state_lock:
+                if mission_id and current_mission_id != mission_id:
+                    return
                 merge_output(agent_name, raw_output)
                 agent_data = app_state["agents"].setdefault(agent_name, {})
                 agent_data["tool_calls_count"] = agent_data.get("tool_calls_count", 0) + tc_count
@@ -919,36 +941,39 @@ async def run_agent_loop(agent_name: str, demo: bool = True):
                 knowledge = shared_plan["knowledge"].get(agent_name, {})
             if agent_name == "scout":
                 findings = knowledge.get("findings", [])
-                await add_agent_update(agent_name, f"Found {len(findings)} research findings", "status", True)
+                await add_agent_update(agent_name, f"Found {len(findings)} research findings", "status", True, mission_id=mission_id)
                 for f in findings[:3]:
-                    await add_agent_update(agent_name, f.get("title", "Finding"), "finding", True)
+                    await add_agent_update(agent_name, f.get("title", "Finding"), "finding", True, mission_id=mission_id)
             elif agent_name == "connector":
                 contacts = knowledge.get("contacts", [])
-                await add_agent_update(agent_name, f"Identified {len(contacts)} outreach targets", "status", True)
+                await add_agent_update(agent_name, f"Identified {len(contacts)} outreach targets", "status", True, mission_id=mission_id)
             elif agent_name == "navigator":
-                await add_agent_update(agent_name, "Regulatory pathway mapping complete", "status", True)
+                await add_agent_update(agent_name, "Regulatory pathway mapping complete", "status", True, mission_id=mission_id)
             elif agent_name == "mobilizer":
                 grants = knowledge.get("grants", [])
-                await add_agent_update(agent_name, f"Found {len(grants)} grant opportunities", "status", True)
+                await add_agent_update(agent_name, f"Found {len(grants)} grant opportunities", "status", True, mission_id=mission_id)
             elif agent_name == "strategist":
-                await add_agent_update(agent_name, "Weekly briefing ready", "finding", True)
+                await add_agent_update(agent_name, "Weekly briefing ready", "finding", True, mission_id=mission_id)
             elif agent_name == "biologist":
                 targets = knowledge.get("targets", [])
-                await add_agent_update(agent_name, f"Identified {len(targets)} therapeutic targets", "status", True)
+                await add_agent_update(agent_name, f"Identified {len(targets)} therapeutic targets", "status", True, mission_id=mission_id)
             elif agent_name == "chemist":
                 candidates = knowledge.get("repurposing_candidates", [])
-                await add_agent_update(agent_name, f"Found {len(candidates)} repurposing candidates", "status", True)
+                await add_agent_update(agent_name, f"Found {len(candidates)} repurposing candidates", "status", True, mission_id=mission_id)
             elif agent_name == "preclinician":
                 evals = knowledge.get("candidate_evaluations", [])
-                await add_agent_update(agent_name, f"Evaluated {len(evals)} candidates", "status", True)
+                await add_agent_update(agent_name, f"Evaluated {len(evals)} candidates", "status", True, mission_id=mission_id)
 
             print(f"  ✅ {agent_name} iteration {i+1}/{num_iterations} complete")
 
-        await update_agent_status(agent_name, "complete")
+        if mission_id and current_mission_id != mission_id:
+            return
+        await update_agent_status(agent_name, "complete", mission_id=mission_id)
     except Exception as e:
         traceback.print_exc()
-        await update_agent_status(agent_name, "error")
-        await add_agent_update(agent_name, f"Error: {str(e)[:100]}", "status", False)
+        if mission_id and current_mission_id == mission_id:
+            await update_agent_status(agent_name, "error", mission_id=mission_id)
+            await add_agent_update(agent_name, f"Error: {str(e)[:100]}", "status", False, mission_id=mission_id)
 
 
 # ---------------------------------------------------------------------------
@@ -964,10 +989,16 @@ class LaunchRequest(BaseModel):
     demo: bool = True
 
 
+current_mission_id = None
+
 @app.post("/api/launch")
 async def launch(req: LaunchRequest):
     """Launch all agents for a mission."""
-    global app_state, shared_plan
+    global app_state, shared_plan, current_mission_id
+
+    import uuid
+    mission_id = str(uuid.uuid4())[:8]
+    current_mission_id = mission_id
 
     async with state_lock:
         # Reset state
@@ -979,6 +1010,7 @@ async def launch(req: LaunchRequest):
             "location": req.location,
             "stage": "launch",
             "created_at": datetime.now().isoformat(),
+            "mission_id": mission_id,
         }
         app_state = {
             "mission": mission,
@@ -998,6 +1030,8 @@ async def launch(req: LaunchRequest):
 
     async def run_synthesis():
         """Extended context synthesis: concatenate all agent outputs and produce unified briefing."""
+        if current_mission_id != mission_id:
+            return
         async with state_lock:
             app_state["synthesis"] = {"status": "running", "result": None}
             all_knowledge = json.dumps(shared_plan.get("knowledge", {}), indent=1, default=str)
@@ -1039,11 +1073,13 @@ Write for a non-expert family member. Be warm, clear, and action-oriented.
                 app_state["synthesis"] = {"status": "error", "result": str(e)[:200]}
 
     async def run_all():
-        await asyncio.gather(*[run_agent_loop(name, demo=req.demo) for name in agent_names])
-        # Run extended context synthesis after all agents complete
+        await asyncio.gather(*[run_agent_loop(name, demo=req.demo, mission_id=mission_id) for name in agent_names])
+        if current_mission_id != mission_id:
+            return  # Mission changed, skip synthesis
         await run_synthesis()
-        async with state_lock:
-            app_state["mission"]["stage"] = "roadmap"
+        if current_mission_id == mission_id:
+            async with state_lock:
+                app_state["mission"]["stage"] = "roadmap"
 
     asyncio.create_task(run_all())
     return {"status": "launched", "agents": agent_names}

@@ -274,6 +274,14 @@
       { stage: 'Lab Testing Queue', count: 2, color: 'emerald' },
     ];
 
+    const CRO_CONTACTS = {
+      1: { name: 'Charles River Laboratories', specialty: 'Biochemical assay services', email: 'drugdiscovery@crl.com', subject: 'BD Inquiry — Biochemical IC50 Assay for CLN3 Batten Disease Targets', body: 'Dear Charles River Discovery team,\n\nWe are a rare disease family research initiative investigating CLN3 Batten Disease (Juvenile Neuronal Ceroid Lipofuscinosis). We have identified 5 promising compound candidates through computational screening and would like to commission a Tier 1 biochemical IC50 assay panel.\n\nTargets: TRPML1 agonism, TPP1 enhancement, CLN3 protein restoration\nCompounds: Top 5 candidates from virtual screen (structures available)\nAssay type: Dose-response IC50/EC50\nTimeline need: 2-4 weeks\n\nCould you provide a quote and discuss protocol design?\n\nBest regards,\n[Your name]' },
+      2: { name: 'Eurofins Discovery', specialty: 'Cell-based functional assays', email: 'discovery@eurofins.com', subject: 'Cell-Based Functional Assay — CLN3 Batten Disease Compound Panel', body: 'Dear Eurofins Discovery team,\n\nFollowing successful biochemical screening, we need cell-based functional assays for our top 3 CLN3 Batten Disease compound candidates.\n\nAssay: Lysosomal storage clearance in CLN3-null fibroblasts\nCompounds: Top 3 from Tier 1 biochemical screen\nReadouts: Subunit c storage, lysosomal pH, autophagy markers\nTimeline: 4-6 weeks\n\nPlease advise on feasibility and pricing.\n\nBest regards,\n[Your name]' },
+      3: { name: 'Absorption Systems (Pharmaron)', specialty: 'ADMET profiling', email: 'admet@pharmaron.com', subject: 'ADMET Panel Request — CLN3 Therapeutic Candidates', body: 'Dear Pharmaron ADMET team,\n\nWe require a standard ADMET panel for 3 compounds advancing through our CLN3 Batten Disease pipeline.\n\nPanel: Microsomal stability, plasma protein binding, CYP inhibition, Caco-2 permeability, hERG\nCompounds: 3 candidates (MW 250-450, oral route intended)\nTimeline: 2-3 weeks\n\nPlease provide a quote.\n\nBest regards,\n[Your name]' },
+      4: { name: 'Charles River Laboratories', specialty: 'In vivo pharmacokinetics', email: 'invivo@crl.com', subject: 'Mouse PK Study — CLN3 Batten Disease Lead Compounds', body: 'Dear Charles River In Vivo team,\n\nWe need a mouse PK study for 2 lead compounds targeting CLN3 Batten Disease.\n\nStudy: Single-dose PK in CD-1 mice (IV + PO)\nCompounds: 2 leads with confirmed in vitro activity\nEndpoints: Plasma PK, brain penetration (critical — CNS disease)\nTimeline: 6-8 weeks\n\nPlease advise on study design and pricing.\n\nBest regards,\n[Your name]' },
+      5: { name: 'The Jackson Laboratory', specialty: 'Disease model efficacy studies', email: 'services@jax.org', subject: 'Efficacy Study in CLN3 Mouse Model — Lead Compound', body: 'Dear Jackson Laboratory team,\n\nWe are seeking an efficacy study using the Cln3Δex7/8 mouse model for our lead CLN3 Batten Disease compound.\n\nModel: Cln3Δex7/8 knock-in mouse\nCompound: 1 lead with confirmed PK and brain penetration\nEndpoints: Subunit c storage, neuroinflammation, motor function, survival\nDuration: 3-6 months dosing\n\nPlease discuss feasibility and study design.\n\nBest regards,\n[Your name]' },
+    };
+
     const LAB_EXPERIMENTS = [
       { tier: 1, name: 'Biochemical Assay (IC50)', compounds: 'Top 5', cost: '$8-15K', timeline: '2-4 weeks', status: 'ready' },
       { tier: 2, name: 'Cell-Based Functional Assay', compounds: 'Top 3', cost: '$15-30K', timeline: '4-6 weeks', status: 'pending' },
@@ -1437,9 +1445,16 @@
                         <p className="text-xs font-bold text-slate-700">Your Later List</p>
                         <p className="text-[11px] text-slate-400">{laterItems.length} item{laterItems.length !== 1 ? 's' : ''} saved — come back anytime</p>
                       </div>
-                      <div className="flex gap-1">
+                      <div className="flex gap-1 flex-wrap">
                         {laterItems.map((item, i) => (
-                          <div key={i} className="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center text-[8px] font-bold text-indigo-600">{i + 1}</div>
+                          <button key={i} onClick={() => {
+                            if (item.id === 'email' || item.id === 'everycure') {
+                              handleApproveDecision(item);
+                              setLaterItems(prev => prev.filter((_, idx) => idx !== i));
+                            } else {
+                              setLaterItems(prev => prev.filter((_, idx) => idx !== i));
+                            }
+                          }} className="px-2.5 py-1 bg-indigo-100 hover:bg-indigo-200 rounded-full text-[9px] font-bold text-indigo-600 transition-colors cursor-pointer truncate max-w-[120px]" title={item.title}>{item.title || `Item ${i+1}`}</button>
                         ))}
                       </div>
                     </div>
@@ -1781,6 +1796,7 @@
       const [pdbLoaded, setPdbLoaded] = useState(false);
       const [labSection, setLabSection] = useState('overview'); // 'overview' | 'candidates' | 'experiments'
       const [labSummary, setLabSummary] = useState(null);
+      const [croModal, setCroModal] = useState(null);
       const [researcherBriefing, setResearcherBriefing] = useState(null);
       const [showResearcherBriefing, setShowResearcherBriefing] = useState(false);
       const [summaryExpanded, setSummaryExpanded] = useState(false);
@@ -1976,7 +1992,7 @@
         );
       }
 
-      return (
+      return (<React.Fragment>
         <div className="max-w-7xl mx-auto px-8 py-8 space-y-8">
 
           {/* Lab Header */}
@@ -2352,7 +2368,7 @@
                             <p className="text-[10px] text-slate-400">{exp.timeline}</p>
                           </div>
                           {exp.status === 'ready' ? (
-                            <button className="px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 transition-colors shadow-md shadow-indigo-200">
+                            <button onClick={() => setCroModal(CRO_CONTACTS[exp.tier])} className="px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 transition-colors shadow-md shadow-indigo-200">
                               Approve & Queue
                             </button>
                           ) : (
@@ -2398,24 +2414,76 @@
                 </div>
               </div>
 
-              {/* CRO Pipeline placeholder */}
+              {/* CRO Pipeline */}
               <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
                 <h3 className="font-bold text-sm mb-3 flex items-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                   CRO Pipeline
                 </h3>
-                <div className="text-center py-8">
-                  <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                  </div>
-                  <p className="text-sm font-medium text-slate-500">No CRO outreach yet</p>
-                  <p className="text-xs text-slate-400 mt-1">Approve a Tier 1 experiment above to start CRO matching</p>
+                <div className="space-y-3">
+                  {LAB_EXPERIMENTS.map((exp, i) => {
+                    const cro = CRO_CONTACTS[exp.tier];
+                    return (
+                      <div key={i} className={`flex items-center justify-between p-3 rounded-xl border ${exp.status === 'ready' ? 'border-indigo-200 bg-indigo-50' : 'border-slate-100 bg-slate-50'}`}>
+                        <div className="flex items-center gap-3">
+                          <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-black ${exp.status === 'ready' ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-400'}`}>T{exp.tier}</div>
+                          <div>
+                            <p className={`text-xs font-bold ${exp.status === 'ready' ? 'text-slate-800' : 'text-slate-400'}`}>{cro.name}</p>
+                            <p className="text-[10px] text-slate-400">{cro.specialty}</p>
+                          </div>
+                        </div>
+                        {exp.status === 'ready' ? (
+                          <button onClick={() => setCroModal(cro)} className="px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-lg text-[10px] font-bold hover:bg-indigo-200 transition-colors">View Draft</button>
+                        ) : (
+                          <span className="px-2 py-1 bg-slate-100 text-slate-400 rounded-lg text-[10px] font-medium">Pending</span>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
           )}
         </div>
-      );
+
+        {croModal && (
+          <div className="modal-overlay" onClick={() => setCroModal(null)}>
+            <div className="modal" onClick={e => e.stopPropagation()}>
+              <div className="flex justify-between items-center mb-6">
+                <div>
+                  <span className="bg-indigo-100 text-indigo-700 text-[10px] font-black px-2 py-0.5 rounded uppercase">CRO Outreach</span>
+                  <h2 className="text-xl font-bold mt-2">{croModal.name}</h2>
+                  <p className="text-xs text-slate-400 mt-1">{croModal.specialty}</p>
+                </div>
+                <button onClick={() => setCroModal(null)} className="text-slate-400 hover:text-slate-800 text-2xl leading-none">&times;</button>
+              </div>
+              <div className="mb-4">
+                <label className="block font-semibold text-sm text-slate-700 mb-1">To:</label>
+                <input type="text" defaultValue={croModal.email} className="w-full px-3 py-2 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500" id="cro-to" />
+              </div>
+              <div className="mb-4">
+                <label className="block font-semibold text-sm text-slate-700 mb-1">Subject:</label>
+                <input type="text" defaultValue={croModal.subject} className="w-full px-3 py-2 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500" id="cro-subject" />
+              </div>
+              <div className="mb-4">
+                <label className="block font-semibold text-sm text-slate-700 mb-1">Message:</label>
+                <textarea defaultValue={croModal.body} className="w-full px-3 py-3 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500 min-h-[180px] font-sans" id="cro-body" />
+              </div>
+              <div className="flex gap-3">
+                <button onClick={() => {
+                  const to = document.getElementById('cro-to').value;
+                  const subject = document.getElementById('cro-subject').value;
+                  const body = document.getElementById('cro-body').value;
+                  const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                  window.open(mailto, '_blank');
+                  setCroModal(null);
+                }} className="px-6 py-3 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-600 transition-colors shadow-md">Open in Email Client</button>
+                <button onClick={() => setCroModal(null)} className="px-6 py-3 bg-slate-200 text-slate-700 rounded-xl font-bold text-sm hover:bg-slate-300 transition-colors">Cancel</button>
+              </div>
+            </div>
+          </div>
+        )}
+      </React.Fragment>);
     }
 
     // ==========================================
@@ -3009,7 +3077,7 @@ Generated by Beacon AI · Scout + Navigator agents`;
             )}
 
             <div className="flex gap-3">
-              <button onClick={() => onSuccess('Outreach approved and queued!')} className="px-6 py-3 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-600 transition-colors shadow-md">Approve & Send</button>
+              <button onClick={() => { const mailto = `mailto:${encodeURIComponent(edited.to)}?subject=${encodeURIComponent(edited.subject)}&body=${encodeURIComponent(edited.body)}`; window.open(mailto, '_blank'); onSuccess('Outreach approved!'); }} className="px-6 py-3 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-600 transition-colors shadow-md">Open in Email Client</button>
               <button onClick={onClose} className="px-6 py-3 bg-slate-200 text-slate-700 rounded-xl font-bold text-sm hover:bg-slate-300 transition-colors">Cancel</button>
             </div>
           </div>
@@ -3025,8 +3093,8 @@ Generated by Beacon AI · Scout + Navigator agents`;
       const [edited, setEdited] = useState({ ...approval });
 
       const handleApprove = () => {
-        console.log('Approved:', edited);
-        alert('Email approved and queued for sending!');
+        const mailto = `mailto:${encodeURIComponent(edited.to)}?subject=${encodeURIComponent(edited.subject)}&body=${encodeURIComponent(edited.body)}`;
+        window.open(mailto, '_blank');
         onClose();
       };
 
@@ -3064,7 +3132,7 @@ Generated by Beacon AI · Scout + Navigator agents`;
             )}
 
             <div className="flex gap-3 mt-6">
-              <button onClick={handleApprove} className="px-6 py-3 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-600 transition-colors shadow-md">Approve & Send</button>
+              <button onClick={handleApprove} className="px-6 py-3 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-600 transition-colors shadow-md">Open in Email Client</button>
               <button onClick={() => alert('Edits saved!')} className="px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold text-sm hover:bg-indigo-700 transition-colors">Save Edits</button>
               <button onClick={onClose} className="px-6 py-3 bg-slate-200 text-slate-700 rounded-xl font-bold text-sm hover:bg-slate-300 transition-colors">Cancel</button>
             </div>

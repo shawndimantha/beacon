@@ -1250,12 +1250,31 @@
                 <span className="text-sm font-bold px-3 py-1 bg-slate-100 rounded-full">{mission.disease || 'CLN3 Batten Disease'}</span>
               </div>
               <div className="flex items-center gap-4">
-                <div className="flex -space-x-2">
-                  {Object.entries(AGENT_COLORS).map(([name, color]) => (
-                    <div key={name} className={`w-7 h-7 rounded-full bg-${color}-500 border-2 border-white flex items-center justify-center text-[8px] text-white font-bold`} title={name}>
-                      {name[0]}
-                    </div>
-                  ))}
+                <div className="flex -space-x-1.5 group/agents">
+                  {Object.entries(AGENT_COLORS).map(([name, color]) => {
+                    const s = agentStatuses[name];
+                    const done = s?.done;
+                    const statusText = s?.status || 'Waiting...';
+                    return (
+                      <div key={name} className="relative">
+                        <div className={`w-7 h-7 rounded-full border-2 flex items-center justify-center text-[8px] font-bold transition-all ${done ? 'bg-emerald-500 border-emerald-300 text-white' : `bg-${color}-500 border-white text-white`}`}
+                          title={`${name}: ${statusText}`}>
+                          {done ? (
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                          ) : name[0]}
+                          {!done && s?.status && (
+                            <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-amber-400 rounded-full border border-white animate-pulse"></span>
+                          )}
+                        </div>
+                        <div className="absolute top-9 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[9px] px-2 py-1.5 rounded-lg whitespace-nowrap opacity-0 pointer-events-none group-hover/agents:opacity-0 hover:!opacity-100 transition-opacity z-50 shadow-lg max-w-[200px]">
+                          <span className="font-bold">{name}</span>
+                          <span className={`ml-1.5 ${done ? 'text-emerald-300' : 'text-amber-300'}`}>{done ? 'Done' : 'Working'}</span>
+                          <div className="text-slate-300 mt-0.5 truncate">{statusText.length > 50 ? statusText.slice(0, 50) + '...' : statusText}</div>
+                          <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-800 rotate-45"></div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
                 <button
                   onClick={() => setShowArch(true)}

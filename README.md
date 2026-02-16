@@ -48,7 +48,6 @@ Beacon assembles a team of AI agents, each specialized in a critical domain:
 - **Backend:** FastAPI server using Anthropic API directly (Opus 4.6 for live, Haiku for cheap/demo), deployed on Railway
 - **Agents:** 8 specialized AI agents, each with a domain-specific system prompt
 - **MCP Connectors:** ClinicalTrials.gov, ChEMBL, bioRxiv, CMS Coverage, NPI Registry
-- **Narration:** Cartesia TTS (Sonic 2) for Guide agent voiceover
 - **State:** Backend JSON state polled by frontend in real time
 - **Deployment:** Vercel (frontend) + Railway (backend)
 
@@ -102,7 +101,6 @@ beacon/
 - [Claude Opus 4.6](https://anthropic.com) — Powers all 8 agents
 - [Claude Code](https://claude.com/claude-code) — Agent orchestration, sub-agent management, and primary development tool
 - Anthropic Healthcare & Life Sciences MCP connectors (bioRxiv, ClinicalTrials.gov, ChEMBL, CMS Coverage, NPI Registry)
-- [Cartesia Sonic 2](https://cartesia.ai) — TTS for Guide agent narration
 
 ## The Demo Disease
 

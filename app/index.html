@@ -1176,23 +1176,23 @@
                     })}
                   </div>
 
-                  {/* Achievement cards — stream in one by one */}
-                  <div className="flex gap-3">
-                    {achievements.map((a, i) => (
-                      <div key={i} className="flex-1 bg-emerald-50 rounded-xl p-3 border border-emerald-100 fade-up">
-                        <div className="flex items-center gap-2 mb-1">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                          <span className="text-[10px] font-bold text-emerald-700 uppercase">Done</span>
+                  {/* Achievement cards — stream in, max 3 visible with overflow */}
+                  <div className="grid grid-cols-3 gap-2 max-h-[120px] overflow-y-auto">
+                    {achievements.slice(0, 9).map((a, i) => (
+                      <div key={i} className="bg-emerald-50 rounded-xl p-2.5 border border-emerald-100 fade-up">
+                        <div className="flex items-center gap-1.5 mb-0.5">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                          <span className="text-[9px] font-bold text-emerald-700 uppercase">Done</span>
                         </div>
-                        <p className="text-xs text-emerald-800 font-semibold">{a.text}</p>
+                        <p className="text-[10px] text-emerald-800 font-semibold leading-tight line-clamp-2">{a.text}</p>
                       </div>
                     ))}
-                    {achievements.length === 0 && (
-                      <div className="flex-1 bg-slate-50 rounded-xl p-3 border border-slate-100 text-center">
-                        <p className="text-xs text-slate-400 font-medium">Your team is analyzing<span className="agent-pulse"> ...</span></p>
-                      </div>
-                    )}
                   </div>
+                  {achievements.length === 0 && (
+                    <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 text-center">
+                      <p className="text-xs text-slate-400 font-medium">Your team is analyzing<span className="agent-pulse"> ...</span></p>
+                    </div>
+                  )}
                 </div>
 
                 </div>{/* end left column */}

@@ -473,10 +473,15 @@
       const [selectedApproval, setSelectedApproval] = useState(null);
 
       const demo = isDemo();
+      const urlDisease = new URLSearchParams(window.location.search).get('disease');
 
       useEffect(() => {
         if (demo && !mission.disease) {
           setMission({ disease: 'Batten Disease (CLN3)', journeyStage: 'just-diagnosed', patient: 'child', location: 'us' });
+        }
+        if (urlDisease && !demo) {
+          setMission(prev => ({ ...prev, disease: urlDisease }));
+          setView('dashboard');
         }
       }, [demo]);
 

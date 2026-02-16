@@ -65,9 +65,25 @@ ANTHROPIC_API_KEY=sk-... uvicorn main:app --port 8000
 # Demo mode (no backend needed)
 open http://localhost:3333?demo
 
-# Regenerate narration audio
-CARTESIA_API_KEY=... node scripts/generate-narration.js
 ```
+
+## Deploying to Production
+
+### Frontend → Vercel
+
+```bash
+cd app
+vercel --prod
+```
+
+This deploys the `app/` folder as a static site. No build step required.
+
+### Backend → Railway
+
+1. Create a new Railway project and link the `backend/` directory.
+2. Set the environment variable `ANTHROPIC_API_KEY` in Railway's dashboard.
+3. Railway auto-detects the `Dockerfile` in `backend/` and deploys.
+4. Update the backend URL in `app/index.html` (search for `RAILWAY_BACKEND`) to point to your Railway deployment URL.
 
 ## Project Structure
 

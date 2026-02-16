@@ -1606,13 +1606,21 @@
                             ))}
                           </div>
 
-                          <div className="mt-4 p-3 bg-emerald-50 rounded-xl border border-emerald-100">
-                            <div className="flex items-center gap-2 mb-0.5">
-                              <span className="bg-emerald-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded uppercase">Lead</span>
-                              <span className="text-xs font-bold text-emerald-900">Tamoxifen</span>
-                            </div>
-                            <p className="text-[10px] text-emerald-700">TRPML1 agonist &middot; FDA-approved &middot; Ped. data</p>
-                          </div>
+                          {(() => {
+                            const leadCandidate = livePlan?.knowledge?.chemist?.repurposing_candidates?.[0];
+                            if (!leadCandidate) return null;
+                            return (
+                              <div className="mt-4 p-3 bg-emerald-50 rounded-xl border border-emerald-100">
+                                <div className="flex items-center gap-2 mb-0.5">
+                                  <span className="bg-emerald-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded uppercase">Lead</span>
+                                  <span className="text-xs font-bold text-emerald-900">{leadCandidate.name}</span>
+                                </div>
+                                <p className="text-[10px] text-emerald-700">
+                                  {[leadCandidate.mechanism || leadCandidate.moa, leadCandidate.fda_approved || leadCandidate.max_phase === 4 ? 'FDA-approved' : null].filter(Boolean).join(' · ') || 'Repurposing candidate'}
+                                </p>
+                              </div>
+                            );
+                          })()}
                         </div>
 
                         {/* Team Status */}
@@ -1775,6 +1783,7 @@
       const [labSummary, setLabSummary] = useState(null);
       const [researcherBriefing, setResearcherBriefing] = useState(null);
       const [showResearcherBriefing, setShowResearcherBriefing] = useState(false);
+      const [summaryExpanded, setSummaryExpanded] = useState(false);
       const summaryFetched = useRef(false);
 
       useEffect(() => {
@@ -1817,6 +1826,7 @@
           genetic_evidence: t.genetic_evidence || 0.5,
           pathway: t.pathway || '',
           rationale: t.rationale || t.disease_role || '',
+          pdb_file: t.alphafold_pdb_url || t.pdb_file || (t.uniprot_id ? `https://alphafold.ebi.ac.uk/files/AF-${t.uniprot_id}-F1-model_v4.pdb` : null),
         }));
       }, [livePlan]);
 
@@ -1951,8 +1961,32 @@
           {labSection === 'overview' && (
             <div className="space-y-6">
 
+            {/* Agent Progress Bar */}
+            {livePlan && (() => {
+              const hasBio = (livePlan.knowledge?.biologist?.targets || []).length > 0;
+              const hasChem = (livePlan.knowledge?.chemist?.repurposing_candidates || []).length > 0;
+              const hasPrec = (livePlan.knowledge?.preclinician?.candidate_evaluations || []).length > 0;
+              const done = [hasBio, hasChem, hasPrec].filter(Boolean).length;
+              if (done === 3) return null;
+              return (
+                <div className="bg-white/80 backdrop-blur rounded-2xl p-4 border border-indigo-100 flex items-center gap-4">
+                  <div className="w-8 h-8 border-3 border-indigo-200 border-t-indigo-600 rounded-full animate-spin flex-shrink-0"></div>
+                  <div className="flex-1">
+                    <div className="text-sm font-bold text-indigo-900 mb-1">Lab agents working... ({done}/3 complete)</div>
+                    <div className="flex gap-3">
+                      {[{name:'Biologist',ok:hasBio},{name:'Chemist',ok:hasChem},{name:'Preclinician',ok:hasPrec}].map(a => (
+                        <span key={a.name} className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${a.ok ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-400'}`}>
+                          {a.ok ? '✓' : '⏳'} {a.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
             {/* Family Summary */}
-            {livePlan && (
+            {(livePlan) && (
               <div className="bg-gradient-to-r from-indigo-50 to-violet-50 rounded-3xl p-6 border border-indigo-200 shadow-sm">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
@@ -1972,9 +2006,24 @@
                     </button>
                   )}
                 </div>
-                {labSummary ? (
-                  <div className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">{labSummary}</div>
-                ) : (
+                {labSummary ? (() => {
+                  const sentences = labSummary.split(/(?<=\.)\s+/);
+                  const tldr = sentences.slice(0, 2).join(' ');
+                  const hasMore = sentences.length > 2;
+                  return (
+                    <div>
+                      <div className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+                        {summaryExpanded ? labSummary : tldr}
+                      </div>
+                      {hasMore && (
+                        <button onClick={() => setSummaryExpanded(!summaryExpanded)}
+                          className="mt-2 text-[11px] font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
+                          {summaryExpanded ? '▲ Show less' : '▼ Read more'}
+                        </button>
+                      )}
+                    </div>
+                  );
+                })() : (
                   <div className="flex items-center gap-2 text-sm text-indigo-400">
                     <div className="w-4 h-4 border-2 border-indigo-300 border-t-transparent rounded-full animate-spin"></div>
                     Generating family-friendly summary...

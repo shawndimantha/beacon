@@ -1826,7 +1826,12 @@
           genetic_evidence: t.genetic_evidence || 0.5,
           pathway: t.pathway || '',
           rationale: t.rationale || t.disease_role || '',
-          pdb_file: t.alphafold_pdb_url || t.pdb_file || (t.uniprot_id ? `https://alphafold.ebi.ac.uk/files/AF-${t.uniprot_id}-F1-model_v4.pdb` : null),
+          pdb_file: (() => {
+            const raw = t.alphafold_pdb_url || t.pdb_file;
+            if (raw) return raw.replace(/model_v\d+/, 'model_v6');
+            if (t.uniprot_id) return `https://alphafold.ebi.ac.uk/files/AF-${t.uniprot_id}-F1-model_v6.pdb`;
+            return null;
+          })(),
         }));
       }, [livePlan]);
 
@@ -1871,23 +1876,49 @@
       const candidates = liveCandidates || LAB_CANDIDATES;
 
       const doLoadPdb = async (viewer, target) => {
-        try {
-          const resp = await fetch(target.pdb_file);
-          if (!resp.ok) throw new Error('HTTP ' + resp.status);
-          const pdb = await resp.text();
-          if (!pdb || pdb.length < 100) throw new Error('Empty PDB');
+        const renderPdb = (pdb) => {
           viewer.addModel(pdb, 'pdb');
           viewer.setStyle({}, { cartoon: { color: 'spectrum' } });
           viewer.zoomTo();
           viewer.render();
           viewer.spin('y', 0.5);
           setPdbLoaded(true);
+        };
+        const tryFetch = async (url) => {
+          const resp = await fetch(url);
+          if (!resp.ok) throw new Error('HTTP ' + resp.status);
+          const pdb = await resp.text();
+          if (!pdb || pdb.length < 100) throw new Error('Empty PDB');
+          return pdb;
+        };
+        try {
+          // Try direct URL first
+          const pdb = await tryFetch(target.pdb_file);
+          renderPdb(pdb);
         } catch (e) {
-          console.error('PDB load error:', e, 'for', target.pdb_file);
-          viewer.addSphere({ center: { x: 0, y: 0, z: 0 }, radius: 10, color: '0x6366f1', alpha: 0.5 });
-          viewer.addLabel(target.name, { position: { x: 0, y: 12, z: 0 }, fontSize: 14, backgroundColor: '0x6366f1', fontColor: 'white' });
-          viewer.zoomTo();
-          viewer.render();
+          console.warn('Direct PDB failed:', e.message, '- trying AlphaFold API lookup');
+          try {
+            // Fallback: query AlphaFold API for correct URL using uniprot_id
+            if (target.uniprot_id) {
+              const apiResp = await fetch(`https://alphafold.ebi.ac.uk/api/prediction/${target.uniprot_id}`);
+              if (apiResp.ok) {
+                const data = await apiResp.json();
+                const entry = data[0];
+                if (entry) {
+                  const pdbUrl = `https://alphafold.ebi.ac.uk/files/AF-${entry.uniprotAccession}-F1-model_v${entry.latestVersion}.pdb`;
+                  const pdb = await tryFetch(pdbUrl);
+                  renderPdb(pdb);
+                  return;
+                }
+              }
+            }
+            throw new Error('API fallback failed');
+          } catch (e2) {
+            console.error('All PDB load attempts failed:', e2, 'for', target.name);
+            viewer.addSphere({ center: { x: 0, y: 0, z: 0 }, radius: 10, color: '0x6366f1', alpha: 0.5 });
+            viewer.addLabel(target.name, { position: { x: 0, y: 12, z: 0 }, fontSize: 14, backgroundColor: '0x6366f1', fontColor: 'white' });
+            viewer.zoomTo();
+            viewer.render();
           setPdbLoaded(true);
         }
       };

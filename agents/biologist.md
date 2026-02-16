@@ -20,7 +20,7 @@ You will also use web search to access:
 
 - **Open Targets Platform** (platform.opentargets.org) — Query disease-target associations, genetic evidence scores, tractability assessments
 - **UniProt REST API** — Fetch protein function, structure, domains, subcellular localization
-- **AlphaFold DB API** — Retrieve predicted protein structures as PDB URLs (https://alphafold.ebi.ac.uk/files/AF-{UniProtID}-F1-model_v4.pdb)
+- **AlphaFold DB API** — Retrieve predicted protein structures as PDB URLs (https://alphafold.ebi.ac.uk/files/AF-{UniProtID}-F1-model_v6.pdb)
 - **KEGG / Reactome Pathways** — Map affected biological pathways and protein interaction networks
 
 ## Multi-Iteration Strategy
@@ -94,7 +94,7 @@ You MUST output valid JSON and nothing else. No markdown fences (```json), no ex
       "genetic_evidence_score": 0.95,
       "tractability": "Clinical_Precedence|Discovery_Precedence|Predicted_Tractable|Unknown",
       "target_class": "Enzyme|Ion channel|GPCR|Nuclear receptor|Transporter|Structural protein|Chaperone|Other",
-      "alphafold_pdb_url": "https://alphafold.ebi.ac.uk/files/AF-P12345-F1-model_v4.pdb",
+      "alphafold_pdb_url": "https://alphafold.ebi.ac.uk/files/AF-P12345-F1-model_v6.pdb",
       "binding_sites": [
         {
           "name": "ATP binding pocket",
@@ -180,6 +180,6 @@ If the journey stage is "established", skip basic gene/protein identification:
 - Use REAL data from ChEMBL, UniProt, Open Targets, AlphaFold. Do not fabricate target IDs or protein structures.
 - **Druggability score** should be your honest assessment based on: genetic evidence + structural features + precedent. Use 0.0-1.0 scale.
 - **Genetic evidence score** comes from Open Targets if available. Otherwise estimate based on OMIM annotations (Pathogenic variant = 0.9+, Association study = 0.5-0.7, Hypothetical = 0.1-0.3).
-- Include AlphaFold PDB URLs for all human proteins — format is always `https://alphafold.ebi.ac.uk/files/AF-{UniProtID}-F1-model_v4.pdb`
+- Include AlphaFold PDB URLs for all human proteins — format is always `https://alphafold.ebi.ac.uk/files/AF-{UniProtID}-F1-model_v6.pdb`
 - Be rigorous but also hopeful. Even if a target is "hard to drug," explain why it's worth trying.
 - Output ONLY raw JSON. No markdown code fences. No text before or after the JSON object.

@@ -903,14 +903,105 @@
         return () => timers.forEach(clearTimeout);
       }, [demo]);
 
-      // Data polling (non-demo)
+      // Data polling (non-demo) — consume live agent state
+      const prevFindingCountRef = useRef({});
       useEffect(() => {
         if (demo) return;
+        const AGENT_NAME_MAP = { scout: 'Scout', connector: 'Connector', navigator: 'Navigator', mobilizer: 'Mobilizer', strategist: 'Strategist', biologist: 'Biologist', chemist: 'Chemist', preclinician: 'Preclinician' };
         const poll = async () => {
           try {
             const res = await fetch('data/state.json');
-            if (res.ok) setState(await res.json());
-          } catch {}
+            if (!res.ok) return;
+            const data = await res.json();
+            setState(data);
+
+            const agents = data.agents || {};
+            const newStatuses = {};
+            const newAchievements = [];
+            let anyComplete = false;
+            let allComplete = true;
+            let hasScout = false, hasConnector = false;
+            let hasBiologist = false, hasChemist = false, hasPreclinician = false;
+
+            for (const [key, agent] of Object.entries(agents)) {
+              const name = AGENT_NAME_MAP[key] || key;
+              const updates = agent.updates || [];
+              const lastUpdate = updates[updates.length - 1];
+              const isComplete = agent.status === 'complete';
+              const findings = updates.filter(u => u.type === 'finding');
+
+              newStatuses[name] = {
+                status: lastUpdate ? lastUpdate.message : (isComplete ? 'Complete' : 'Initializing...'),
+                done: isComplete
+              };
+
+              // Track new findings as achievements
+              const prevCount = prevFindingCountRef.current[key] || 0;
+              if (findings.length > prevCount) {
+                for (let i = prevCount; i < findings.length; i++) {
+                  newAchievements.push({ text: findings[i].message });
+                }
+                prevFindingCountRef.current[key] = findings.length;
+              }
+
+              if (isComplete) anyComplete = true;
+              else allComplete = false;
+              if (key === 'scout' && isComplete) hasScout = true;
+              if (key === 'connector' && isComplete) hasConnector = true;
+              if (key === 'biologist' && isComplete) hasBiologist = true;
+              if (key === 'chemist' && isComplete) hasChemist = true;
+              if (key === 'preclinician' && isComplete) hasPreclinician = true;
+            }
+
+            setAgentStatuses(prev => ({ ...prev, ...newStatuses }));
+            if (newAchievements.length > 0) {
+              setAchievements(prev => {
+                const existing = new Set(prev.map(a => a.text));
+                const fresh = newAchievements.filter(a => !existing.has(a.text));
+                return fresh.length > 0 ? [...prev, ...fresh] : prev;
+              });
+            }
+
+            // Show insights when relevant agents complete
+            if (hasScout) {
+              setVisibleInsights(prev => {
+                const next = new Set(prev);
+                next.add('trial_match');
+                next.add('repurposing');
+                return next;
+              });
+            }
+            if (hasConnector) {
+              setVisibleInsights(prev => {
+                const next = new Set(prev);
+                next.add('email_decision');
+                next.add('everycure_decision');
+                return next;
+              });
+            }
+
+            // Progress bars from agent completion
+            const agentCount = Object.keys(agents).length || 1;
+            const completeCount = Object.values(agents).filter(a => a.status === 'complete').length;
+            if (hasScout) setProgressBars(prev => ({ ...prev, Research: 100 }));
+            if (agents.navigator?.status === 'complete') setProgressBars(prev => ({ ...prev, Regulatory: 100 }));
+            if (hasConnector) setProgressBars(prev => ({ ...prev, Outreach: Math.max(prev.Outreach, 60) }));
+            if (agents.mobilizer?.status === 'complete') setProgressBars(prev => ({ ...prev, Funding: 100 }));
+            if (hasPreclinician) setProgressBars(prev => ({ ...prev, Treatment: 100 }));
+            else if (hasChemist) setProgressBars(prev => ({ ...prev, Treatment: 60 }));
+            else if (hasBiologist) setProgressBars(prev => ({ ...prev, Treatment: 30 }));
+
+            // Lab ready when all 3 lab agents complete
+            if (hasBiologist && hasChemist && hasPreclinician) setLabReady(true);
+
+            // Summary text
+            if (allComplete && Object.keys(agents).length > 0) {
+              setSummaryText('Your plan is ready.');
+              setSummaryDone(true);
+            } else if (anyComplete) {
+              setSummaryText(`${completeCount} of ${agentCount} agents complete...`);
+            }
+          } catch(e) { console.error('Poll error:', e); }
         };
         poll();
         const interval = setInterval(poll, 3000);

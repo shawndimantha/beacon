@@ -274,13 +274,36 @@
       { stage: 'Lab Testing Queue', count: 2, color: 'emerald' },
     ];
 
-    const CRO_CONTACTS = {
-      1: { name: 'Charles River Laboratories', specialty: 'Biochemical assay services', email: 'drugdiscovery@crl.com', subject: 'BD Inquiry — Biochemical IC50 Assay for CLN3 Batten Disease Targets', body: 'Dear Charles River Discovery team,\n\nWe are a rare disease family research initiative investigating CLN3 Batten Disease (Juvenile Neuronal Ceroid Lipofuscinosis). We have identified 5 promising compound candidates through computational screening and would like to commission a Tier 1 biochemical IC50 assay panel.\n\nTargets: TRPML1 agonism, TPP1 enhancement, CLN3 protein restoration\nCompounds: Top 5 candidates from virtual screen (structures available)\nAssay type: Dose-response IC50/EC50\nTimeline need: 2-4 weeks\n\nCould you provide a quote and discuss protocol design?\n\nBest regards,\n[Your name]' },
-      2: { name: 'Eurofins Discovery', specialty: 'Cell-based functional assays', email: 'discovery@eurofins.com', subject: 'Cell-Based Functional Assay — CLN3 Batten Disease Compound Panel', body: 'Dear Eurofins Discovery team,\n\nFollowing successful biochemical screening, we need cell-based functional assays for our top 3 CLN3 Batten Disease compound candidates.\n\nAssay: Lysosomal storage clearance in CLN3-null fibroblasts\nCompounds: Top 3 from Tier 1 biochemical screen\nReadouts: Subunit c storage, lysosomal pH, autophagy markers\nTimeline: 4-6 weeks\n\nPlease advise on feasibility and pricing.\n\nBest regards,\n[Your name]' },
-      3: { name: 'Absorption Systems (Pharmaron)', specialty: 'ADMET profiling', email: 'admet@pharmaron.com', subject: 'ADMET Panel Request — CLN3 Therapeutic Candidates', body: 'Dear Pharmaron ADMET team,\n\nWe require a standard ADMET panel for 3 compounds advancing through our CLN3 Batten Disease pipeline.\n\nPanel: Microsomal stability, plasma protein binding, CYP inhibition, Caco-2 permeability, hERG\nCompounds: 3 candidates (MW 250-450, oral route intended)\nTimeline: 2-3 weeks\n\nPlease provide a quote.\n\nBest regards,\n[Your name]' },
-      4: { name: 'Charles River Laboratories', specialty: 'In vivo pharmacokinetics', email: 'invivo@crl.com', subject: 'Mouse PK Study — CLN3 Batten Disease Lead Compounds', body: 'Dear Charles River In Vivo team,\n\nWe need a mouse PK study for 2 lead compounds targeting CLN3 Batten Disease.\n\nStudy: Single-dose PK in CD-1 mice (IV + PO)\nCompounds: 2 leads with confirmed in vitro activity\nEndpoints: Plasma PK, brain penetration (critical — CNS disease)\nTimeline: 6-8 weeks\n\nPlease advise on study design and pricing.\n\nBest regards,\n[Your name]' },
-      5: { name: 'The Jackson Laboratory', specialty: 'Disease model efficacy studies', email: 'services@jax.org', subject: 'Efficacy Study in CLN3 Mouse Model — Lead Compound', body: 'Dear Jackson Laboratory team,\n\nWe are seeking an efficacy study using the Cln3Δex7/8 mouse model for our lead CLN3 Batten Disease compound.\n\nModel: Cln3Δex7/8 knock-in mouse\nCompound: 1 lead with confirmed PK and brain penetration\nEndpoints: Subunit c storage, neuroinflammation, motor function, survival\nDuration: 3-6 months dosing\n\nPlease discuss feasibility and study design.\n\nBest regards,\n[Your name]' },
-    };
+    function buildCroContacts(disease, targets, candidates) {
+      const d = disease || 'rare disease';
+      const targetNames = (targets || []).slice(0, 3).map(t => t.name || t.gene).filter(Boolean);
+      const targetStr = targetNames.length ? targetNames.join(', ') : 'identified therapeutic targets';
+      const compoundNames = (candidates || []).slice(0, 5).map(c => c.name).filter(Boolean);
+      const topCompounds = compoundNames.slice(0, 5).join(', ') || 'computationally identified candidates';
+      const top3 = compoundNames.slice(0, 3).join(', ') || 'top 3 from biochemical screen';
+      const top2 = compoundNames.slice(0, 2).join(', ') || 'top 2 leads';
+      const lead = compoundNames[0] || 'lead compound';
+      const mechs = (candidates || []).slice(0, 3).map(c => c.mechanism).filter(Boolean);
+      const mechStr = mechs.length ? mechs.join('; ') : 'multiple mechanisms under evaluation';
+
+      return {
+        1: { name: 'Charles River Laboratories', specialty: 'Biochemical assay services', email: 'drugdiscovery@crl.com',
+          subject: `BD Inquiry — Biochemical IC50 Assay for ${d} Targets`,
+          body: `Dear Charles River Discovery team,\n\nWe are a rare disease family research initiative investigating ${d}. Through computational screening against ${targetStr}, we have identified promising compound candidates and would like to commission a Tier 1 biochemical IC50 assay panel.\n\nTargets: ${targetStr}\nCompounds: ${topCompounds}\nMechanisms: ${mechStr}\nAssay type: Dose-response IC50/EC50\nTimeline need: 2-4 weeks\n\nCould you provide a quote and discuss protocol design?\n\nBest regards,\n[Your name]` },
+        2: { name: 'Eurofins Discovery', specialty: 'Cell-based functional assays', email: 'discovery@eurofins.com',
+          subject: `Cell-Based Functional Assay — ${d} Compound Panel`,
+          body: `Dear Eurofins Discovery team,\n\nFollowing successful biochemical screening for ${d}, we need cell-based functional assays for our top candidates: ${top3}.\n\nTargets: ${targetStr}\nCompounds: ${top3}\nReadouts: Disease-relevant functional endpoints, target engagement confirmation\nTimeline: 4-6 weeks\n\nPlease advise on feasibility, appropriate cell models, and pricing.\n\nBest regards,\n[Your name]` },
+        3: { name: 'Absorption Systems (Pharmaron)', specialty: 'ADMET profiling', email: 'admet@pharmaron.com',
+          subject: `ADMET Panel Request — ${d} Therapeutic Candidates`,
+          body: `Dear Pharmaron ADMET team,\n\nWe require a standard ADMET panel for compounds advancing through our ${d} pipeline: ${top3}.\n\nPanel: Microsomal stability, plasma protein binding, CYP inhibition, Caco-2 permeability, hERG\nCompounds: ${top3}\nTimeline: 2-3 weeks\n\nPlease provide a quote.\n\nBest regards,\n[Your name]` },
+        4: { name: 'Charles River Laboratories', specialty: 'In vivo pharmacokinetics', email: 'invivo@crl.com',
+          subject: `Mouse PK Study — ${d} Lead Compounds`,
+          body: `Dear Charles River In Vivo team,\n\nWe need a mouse PK study for leads advancing through our ${d} drug repurposing pipeline: ${top2}.\n\nStudy: Single-dose PK in CD-1 mice (IV + PO)\nCompounds: ${top2}\nEndpoints: Plasma PK, brain/tissue penetration\nTimeline: 6-8 weeks\n\nPlease advise on study design and pricing.\n\nBest regards,\n[Your name]` },
+        5: { name: 'The Jackson Laboratory', specialty: 'Disease model efficacy studies', email: 'services@jax.org',
+          subject: `Efficacy Study in ${d} Disease Model — ${lead}`,
+          body: `Dear Jackson Laboratory team,\n\nWe are seeking an efficacy study in an appropriate disease model for our lead ${d} compound: ${lead}.\n\nCompound: ${lead} (confirmed PK and target engagement)\nEndpoints: Disease-relevant biomarkers, functional outcomes, survival\nDuration: 3-6 months dosing\n\nPlease discuss model availability, feasibility, and study design.\n\nBest regards,\n[Your name]` },
+      };
+    }
 
     const LAB_EXPERIMENTS = [
       { tier: 1, name: 'Biochemical Assay (IC50)', compounds: 'Top 5', cost: '$8-15K', timeline: '2-4 weeks', status: 'ready' },
@@ -1662,7 +1685,7 @@
               </div>
             )}
 
-            {activeTab === 'lab' && <LabTab labReady={labReady} livePlan={!demo ? livePlan : null} />}
+            {activeTab === 'lab' && <LabTab labReady={labReady} livePlan={!demo ? livePlan : null} mission={mission} />}
 
             {activeTab === 'community' && <CommunityTab setActiveTab={setActiveTab} />}
 
@@ -1788,7 +1811,7 @@
     // LAB TAB
     // ==========================================
 
-    function LabTab({ labReady, livePlan }) {
+    function LabTab({ labReady, livePlan, mission }) {
       const [selectedTarget, setSelectedTarget] = useState(0);
       const [selectedCandidate, setSelectedCandidate] = useState(null);
       const [viewerMode, setViewerMode] = useState('target'); // 'target' | 'candidate'
@@ -1890,6 +1913,7 @@
 
       const targets = liveTargets || LAB_TARGETS;
       const candidates = liveCandidates || LAB_CANDIDATES;
+      const croContacts = useMemo(() => buildCroContacts(mission?.disease, targets, candidates), [mission?.disease, targets, candidates]);
 
       const doLoadPdb = async (viewer, target) => {
         const renderPdb = (pdb) => {
@@ -2368,7 +2392,7 @@
                             <p className="text-[10px] text-slate-400">{exp.timeline}</p>
                           </div>
                           {exp.status === 'ready' ? (
-                            <button onClick={() => setCroModal(CRO_CONTACTS[exp.tier])} className="px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 transition-colors shadow-md shadow-indigo-200">
+                            <button onClick={() => setCroModal(croContacts[exp.tier])} className="px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 transition-colors shadow-md shadow-indigo-200">
                               Approve & Queue
                             </button>
                           ) : (
@@ -2422,7 +2446,7 @@
                 </h3>
                 <div className="space-y-3">
                   {LAB_EXPERIMENTS.map((exp, i) => {
-                    const cro = CRO_CONTACTS[exp.tier];
+                    const cro = croContacts[exp.tier];
                     return (
                       <div key={i} className={`flex items-center justify-between p-3 rounded-xl border ${exp.status === 'ready' ? 'border-indigo-200 bg-indigo-50' : 'border-slate-100 bg-slate-50'}`}>
                         <div className="flex items-center gap-3">

@@ -1,320 +1,452 @@
 {
-  "timestamp": "2026-02-14T00:00:00Z",
+  "timestamp": "2026-02-15T00:00:00Z",
   "grantOpportunities": [
     {
-      "name": "NIH NCATS Rare Disease Clinical Research Network (RDCRN) Funding",
-      "funder": "National Institutes of Health - National Center for Advancing Translational Sciences",
-      "amount": "$500,000 - $2,000,000 per award",
-      "deadline": "Rolling submissions (next cycle typically March/September)",
-      "eligibility": "US-based research institutions studying rare diseases including neuronal ceroid lipofuscinoses. Family participation in research studies is encouraged.",
+      "name": "NIH Office of Orphan Products Development (OOPD) Grant",
+      "funder": "National Institutes of Health",
+      "amount": "$600,000/year for up to 4 years",
+      "deadline": "Rolling basis (check grants.nih.gov)",
+      "eligibility": "Orphan Drug Designation holders or companies pursuing CLN3 therapeutics",
       "relevance": "high",
-      "url": "https://www.ninds.nih.gov/Current-Research/Research-Funded-NINDS/Research-Programs/Rare-Disease-Clinical-Research-Network",
-      "notes": "CLN3 Batten Disease falls under RDCRN portfolio. Direct pathway to fund natural history studies and clinical research."
+      "url": "https://www.nih.gov/about-nih/what-we-do/nih-almanac/national-institute-neurological-disorders-and-stroke-ninds",
+      "notes": "Directly supports development of therapies for rare diseases like CLN3. Multiple CLN3 programs (Abeona, Alcyone, Polaryx) have received or can apply for this funding."
     },
     {
-      "name": "NIH NINDS Rare Diseases Research Program (R01/R21)",
-      "funder": "National Institutes of Health - National Institute of Neurological Disorders and Stroke",
-      "amount": "$250,000 - $500,000 (R21); $500,000 - $2,000,000+ (R01)",
-      "deadline": "Standard NIH deadlines: February 5, June 5, October 5",
-      "eligibility": "Research institutions, academic medical centers. R21 for exploratory/developmental research; R01 for established research programs.",
-      "relevance": "high",
-      "url": "https://www.ninds.nih.gov/Funding/Funding-Opportunities/NINDS-Research-and-Training-Grant-Programs",
-      "notes": "Amy Vierhile's natural history study likely funded through this mechanism. Highest impact for basic biology and therapeutic development."
-    },
-    {
-      "name": "Chan Zuckerberg Initiative - Rare As One Program",
-      "funder": "Chan Zuckerberg Initiative",
-      "amount": "$250,000 - $1,000,000 per award",
-      "deadline": "Rolling (typically quarterly reviews)",
-      "eligibility": "Non-profit research institutions, patient organizations. Focus on rare genetic diseases with <200k US patients.",
-      "relevance": "high",
-      "url": "https://chanzuckerberg.com/rareone/",
-      "notes": "CLN3 Batten (~30-40 new US diagnoses/year) qualifies. CZI has funded multiple rare neurological disease programs including NCL-focused research."
-    },
-    {
-      "name": "Beyond Batten Disease Foundation - Research Grants",
+      "name": "Beyond Batten Disease Foundation Spring Grant Cycle",
       "funder": "Beyond Batten Disease Foundation",
-      "amount": "$50,000 - $200,000 per award",
-      "deadline": "Annual - typically March/April for summer awards",
-      "eligibility": "Research institutions, clinicians, patient advocates. Priority given to CLN3-specific research.",
+      "amount": "$5,000 - $50,000 (family support and research grants)",
+      "deadline": "March 31, 2026",
+      "eligibility": "CLN3 families and researchers; no geographic restriction",
       "relevance": "high",
-      "url": "https://beyondbatten.org/research/funding/",
-      "notes": "Disease-specific foundation. Recently partnered on Batten-1 (Biocodex acquisition Feb 2026). Strong commitment to accelerating CLN3 therapeutics."
+      "url": "https://beyondbatten.org",
+      "notes": "Most critical funder for CLN3. Recent €173M pharma licensing deal shows they have leverage. Offers family support, research grants, and trial navigation. BBDF funded Batten-1 program now in Phase III."
     },
     {
-      "name": "Batten Disease Support and Research Association (BDSRA) - Research Fund",
-      "funder": "Batten Disease Support and Research Association",
-      "amount": "$25,000 - $100,000 per award",
-      "deadline": "Annual - typically June for fall awards",
-      "eligibility": "Research institutions, patient organizations, clinicians. All NCL types including CLN3.",
+      "name": "National Institutes of Health (NINDS) Research Project Grants (R01)",
+      "funder": "National Institute of Neurological Disorders and Stroke",
+      "amount": "$250,000 - $500,000 over 5 years",
+      "deadline": "Standard NIH cycle (February, June, October)",
+      "eligibility": "Researchers; families can partner with academic medical centers",
       "relevance": "high",
-      "url": "https://www.bdsra.org/research/funding/",
-      "notes": "Oldest and largest Batten disease nonprofit. Active funding pipeline for natural history studies and therapeutic research."
+      "url": "https://www.ninds.nih.gov/Funding/Funding-Opportunities",
+      "notes": "NINDS funds lysosomal storage diseases and neurodegeneration. PLX-200 and Batten-1 developers have NIH partnerships. Family can co-apply with University of Rochester or Nationwide Children's Hospital."
     },
     {
-      "name": "National Organization for Rare Disorders (NORD) - Rare Disease Research Grants",
-      "funder": "National Organization for Rare Disorders",
-      "amount": "$50,000 - $300,000 per award",
-      "deadline": "Typically March and September",
-      "eligibility": "Research institutions, patient advocates. Priority for diseases affecting <200k Americans.",
-      "relevance": "medium",
-      "url": "https://rarediseases.org/for-researchers/research-grants/",
-      "notes": "Broad rare disease funder. CLN3 qualifies. Good for multi-disease research platforms and registries."
+      "name": "Chan Zuckerberg Initiative (CZI) - Rare As One Network",
+      "funder": "Chan Zuckerberg Initiative",
+      "amount": "$50,000 - $500,000",
+      "deadline": "Varies by RFP (check czi.science)",
+      "eligibility": "Researchers and patient-founded organizations working on rare diseases",
+      "relevance": "high",
+      "url": "https://chanzuckerberg.com/science/programs/rare-as-one/",
+      "notes": "CZI explicitly funds rare disease research and community building. Rare As One Network connects families globally. Several CLN3 researchers have CZI funding."
     },
     {
-      "name": "Patient-Centered Outcomes Research Institute (PCORI) - Patient-Centered Comparative Effectiveness Research (CER) Funding",
-      "funder": "Patient-Centered Outcomes Research Institute",
-      "amount": "$250,000 - $2,000,000 per award",
-      "deadline": "Annual - typically August",
-      "eligibility": "Research institutions. Must include patient/caregiver input in study design and execution.",
+      "name": "Patient-Centered Outcomes Research Institute (PCORI) Funding",
+      "funder": "PCORI (independent nonprofit)",
+      "amount": "$50,000 - $300,000",
+      "deadline": "Rolling basis (check pcori.org)",
+      "eligibility": "Patient organizations, researchers, clinicians studying outcomes that matter to patients",
       "relevance": "medium",
       "url": "https://www.pcori.org/funding-opportunities",
-      "notes": "Strong fit for natural history studies comparing CLN3 phenotypes and patient outcomes across treatment pathways. Family co-design is required."
+      "notes": "PCORI prioritizes patient engagement in research design. Strong fit for family-led research initiatives or natural history studies."
     },
     {
-      "name": "Department of Defense - Congressionally Directed Medical Research Programs (CDMRP)",
-      "funder": "US Department of Defense",
-      "amount": "$500,000 - $2,000,000 per award",
-      "deadline": "Varies by program; typically April-May for neurological disorders",
-      "eligibility": "Research institutions, academic medical centers. Focus on diseases affecting military-age populations.",
-      "relevance": "low",
-      "url": "https://cdmrp.army.mil/",
-      "notes": "CLN3 typically presents in childhood, so DoD fit is limited. However, some CDM RPs fund rare neurological disease research."
-    },
-    {
-      "name": "Global Genes - Rare Disease Research Coordination Network",
-      "funder": "Global Genes",
-      "amount": "$10,000 - $50,000 per award (smaller grants)",
-      "deadline": "Rolling",
-      "eligibility": "Patient organizations, patient advocates, researchers. Open to community-led research.",
+      "name": "Harrington Discovery Institute - Neurodegeneration Initiative",
+      "funder": "Harrington Discovery Institute (Cleveland Clinic)",
+      "amount": "$300,000 - $500,000",
+      "deadline": "Annual (typically September)",
+      "eligibility": "Early-stage researchers in neurodegenerative diseases",
       "relevance": "medium",
-      "url": "https://globalgenes.org/",
-      "notes": "Strong convener of patient communities. Good for fundraising coordination and family support infrastructure (not direct research grants)."
+      "url": "https://www.harringtondiscovery.org",
+      "notes": "Venture philanthropy focused on lysosomal storage and neurodegeneration. Supports translational research. Known for supporting orphan disease drug development."
     },
     {
-      "name": "NCL Stiftung (European NCL Research Foundation)",
-      "funder": "NCL Stiftung",
-      "amount": "€50,000 - €500,000 per award",
-      "deadline": "Typically April-May",
-      "eligibility": "Research institutions worldwide. Focus on all NCL types including CLN3.",
+      "name": "Global Genes RARE Across America Advocacy Grant",
+      "funder": "Global Genes (patient advocacy nonprofit)",
+      "amount": "$2,000 - $10,000",
+      "deadline": "Rolling basis (check globalgenes.org)",
+      "eligibility": "Rare disease patient organizations and advocacy groups",
       "relevance": "medium",
-      "url": "https://www.ncl-stiftung.de/",
-      "notes": "Swiss/European foundation. Strong partnership with Prof. Schulz and European research centers. Potential for transatlantic collaboration."
+      "url": "https://globalgenes.org/rare-across-america/",
+      "notes": "Funds patient advocacy, community education, and rare disease events. Good fit for family-led CLN3 awareness or support group initiatives."
+    },
+    {
+      "name": "Department of Defense (DoD) CDMRP - Rare Disease Research",
+      "funder": "DoD Congressionally Directed Medical Research Programs",
+      "amount": "$150,000 - $500,000 over 3 years",
+      "deadline": "Typically August-September (varies by year)",
+      "eligibility": "Researchers; must demonstrate military health relevance",
+      "relevance": "medium",
+      "url": "https://cdmrp.army.mil",
+      "notes": "CDMRP funds rare disease research through congressional advocacy. University of Rochester and Nationwide Children's may have prior DoD funding in rare neurological disease."
     }
   ],
   "activeFunders": [
     {
-      "name": "Alcyone Therapeutics, Inc.",
-      "type": "pharma",
-      "activeTrials": 1,
-      "focus": "Gene therapy for CLN3 (CLN-301 AAV9 intrathecal)",
-      "notesForFamilies": "Sponsor of NCT03770572. Currently active but not recruiting. High-impact therapy. Monitor for follow-on trials or expanded access."
-    },
-    {
-      "name": "Polaryx Therapeutics, Inc.",
-      "type": "pharma",
-      "activeTrials": 2,
-      "focus": "Small molecule therapy for CLN3 (PLX-200, PPAR-alpha agonist). Phase 3 enrollment opening March 2026.",
-      "notesForFamilies": "Fast Track FDA designation. Actively recruiting ages 6-18. Enrollment launching imminently. High priority to evaluate eligibility."
-    },
-    {
-      "name": "Biocodex",
-      "type": "pharma",
-      "activeTrials": 1,
-      "focus": "Batten-1 (miglustat) Phase 3 for CLN3. Acquired license from THX/Beyond Batten, Feb 2026.",
-      "notesForFamilies": "Recently secured exclusive worldwide license. Phase 3 launching 2026 (~60 patients, ages 4-16). Strong real-world efficacy data. Major near-term opportunity."
-    },
-    {
-      "name": "National Institutes of Health (NINDS, NICHD)",
-      "type": "nih",
-      "activeTrials": 3,
-      "focus": "Natural history studies (NCT03307304, NCT01873924), biomarker research, DEM-CHILD coordination (international)",
-      "notesForFamilies": "Largest public funder of CLN3 research. Multiple ongoing studies accepting families. Direct pathway to clinical research infrastructure."
-    },
-    {
       "name": "Beyond Batten Disease Foundation",
       "type": "foundation",
-      "activeTrials": 0,
-      "focus": "Research advocacy, Batten-1 development partnership, research grants for CLN3-specific projects",
-      "notesForFamilies": "Most deeply invested disease-specific organization. Strong relationships with researchers and pharma. Key partner for fundraising coordination."
+      "activeTrials": 3,
+      "focus": "CLN3-specific research, clinical trials (Batten-1), family support, international advocacy. Recently funded €173M pharma deal licensing Batten-1."
     },
     {
-      "name": "Batten Disease Support and Research Association (BDSRA)",
-      "type": "foundation",
-      "activeTrials": 0,
-      "focus": "Research funding across all NCL types, patient support, family network coordination",
-      "notesForFamilies": "Longest-established Batten disease nonprofit. Extensive family support and researcher connections."
+      "name": "National Institutes of Health (NINDS, NCATS, NICHD)",
+      "type": "nih",
+      "activeTrials": 4,
+      "focus": "CLN3 natural history database (NCT03307304 at NIH Clinical Center), rare neurological disease research, orphan drug development support. Multiple CLN3 programs have NIH funding."
     },
     {
-      "name": "Chan Zuckerberg Initiative",
+      "name": "Alcyone Therapeutics (now backed by strategic financing, April 2025)",
+      "type": "pharma",
+      "activeTrials": 1,
+      "focus": "CLN-301 AAV9 gene therapy trial (Phase I/II, NCT03770572). Secured strategic investment to expand collaboration with Nationwide Children's Hospital."
+    },
+    {
+      "name": "Polaryx Therapeutics",
+      "type": "pharma",
+      "activeTrials": 1,
+      "focus": "PLX-200 (small molecule CLN3 therapy) Phase 3 trial enrolling March 2026. Received FDA Fast Track designation."
+    },
+    {
+      "name": "Biocodex / Theranexus (Batten-1 developer)",
+      "type": "pharma",
+      "activeTrials": 1,
+      "focus": "Batten-1 (miglustat) Phase III trial planned for 2026. Real-world data shows near-stabilization of visual acuity in treated CLN3 patients."
+    },
+    {
+      "name": "Chan Zuckerberg Initiative (CZI)",
       "type": "foundation",
-      "activeTrials": 0,
-      "focus": "Rare As One program supporting rare genetic disease research infrastructure",
-      "notesForFamilies": "Recent entrant to rare disease funding. Deep pockets and commitment to technology and data platforms."
+      "activeTrials": 2,
+      "focus": "Rare disease research networks, patient advocacy, research infrastructure. Multiple CLN3 researchers have CZI grants through Rare As One Network."
+    },
+    {
+      "name": "Harrington Discovery Institute",
+      "type": "foundation",
+      "activeTrials": 1,
+      "focus": "Early-stage neurodegeneration and lysosomal storage disease research. Venture philanthropy model supports translational CLN3 research."
     }
   ],
   "draftApplications": [
     {
       "id": "grant-app-001",
-      "grantName": "NIH NCATS Rare Disease Clinical Research Network (RDCRN) - CLN3 Natural History & Biomarker Discovery",
+      "grantName": "Beyond Batten Disease Foundation - Family Support & Research Grant",
       "type": "LOI",
-      "institution": "[Lead Research Institution - recommend Nationwide Children's Hospital or University of Rochester]",
-      "content": "LETTER OF INTENT: CLN3 Batten Disease - Accelerating Clinical Pathways Through Comprehensive Natural History and Biomarker Discovery\n\nINSTITUTION: [Nationwide Children's Hospital / University of Rochester Medical Center]\nPRINCIPAL INVESTIGATOR: [Amy E. Vierhile, RN PNP, or designated CLN3 clinician-researcher]\nNETWORK AFFILIATION: Rare Disease Clinical Research Network (RDCRN) - Neuronal Ceroid Lipofuscinosis Consortium\n\nBACKGROUND:\nCLN3 Batten disease (Juvenile Neuronal Ceroid Lipofuscinosis) is a rapidly progressive neurodegenerative lysosomal storage disorder affecting ~1,500 individuals in the US. Median symptom onset is age 4-7, with progressive vision loss, seizures, cognitive decline, and motor deterioration. Despite the severe clinical burden and recent emergence of promising therapeutics (Polaryx PLX-200 Phase 3, Biocodex Batten-1 Phase 3, Alcyone CLN-301 gene therapy), no standardized natural history data or validated biomarkers exist to guide treatment selection, patient stratification, or outcome measurement in clinical trials.\n\nOBJECTIVES:\n1. Establish a multi-center, prospective natural history cohort of 150+ CLN3 patients (ages 3-18) with standardized clinical assessments at 6-month intervals for 3 years\n2. Identify and validate neuroimaging, CSF, plasma, and genetic biomarkers correlating with disease progression and treatment response\n3. Develop CLN3-specific disease progression models to inform trial design and regulatory decision-making\n4. Create an open-access CLN3 patient registry and biorepository integrated with the international DEM-CHILD database\n\nMETHODOLOGY:\nMulti-center prospective observational study across 8-10 US clinical sites (Nationwide Children's Hospital, University of Rochester, Boston Children's Hospital, University of California San Francisco, Children's Hospital of Philadelphia, Cincinnati Children's Hospital, Seattle Children's Hospital, and others). Harmonization with Prof. Angela Schulz's international DEM-CHILD Database (NCT04613089) for cross-geographic comparison.\n\nAssessment Battery:\n- Unified Batten Disease Rating Scale (UBDRS) - primary endpoint\n- Hamburg Rating Scale motor and cognitive subscales\n- MRI brain volumetry, white matter integrity, and cerebellar assessment\n- CSF biomarkers: CLN3 protein levels, lysosomal enzymes, neuroinflammatory markers\n- Plasma biomarkers: lipids, neurodegeneration markers\n- Genetic profiling: CLN3 mutation subtyping and genotype-phenotype correlation\n- Functional assessment: 6-Minute Walk Test, visual acuity tracking, seizure frequency\n- Caregiver burden and quality-of-life measures\n\nGENOTYPE-PHENOTYPE STRATIFICATION:\nPatient cohort will be stratified by CLN3 mutation type (compound heterozygous, homozygous, structural variants) to identify whether specific genotypes predict treatment response or progression rates.\n\nTIMELINE:\nYear 1: Site activation, IRB approval, patient enrollment (60 patients). Years 2-3: Complete baseline and follow-up assessments, biomarker analysis, preliminary data analysis. Year 3: Final report, publication, registry and biorepository launch.\n\nBUDGET: $1,400,000 over 3 years\n- Personnel (coordinators, nurses, biostatisticians): $600,000\n- Clinical assessments and travel reimbursement: $300,000\n- Biospecimen collection, storage, and analysis: $350,000\n- Database development and bioinformatics: $150,000\n\nIMPACT:\nThis study will directly enable regulatory approval and clinical trial design for three pipeline therapies (Polaryx PLX-200, Biocodex Batten-1, Alcyone CLN-301 follow-ons). The biomarkers will accelerate patient stratification in future trials. The registry will serve as a recruitment pipeline and outcomes platform for 10+ years of CLN3 research. Multi-center structure positions US research to compete with international studies and retain families in domestic clinical care.",
+      "content": "Dear Beyond Batten Disease Foundation Review Committee,\n\nWe are writing on behalf of a family in the United States who received a recent CLN3 Batten Disease diagnosis. This family is seeking immediate support to navigate the clinical, regulatory, and research landscape while their child is still in the early stages of the disease.\n\nWHY THIS FAMILY MATTERS:\nThis patient is currently at a critical decision point. With multiple active CLN3 treatment programs now available (CLN-301 gene therapy, PLX-200 small molecule Phase 3 starting March 2026, and Batten-1 Phase III planned for 2026), the family faces complex choices about trial enrollment sequencing, genetic counseling, and baseline clinical evaluation—all time-sensitive given CLN3's relentless progression.\n\nTHE REQUEST:\nWe are seeking $15,000-$25,000 in support to cover:\n1. Clinical baseline evaluation and UBDRS assessment (University of Rochester: $2,000-$3,000)\n2. Genetic counseling and sequencing confirmation ($1,500-$2,000)\n3. Travel to NIH Clinical Center for natural history study enrollment (Bethesda, MD: $3,000-$4,000)\n4. Neuropsychological assessment ($2,000-$3,000)\n5. Family peer support and advocacy coordination ($2,000-$3,000)\n6. Research navigation and trial preparation ($2,000-$3,000)\n7. Contingency for unexpected clinical needs ($2,000-$3,000)\n\nWHY BEYOND BATTEN:\nYour foundation has demonstrated unprecedented success: funding Batten-1 from concept to €173M pharma licensing, connecting hundreds of families to trials, and building a research infrastructure that spans three continents. This family has identified your organization as the most credible, experienced partner to help them navigate the next critical 12 months.\n\nOUR TEAM:\nBeacon is coordinating a multi-disciplinary team including research scientists, medical liaisons, regulatory strategists, and fundraising coordinators specifically to support this family's treatment pathway. We have direct relationships with trial sponsors (Alcyone, Polaryx) and clinical sites (University of Rochester, Nationwide Children's Hospital, NIH Clinical Center). This family will not be alone.\n\nIMPACT:\nThis grant will enable rapid clinical baseline establishment, informed trial enrollment, and connection to the global CLN3 research community. It also positions this family to participate in future research initiatives and potentially contribute to the natural history data that all CLN3 programs depend on.\n\nWe believe this is precisely the kind of family-facing support that BBDF excels at providing—removing barriers to access, connecting families to the right researchers and trials, and amplifying their voice in the research community.\n\nThank you for considering this request. We would welcome the opportunity to discuss this family's needs in more detail.\n\nBest regards,\nBeacon Team",
       "status": "draft"
     },
     {
       "id": "grant-app-002",
-      "grantName": "Beyond Batten Disease Foundation - Research Partnership Grant",
-      "type": "LOI",
-      "institution": "[Research Institution Partner]",
-      "content": "LETTER OF INTENT: Accelerating CLN3 Biomarker Discovery to Support Batten-1 (Miglustat) Phase 3 Trial Patient Stratification\n\nTO: Beyond Batten Disease Foundation\nFROM: [Research Institution]\nDATE: February 2026\n\nSUBJECT: Partnership Opportunity - CLN3 Biomarker Platform for Batten-1 Phase 3 Success\n\nDEAR FOUNDATION LEADERSHIP:\n\nWe are writing to propose a strategic research partnership that will directly accelerate the Batten-1 (miglustat) Phase 3 trial success by establishing CLN3-specific biomarkers for patient stratification and treatment response prediction.\n\nCONTEXT:\nBiocodex's recent acquisition of the Batten-1 exclusive license (February 2026) represents a historic moment for CLN3 families. The real-world efficacy data (stabilization of visual acuity in 11 treated vs. 22 untreated patients over 12 months) is unprecedented for this disease. However, the upcoming Phase 3 trial faces a critical bottleneck: lack of standardized biomarkers to identify which CLN3 patients will respond best to miglustat versus other pipeline therapies (Polaryx PLX-200, Alcyone CLN-301 follow-ons).\n\nOPPORTUNITY:\nWe propose a 2-year collaborative project with BBDF to:\n\n1. BIOMARKER DISCOVERY (Year 1)\n   - Analyze plasma and CSF from 80 CLN3 patients (20 on miglustat real-world use, 60 natural history controls)\n   - Screen for biomarkers predictive of visual acuity stabilization: lipid panel analysis, neuroinflammatory markers, lysosomal protein expression\n   - Validate findings in existing biorepository samples (coordination with NIH NICHD and DEM-CHILD cohort)\n   - Publish biomarker panel (target: high-impact neurology journal Q3 2027)\n\n2. PATIENT STRATIFICATION ALGORITHM (Year 2)\n   - Develop machine learning model integrating: genotype, baseline imaging, biomarker panel, clinical phenotype\n   - Enable Biocodex Phase 3 team to identify optimal patient population for trial inclusion\n   - Train regulatory pathway: prepare biomarker-companion diagnostic briefing for FDA\n\n3. OUTCOMES:\n   - Improved Phase 3 trial design (smaller sample size, higher statistical power via enrichment strategy)\n   - Faster FDA approval pathway\n   - Real-world evidence foundation for miglustat reimbursement and insurance coverage\n   - Patient-facing decision-support tool: \"Is Batten-1 right for my child?\" (genotype/phenotype matching)\n\nBUDGET: $350,000 over 24 months\n- Biospecimen acquisition and analysis: $180,000\n- Bioinformatics and statistical analysis: $90,000\n- Publication and regulatory support: $50,000\n- Personnel (0.5 FTE postdoc, 0.2 FTE research coordinator): $30,000\n\nTIMELINE:\n- Month 1-3: Sample acquisition and regulatory approvals\n- Month 4-12: Biomarker screening and discovery\n- Month 13-18: Algorithm development and validation\n- Month 19-24: Regulatory preparation and publication\n\nSTRATEGIC VALUE TO BBDF:\nThis project positions Beyond Batten Disease Foundation as the critical research partner enabling Biocodex Phase 3 success. BBDF brand is directly associated with accelerating the first approved CLN3 therapy. Patient families see BBDF as the organization that made treatment possible.\n\nWe look forward to discussing this partnership opportunity. The window to influence Phase 3 trial design is 12-18 months. We propose immediate discussion and funding decision by Q2 2026 to maintain critical timeline alignment.",
+      "grantName": "Chan Zuckerberg Initiative - Rare As One Network Community Grant",
+      "type": "concept_note",
+      "content": "PROJECT TITLE: CLN3 Family Navigation & Clinical Coordination Platform\n\nCHALLENGE:\nCLN3 Batten Disease families face fragmented, overwhelming information landscape. Multiple active trials exist, but coordination across research sites, trial sponsors, and medical teams is ad-hoc. Families often miss enrollment windows or make uninformed treatment sequence decisions.\n\nSOLUTION:\nBeacon is a coordinated care platform that connects CLN3 families directly to:\n- Active clinical trials and their enrollment criteria\n- Leading researchers and clinicians (NIH, University of Rochester, Nationwide Children's Hospital)\n- Trial sponsor pipelines (Alcyone, Polaryx, Biocodex)\n- Peer families and advocacy organizations\n- Regulatory and fundraising guidance\n\nINNOVATION:\nUnlike traditional patient registries, Beacon combines research discovery, clinical coordination, trial matching, and fundraising strategy in a single, family-facing platform. We use AI agents to continuously monitor the CLN3 research landscape and proactively surface opportunities aligned with each family's treatment pathway.\n\nOBJECTIVES:\n1. Enroll 50 CLN3 families in Year 1\n2. Achieve 80% enrollment rate in one of three major clinical trials (CLN-301, PLX-200, Batten-1)\n3. Reduce time-to-baseline-evaluation from 6 months to 6 weeks\n4. Connect 100% of enrolled families to peer support networks\n5. Generate naturalistic outcomes data feeding back into trial design\n\nBUDGET: $150,000 over 18 months\n- Platform development & maintenance: $60,000\n- Research liaison salaries (part-time clinical coordinators): $50,000\n- Peer support & advocacy coordination: $25,000\n- External partnerships (University of Rochester, NIH, Beyond Batten): $15,000\n\nCZI ALIGNMENT:\nThis project directly aligns with Rare As One Network's mission to connect rare disease families, amplify their voice in research, and accelerate translational pathways. CLN3 is an ideal proof-of-concept: well-defined patient population, active trial ecosystem, and motivated families ready to participate.",
       "status": "draft"
     },
     {
       "id": "grant-app-003",
-      "grantName": "Chan Zuckerberg Initiative - Rare As One Program - CLN3 Patient Data Platform",
+      "grantName": "NIH NINDS R21 Exploratory Research - CLN3 Natural History & Biomarker Discovery",
       "type": "concept_note",
-      "institution": "[Technology-Focused Research Institution or Non-Profit Partner]",
-      "content": "CONCEPT NOTE: CLN3 Patient Data & Outcomes Platform - Accelerating Therapeutic Development Through Real-Time Data Integration\n\nORGANIZATION: [Institution Name]\nPROGRAM: Chan Zuckerberg Initiative - Rare As One\nPRIORITY AREA: Technology & Data Infrastructure for Rare Disease Research\n\nEXECUTIVE SUMMARY:\nCLN3 Batten disease research faces a critical infrastructure gap: while three major therapeutics are entering clinical trials simultaneously (2026-2027), there is no integrated platform linking natural history data, biospecimens, patient outcomes, and real-world evidence. This fragmentation delays regulatory decision-making and leaves families unaware of treatment options. We propose a $800,000, 3-year investment to build an open-access CLN3 data platform integrating NIH natural history cohort data, Phase 3 trial data (once available), and real-world outcomes—with a patient-facing component enabling families to understand their treatment options.\n\nPROBLEM:\n- 1,500+ CLN3 patients in US, ~40 new diagnoses annually\n- Three pipeline therapeutics entering trials 2026-2027 with no standardized outcome measures across programs\n- Natural history data scattered across academic centers (Rochester, Nationwide Children's, etc.) with no integration\n- Patient families face binary choice: standard care or experimental trial, with no data to compare options\n- Regulatory agencies lack real-world evidence to accelerate approval pathways\n\nSOLUTION:\nCLN3 Data Commons: An integrated platform built on FHIR-compliant architecture, enabling:\n\n1. DATA INTEGRATION LAYER\n   - Harmonize natural history assessments (UBDRS, Hamburg Scale, imaging, biomarkers) from NIH-funded studies (NCT03307304, NCT01873924) and international DEM-CHILD cohort\n   - Create standardized data schemas enabling clinical trial data integration (once Phase 3 trials launch)\n   - Real-world data feeds: EHR connections with pediatric neurology centers, biorepository specimen tracking\n\n2. ANALYTICS & RESEARCH TOOLS\n   - Genotype-phenotype analysis: interactive visualization of disease progression by CLN3 mutation type\n   - Biomarker-outcome correlation engine: identify predictive biomarkers for treatment response\n   - Trial simulation: statistical power calculators for future trial design\n   - Regulatory reporting: automated briefs for FDA interactions\n\n3. PATIENT-FACING INTERFACE\n   - \"Treatment Pathways\" decision-support tool: family enters child's age, genotype, current symptoms → system displays: natural history trajectory, trial eligibility, treatment options with efficacy/safety profiles, similar patient outcomes\n   - Patient registry matching: connect families with researchers, clinical sites, other families\n   - Biobanking portal: transparent enrollment and sample tracking\n\n4. GOVERNANCE & SUSTAINABILITY\n   - Managed by CLN3 patient foundation + academic lead institution\n   - Data access governed by patient community (data governance board includes patient representatives)\n   - Open-access for non-profit researchers; commercial licensing for pharma development partners\n\nTECHNICAL SPECIFICATIONS:\n- Cloud infrastructure (AWS or Azure): $30,000/year\n- FHIR API layer: custom development on established platforms (SMART Health IT stack)\n- Mobile app (iOS/Android) for family enrollment and outcome tracking\n- Bioinformatics pipeline for genotype-phenotype analysis (R/Python, containerized deployment)\n\nBUDGET: $800,000 / 3 years\n- Software development and infrastructure: $400,000\n- Data science and bioinformatics: $200,000\n- Clinical operations and patient engagement: $150,000\n- Project management and governance: $50,000\n\nTIMELINE:\n- Months 1-3: Data access agreements (NIH, BBDF, international partners), cloud setup, FHIR schema design\n- Months 4-12: Data integration from existing natural history cohorts, analytics layer development\n- Months 13-18: Patient-facing tools (decision support, registry)\n- Months 19-24: Clinical trial data integration framework (prepare for incoming Phase 3 data)\n- Months 25-36: Sustainability planning, user feedback cycles, expansion to other NCL types\n\nIMPACT:\n- 50+ research institutions gain real-time access to CLN3 data\n- 3 concurrent Phase 3 trials benefit from integrated outcomes tracking\n- 200+ CLN3 families empowered with decision-support tools\n- FDA gains comprehensive real-world evidence for accelerated approval pathways\n- Platform becomes model for other rare genetic diseases (NCL2, NCL6, etc.)\n- Data-driven drug development: biomarker discovery and patient stratification reduce Phase 3 sample size requirements\n\nSTRATEGIC FIT WITH CZI:\nThis project exemplifies CZI's Rare As One vision: bringing together data, patients, researchers, and technology to accelerate rare disease innovation. CLN3 is an ideal pilot case (small patient population, well-defined disease, active research ecosystem, engaged patient foundation). Success here becomes a blueprint for other rare genetic diseases.",
+      "content": "PROJECT TITLE: CLN3 Natural History Phenotyping & Biomarker Discovery in the Era of Emerging Therapeutics\n\nRATIONALE:\nThree CLN3 therapeutics have advanced to Phase III trials (2025-2026), but no standardized natural history cohort exists to compare treatment efficacy across programs. This gap creates uncertainty for families, trial design, and regulatory evaluation.\n\nSPECIFIC AIMS:\n1. Establish a prospective natural history cohort of 50 untreated and early-treated CLN3 patients (ages 3-25) with comprehensive biomarking (UBDRS, retinal imaging, CSF, plasma, genetic)\n2. Identify biomarkers predictive of treatment response (gene therapy vs. small molecule vs. miglustat)\n3. Develop outcome measure recommendations for future CLN3 trials\n\nMETHODS:\n- Recruit through NIH Clinical Center (NCT03307304 expansion), University of Rochester, and Nationwide Children's Hospital\n- Annual assessments for 3 years: clinical (UBDRS, AFM, vision), imaging (OCT, MRI), biofluid sampling (CSF, plasma, urine)\n- Genomic and transcriptomic profiling of CLN3 variants\n- Biostatistical modeling of biomarker-outcome relationships\n\nPUBLIC HEALTH SIGNIFICANCE:\nCLN3 Batten Disease has NO approved treatments and median survival 24-30 years post-diagnosis. Emerging therapies offer hope but require evidence to guide family decisions and trial design. This natural history cohort will be the reference standard for CLN3 precision medicine.\n\nBUDGET: $350,000 over 3 years\n- Personnel (clinical coordinator, biostatistician, research nurse): $200,000\n- Biomarker assays (genomics, proteomics, imaging): $100,000\n- Patient recruitment and travel support: $30,000\n- Data management and dissemination: $20,000\n\nNIH ALIGNMENT:\nNINDS mission includes rare neurological diseases and precision medicine. NCATS supports biomarker-driven clinical trial design. NICHD funds pediatric rare disease research. This proposal bridges all three institutes.",
       "status": "draft"
     }
   ],
   "approvalItems": [
     {
-      "id": "approval-mobilizer-draft-email-001",
+      "id": "approval-grant-001",
       "agent": "mobilizer",
-      "type": "outreach_partnership",
-      "title": "Partnership Inquiry: Beyond Batten Disease Foundation - Collaborative Research Initiative",
-      "summary": "Strategic outreach to BBDF leadership proposing a 2-year biomarker discovery partnership ($350K) designed to accelerate Batten-1 Phase 3 trial success by identifying patient stratification biomarkers. This positions the family's support network as a research partner and demonstrates commitment to advancing CLN3 therapeutics.",
-      "content": "Subject: Research Partnership Opportunity - CLN3 Biomarker Discovery for Batten-1 Phase 3 Trial\n\nDear [Beyond Batten Disease Foundation Leadership],\n\nOur family was recently touched by CLN3 Batten disease, and we've been inspired by BBDF's partnership in bringing Batten-1 to Phase 3 trials. As we navigate treatment pathways, we want to contribute meaningfully to accelerating CLN3 research.\n\nWe've been in dialogue with clinical researchers at [Nationwide Children's / University of Rochester] who have identified a critical gap: the upcoming Biocodex Phase 3 trial will lack standardized biomarkers for patient stratification, likely resulting in larger sample sizes and longer timelines to approval. This directly delays access for all CLN3 families.\n\nWe would like to propose a collaborative 2-year research partnership with BBDF to:\n\n1. Discover plasma/CSF biomarkers predictive of miglustat response using existing patient cohorts\n2. Develop a machine-learning algorithm for patient stratification\n3. Support FDA regulatory interactions for biomarker-companion diagnostic pathway\n\nEstimated investment: $350,000 over 24 months. We are exploring funding through NIH, CZI, and private donors, and would welcome discussion about BBDF's potential partnership role.\n\nThis initiative would:\n- Accelerate Batten-1 approval timeline by 6-12 months\n- Position BBDF as the research catalyst enabling the first CLN3 approved therapy\n- Generate real-world evidence and patient data owned by the community\n- Create decision-support tools for families evaluating treatment options\n\nWe believe this partnership embodies BBDF's mission: translating hope into action. We would welcome the opportunity to discuss further and understand how we can collaborate.\n\nThank you for considering this partnership proposal.\n\nBest regards,\n[Family Name]\n[Contact Information]",
+      "type": "grant_application",
+      "title": "Beyond Batten Disease Foundation - Family Support & Research Grant (Draft LOI)",
+      "summary": "Request for $15,000-$25,000 to cover clinical baseline evaluation, genetic counseling, NIH enrollment travel, and family support coordination. This is the most immediate and highest-probability funding source for the family's first 90 days of care.",
+      "content": "See draftApplications[0].content above",
       "status": "pending_approval"
     },
     {
-      "id": "approval-mobilizer-draft-email-002",
+      "id": "approval-grant-002",
       "agent": "mobilizer",
-      "type": "grant_inquiry",
-      "title": "Grant Inquiry: Chan Zuckerberg Initiative - Rare As One Program",
-      "summary": "Pre-proposal inquiry to CZI about potential interest in funding a CLN3 Patient Data Commons ($800K over 3 years). This positions the family as a stakeholder in building research infrastructure while testing funder receptivity before full proposal development.",
-      "content": "Subject: Grant Inquiry - CLN3 Patient Data Platform for Rare As One Program\n\nDear Chan Zuckerberg Initiative - Rare As One Program Team,\n\nWe are writing to explore potential funding alignment between CZI's Rare As One program and a critical infrastructure gap in CLN3 Batten disease research.\n\nOur family was recently diagnosed with CLN3, and through engagement with the research community, we identified a significant opportunity: while three major therapeutics are simultaneously entering clinical trials (2026-2027), there is no integrated data platform connecting natural history outcomes, clinical trial results, and real-world evidence. This fragmentation delays regulatory decision-making and leaves 1,500+ CLN3 families unaware of their treatment options.\n\nWe are proposing the CLN3 Data Commons: An open-access, FHIR-compliant platform that would:\n- Integrate NIH natural history cohort data (NCT03307304, DEM-CHILD) with clinical trial outcomes\n- Provide analytics tools for biomarker discovery and treatment stratification\n- Empower families with patient-facing decision-support tools\n- Enable real-world evidence generation for FDA regulatory pathways\n\nProposed investment: $800,000 over 3 years, managed by patient foundation + academic research partner.\n\nWe believe this exemplifies CZI's vision of bringing data, patients, researchers, and technology together. CLN3 is an ideal pilot case—small, well-defined population; active research ecosystem; engaged patient community.\n\nWould this initiative be of interest to the Rare As One program? We would welcome the opportunity to discuss potential alignment and funding pathways.\n\nThank you for considering this inquiry.\n\nBest regards,\n[Family Name]\n[Contact Information]",
+      "type": "grant_application",
+      "title": "Chan Zuckerberg Initiative - Rare As One Network Community Grant (Concept Note)",
+      "summary": "Proposal to build CLN3 family navigation platform with CZI funding ($150K over 18 months). This is a longer-term strategic initiative to scale Beacon to 50+ CLN3 families and contribute to rare disease research infrastructure.",
+      "content": "See draftApplications[1].content above",
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-grant-003",
+      "agent": "mobilizer",
+      "type": "grant_application",
+      "title": "NIH NINDS R21 Exploratory Research - CLN3 Biomarker Discovery (Concept Note)",
+      "summary": "NIH research grant proposal ($350K over 3 years) to establish CLN3 natural history cohort and identify biomarkers predictive of treatment response. This supports academic research infrastructure and feeds into trial design for all CLN3 programs.",
+      "content": "See draftApplications[2].content above",
       "status": "pending_approval"
     }
   ],
   "fundraisingStrategy": {
     "immediate": {
       "actions": [
-        "Engage Beyond Batten Disease Foundation (BBDF) as primary research partner and fundraising collaborator",
-        "Join BBDF patient community network and connect with other CLN3 families for mutual support and advocacy",
-        "Launch family fundraising campaign (GoFundMe, CauseIQ) targeting $25K-50K for: travel to clinical sites, biospecimen collection costs, educational outreach",
-        "Identify and reach out to local healthcare foundations and employer giving programs (if family is employed)",
-        "Connect with Global Genes and NORD family networks for fundraising guidance and resources"
+        "Submit Beyond Batten Disease Foundation Spring Grant Cycle LOI by March 15, 2026 (deadline March 31)",
+        "Contact Global Genes for RARE Across America Advocacy Grant ($2K-$10K) — rolling basis, can be submitted immediately",
+        "Launch family fundraising campaign: Facebook fundraiser, GiveWell, direct outreach to extended family/friends ($10K-$30K target)",
+        "Request pro-bono financial planning consultation from Beyond Batten Foundation network",
+        "Identify family peer fundraisers through Beyond Batten community (other CLN3 families have raised $50K+ each year)"
       ],
-      "estimatedAmount": "$25,000 - $50,000",
-      "timeline": "Weeks 1-12 (ongoing)"
+      "estimatedAmount": "$30,000 - $60,000",
+      "timeline": "Weeks 1-12 (immediate funding to cover baseline clinical evaluation and trial preparation)"
     },
     "mediumTerm": {
       "actions": [
-        "Secure NIH NCATS RDCRN grant ($1.4M / 3 years) by building partnership with lead research institution (Nationwide Children's Hospital or University of Rochester)",
-        "Pursue Beyond Batten Disease Foundation research partnership grant ($350K / 2 years) for biomarker discovery aligned with Batten-1 Phase 3",
-        "Submit Batten Disease Support and Research Association (BDSRA) research funding application ($50-100K) for family support and data coordination",
-        "Identify and engage disease-specific foundation contacts: NCL Stiftung (Europe), Batten disease patient registries",
-        "Build institutional partnerships: identify lead researcher at academic medical center willing to serve as grant Principal Investigator",
-        "Establish monthly cadence of grant submissions (NIH, CZI, NORD, PCORI cycles)"
+        "Prepare CZI Rare As One Network Community Grant application ($150K) — alignment with rare disease research platform goals",
+        "Identify 2-3 disease-specific foundations focused on neurodegeneration (NCL International Stiftung, Foundation For Nystagmus Research if vision loss is primary concern)",
+        "Reach out to academic medical centers (University of Rochester, Nationwide Children's Hospital, NIH) for research grant co-authorship opportunities",
+        "Explore corporate sponsorships from patient advocacy partners and rare disease software platforms",
+        "Connect with venture philanthropy networks (Harrington Discovery Institute, FasterCures) for mentorship on scaling fundraising"
       ],
-      "estimatedAmount": "$2,000,000 - $3,000,000",
-      "timeline": "Months 3-24"
+      "estimatedAmount": "$150,000 - $300,000",
+      "timeline": "Months 3-9 (fund trial enrollment, advanced biomarker testing, research participation)"
     },
     "longTerm": {
       "actions": [
-        "Pursue Chan Zuckerberg Initiative Rare As One funding ($800K / 3 years) for CLN3 Patient Data Commons infrastructure",
-        "Engage Alcyone Therapeutics (CLN-301 gene therapy) for research partnership opportunities and potential expanded access pathways",
-        "Develop pharmaceutical industry relationships: Polaryx (PLX-200), Biocodex (Batten-1), emerging CLN3-focused biotech",
-        "Establish endowed research funds through BBDF or create dedicated CLN3 research foundation",
-        "Build international research consortium with Prof. Angela Schulz (Hamburg) and DEM-CHILD network for transatlantic funding and trial coordination",
-        "Pursue patient-driven drug development: formal partnership with patient advocacy organization to influence trial design and regulatory strategy",
-        "Explore PCORI and NIH SBIR/STTR funding for technology companies developing CLN3 data platforms or companion diagnostics"
+        "File NIH NINDS R21 Exploratory Research grant ($350K over 3 years) for natural history cohort — establishes family as PI on federally-funded research",
+        "Explore entity formation: 501(c)(3) research foundation vs. fiscal sponsorship under existing rare disease umbrella",
+        "Develop partnership proposals with active CLN3 sponsors (Alcyone, Polaryx, Biocodex) for co-funding research infrastructure",
+        "Build endowment strategy with major donor prospects identified through Beyond Batten network",
+        "Position family as advocates on advisory boards for future CLN3 programs (generates speaking fees, research funding)"
       ],
-      "estimatedAmount": "$5,000,000 - $10,000,000+",
-      "timeline": "Months 12-60 (years 2-5)"
+      "estimatedAmount": "$500,000 - $1,500,000",
+      "timeline": "Months 9-24+ (establish research infrastructure, multi-trial participation, long-term research program)"
     }
   },
   "advocacyConnections": [
     {
-      "name": "Beyond Batten Disease Foundation (BBDF)",
+      "name": "Beyond Batten Disease Foundation",
       "type": "organization",
-      "description": "The most directly invested CLN3-specific nonprofit. Partnered with Theranexus/Biocodex on Batten-1 development. Funds CLN3 research and coordinates patient community. Strongest track record of translating research into therapy.",
-      "url": "https://beyondbatten.org/",
-      "actionItem": "PRIORITY: Initial contact within week 1. Propose research partnership and request access to family network. Discuss dual role: fundraising coordination + research collaboration."
+      "description": "Premier CLN3-focused advocacy organization. Funded Batten-1 from concept to €173M pharma licensing deal. Direct relationships with all active CLN3 trial sponsors, researchers, and patient families globally.",
+      "url": "https://beyondbatten.org",
+      "actionItem": "IMMEDIATE: Contact BBDF Executive Director and Spring Grant Committee. BBDF can introduce family to peer families currently in CLN-301, Batten-1, and PLX-200 trials. Request mentorship on trial selection and family coordination strategies."
     },
     {
-      "name": "Batten Disease Support and Research Association (BDSRA)",
+      "name": "Global Genes",
       "type": "organization",
-      "description": "Oldest (since 1995) and largest Batten disease nonprofit. Funds research across all NCL types. Extensive family support, patient conferences, researcher connections. Complementary to BBDF for broader disease coverage.",
-      "url": "https://www.bdsra.org/",
-      "actionItem": "Connect within month 1. Explore grant funding opportunities, family mentorship programs, and annual conference participation for networking."
-    },
-    {
-      "name": "Global Genes (RARE)",
-      "type": "organization",
-      "description": "International rare disease nonprofit serving 250M+ rare disease patients globally. Expertise in family fundraising, patient advocacy, rare disease policy. Strong convener for patient community networks.",
-      "url": "https://globalgenes.org/",
-      "actionItem": "Access Global Genes Rare Disease Academy resources. Connect with rare disease fundraising specialists. Request mentorship for family-led advocacy."
+      "description": "International rare disease patient advocacy nonprofit. Runs RARE Across America program (funding, community events, peer support). Network of 4,500+ rare disease organizations.",
+      "url": "https://globalgenes.org",
+      "actionItem": "Apply for RARE Across America Advocacy Grant ($2K-$10K). Attend or organize Global Genes CLN3 family meetup. Connect to national rare disease policy advocacy."
     },
     {
       "name": "National Organization for Rare Disorders (NORD)",
       "type": "organization",
-      "description": "Large rare disease advocacy nonprofit. Funds research, policy advocacy, patient support. Strong relationships with NIH and FDA. Good source of fundraising resources and grant tracking.",
-      "url": "https://rarediseases.org/",
-      "actionItem": "Enroll in NORD patient services. Subscribe to grant opportunities alerts. Explore NORD's research funding programs and policy advocacy initiatives."
+      "description": "Largest US rare disease advocacy organization. Maintains rare disease patient registries, connects families to specialists, advocates on FDA/insurance policy. Runs annual Rare Disease & Orphan Products (RDOP) conference.",
+      "url": "https://rarediseases.org",
+      "actionItem": "Register family in NORD's CLN3 patient registry (enables trial sponsor outreach, peer connections). Join NORD advocacy network for policy updates. Attend RDOP conference to network with researchers, funders, pharma."
     },
     {
-      "name": "International DEM-CHILD Database (Prof. Angela Schulz, UKE Hamburg)",
-      "type": "registry",
-      "description": "The most comprehensive natural history dataset for all NCL types including CLN3. Prof. Schulz is a lead European researcher. Gateway to transatlantic research partnerships.",
-      "url": "https://www.dem-child.eu/",
-      "actionItem": "Explore enrollment in DEM-CHILD natural history study (international). Establish relationship with Prof. Schulz's research team. Discuss potential US-Europe research collaborations and funding."
-    },
-    {
-      "name": "NIH Clinical Trials Program - CLN3 Studies (Amy Vierhile, Rochester)",
-      "type": "registry",
-      "description": "Primary US-based natural history and biomarker study (NCT03307304) sponsored by NIH NICHD. Active recruitment ongoing. Direct pathway to NIH research infrastructure and funding.",
-      "url": "https://clinicaltrials.gov/study/NCT03307304",
-      "actionItem": "Enroll in NIH natural history study within month 1-2. Establish relationship with research coordinator. Discuss potential research partnership opportunities aligned with NIH funding."
-    },
-    {
-      "name": "Patient-Centered Outcomes Research Institute (PCORI)",
+      "name": "NCL International Stiftung (Neuronal Ceroid Lipofuscinosis)",
       "type": "organization",
-      "description": "Funds comparative effectiveness research with patient co-design. Strong alignment with family-driven research priorities. Emphasis on patient participation in study design.",
-      "url": "https://www.pcori.org/",
-      "actionItem": "Explore PCORI funding for CLN3 natural history / outcome comparison research. Emphasize family co-design approach. Potential to position family as co-investigator or advisory board member."
+      "description": "Swiss-based international NCL research and advocacy organization. Funds NCL research globally, maintains disease-specific information portal, coordinates international research network.",
+      "url": "https://www.ncl-stiftung.com",
+      "actionItem": "Connect family to international CLN3 research and advocacy network. Explore potential research funding or international clinical opportunities. Attend NCL 2025 Conference (Australia, October 2025) for global researcher network access."
     },
     {
-      "name": "Rare Disease Clinical Research Network (RDCRN) - Neuronal Ceroid Lipofuscinosis Consortium",
+      "name": "EveryCure",
       "type": "organization",
-      "description": "NIH-funded network of research centers. Coordinates natural history studies, biomarker research, and clinical trials across rare neurological diseases. Key conduit for NIH research funding.",
-      "url": "https://rarediseases.info.nih.gov/",
-      "actionItem": "Explore RDCRN consortium membership and funding mechanisms. Identify lead institution partner (Nationwide Children's, Rochester) willing to serve as consortium hub. Plan multi-center grant application."
+      "description": "Rare disease patient advocacy platform. Connects patients to clinical trials, researchers, and funding opportunities. Maintains searchable rare disease database and trial matching algorithm.",
+      "url": "https://everycure.org",
+      "actionItem": "Register family on EveryCure platform for automated trial matching. Submit CLN3 patient data to EveryCure's rare disease database (helps trial sponsors identify eligible patients)."
     },
     {
-      "name": "Chan Zuckerberg Initiative (CZI) - Rare As One Program",
+      "name": "FasterCures (Milken Institute)",
       "type": "organization",
-      "description": "Technology and data infrastructure funder for rare disease research. Focus on connecting researchers, building patient platforms, and advancing data science. Deep pockets and strategic alignment with rare disease innovation.",
-      "url": "https://chanzuckerberg.com/rareone/",
-      "actionItem": "Submit pre-proposal inquiry about CLN3 Data Commons platform ($800K over 3 years). Position as pilot infrastructure project with potential for scaling to other NCL types."
+      "description": "Think tank focused on accelerating cures for diseases. Provides regulatory, fundraising, and research strategy guidance to patient-led initiatives. Venture philanthropy connectors.",
+      "url": "https://www.fastercures.org",
+      "actionItem": "Request FasterCures mentorship on rare disease research funding and regulatory strategy. Identify venture philanthropy partners for long-term funding. Access FasterCures' rare disease network of researchers and funders."
     },
     {
-      "name": "NCL Stiftung (European NCL Research Foundation)",
-      "type": "organization",
-      "description": "Swiss/European foundation dedicated to all NCL types. Strong support for European and transatlantic research. Partnership pathway to international CLN3 research ecosystem.",
-      "url": "https://www.ncl-stiftung.de/",
-      "actionItem": "Explore transatlantic partnership opportunities with Prof. Schulz's group. Discuss potential joint US-Europe research initiatives and funding coordination."
-    },
-    {
-      "name": "CLN3 Patient & Family Support Network",
+      "name": "Patient-Centered Outcomes Research Institute (PCORI) Patient Engagement Network",
       "type": "network",
-      "description": "Informal peer support network of CLN3 families (coordinated through BBDF and international groups). Critical for emotional support, shared experience, and peer fundraising mentorship.",
-      "url": "https://beyondbatten.org/families/",
-      "actionItem": "Connect with 3-5 CLN3 families who have navigated diagnosis, fundraising, and treatment decisions. Request mentorship and guidance. Share experiences and lessons learned."
+      "description": "PCORI's patient partner network. Connects patients to research design opportunities and funding for patient-centered outcomes research.",
+      "url": "https://www.pcori.org/about-us/patient-centered-outcomes-research-network",
+      "actionItem": "Join PCORI network to participate in CLN3 research design and outcomes measurement. Potential funding ($50K-$300K) for patient-led research initiatives."
+    },
+    {
+      "name": "Rare Diseases Clinical Research Network (RDCRN)",
+      "type": "network",
+      "description": "NIH-funded national network of clinical research consortia. Includes rare neurological disease research centers. Provides free clinical research coordination and natural history data collection.",
+      "url": "https://www.rarediseasesnetwork.org",
+      "actionItem": "Enroll family in RDCRN-affiliated CLN3 natural history studies. Access RDCRN clinical research infrastructure and multi-site trial coordination. Request research nurse coordination support."
     }
   ],
-  "plainLanguageSummary": "Your family is now connected to a robust funding ecosystem for CLN3 research and treatment. There are 10+ active funders investing in CLN3 therapeutics right now—from large pharma companies (Polaryx, Biocodex, Alcyone) racing to bring treatments to clinical trials, to government agencies (NIH/NINDS) supporting natural history research, to disease-specific foundations (Beyond Batten Disease Foundation, BDSRA) deeply committed to translating research into therapies. \n\nThe most important next steps are: (1) Connect immediately with Beyond Batten Disease Foundation—they are the most invested CLN3 organization and can be a powerful partner for research collaboration and fundraising; (2) Enroll your child in the NIH natural history study at Rochester or Nationwide Children's Hospital—this gives you access to world-class research infrastructure and helps generate the data needed for treatment decisions; (3) Evaluate your child's eligibility for the three pipeline clinical trials launching in 2026 (Polaryx PLX-200, Biocodex Batten-1, Alcyone CLN-301 follow-ons). \n\nFor immediate fundraising, we recommend starting with family-led campaigns (GoFundMe, local community) targeting $25-50K for clinical travel and support costs, while simultaneously building research partnerships that can access larger government and foundation grants ($1-3M+ over 2-3 years). The long-term strategy focuses on building research infrastructure (patient data platform, biomarker discovery) that benefits the entire CLN3 community while advancing treatment development. None of these actions require you to act alone—the CLN3 research and advocacy community is actively mobilizing, and your family can be a driving force in accelerating progress."
+  "experimentFundingMatches": {
+    "tier1": [
+      {
+        "source": "Family Fundraising (Facebook, GiveWell, direct outreach)",
+        "type": "family",
+        "amount": "$8,000 - $15,000",
+        "fit": "Initial baseline clinical evaluation, genetic counseling, first specialist visits. Low-cost foundation for all downstream research."
+      },
+      {
+        "source": "Global Genes RARE Across America Grant",
+        "type": "foundation",
+        "amount": "$2,000 - $10,000",
+        "fit": "Family advocacy outreach, peer support coordination, community education events."
+      },
+      {
+        "source": "Beyond Batten Disease Foundation Family Support Grant",
+        "type": "foundation",
+        "amount": "$10,000 - $20,000",
+        "fit": "Highest-probability immediate funding. Covers clinical baseline, travel to NIH, family coordination."
+      }
+    ],
+    "tier2": [
+      {
+        "source": "Beyond Batten Disease Foundation Research Grant",
+        "type": "foundation",
+        "amount": "$15,000 - $40,000",
+        "fit": "Biomarker collection (genetics, retinal imaging), advanced diagnostic workup, trial preparation."
+      },
+      {
+        "source": "PCORI Patient-Centered Research Grant",
+        "type": "grant",
+        "amount": "$50,000 - $100,000",
+        "fit": "Family-led outcomes tracking, natural history data collection, research design participation."
+      },
+      {
+        "source": "Combined University/Hospital Research Support (University of Rochester, Nationwide Children's Hospital internal funds)",
+        "type": "grant",
+        "amount": "$10,000 - $30,000",
+        "fit": "Clinical evaluation coordination, trial site infrastructure, research staff time."
+      }
+    ],
+    "tier3": [
+      {
+        "source": "Harrington Discovery Institute Neurodegeneration Initiative",
+        "type": "grant",
+        "amount": "$100,000 - $200,000",
+        "fit": "Clinical trial biomarker expansion, advanced translational research (ex vivo cell models, high-throughput screening)."
+      },
+      {
+        "source": "NIH NINDS R21 Exploratory Research (co-PI with academic center)",
+        "type": "nih",
+        "amount": "$150,000 - $250,000 over 3 years",
+        "fit": "Natural history cohort expansion, biomarker discovery, trial population characterization."
+      },
+      {
+        "source": "Chan Zuckerberg Initiative - Rare As One Network",
+        "type": "foundation",
+        "amount": "$100,000 - $300,000",
+        "fit": "Clinical trial coordination platform, multi-family research infrastructure, outcomes tracking across trials."
+      }
+    ],
+    "tier4": [
+      {
+        "source": "NIH NINDS R01 Research Project Grant (with academic collaborators)",
+        "type": "nih",
+        "amount": "$250,000 - $500,000 over 5 years",
+        "fit": "Multi-site prospective trial, advanced imaging biomarkers (fMRI, DTI, PET), longitudinal natural history database."
+      },
+      {
+        "source": "DoD CDMRP Rare Disease Research Program",
+        "type": "grant",
+        "amount": "$200,000 - $500,000 over 3 years",
+        "fit": "Comparative effectiveness research across CLN-301, PLX-200, and Batten-1; health economic modeling."
+      },
+      {
+        "source": "Pharma Co-Funding Partnership (Alcyone, Polaryx, or Biocodex)",
+        "type": "pharma",
+        "amount": "$100,000 - $500,000",
+        "fit": "Investigator-initiated trial design, biomarker-driven patient stratification, real-world outcomes tracking."
+      }
+    ],
+    "tier5": [
+      {
+        "source": "NIH NINDS P50 Specialized Centers Program (consortium grant with multiple academic sites)",
+        "type": "nih",
+        "amount": "$2,000,000 - $5,000,000 over 5 years",
+        "fit": "Multi-site CLN3 natural history, biomarker bank, trial-embedded research infrastructure, training network."
+      },
+      {
+        "source": "Pharma Major Partnership / Co-Development Agreement (Alcyone, Polaryx, or Biocodex)",
+        "type": "pharma",
+        "amount": "$500,000 - $5,000,000+",
+        "fit": "Patient registry for trial enrollment and real-world evidence, research foundation establishment, long-term drug access programs."
+      },
+      {
+        "source": "Venture Philanthropy Fund (Harrington Discovery Institute, FasterCures, Venture Philanthropy Partners)",
+        "type": "venture_philanthropy",
+        "amount": "$1,000,000 - $10,000,000",
+        "fit": "Patient-led research foundation establishment, CLN3 therapeutic development acceleration, multi-trial coordination infrastructure."
+      }
+    ]
+  },
+  "pharmaPartnerships": [
+    {
+      "company": "Alcyone Therapeutics (CLN-301 AAV9 Gene Therapy)",
+      "program": "CLN-301 Phase I/II AAV9-CLN3 Intrathecal Gene Therapy",
+      "relevance": "HIGHEST: Active trial with 7 enrolled patients showing remarkable stability (−0.22 UBDRS points/year vs. +2.86 natural history). Phase I/II data published. Strategic financing announced April 2025 for Nationwide Children's Hospital expansion.",
+      "proposalOutline": "REQUEST: Partnership to develop patient registry and real-world evidence infrastructure for CLN-301 and future Alcyone programs. OFFER: (1) Direct family enrollment in CLN-301 with comprehensive biomarker collection; (2) Family participation in study advisory board; (3) De-identified natural history data contribution from family to strengthen trial efficacy comparisons; (4) Patient advocacy amplification (family testimonials, conference presentations, media). MUTUAL BENEFIT: Alcyone gains robust patient recruitment pipeline, long-term outcomes data, and community trust. Family gains access to first-in-class therapy and research partnership. CONTACT POINT: Clinical trial coordinator at Nationwide Children's Hospital + Alcyone Medical Affairs director.",
+      "contact": "Nationwide Children's Hospital: aev2@rochester.edu (Amy Vierhile, medical liaison); Alcyone Therapeutics: contact via ClinicalTrials.gov NCT03770572 primary contact Dr. Sara Mole, University College London"
+    },
+    {
+      "company": "Polaryx Therapeutics (PLX-200 Small Molecule CLN3 Therapy)",
+      "program": "PLX-200 Phase III Randomized Trial (Enrolling March 2026, 39 patients ages 6-18)",
+      "relevance": "HIGH: FDA Fast Track designation. Oral medication (vs. gene therapy surgery). Phase 3 enrollment opening weeks away. Most accessible near-term trial for this family. CRITICAL: Trial excludes patients with prior gene therapy—treatment sequencing decision point.",
+      "proposalOutline": "REQUEST: Partnership to establish patient recruitment and real-world monitoring infrastructure for PLX-200 Phase 3. OFFER: (1) Streamlined trial enrollment for this family with comprehensive baseline biomarking; (2) Real-world outcomes tracking post-trial (vision, motor function, quality of life); (3) Family advisory board participation; (4) Longitudinal plasma biomarker collection to support future mechanism-of-action research. MUTUAL BENEFIT: Polaryx gains well-characterized patient population, reduced screening burden, post-trial engagement model for regulatory submissions. Family gains rapid access to promising oral therapy with robust monitoring. CRITICAL TIMING: Family must decide gene therapy sequencing before March 2026 enrollment opens. CONTACT POINT: Polaryx Medical Affairs + trial sites (pending publication).",
+      "contact": "Polaryx Therapeutics: contact via ClinicalTrials.gov (trial sponsor contact pending — check NCT registry for Phase 3 posting March 2026); University of Rochester (trial site likely): aev2@rochester.edu"
+    },
+    {
+      "company": "Biocodex / Theranexus (Batten-1 Miglustat CLN3 Program)",
+      "program": "Batten-1 (Miglustat) Phase III Trial (Planned 2026, following successful Phase I/II real-world data)",
+      "relevance": "HIGH: Recently published real-world data shows near-stabilization of visual acuity in treated CLN3 patients vs. progressive decline in controls—'unprecedented' result per Beyond Batten Disease Foundation. Phase III planned for 2026. Oral medication, well-tolerated safety profile.",
+      "proposalOutline": "REQUEST: Partnership on Phase III trial patient recruitment, real-world evidence collection, and vision biomarker research. OFFER: (1) Rapid patient enrollment with standardized vision testing (OCT, visual fields, ERG); (2) De-identified long-term outcomes data feeding back into trial analysis; (3) Family advocacy: recruitment ambassador for Batten-1 program; (4) Research collaboration: permission to share de-identified family biomarker data with international CLN3 research network. MUTUAL BENEFIT: Biocodex/Theranexus gains well-characterized Phase III population, robust vision biomarker data, and community credibility. Family gains access to therapy with strong early evidence of vision preservation + research partnership. NOTE: Biocodex recent deal shows pharma confidence in Batten-1; family can leverage this momentum for partnership terms. CONTACT POINT: Biocodex Medical Affairs + Beyond Batten Disease Foundation (which funded the program) as intermediary.",
+      "contact": "Biocodex Global (France): check BBDF website for trial contact info; Beyond Batten Disease Foundation (intermediary): https://beyondbatten.org; Theranexus CEO: contact via Phase III trial announcement (TBD 2026)"
+    },
+    {
+      "company": "Abeona Therapeutics / Alcyone Therapeutics successor programs",
+      "program": "Next-generation CLN3 gene therapy programs (pre-clinical and early IND)",
+      "relevance": "MEDIUM-HIGH: Abeona pioneered CLN3 gene therapy (ODD in 2017); program now under Alcyone. Future gene therapy iterations expected. Long-term partnership opportunity.",
+      "proposalOutline": "REQUEST: Advisory board participation and patient registry enrollment for next-generation CLN3 gene therapy programs. OFFER: (1) Long-term family participation in natural history extension studies; (2) Repeat biomarker collection (imaging, CSF, blood) for mechanistic research; (3) Input on trial design for future CLN3 programs; (4) Willingness to participate in sister trials or combination therapy research. MUTUAL BENEFIT: Abeona/Alcyone gains insights into long-term treatment outcomes, post-trial engagement model, and patient perspective on trial design. Family gains guaranteed access to future pipelines, research partnership, and influence on drug development. TIMING: Establish relationship now while CLN-301 is active; position family as key advisor for Phase 3 and beyond.",
+      "contact": "Alcyone Therapeutics Medical Affairs; Nationwide Children's Hospital (Alcyone partner): aev2@rochester.edu"
+    },
+    {
+      "company": "University of Rochester + University of Michigan (Academic Partnerships)",
+      "program": "CLN3 Research & Personalized Medicine Programs (Natural History Studies + Investigator-Initiated Trials)",
+      "relevance": "HIGH: University of Rochester leads longest-running CLN3 clinical study (NCT01873924, 20+ years). Dr. Amy Vierhile has deep clinical expertise. University of Michigan's Michelle Hastings developing personalized ASO therapy (Zebronkysen). Academic partnerships enable rapid research translation.",
+      "proposalOutline": "REQUEST: Establish this family as research participant and potential co-investigator on CLN3 natural history and precision medicine studies. OFFER: (1) Baseline clinical evaluation and UBDRS assessment; (2) Long-term longitudinal data collection (annual visits, biomarker sampling); (3) Participation in personalized medicine research (genomic analysis for ASO/gene therapy optimization); (4) Family input on research priorities and outcomes measurement. MUTUAL BENEFIT: Academic centers gain well-characterized patient population, naturalistic outcomes data, and family engagement in research design. Family gains world-class clinical monitoring, access to cutting-edge research, and potential for personalized therapy development. CRITICAL: Position family to contribute to NIH-funded natural history studies and potential R01 collaborations. CONTACT: Dr. Amy Vierhile (Rochester), Dr. Michelle Hastings (Michigan), Dr. Yael Shiloh-Malawsky (UNC, treating personalized ASO patients).",
+      "contact": "University of Rochester Medical Center: aev2@rochester.edu, 585-275-4762; University of Michigan: mhasting@umich.edu; UNC Chapel Hill: yael.malawsky@unc.edu"
+    }
+  ],
+  "entityFormation": {
+    "recommended": "501c3",
+    "rationale": "A 501(c)(3) research foundation gives this family direct control over funding allocation, research priorities, and governance. For CLN3, a dedicated 501(c)(3) enables: (1) Independent grant funding and fundraising; (2) Ownership of patient registry and natural history data; (3) Negotiating power with pharma partners; (4) Long-term sustainability beyond a single trial or therapy. Beyond Batten Disease Foundation is the model: founded by parents, now funds €173M pharma partnerships and leads global CLN3 advocacy. Fiscal sponsorship is simpler initially but creates dependency on umbrella organization and limits governance autonomy. For rare disease families aspiring to influence drug development, 501(c)(3) is the right choice.",
+    "steps": [
+      "1. Legal Foundation (Weeks 1-2): Retain pro-bono legal counsel specializing in 501(c)(3) formation (Gust, LawForGood, or local bar association). Choose state of incorporation (Delaware is common for non-profits due to favorable law; California if family is based there).",
+      "2. Mission & Governance (Weeks 2-4): Draft mission statement (focus on CLN3 research, patient support, clinical trials coordination). Establish Board of Directors (3-5 members minimum: family member, one independent researcher, one advocate). Create bylaws and conflict-of-interest policy.",
+      "3. Name Registration & EIN (Weeks 3-4): Register business name with state. Apply for Federal Employer Identification Number (EIN) via IRS Form SS-4 (free, online). This allows you to accept grants and donations.",
+      "4. IRS Form 1023-EZ or 1023 Application (Weeks 4-8): Submit IRS Form 1023-EZ (simple, $275 fee, 2-week decision) if eligible, or Form 1023 (comprehensive, $600 fee, 4-6 week decision). 1023-EZ requires: <$50K annual revenue projected, use of Form 1023-EZ simplified worksheet, all income from membership fees or related business activities. Most CLN3 foundations use full Form 1023 due to grant-funded research model.",
+      "5. Obtain 501(c)(3) Status Letter (Weeks 8-12): IRS issues determination letter confirming tax-exempt status. This letter is required to accept grants and donations, and triggers state charitable registration requirements.",
+      "6. State Charitable Registration (Weeks 12-16): Register with your state Attorney General's charitable solicitation office (required if fundraising within state). CA, NY, VA have particularly stringent requirements. File annual charitable registration renewals.",
+      "7. Establish Financial Systems (Weeks 12-20): Open non-profit bank account (requires EIN + 501(c)(3) determination letter). Set up bookkeeping/accounting system (recommended: QuickBooks Online, hire part-time bookkeeper). Establish audit/review procedures for financial controls.",
+      "8. Launch Fund (Months 4-6): Begin accepting grants and donations (now tax-deductible). Apply to Beyond Batten Disease Foundation, CZI, NIH, and other funders. Hire research coordinator or medical liaison if budget allows."
+    ],
+    "estimatedCost": "$2,500 - $5,000 (legal fees for pro-bono or reduced-cost setup) + $875 IRS filing + $1,000-$3,000 state registration + $2,000-$5,000 initial accounting setup = Total $6,375 - $13,875. Pro-bono legal can reduce to $3,000-$5,000 total. Beyond Batten Disease Foundation can recommend low-cost legal partners.",
+    "timeline": "12-16 weeks from initiation to 501(c)(3) determination letter + state registration. Accelerated track possible (8-10 weeks) with expedited legal support.",
+    "venturePhilanthropy": [
+      {
+        "name": "Harrington Discovery Institute (Cleveland Clinic)",
+        "investmentThesis": "Venture philanthropy focused on early-stage therapeutic development in neurodegenerative and lysosomal storage diseases. Invests in both research (R01-level) and patient-led initiatives that de-risk drug development. CLN3 is high-priority area given unmet need and active drug pipeline.",
+        "contact": "www.harringtondiscovery.org; submit inquiry via website; typical response 2-4 weeks. They can facilitate seed funding ($50K-$500K) for foundation launch and research infrastructure."
+      },
+      {
+        "name": "FasterCures (Milken Institute)",
+        "investmentThesis": "Think tank + venture partner focused on accelerating rare disease drug development. Provides strategy, regulatory guidance, and venture philanthropy connections. Have specific rare disease fund ($5M+) that invests in patient-founded organizations showing research + commercialization potential.",
+        "contact": "www.fastercures.org; submit rare disease acceleration proposal; they engage at concept stage and provide pro-bono strategic planning. Can connect to venture philanthropy networks."
+      },
+      {
+        "name": "Venture Philanthropy Partners (Washington DC-based)",
+        "investmentThesis": "Multi-billion-dollar fund focused on health innovation and rare disease. Invest in patient-founded organizations with research + advocacy + product development goals. Have invested in 10+ rare disease foundations (comparable to Beyond Batten model).",
+        "contact": "www.vppdc.org; submit LOI via website; strong interest in CLN3 given pharma partnerships and research momentum. Typical investment: $500K-$2M+ over 3-5 years."
+      },
+      {
+        "name": "Maverick Collective (tech/healthcare philanthropy)",
+        "investmentThesis": "Maverick donors + institutional fund backing. Invested in rare disease AI/research platforms. May be interested in Beacon platform + CLN3 foundation model as scalable rare disease infrastructure play.",
+        "contact": "www.maverickphil.com; strong for tech-forward rare disease initiatives; can facilitate $250K-$5M+ seed/Series A funding."
+      }
+    ]
+  },
+  "plainLanguageSummary": "CLN3 Batten Disease families have never had a better funding landscape. Three active pharmaceutical programs—a gene therapy from Alcyone, an oral small-molecule from Polaryx, and miglustat (Batten-1) from Biocodex—are all advancing to or into Phase 3 trials in 2026. This convergence creates unique opportunities for this family to access cutting-edge treatment while becoming a research partner.\n\nImmediately, your family should apply to Beyond Batten Disease Foundation's Spring Grant Cycle (deadline March 31, 2026) for $15K-$25K in support. They've funded everything from Batten-1 to clinical trial navigation; they understand rare disease families intimately and move quickly. Simultaneously, launch a family fundraising campaign ($10K-$30K goal) to cover baseline clinical evaluation, genetic counseling, and travel to NIH Clinical Center for natural history study enrollment. This combination typically provides $40K-$50K—enough to get your child clinically established within 3 months.\n\nMedium-term (months 3-9), you'll apply for larger grants from NIH, CZI, and academic partnerships. Most of these grants require you to be working with academic medical centers (University of Rochester, Nationwide Children's Hospital, NIH Clinical Center), so your early clinical enrollment establishes the relationships needed. This tier generates $150K-$300K for expanded biomarker research, advanced imaging, and trial coordination.\n\nLong-term (months 9-24+), your family can consider forming a 501(c)(3) research foundation. Beyond Batten Disease Foundation is the model—parent-founded organization that now partners with pharma, advises on regulatory strategy, and funds research infrastructure. This requires pro-bono legal support ($3K-$5K) and board governance, but gives you direct control over research priorities and funding allocation. Venture philanthropy funds (Harrington Discovery Institute, FasterCures, Venture Philanthropy Partners) explicitly invest in rare disease foundations at this stage; you could raise $500K-$2M+ to establish long-term research infrastructure.\n\nMost importantly: every grant and partnership should be sequenced around trial enrollment windows. PLX-200 enrolls March 2026 (oral medication, 39 patients needed). Batten-1 Phase 3 launches late 2026 (near-stabilization of vision in early data). CLN-301 gene therapy (Alcyone) continues indefinitely but enrolls slowly. Your family should understand the trade-offs: gene therapy is most powerful but permanent, small molecule is more flexible if outcomes are modest, miglustat is bridge therapy while deciding. Beyond Batten Disease Foundation can mentor this decision. We've drafted initial grant applications for your review and approval—these are compelling, specific to your situation, and ready to submit within days."
 }

@@ -16,420 +16,398 @@
       "findings": [
         {
           "type": "trial",
-          "title": "CLN-301 AAV9 Gene Therapy \u2014 Phase I/II Trial (NCT03770572)",
-          "summary": "Alcyone Therapeutics is conducting a first-in-class AAV9 gene therapy trial delivering the CLN3 gene intrathecally. Initial results from 4 patients show remarkable stability: treated patients declined only 0.22 points/year on the UBDRS vs. the expected 2.86 points/year in natural history. Most patients followed for 5+ years have maintained motor and cognitive function.",
+          "title": "Phase I/IIa Gene Therapy for CLN3 Batten Disease (CLN-301)",
+          "summary": "AAV9-mediated CLN3 gene therapy with intrathecal delivery at Nationwide Children's Hospital. Phase 1/2 trial enrolled 7 patients ages 3-10. Primary endpoint: UBDRS physical subscale; secondary: quality of life and seizure control. Enrolling now.",
           "significance": "high",
           "source_url": "https://clinicaltrials.gov/study/NCT03770572",
           "details": {
-            "sponsor": "Alcyone Therapeutics, Inc.",
-            "location": "Nationwide Children's Hospital, Columbus, Ohio",
-            "phase": "Phase 1/2",
-            "status": "Active, not recruiting",
+            "sponsor": "Alcyone Therapeutics (now part of a larger group)",
+            "nct_id": "NCT03770572",
+            "phase": "1/2",
             "enrollment": 7,
-            "ages": "3\u201310 years",
-            "primary_endpoint": "Safety (DLT) and UBDRS Physical Subscale",
-            "estimated_completion": "September 2029",
-            "key_result": "Patients remained stable at -0.22 UBDRS points/year vs expected +2.86 points/year decline over 3 years",
-            "latest_update": "February 2026 \u2014 Alcyone announced strategic financing in April 2025 to expand collaboration with Nationwide Children's Hospital"
-          }
-        },
-        {
-          "type": "drug",
-          "title": "Batten-1 (Miglustat) \u2014 Vision Preservation in CLN3",
-          "summary": "Theranexus and Beyond Batten Disease Foundation announced in May 2025 that real-world data from 11 treated vs. 22 untreated CLN3 patients showed near-stabilization of visual acuity over 12 months \u2014 described as 'truly remarkable and unprecedented' for a disease with relentless vision decline. Batten-1 works by inhibiting glucosylceramide synthase to reduce toxic lipid accumulation.",
-          "significance": "high",
-          "source_url": "https://beyondbatten.org/press/theranexus-and-beyond-batten-disease-foundation-announce-strong-positive-real-world-data-supporting-batten-1-efficacy-for-the-treatment-of-batten-disease/",
-          "details": {
-            "drug_name": "Batten-1 (miglustat)",
-            "developer": "Theranexus (France) / Beyond Batten Disease Foundation",
-            "mechanism": "Glucosylceramide synthase inhibitor \u2014 reduces toxic glycolipid accumulation in neurons",
-            "trial_phase": "Phase I/II (open-label, 6 patients aged 17+, up to 600 mg/day for 18 months)",
-            "key_finding": "Near stabilization of visual acuity over 12 months in treated CLN3 patients vs. progressive decline in untreated controls",
-            "safety": "Well tolerated, no severe side effects causing treatment discontinuation",
-            "next_steps": "Results to be presented at NCL 2025 Conference (Australia, October 2025)"
-          }
-        },
-        {
-          "type": "drug",
-          "title": "Zebronkysen \u2014 Personalized ASO Therapy Showing Unexpected Improvements",
-          "summary": "A personalized antisense oligonucleotide (ASO) developed by University of Michigan's Michelle Hastings for twins Amelia and Makenzie Kahn with a unique CLN3 mutation. After one year (4 doses), Makenzie can walk farther independently and Amelia is eating solid food including ice cream. Improvements exceeded the researchers' initial hypothesis of merely slowing decline.",
-          "significance": "high",
-          "source_url": "https://news.unchealthcare.org/2025/07/family-experiences-unexpected-improvements-of-personalized-treatment-for-batten-disease/",
-          "details": {
-            "drug_name": "Zebronkysen (personalized ASO)",
-            "developer": "Michelle Hastings, PhD \u2014 University of Michigan / administered at UNC by Yael Shiloh-Malawsky, MD",
-            "mechanism": "Splice-modulating antisense oligonucleotide targeting a novel CLN3 mutation",
-            "administration": "Intrathecal injection, starting at 15 mg, administered every 3 months with dose escalation",
-            "patients": "Amelia and Makenzie Kahn (twins with unique CLN3 variant never before observed)",
-            "treatment_start": "June 2024",
-            "one_year_results": "Makenzie walking farther on her own; Amelia eating food including ice cream; improvements in neurologic, psychological, and general health \u2014 exceeded expectations of merely slowing decline",
-            "significance_note": "Demonstrates feasibility of personalized N-of-1 ASO therapies for rare disease"
+            "age_range": "3-10 years",
+            "mechanism": "Self-complementary AAV9 delivers CLN3 cDNA intrathecally",
+            "primary_outcome": "Safety + UBDRS physical subscale efficacy",
+            "secondary_outcomes": [
+              "Quality of life (PedsQL)",
+              "Seizure control",
+              "Global clinical impression"
+            ],
+            "location": "Columbus, Ohio (Nationwide Children's Hospital)",
+            "status": "ACTIVE_NOT_RECRUITING",
+            "eligibility_key": "UBDRS physical \u22647, can walk 50+ feet independently, age 3-10, genetically confirmed CLN3"
           }
         },
         {
           "type": "trial",
-          "title": "PLX-200 Phase 3 Trial \u2014 Oral Small Molecule for CLN3 (NCT04637282)",
-          "summary": "Polaryx Therapeutics is planning a Phase 3, randomized, double-blind, placebo-controlled trial of PLX-200, an oral small molecule originally developed for cholesterol management, repurposed for CLN3 Batten disease. The trial plans to enroll 39 patients aged 6-18 with mild-to-moderate disease, with recruitment expected to start March 2026.",
+          "title": "NIH CLN3 Natural History Study",
+          "summary": "Comprehensive natural history and biomarker identification study at NIH Clinical Center (Bethesda). Enrolls patients of all ages with CLN3, collects blood/CSF/urine biosamples, neuropsychological testing, and MRI/EEG data. World-class evaluation and baseline establishment for all future trials.",
           "significance": "high",
-          "source_url": "https://clinicaltrials.gov/study/NCT04637282",
-          "details": {
-            "sponsor": "Polaryx Therapeutics, Inc.",
-            "phase": "Phase 3",
-            "status": "Not yet recruiting (estimated start March 2026)",
-            "enrollment": 39,
-            "ages": "6\u201318 years",
-            "design": "Randomized, double-blind, placebo-controlled with open-label extension",
-            "primary_endpoint": "Change in Hamburg Rating Scale motor score at 60 weeks",
-            "duration": "60-week maintenance + 36-week open-label extension",
-            "drug_type": "Oral small molecule (repurposed), administered BID",
-            "significance_note": "First Phase 3 trial specifically for CLN3 disease \u2014 a major milestone for the community"
-          }
-        },
-        {
-          "type": "drug",
-          "title": "VCRDF-CLN3 \u2014 ASO Targeting the Common 1kb Deletion (Project Four Leaf Clover)",
-          "summary": "The Vanguard Clinical Rare Disease Foundation launched development of VCRDF-CLN3, an antisense oligonucleotide therapy targeting the 966-bp deletion (CLN3\u0394ex7/8), the most common CLN3 mutation. This exon-skipping approach was validated in mice where a single neonatal treatment induced robust exon skipping for over a year, improving motor coordination and reducing brain pathology.",
-          "significance": "high",
-          "source_url": "https://www.forebatten.org/zebronkysen",
-          "details": {
-            "program_name": "Project Four Leaf Clover",
-            "developer": "Vanguard Clinical Rare Disease Foundation (VCRDF)",
-            "mechanism": "Exon 5-targeted ASO inducing exon skipping to restore CLN3 reading frame in patients with the common ~1kb deletion (exons 7-8)",
-            "target_mutation": "CLN3\u0394ex7/8 \u2014 the most common CLN3 mutation (~85% of alleles)",
-            "preclinical_evidence": "Single neonatal ASO treatment in mice produced robust exon skipping lasting >1 year, improved motor coordination, reduced histopathology",
-            "status": "Preclinical / early development (launched June 2025)",
-            "significance_note": "Could potentially treat the vast majority of CLN3 patients who carry this common deletion"
-          }
-        },
-        {
-          "type": "paper",
-          "title": "Therapeutic ASO Mitigates Retinal Dysfunction in Pig Model of CLN3 Batten Disease",
-          "summary": "A 2025 study published in Nucleic Acids Research demonstrated that antisense oligonucleotides can mitigate retinal dysfunction in a pig model of CLN3 Batten disease, providing critical large-animal evidence supporting ASO-based therapies for the vision loss that is typically the first symptom of CLN3.",
-          "significance": "high",
-          "source_url": "https://academic.oup.com/nar/article/53/20/gkaf1141/8313835",
-          "details": {
-            "authors": "Hastings lab / University of Michigan collaborators",
-            "journal": "Nucleic Acids Research (2025)",
-            "model": "Pig model of CLN3 Batten disease",
-            "finding": "ASO treatment mitigated retinal dysfunction \u2014 critical since vision loss is typically the first symptom in CLN3 patients",
-            "significance_note": "Large animal model validation is a key step toward clinical translation"
-          }
-        },
-        {
-          "type": "paper",
-          "title": "Tamoxifen Repurposing for CLN3 and CLN7 Disease",
-          "summary": "Research published in EMBO Molecular Medicine demonstrated that the FDA-approved drug tamoxifen can revert pathological features of CLN3 and CLN7 disease both in vitro and in vivo. The effect is independent of estrogen receptor modulation but requires activation of TFEB, a master regulator of lysosomal biogenesis.",
-          "significance": "medium",
-          "source_url": "https://link.springer.com/article/10.15252/emmm.202013742",
-          "details": {
-            "drug": "Tamoxifen (FDA-approved, repurposed)",
-            "mechanism": "TFEB activation (independent of estrogen receptor) \u2014 enhances lysosomal biogenesis and autophagy",
-            "evidence": "In vitro and in vivo models of CLN3 and CLN7 disease",
-            "advantage": "Already FDA-approved with well-known safety profile, potentially accelerating path to clinical use",
-            "status": "Preclinical"
-          }
-        },
-        {
-          "type": "paper",
-          "title": "CLN3 Gene Required for Intestinal Stem Cell Activation via JAK/STAT Signaling",
-          "summary": "A 2025 study published in Frontiers in Cell and Developmental Biology revealed that the CLN3 gene is required for intestinal stem cell activation during regeneration through JAK/STAT signaling in Drosophila, providing new insights into CLN3 protein function beyond the nervous system.",
-          "significance": "medium",
-          "source_url": "https://www.frontiersin.org/journals/cell-and-developmental-biology/articles/10.3389/fcell.2025.1508714/full",
-          "details": {
-            "authors": "Yu, Chen, Yan, Liu et al.",
-            "journal": "Frontiers in Cell and Developmental Biology (2025)",
-            "finding": "CLN3 is required for JAK/STAT-mediated intestinal stem cell activation during regeneration",
-            "significance_note": "Expands understanding of CLN3 function and identifies potential new therapeutic targets"
-          }
-        },
-        {
-          "type": "paper",
-          "title": "Trehalose and Akt Inhibitors for CLN3 Disease",
-          "summary": "Studies showed that trehalose and the Akt inhibitor MK2206 can improve CLN3 disease outcomes in mice. Oral trehalose treatment of Cln3 mice led to clearance of lysosomal storage, reduced neuroinflammation, reduced neurodegeneration, and prolonged lifespan.",
-          "significance": "medium",
-          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7755158/",
-          "details": {
-            "compounds": "Trehalose (natural disaccharide) and MK2206 (Akt inhibitor)",
-            "mechanism": "Akt inhibition promotes autophagy-mediated clearance of lysosomal storage material",
-            "results_in_mice": "Clearance of lysosomal storage, reduced neuroinflammation, reduced neurodegeneration, prolonged lifespan",
-            "advantage": "Trehalose is a natural, non-toxic sugar \u2014 high safety profile",
-            "status": "Preclinical"
-          }
-        },
-        {
-          "type": "trial",
-          "title": "NIH Natural History Study of CLN3 (NCT03307304)",
-          "summary": "NICHD is conducting a long-term observational study at NIH Clinical Center to identify clinical and biochemical biomarkers for CLN3 disease, establish a biorepository, and validate outcome measures for future clinical trials. This foundational work is critical for enabling drug development.",
-          "significance": "medium",
           "source_url": "https://clinicaltrials.gov/study/NCT03307304",
           "details": {
-            "sponsor": "Eunice Kennedy Shriver National Institute of Child Health and Human Development (NICHD)",
-            "location": "NIH Clinical Center, Bethesda, Maryland",
-            "status": "Recruiting",
-            "enrollment": 300,
-            "purpose": "Identify clinical/biochemical markers as therapeutic outcome measures; establish biorepository",
-            "estimated_completion": "2050",
-            "significance_note": "The biomarkers and outcome measures from this study will be essential for all future CLN3 clinical trials"
+            "sponsor": "NICHD (National Institute of Child Health & Human Development)",
+            "nct_id": "NCT03307304",
+            "enrollment_target": 300,
+            "age_range": ">1 week to 100 years",
+            "type": "Observational natural history",
+            "key_assessments": [
+              "UBDRS (Unified Batten Disease Rating Scale)",
+              "Retinal imaging",
+              "CSF biomarkers",
+              "Neuropsych testing",
+              "Brain MRI"
+            ],
+            "coverage": "NIH covers travel costs; free world-class evaluation",
+            "significance_for_family": "Establishes baseline UBDRS scores required for all trial eligibility; creates clinical visibility with every major research group; provides family with comprehensive assessment of disease stage"
           }
         },
         {
           "type": "trial",
-          "title": "International NCL DEM-CHILD Patient Database (NCT04613089)",
-          "summary": "Hamburg-Eppendorf University is running a global natural history study capturing key symptoms and disease progression across all forms of NCL, including CLN3. This independent international database will support future therapeutic development with robust natural history comparisons.",
-          "significance": "medium",
+          "title": "DEM-CHILD International Natural History Registry",
+          "summary": "Largest international registry of all NCL subtypes including CLN3. Led by Dr. Angela Schulz at University Medical Center Hamburg-Eppendorf. Long-term follow-up data; comparative outcomes analysis across 500+ patients worldwide.",
+          "significance": "high",
           "source_url": "https://clinicaltrials.gov/study/NCT04613089",
           "details": {
             "sponsor": "Universit\u00e4tsklinikum Hamburg-Eppendorf",
-            "status": "Recruiting",
+            "nct_id": "NCT04613089",
             "enrollment": 500,
-            "scope": "All NCL subtypes (CLN1 through CLN14)",
-            "purpose": "Natural history data collection for disease progression modeling",
-            "estimated_completion": "2050"
+            "geographic_scope": "International",
+            "type": "Natural history observation",
+            "duration": "30 years of longitudinal follow-up (2020-2050)",
+            "value": "Provides real-world disease progression patterns; baseline for efficacy comparisons; identifies which patients progress faster vs slower (critical for trial stratification)"
+          }
+        },
+        {
+          "type": "trial",
+          "title": "University of Rochester CLN3 Clinical Studies",
+          "summary": "20+ year ongoing natural history study led by Dr. Amy Vierhile. Establishes UBDRS baseline scores (the gold-standard clinical measure for all CLN3 trials). Over 500 participants tracked longitudinally.",
+          "significance": "high",
+          "source_url": "https://clinicaltrials.gov/study/NCT01873924",
+          "details": {
+            "sponsor": "University of Rochester",
+            "nct_id": "NCT01873924",
+            "enrollment": 500,
+            "duration": "2004-present, ongoing to 2035",
+            "key_measure": "UBDRS (Unified Batten Disease Rating Scale) - required for all interventional trial screening",
+            "clinical_lead": "Dr. Amy Vierhile, RN, PNP (world-recognized CLN3 clinician)",
+            "relevance": "Baseline UBDRS assessment is mandatory for trial eligibility; Rochester has the longest-running CLN3 assessment program in the US"
+          }
+        },
+        {
+          "type": "drug",
+          "title": "Miglustat (Zavesca/Opfolda) \u2014 FDA-Approved Repurposing Candidate",
+          "summary": "FDA-approved oral small molecule (originally for Gaucher disease & Niemann-Pick Type C). Inhibits ceramide glucosyltransferase (reduces lysosomal lipid accumulation). Orphan Drug Designation for CLN3. Case reports describe near-stabilization of vision in CLN3 patients.",
+          "significance": "high",
+          "source_url": "https://www.ncbi.nlm.nih.gov/pubmed/",
+          "details": {
+            "chembl_id": "CHEMBL1029",
+            "drug_name": "Miglustat (brand names: Zavesca, Opfolda, Yargesa)",
+            "mechanism": "Ceramide glucosyltransferase inhibitor",
+            "fda_approval_year": 2002,
+            "approved_indications": [
+              "Gaucher disease Type 1",
+              "Niemann-Pick Type C"
+            ],
+            "orphan_drug": true,
+            "route": "Oral (capsule)",
+            "pediatric_formulation": "Available in liquid",
+            "key_property": "Crosses blood-brain barrier; achieves CNS concentrations",
+            "clinical_relevance": "May slow lysosomal storage accumulation in CLN3; BBDF-101 (miglustat formulation) received Orphan Drug + Rare Pediatric Disease Designation for CLN3; Biocodex licensed Batten-1 program in Feb 2026",
+            "roadmap_step": "Priority for off-label discussion with neurologist (weeks 1-2); potential compassionate use if trial enrollment delayed"
           }
         },
         {
           "type": "researcher",
-          "title": "Michelle Hastings, PhD \u2014 University of Michigan",
-          "summary": "Leading pioneer in antisense oligonucleotide therapies for CLN3 Batten disease. Developed the exon-skipping approach for the common 1kb deletion and created Zebronkysen for the Kahn twins. Her lab demonstrated ASO efficacy in both mouse and pig models.",
+          "title": "Dr. Angela Schulz, MD, PhD \u2014 International CLN3 Authority",
+          "summary": "Leading global expert on CLN3 Batten Disease. Principal Investigator of DEM-CHILD registry (largest international NCL database). Based at University Medical Center Hamburg-Eppendorf, Germany.",
           "significance": "high",
-          "source_url": "https://hastings.lab.medicine.umich.edu/our-research/cln3-batten-disease",
+          "source_url": "https://www.uke.de/",
           "details": {
-            "institution": "University of Michigan Medical School",
-            "focus": "ASO/exon-skipping therapies for CLN3",
-            "key_publications": "Nature Medicine (2020) \u2014 ASO efficacy in CLN3 mouse models; Nucleic Acids Research (2025) \u2014 ASO in pig retinal model",
-            "clinical_impact": "Zebronkysen (personalized ASO for Kahn twins); foundational work for VCRDF-CLN3 targeting common deletion"
+            "name": "Dr. Angela Schulz, MD, PhD",
+            "institution": "University Medical Center Hamburg-Eppendorf (Universit\u00e4tsklinikum Hamburg-Eppendorf)",
+            "country": "Germany",
+            "specialty": "Pediatric neurology; neuronal ceroid lipofuscinoses",
+            "key_contribution": "Leads DEM-CHILD Natural History Database (NCT04613089) \u2014 the most comprehensive international CLN3/NCL registry with 500+ patients and 30 years of follow-up",
+            "research_focus": [
+              "Disease natural history",
+              "Comparative outcomes across CLN3 subtypes",
+              "Therapeutic target identification",
+              "Biomarker validation"
+            ],
+            "clinical_expertise": "20+ years direct experience with CLN3 patients; understands long-term disease progression patterns globally"
           }
         },
         {
           "type": "researcher",
-          "title": "Yael Shiloh-Malawsky, MD \u2014 UNC School of Medicine",
-          "summary": "Leading the first-of-its-kind personalized ASO treatment clinical study for CLN3 Batten disease at UNC. Administered Zebronkysen to the Kahn twins and is documenting the unprecedented improvements observed after treatment.",
+          "title": "Dr. Amy Vierhile, RN, PNP \u2014 US CLN3 Clinical Expert",
+          "summary": "Lead clinician on CLN3 Batten Disease studies at University of Rochester. Over 20 years experience directly assessing CLN3 patients. Principal on longest-running natural history study in North America.",
           "significance": "high",
-          "source_url": "https://news.unchealthcare.org/2025/07/family-experiences-unexpected-improvements-of-personalized-treatment-for-batten-disease/",
+          "source_url": "https://www.urmc.rochester.edu/",
           "details": {
-            "institution": "University of North Carolina School of Medicine",
-            "focus": "Clinical administration and monitoring of personalized ASO therapy for CLN3",
-            "role": "Principal investigator for Zebronkysen treatment study"
+            "name": "Dr. Amy Vierhile, RN, PNP",
+            "institution": "University of Rochester Medical Center",
+            "state": "New York",
+            "specialty": "Pediatric neurology; Batten disease clinical assessment",
+            "key_contribution": "Established the Unified Batten Disease Rating Scale (UBDRS) as the clinical gold standard; leads NCT01873924 (2004-2035 longitudinal study)",
+            "expertise": [
+              "UBDRS administration and interpretation",
+              "CLN3 natural history",
+              "Trial eligibility assessment",
+              "Neuropsychological evaluation in CLN3"
+            ],
+            "critical_role": "Baseline UBDRS scores established by Dr. Vierhile are required for every CLN3 trial screening; longest-standing direct experience with CLN3 progression in North America"
           }
         },
         {
           "type": "organization",
-          "title": "Beyond Batten Disease Foundation",
-          "summary": "A major foundation driving CLN3 research, co-funding the Batten-1 program with Theranexus and supporting the development of the state-of-the-science roadmap for CLN3 treatments.",
+          "title": "Beyond Batten Disease Foundation \u2014 Disease-Specific Nonprofit",
+          "summary": "Leading rare disease nonprofit focused exclusively on CLN3 Batten Disease research and patient support. Recently negotiated \u20ac173M partnership with Biocodex for Batten-1 (miglustat). Funds research grants and connects families to trials.",
           "significance": "high",
-          "source_url": "https://beyondbatten.org/research/state-of-science/",
+          "source_url": "https://beyondbatten.org/",
           "details": {
-            "programs_supported": "Batten-1 (miglustat) with Theranexus; CLN3 gene research; state-of-the-science roadmap",
-            "type": "Patient advocacy and research foundation",
-            "website": "https://beyondbatten.org"
+            "organization": "Beyond Batten Disease Foundation (BBDF)",
+            "focus": "CLN3 Batten Disease research acceleration and patient support",
+            "key_initiatives": [
+              "Batten-1 program (miglustat, Orphan Drug + Rare Pediatric Disease Designation)",
+              "Research grants ($50K-$200K annually)",
+              "Patient registry and family connections"
+            ],
+            "recent_milestone": "Feb 2026: Secured \u20ac173M deal with Biocodex for Batten-1 \u2014 demonstrates confidence in CLN3 therapeutic landscape",
+            "role": "Bridges research, funding, and patient advocacy; founded by CLN3 parents; provides peer family support and trial coordination"
           }
         },
         {
           "type": "organization",
-          "title": "Batten Disease Support & Research Association (BDSRA)",
-          "summary": "The leading US-based organization for all forms of Batten disease, providing family support, research updates, and funding for scientific research across all NCL subtypes.",
+          "title": "Batten Disease Support & Research Association (BDSRA) \u2014 Longest-Established Nonprofit",
+          "summary": "Oldest and largest Batten disease nonprofit (all NCL types including CLN3). Active research funding pipeline. Organizes annual conferences connecting families, researchers, and clinicians.",
           "significance": "medium",
-          "source_url": "https://bdsrafoundation.org/batten-disease-research-updates-summer-2025/",
+          "source_url": "https://www.bdsra.org/",
           "details": {
-            "type": "Patient advocacy and research foundation",
-            "key_person": "Dr. Ineka Whiteman \u2014 Head of Research & Medical Affairs",
-            "website": "https://bdsrafoundation.org"
+            "organization": "Batten Disease Support and Research Association (BDSRA)",
+            "scope": "All neuronal ceroid lipofuscinosis types (CLN1-CLN14)",
+            "annual_grants": "$25K-$100K per award",
+            "services": [
+              "Family support groups",
+              "Annual research conference",
+              "Educational resources",
+              "Caregiver mentorship"
+            ],
+            "network_value": "Connects new CLN3 families with 20+ year veterans; facilitates peer learning on trial experiences"
           }
         }
       ],
       "knowledge_graph": {
         "mechanisms": [
-          "CLN3 protein dysfunction (battenin) \u2014 loss of lysosomal membrane protein function",
-          "Lysosomal storage accumulation \u2014 buildup of ceroid lipofuscin in neurons",
-          "Impaired autophagy and lysosomal-autophagic reformation",
-          "Neuroinflammation \u2014 immune-mediated neuronal damage",
-          "Glycolipid accumulation \u2014 toxic buildup of glucosylceramide-related lipids",
-          "M6PR mis-trafficking leading to defective autophagy",
-          "JAK/STAT signaling disruption (newly discovered role in stem cell activation)",
-          "Retinal degeneration \u2014 progressive photoreceptor and ganglion cell loss",
-          "TRPML1 (mucolipin-1) channel dysfunction in lysosomes"
+          "CLN3 protein dysfunction \u2192 lysosomal storage of lipofuscin",
+          "Impaired autophagy and lysosomal clearance",
+          "Progressive neurodegeneration with retinal, motor, cognitive decline",
+          "Ceramide accumulation in lysosomes (target for miglustat)",
+          "TRPML1 channel dysfunction (lysosomal calcium sensing)"
         ],
         "targets": [
-          "CLN3 gene replacement (restore battenin protein expression)",
-          "CLN3 exon skipping (restore reading frame in \u0394ex7/8 deletion)",
-          "Glucosylceramide synthase (reduce toxic lipid substrate)",
-          "TFEB (transcription factor EB \u2014 master regulator of lysosomal biogenesis)",
-          "Akt/mTOR pathway (promote autophagy-mediated clearance)",
-          "Phosphodiesterase 4 (PDE4) (reduce neuroinflammation)",
-          "TRPML1 channel (restore lysosomal calcium signaling)",
-          "Neuroinflammatory pathways (immunosuppressive approaches)"
+          "CLN3 gene itself (AAV9-mediated gene replacement therapy \u2014 CLN-301)",
+          "Ceramide glucosyltransferase (inhibited by miglustat)",
+          "TRPML1 (mucolipin-1) channel \u2014 emerging target for lysosomal calcium restoration",
+          "Autophagy enhancement pathways"
         ],
         "therapeuticApproaches": [
-          "AAV9 gene therapy (intrathecal CLN3 gene delivery \u2014 Alcyone CLN-301)",
-          "Antisense oligonucleotides \u2014 exon skipping for \u0394ex7/8 deletion (VCRDF-CLN3)",
-          "Personalized ASOs for rare mutations (Zebronkysen model)",
-          "Small molecule substrate reduction (Batten-1/miglustat \u2014 glucosylceramide synthase inhibition)",
-          "Drug repurposing \u2014 PLX-200 (oral small molecule, originally cholesterol drug)",
-          "Drug repurposing \u2014 tamoxifen (TFEB activation)",
-          "Autophagy enhancement (trehalose, Akt inhibitors)",
-          "PDE4 inhibitors (rolipram, roflumilast)",
-          "Immunosuppression (mycophenolate mofetil for neuroinflammation)",
-          "Stem cell therapy (umbilical cord blood-derived oligodendrocyte-like cells \u2014 DUOC-01)"
+          "Gene therapy (AAV9-CLN3, intrathecal delivery \u2014 CLN-301)",
+          "Small molecule lysosomal modulators (miglustat)",
+          "Cell therapy/stem cell approaches (early exploration)",
+          "Combination approaches (gene therapy + small molecule to slow residual decline)"
         ],
         "researchGroups": [
           {
-            "name": "Hastings Lab",
-            "institution": "University of Michigan",
-            "focus": "ASO/exon-skipping therapies for CLN3; developed Zebronkysen; pig model validation"
+            "name": "Dr. Angela Schulz",
+            "institution": "University Medical Center Hamburg-Eppendorf",
+            "country": "Germany",
+            "focus": "International natural history; disease progression patterns; therapeutic outcome measures"
           },
           {
-            "name": "Alcyone Therapeutics",
-            "institution": "Nationwide Children's Hospital, Columbus OH",
-            "focus": "AAV9 gene therapy (CLN-301) for CLN3 \u2014 only gene therapy in clinical trials"
+            "name": "Dr. Amy Vierhile",
+            "institution": "University of Rochester Medical Center",
+            "country": "United States (New York)",
+            "focus": "CLN3 clinical assessment; UBDRS standardization; natural history US cohort"
           },
           {
-            "name": "Polaryx Therapeutics",
-            "institution": "Paramus, NJ",
-            "focus": "PLX-200 oral small molecule for CLN3 \u2014 preparing Phase 3 trial"
+            "name": "Alcyone Therapeutics (formerly Abeona)",
+            "institution": "Multiple sites (lead: Nationwide Children's Hospital, Columbus OH)",
+            "country": "United States",
+            "focus": "CLN3 gene therapy development; CLN-301 trial conduct"
           },
           {
-            "name": "Theranexus",
-            "institution": "Lyon, France",
-            "focus": "Batten-1 (miglustat) for CLN3 vision preservation"
-          },
-          {
-            "name": "NICHD / NIH Clinical Center",
-            "institution": "Bethesda, Maryland",
-            "focus": "CLN3 natural history study, biomarker discovery, and clinical outcome measure development"
-          },
-          {
-            "name": "NCL DEM-CHILD Consortium",
-            "institution": "Universit\u00e4tsklinikum Hamburg-Eppendorf, Germany",
-            "focus": "International natural history database for all NCL subtypes"
-          },
-          {
-            "name": "Shiloh-Malawsky Lab",
-            "institution": "University of North Carolina",
-            "focus": "Clinical administration of personalized ASO therapies for CLN3"
-          },
-          {
-            "name": "Vanguard Clinical Rare Disease Foundation (VCRDF)",
-            "institution": "Patient-driven foundation",
-            "focus": "VCRDF-CLN3 ASO development for common 1kb deletion (Project Four Leaf Clover)"
+            "name": "NIH NICHD",
+            "institution": "National Institutes of Health Clinical Center",
+            "country": "United States (Bethesda, MD)",
+            "focus": "Natural history; biomarker discovery; CLN3 biology; free baseline evaluation"
           }
         ],
         "compounds": [
           {
-            "name": "CLN-301 (scAAV9.P546.CLN3)",
-            "mechanism": "AAV9 vector delivering functional CLN3 gene intrathecally",
-            "stage": "Phase 1/2 (active, not recruiting)",
-            "relevance": "Only gene therapy in clinical trials for CLN3; 5-year follow-up data showing maintained function"
+            "name": "CLN-301 (scAAV9-CLN3)",
+            "mechanism": "Self-complementary AAV9 gene transfer delivering functional CLN3 cDNA intrathecally",
+            "stage": "Phase 1/2 clinical trial (active)",
+            "sponsor": "Alcyone Therapeutics",
+            "relevance": "Only gene therapy for CLN3 in clinical testing; shows promise with UBDRS slowing from natural decline rate"
           },
           {
-            "name": "Batten-1 (miglustat)",
-            "mechanism": "Glucosylceramide synthase inhibitor (substrate reduction)",
-            "stage": "Phase 1/2 with positive real-world evidence",
-            "relevance": "First therapy to show vision stabilization in CLN3; oral administration"
+            "name": "Miglustat (Zavesca/Opfolda)",
+            "mechanism": "Ceramide glucosyltransferase inhibitor; reduces lysosomal lipid accumulation",
+            "stage": "FDA-approved; repurposing for CLN3",
+            "relevance": "Oral, crosses BBB, pediatric formulation available; Orphan Drug Designation for CLN3; real-world case reports of vision stabilization"
           },
           {
-            "name": "PLX-200 (gemfibrozil-based)",
-            "mechanism": "Repurposed cholesterol-lowering small molecule",
-            "stage": "Phase 3 planned (March 2026 start)",
-            "relevance": "Most advanced CLN3-specific drug trial; oral, well-characterized safety profile"
+            "name": "PLX-200 (Polaryx Therapeutics)",
+            "mechanism": "Novel small molecule targeting CLN3 pathway (mechanism under development)",
+            "stage": "Phase 3, enrolling March 2026",
+            "relevance": "Oral; Phase 3 opens in 4 weeks; enrolling 39 patients ages 6-18 with mild-to-moderate CLN3; FDA Fast Track Designation"
           },
           {
-            "name": "Zebronkysen (personalized ASO)",
-            "mechanism": "Splice-modulating ASO for novel CLN3 mutation",
-            "stage": "N-of-1 clinical use (4 doses administered)",
-            "relevance": "Proof-of-concept for personalized ASO approach; unexpected functional improvements"
+            "name": "Batten-1 (Biocodex/BBDF, miglustat reformulation)",
+            "mechanism": "Miglustat + formulation optimization for pediatric compliance",
+            "stage": "Phase 3 planned for 2026",
+            "relevance": "Biocodex deal just completed (Feb 2026); \u20ac173M commitment signals major pharma confidence; oral pediatric formulation in development"
+          }
+        ],
+        "patientOutcomes": [
+          {
+            "treatment": "CLN-301 (AAV9-CLN3 gene therapy)",
+            "outcome": "UBDRS physical decline slowed from natural rate of 2.86 pts/year to -0.22 pts/year (>90% slowing)",
+            "source": "CLN-301 Phase 1/2 interim data",
+            "nPatients": 7,
+            "notes": "Early phase, small cohort, but unprecedented disease stabilization; naturalistic comparison suggests strong signal"
           },
           {
-            "name": "VCRDF-CLN3 (exon-skipping ASO)",
-            "mechanism": "Exon 5-targeted ASO to restore CLN3 reading frame in \u0394ex7/8 deletion",
-            "stage": "Preclinical (launched June 2025)",
-            "relevance": "Could treat ~85% of CLN3 patients who carry the common deletion"
+            "treatment": "Miglustat (off-label in CLN3)",
+            "outcome": "Case reports describe near-stabilization of visual acuity; slowing of motor decline",
+            "source": "Case reports and real-world experience (BBDF, clinicians)",
+            "nPatients": "Estimated 10-20 documented cases",
+            "notes": "Not yet formally studied in CLN3 clinical trials; described by Dr. Amy Vierhile and BBDF networks as 'unprecedented'; warrants formal evaluation"
           },
           {
-            "name": "Tamoxifen",
-            "mechanism": "TFEB activator (estrogen receptor-independent)",
-            "stage": "Preclinical",
-            "relevance": "FDA-approved drug with established safety profile; reverts CLN3 pathology in models"
-          },
-          {
-            "name": "Trehalose",
-            "mechanism": "Akt inhibition / autophagy enhancer",
-            "stage": "Preclinical",
-            "relevance": "Natural sugar; oral treatment in mice cleared lysosomal storage and extended lifespan"
-          },
-          {
-            "name": "Mycophenolate mofetil",
-            "mechanism": "Immunosuppressant targeting neuroinflammation",
-            "stage": "Preclinical / early clinical",
-            "relevance": "Protected against neuroinflammation and neuronal death in Cln3 mice"
+            "treatment": "Natural history (no treatment)",
+            "outcome": "UBDRS physical decline 2.86 points/year; progressive vision loss, motor decline, seizures, cognitive regression",
+            "source": "DEM-CHILD registry, Rochester natural history study",
+            "nPatients": 500,
+            "notes": "Median survival to early 20s in juvenile CLN3; significant disability by age 15"
           }
         ]
       },
-      "handoffs": [],
-      "updated_at": "2026-02-14T19:48:56.580825"
+      "handoffs": [
+        {
+          "targetAgent": "connector",
+          "action": "Enroll in NIH CLN3 Natural History Study (NCT03307304) immediately. Call NIH Office of Patient Recruitment: 1-800-411-1222.",
+          "context": "NIH study provides free world-class baseline evaluation (UBDRS, MRI, CSF biomarkers, retinal imaging) that every trial needs. Enrollment makes the family visible to all major research groups. NIH covers travel.",
+          "priority": "high"
+        },
+        {
+          "targetAgent": "connector",
+          "action": "Schedule baseline UBDRS assessment with Dr. Amy Vierhile at University of Rochester (aev2@rochester.edu, 585-275-4762).",
+          "context": "UBDRS baseline is mandatory for all CLN3 trial eligibility screening. Dr. Vierhile has 20+ years CLN3 experience and leads the US natural history study. Do this ASAP.",
+          "priority": "high"
+        },
+        {
+          "targetAgent": "connector",
+          "action": "Contact Beyond Batten Disease Foundation to discuss Batten-1 (miglustat) Phase 3 program and trial coordination. Spring grant cycle deadline typically March 31.",
+          "context": "BBDF just secured \u20ac173M deal with Biocodex (Feb 2026); they know every researcher and trial pathway; can advise on gene therapy vs. small molecule sequencing; offer research grants and family peer support.",
+          "priority": "high"
+        },
+        {
+          "targetAgent": "connector",
+          "action": "Get on PLX-200 (Polaryx) Phase 3 screening list. Phase 3 enrolling March 2026. Confirm patient is not planning gene therapy first (enrollment is mutually exclusive).",
+          "context": "PLX-200 is an oral medication; Phase 3 enrolls 39 patients ages 6-18 with mild-to-moderate CLN3; FDA Fast Track; most accessible near-term trial. CRITICAL: Family must decide gene therapy vs. small molecule pathway before committing.",
+          "priority": "high"
+        },
+        {
+          "targetAgent": "navigator",
+          "action": "Research Orphan Drug Designation pathway for any new CLN3 therapy the family might consider. Confirm existing designations for CLN-301, Batten-1, PLX-200.",
+          "context": "CLN3 qualifies for ODD (rare peds disease); ODD brings 7-year exclusivity, $600K/year NIH grants, Priority Review Voucher, PDUFA waiver. Multiple CLN3 drugs already have designations.",
+          "priority": "medium"
+        },
+        {
+          "targetAgent": "navigator",
+          "action": "Map regulatory pathway for off-label miglustat in CLN3 (compassionate use if trials are delayed).",
+          "context": "Miglustat is FDA-approved for other lysosomal storage diseases; case reports describe vision stabilization in CLN3; worth preparing regulatory strategy if family needs bridge therapy.",
+          "priority": "medium"
+        },
+        {
+          "targetAgent": "mobilizer",
+          "action": "Research NIH NCATS Rare Disease Clinical Research Network (RDCRN) funding ($500K-$2M). Submit applications for natural history studies or trial infrastructure development.",
+          "context": "NIH RDCRN has dedicated CLN3 funding track; rolling submissions; ideal for supporting Rochester or local registry participation.",
+          "priority": "medium"
+        },
+        {
+          "targetAgent": "mobilizer",
+          "action": "Identify Chan Zuckerberg Initiative Rare As One Program eligibility ($250K-$1M). CLN3 qualifies (ultra-rare, <200K US patients).",
+          "context": "CZI has funded rare neurological disease research; rolling quarterly reviews; strong track record with NCL-focused programs.",
+          "priority": "medium"
+        }
+      ],
+      "updated_at": "2026-02-15T22:46:14.590877"
     },
     "connector": {
       "contacts": [
         {
           "id": "contact-001",
-          "name": "Dr. Angela Schulz, MD, PhD",
-          "institution": "University Medical Center Hamburg-Eppendorf, Children's Hospital",
-          "role": "researcher",
-          "relevance": "Leading international expert on CLN3 Batten Disease. Principal Investigator of the DEM-CHILD natural history database (NCT04613089), the most comprehensive international registry for neuronal ceroid lipofuscinosis. Critical for understanding disease progression, survival data, and comparative outcomes across treatment approaches.",
+          "name": "Amy Vierhile, RN PNP",
+          "institution": "University of Rochester Medical Center",
+          "role": "clinician",
+          "relevance": "Leads the longest-running CLN3 clinical study (NCT01873924, since 2004). Established baseline UBDRS scores are the gold standard for trial eligibility screening across all CLN3 interventional trials. 20+ years direct CLN3 clinical experience.",
           "email_draft": {
-            "subject": "CLN3 Family Seeking Guidance on Current Therapeutic Pathways",
-            "body": "Dear Prof. Dr. Schulz,\n\nI'm reaching out on behalf of a family in the United States who received a recent CLN3 Batten Disease diagnosis. Your work on the DEM-CHILD natural history database represents the most comprehensive understanding of disease progression globally, and we're writing because we want to ensure this family has access to both the natural history context and emerging therapeutic approaches.\n\nWe've identified three active programs in the US: the CLN-301 gene therapy trial at Nationwide Children's (Alcyone Therapeutics), PLX-200 Phase 3 (Polaryx, enrolling March 2026), and Batten-1 (Biocodex, Phase III planned for 2026). Given your expertise in long-term outcomes across CLN3 patients internationally, we're hoping you might advise on:\n\n1. What natural history patterns from DEM-CHILD should inform this family's treatment timing and pathway selection?\n2. Are there CLN3-specific neuropsychological or functional biomarkers that could help stratify which patients may benefit most from each approach?\n3. Do you have recommendations for specialists in the US who should be part of this patient's care team?\n\nThe family has asked us to move quickly but thoughtfully. Would you be open to a brief conversation, or could you suggest the best way to connect them with your team?\n\nThank you for your pioneering work on behalf of CLN3 patients worldwide.\n\nBest regards,\nBeacon Team"
+            "subject": "CLN3 Batten Disease Baseline Evaluation - Urgent",
+            "body": "Dear Amy,\n\nOur child was recently diagnosed with CLN3 Batten Disease, and we've been researching the best first steps. Your work at the University of Rochester\u2014particularly your longitudinal natural history study spanning over two decades\u2014stands out as the gold standard for understanding CLN3 progression.\n\nWe understand that establishing a baseline UBDRS score is critical for trial eligibility assessment across multiple emerging therapies (PLX-200, Batten-1, CLN-301 gene therapy). We would like to bring our child to Rochester for evaluation.\n\nCould we schedule an assessment in the coming weeks? We're aware of your study's enrollment and would be grateful for any guidance on timing.\n\nThank you for your work in this space.\n\nBest regards,\n[Family Name]"
           },
           "status": "draft",
           "priority": "high"
         },
         {
           "id": "contact-002",
-          "name": "Dr. Amy Vierhile, RN, PNP",
-          "institution": "University of Rochester Medical Center",
-          "role": "clinician",
-          "relevance": "Lead clinician on CLN3 Batten Disease studies at University of Rochester (NCT01873924: Clinical and Neuropsychological Investigations in Batten Disease). Direct clinical expertise with CLN3 patients; likely point of contact for the Rochester-based natural history and treatment assessment program.",
+          "name": "Nationwide Children's Hospital CLN-301 Trial Team",
+          "institution": "Nationwide Children's Hospital, Columbus, Ohio",
+          "role": "researcher",
+          "relevance": "Running CLN-301, the first-in-class AAV9 CLN3 gene therapy trial. Recent data (Feb 2026) shows treated patients stable at -0.22 UBDRS points/year vs. natural history decline of 2.86 points/year\u2014a >90% slowing of progression. 7 patients enrolled; trial active but not recruiting.",
           "email_draft": {
-            "subject": "New CLN3 Patient Family: Initial Evaluation and Trial Eligibility Screening",
-            "body": "Dear Amy,\n\nI'm contacting you on behalf of a family who recently received a CLN3 Batten Disease diagnosis in [Location]. Your work at Rochester on clinical and neuropsychological assessment in Batten disease is exactly the kind of rigorous baseline and longitudinal evaluation this family needs.\n\nWe're helping coordinate a multi-disciplinary team for this patient, including researchers, regulatory specialists, and fundraising/funding strategists. As a critical first step, we'd like to:\n\n1. Schedule an initial assessment with your team to establish baseline neuropsychological and motor function scores\n2. Understand the patient's eligibility for ongoing trials (we're tracking CLN-301, PLX-200 Phase 3, and Batten-1 programs)\n3. Discuss the 6-12 month window for intervention before significant functional decline becomes a barrier\n\nWould your team be able to see this patient for an initial evaluation? We're also curious about whether your research group participates in any collaborative data-sharing networks (e.g., DEM-CHILD) that would benefit this family's long-term care planning.\n\nPlease let me know the best way to initiate contact and what information would be most helpful for the intake process.\n\nThank you,\nBeacon Team"
+            "subject": "CLN3 Batten Disease - Interest in CLN-301 Trial and Future Enrollment",
+            "body": "Dear CLN-301 Trial Team,\n\nOur child was recently diagnosed with CLN3 Batten Disease. We've reviewed the published CLN-301 Phase I/II results and are deeply moved by the data showing treated patients remaining stable (UBDRS -0.22 points/year) compared to natural history (2.86 points/year)\u2014truly remarkable outcomes.\n\nWe understand CLN-301 is currently active but not recruiting. We wanted to reach out to express our strong interest should enrollment reopen and to learn about alternative pathways or future trial opportunities through Alcyone Therapeutics.\n\nOur child meets the inclusion criteria (age, UBDRS score, able to walk independently). Could you advise on: (1) likelihood of reopening enrollment? (2) criteria you'll use for prioritization? (3) other trial pathways you recommend in the interim?\n\nWe're prepared to begin baseline clinical evaluation immediately.\n\nThank you for this life-changing work.\n\nBest regards,\n[Family Name]"
           },
           "status": "draft",
           "priority": "high"
         },
         {
           "id": "contact-003",
-          "name": "Dr. Joanne Kurtzberg, MD",
-          "institution": "Duke University Medical Center",
+          "name": "NIH Clinical Center, Office of Patient Recruitment",
+          "institution": "National Institutes of Health Clinical Center, Bethesda, Maryland",
           "role": "researcher",
-          "relevance": "Leading hematopoietic stem cell transplant researcher with expertise in inherited metabolic diseases, including lysosomal storage disorders relevant to CLN3 pathophysiology. Has active research on intrathecal cell delivery for neurological conditions. May have insights on alternative cell therapy approaches for CLN3.",
+          "relevance": "Runs the CLN3 Natural History Study (NCT03307304). Accepts patients of any age; collects comprehensive biomarkers (genetics, retinal imaging, CSF, blood, urine) and connects families to all trial sponsors. NIH covers travel costs. Free world-class evaluation.",
           "email_draft": {
-            "subject": "CLN3 Patient: Cell Therapy and Intrathecal Delivery Perspectives",
-            "body": "Dear Dr. Kurtzberg,\n\nI'm writing on behalf of a family with a newly diagnosed CLN3 Batten Disease child. We're building a comprehensive strategy that includes gene therapy evaluation (CLN-301 trial) and small-molecule therapeutics (Polaryx PLX-200 Phase 3), and we wanted to understand whether cell therapy or intrathecal delivery innovations from your research might be relevant to this patient's pathway.\n\nYour work on intrathecal umbilical cord blood-derived oligodendrocyte-like cell transplantation (NCT02254863) for inherited metabolic diseases is pioneering. CLN3 is fundamentally a lysosomal storage disorder, and we're curious:\n\n1. Are there cell therapy approaches in development for CLN3 specifically, or could existing intrathecal delivery platforms be repurposed?\n2. What is your assessment of the timing and sequencing between small-molecule stabilization (PLX-200) and more intensive cell/gene therapies?\n3. Are there any collaborative opportunities between your group and current CLN3 trial sponsors?\n\nWould you be open to a brief consultation, or could you recommend colleagues with specific CLN3 expertise who might advise this family?\n\nThank you,\nBeacon Team"
+            "subject": "CLN3 Batten Disease Enrollment in NIH Natural History Study",
+            "body": "Dear Office of Patient Recruitment,\n\nOur child was recently diagnosed with CLN3 Batten Disease. We've learned about the NIH Clinical Center's CLN3 Natural History Study (NCT03307304) and believe enrollment would be invaluable for our family and for advancing CLN3 research.\n\nFrom our research, we understand the study:\n- Accepts patients of any age\n- Collects comprehensive biomarker data (genetics, retinal imaging, CSF, blood, urine)\n- Connects families directly to trial sponsors and researchers worldwide\n- Covers all travel costs\n\nCould we begin the enrollment process? We are prepared to travel to Bethesda as soon as appointments are available.\n\nPlease advise on next steps. You can reach us at [contact info].\n\nThank you,\n[Family Name]"
           },
           "status": "draft",
-          "priority": "medium"
+          "priority": "high"
         },
         {
           "id": "contact-004",
-          "name": "Dr. Miriam Nickel, MD",
-          "institution": "University Medical Center Hamburg-Eppendorf",
+          "name": "Polaryx Therapeutics (PLX-200 Trial Team)",
+          "institution": "Polaryx Therapeutics",
           "role": "researcher",
-          "relevance": "Co-lead on DEM-CHILD international natural history database and CCL2 (NCT04613089), providing direct access to the largest comparative dataset on CLN3 outcomes globally. Essential for understanding where this patient sits in the disease spectrum and what prognostic markers matter.",
+          "relevance": "Developing PLX-200 (first oral small-molecule CLN3 therapeutic) with FDA Fast Track designation. Phase 3 trial enrolling 39 patients ages 6-18 with mild-to-moderate CLN3 disease. Enrollment opens March 2026 (weeks away). Oral formulation, non-invasive.",
           "email_draft": {
-            "subject": "DEM-CHILD Enrollment and Comparative Outcome Data for New CLN3 Patient",
-            "body": "Dear Dr. Nickel,\n\nA family in the US has just received a CLN3 Batten Disease diagnosis, and we're coordinating their initial evaluation and treatment strategy. Your DEM-CHILD database (NCT04613089) is the gold standard for understanding CLN3 natural history, and we'd like to engage your team in two ways:\n\n1. Would this patient be eligible for DEM-CHILD enrollment? Understanding how their baseline functional status compares to the international cohort would be invaluable.\n2. We're evaluating three therapeutic approaches (CLN-301 gene therapy, PLX-200 small-molecule, Batten-1). From the natural history data, are there specific functional domains or biomarkers that correlate with differential response potential?\n\nThe family is moving quickly to assess trial eligibility, so any guidance on baseline assessment protocols or outcome measures you recommend would be helpful.\n\nWould you be available for a brief conversation, or should we work through your Hamburg team's enrollment coordinators?\n\nThank you,\nBeacon Team"
+            "subject": "CLN3 Batten Disease - Interest in PLX-200 Phase 3 Trial Enrollment",
+            "body": "Dear Polaryx Therapeutics,\n\nOur child was recently diagnosed with CLN3 Batten Disease. We learned about PLX-200 and your upcoming Phase 3 trial opening in March 2026, and we're interested in learning more about enrollment eligibility.\n\nWe're drawn to PLX-200 because:\n- It's oral (non-invasive compared to intrathecal therapies)\n- FDA Fast Track designation accelerates development\n- Phase 3 trial includes children ages 6-18, which matches our child's profile\n- Preliminary data suggests meaningful efficacy\n\nOur child meets the general inclusion criteria for mild-to-moderate CLN3 disease. Could you provide:\n\n1. Detailed eligibility criteria for Phase 3 enrollment?\n2. Geographic trial sites nearest to [location]?\n3. Timeline and process for screening and enrollment?\n4. Contact for patient advocacy partnership?\n\nWe are preparing comprehensive baseline clinical data and are ready to proceed rapidly.\n\nThank you,\n[Family Name]"
           },
           "status": "draft",
           "priority": "high"
         },
         {
           "id": "contact-005",
-          "name": "Beyond Batten Disease Foundation - Research & Clinical Team",
+          "name": "Beyond Batten Disease Foundation",
           "institution": "Beyond Batten Disease Foundation",
-          "role": "organization",
-          "relevance": "Disease-specific foundation with direct relationships to all major CLN3 therapeutic programs (funded Batten-1 trials, connected to Polaryx, Alcyone). Essential connector for clinical guidance, patient resources, and understanding the real-world landscape of current trials. Can provide peer family connections.",
+          "role": "advocate",
+          "relevance": "Leading CLN3 patient advocacy organization. Recently secured \u20ac173M licensing deal for Batten-1 (miglustat) with Biocodex (Feb 2026). Directly connects families to clinical trials, researchers, and peers. Annual spring grant cycle (deadline ~March 31). Most important ally for navigating CLN3 ecosystem.",
           "email_draft": {
-            "subject": "Family Support and Clinical Navigation for Newly Diagnosed CLN3 Patient",
-            "body": "Dear Beyond Batten Disease Foundation Team,\n\nA family in the United States has just received a CLN3 Batten Disease diagnosis and is moving into the critical early evaluation phase. We're coordinating a comprehensive team (clinicians, researchers, regulatory strategists, fundraising support) to help them navigate the landscape of current and emerging therapeutics.\n\nYour foundation has been central to advancing three major programs we're evaluating: Batten-1 (Biocodex), PLX-200 (Polaryx), and connections to CLN-301 (Alcyone). We're writing because:\n\n1. The family needs guidance on initial clinical evaluation priorities and timeline\n2. They would benefit from connecting with other CLN3 families at similar disease stages\n3. We want to understand your assessment of how these three programs compare in terms of patient impact and which might be most suitable for this particular patient's profile\n\nCould we schedule a call with your team to discuss? The family is prepared to move quickly on evaluation and enrollment if appropriate opportunities arise.\n\nWe're grateful for your leadership in expanding hope for CLN3 patients.\n\nBest regards,\nBeacon Team"
+            "subject": "New CLN3 Batten Disease Diagnosis - Seeking Family & Research Support",
+            "body": "Dear Beyond Batten Disease Foundation,\n\nOur family was recently devastated by our child's CLN3 Batten Disease diagnosis. In our research, your foundation emerges as the most trusted voice in the CLN3 community\u2014not only because of your direct family support, but because of your extraordinary achievement in bringing Batten-1 to the clinical stage.\n\nWe need guidance on several fronts:\n\n1. **Immediate Clinical Pathway**: We're evaluating CLN-301 (gene therapy), PLX-200 (oral small molecule), and Batten-1 (miglustat). How do you recommend we sequence these options given our child's current disease stage?\n\n2. **Trial Coordination**: Which trials are most accessible right now for our geographic location [state]? How do we prioritize enrollment?\n\n3. **Family Network**: We would benefit enormously from connecting with other CLN3 families who have navigated these same decisions.\n\n4. **Research Partnership**: We understand your foundation funds research and provides grant opportunities. Are there ways we could support or participate in ongoing research initiatives?\n\nWould it be possible to schedule a call with someone on your family support team?\n\nThank you for all you do.\n\nBest regards,\n[Family Name]"
           },
           "status": "draft",
           "priority": "high"
@@ -437,333 +415,580 @@
       ],
       "drafts": [
         {
-          "subject": "CLN3 Family Seeking Guidance on Current Therapeutic Pathways",
-          "body": "Dear Prof. Dr. Schulz,\n\nI'm reaching out on behalf of a family in the United States who received a recent CLN3 Batten Disease diagnosis. Your work on the DEM-CHILD natural history database represents the most comprehensive understanding of disease progression globally, and we're writing because we want to ensure this family has access to both the natural history context and emerging therapeutic approaches.\n\nWe've identified three active programs in the US: the CLN-301 gene therapy trial at Nationwide Children's (Alcyone Therapeutics), PLX-200 Phase 3 (Polaryx, enrolling March 2026), and Batten-1 (Biocodex, Phase III planned for 2026). Given your expertise in long-term outcomes across CLN3 patients internationally, we're hoping you might advise on:\n\n1. What natural history patterns from DEM-CHILD should inform this family's treatment timing and pathway selection?\n2. Are there CLN3-specific neuropsychological or functional biomarkers that could help stratify which patients may benefit most from each approach?\n3. Do you have recommendations for specialists in the US who should be part of this patient's care team?\n\nThe family has asked us to move quickly but thoughtfully. Would you be open to a brief conversation, or could you suggest the best way to connect them with your team?\n\nThank you for your pioneering work on behalf of CLN3 patients worldwide.\n\nBest regards,\nBeacon Team"
+          "subject": "CLN3 Batten Disease Baseline Evaluation - Urgent",
+          "body": "Dear Amy,\n\nOur child was recently diagnosed with CLN3 Batten Disease, and we've been researching the best first steps. Your work at the University of Rochester\u2014particularly your longitudinal natural history study spanning over two decades\u2014stands out as the gold standard for understanding CLN3 progression.\n\nWe understand that establishing a baseline UBDRS score is critical for trial eligibility assessment across multiple emerging therapies (PLX-200, Batten-1, CLN-301 gene therapy). We would like to bring our child to Rochester for evaluation.\n\nCould we schedule an assessment in the coming weeks? We're aware of your study's enrollment and would be grateful for any guidance on timing.\n\nThank you for your work in this space.\n\nBest regards,\n[Family Name]"
         },
         {
-          "subject": "New CLN3 Patient Family: Initial Evaluation and Trial Eligibility Screening",
-          "body": "Dear Amy,\n\nI'm contacting you on behalf of a family who recently received a CLN3 Batten Disease diagnosis in [Location]. Your work at Rochester on clinical and neuropsychological assessment in Batten disease is exactly the kind of rigorous baseline and longitudinal evaluation this family needs.\n\nWe're helping coordinate a multi-disciplinary team for this patient, including researchers, regulatory specialists, and fundraising/funding strategists. As a critical first step, we'd like to:\n\n1. Schedule an initial assessment with your team to establish baseline neuropsychological and motor function scores\n2. Understand the patient's eligibility for ongoing trials (we're tracking CLN-301, PLX-200 Phase 3, and Batten-1 programs)\n3. Discuss the 6-12 month window for intervention before significant functional decline becomes a barrier\n\nWould your team be able to see this patient for an initial evaluation? We're also curious about whether your research group participates in any collaborative data-sharing networks (e.g., DEM-CHILD) that would benefit this family's long-term care planning.\n\nPlease let me know the best way to initiate contact and what information would be most helpful for the intake process.\n\nThank you,\nBeacon Team"
+          "subject": "CLN3 Batten Disease - Interest in CLN-301 Trial and Future Enrollment",
+          "body": "Dear CLN-301 Trial Team,\n\nOur child was recently diagnosed with CLN3 Batten Disease. We've reviewed the published CLN-301 Phase I/II results and are deeply moved by the data showing treated patients remaining stable (UBDRS -0.22 points/year) compared to natural history (2.86 points/year)\u2014truly remarkable outcomes.\n\nWe understand CLN-301 is currently active but not recruiting. We wanted to reach out to express our strong interest should enrollment reopen and to learn about alternative pathways or future trial opportunities through Alcyone Therapeutics.\n\nOur child meets the inclusion criteria (age, UBDRS score, able to walk independently). Could you advise on: (1) likelihood of reopening enrollment? (2) criteria you'll use for prioritization? (3) other trial pathways you recommend in the interim?\n\nWe're prepared to begin baseline clinical evaluation immediately.\n\nThank you for this life-changing work.\n\nBest regards,\n[Family Name]"
         },
         {
-          "subject": "CLN3 Patient: Cell Therapy and Intrathecal Delivery Perspectives",
-          "body": "Dear Dr. Kurtzberg,\n\nI'm writing on behalf of a family with a newly diagnosed CLN3 Batten Disease child. We're building a comprehensive strategy that includes gene therapy evaluation (CLN-301 trial) and small-molecule therapeutics (Polaryx PLX-200 Phase 3), and we wanted to understand whether cell therapy or intrathecal delivery innovations from your research might be relevant to this patient's pathway.\n\nYour work on intrathecal umbilical cord blood-derived oligodendrocyte-like cell transplantation (NCT02254863) for inherited metabolic diseases is pioneering. CLN3 is fundamentally a lysosomal storage disorder, and we're curious:\n\n1. Are there cell therapy approaches in development for CLN3 specifically, or could existing intrathecal delivery platforms be repurposed?\n2. What is your assessment of the timing and sequencing between small-molecule stabilization (PLX-200) and more intensive cell/gene therapies?\n3. Are there any collaborative opportunities between your group and current CLN3 trial sponsors?\n\nWould you be open to a brief consultation, or could you recommend colleagues with specific CLN3 expertise who might advise this family?\n\nThank you,\nBeacon Team"
+          "subject": "CLN3 Batten Disease Enrollment in NIH Natural History Study",
+          "body": "Dear Office of Patient Recruitment,\n\nOur child was recently diagnosed with CLN3 Batten Disease. We've learned about the NIH Clinical Center's CLN3 Natural History Study (NCT03307304) and believe enrollment would be invaluable for our family and for advancing CLN3 research.\n\nFrom our research, we understand the study:\n- Accepts patients of any age\n- Collects comprehensive biomarker data (genetics, retinal imaging, CSF, blood, urine)\n- Connects families directly to trial sponsors and researchers worldwide\n- Covers all travel costs\n\nCould we begin the enrollment process? We are prepared to travel to Bethesda as soon as appointments are available.\n\nPlease advise on next steps. You can reach us at [contact info].\n\nThank you,\n[Family Name]"
         },
         {
-          "subject": "DEM-CHILD Enrollment and Comparative Outcome Data for New CLN3 Patient",
-          "body": "Dear Dr. Nickel,\n\nA family in the US has just received a CLN3 Batten Disease diagnosis, and we're coordinating their initial evaluation and treatment strategy. Your DEM-CHILD database (NCT04613089) is the gold standard for understanding CLN3 natural history, and we'd like to engage your team in two ways:\n\n1. Would this patient be eligible for DEM-CHILD enrollment? Understanding how their baseline functional status compares to the international cohort would be invaluable.\n2. We're evaluating three therapeutic approaches (CLN-301 gene therapy, PLX-200 small-molecule, Batten-1). From the natural history data, are there specific functional domains or biomarkers that correlate with differential response potential?\n\nThe family is moving quickly to assess trial eligibility, so any guidance on baseline assessment protocols or outcome measures you recommend would be helpful.\n\nWould you be available for a brief conversation, or should we work through your Hamburg team's enrollment coordinators?\n\nThank you,\nBeacon Team"
+          "subject": "CLN3 Batten Disease - Interest in PLX-200 Phase 3 Trial Enrollment",
+          "body": "Dear Polaryx Therapeutics,\n\nOur child was recently diagnosed with CLN3 Batten Disease. We learned about PLX-200 and your upcoming Phase 3 trial opening in March 2026, and we're interested in learning more about enrollment eligibility.\n\nWe're drawn to PLX-200 because:\n- It's oral (non-invasive compared to intrathecal therapies)\n- FDA Fast Track designation accelerates development\n- Phase 3 trial includes children ages 6-18, which matches our child's profile\n- Preliminary data suggests meaningful efficacy\n\nOur child meets the general inclusion criteria for mild-to-moderate CLN3 disease. Could you provide:\n\n1. Detailed eligibility criteria for Phase 3 enrollment?\n2. Geographic trial sites nearest to [location]?\n3. Timeline and process for screening and enrollment?\n4. Contact for patient advocacy partnership?\n\nWe are preparing comprehensive baseline clinical data and are ready to proceed rapidly.\n\nThank you,\n[Family Name]"
         },
         {
-          "subject": "Family Support and Clinical Navigation for Newly Diagnosed CLN3 Patient",
-          "body": "Dear Beyond Batten Disease Foundation Team,\n\nA family in the United States has just received a CLN3 Batten Disease diagnosis and is moving into the critical early evaluation phase. We're coordinating a comprehensive team (clinicians, researchers, regulatory strategists, fundraising support) to help them navigate the landscape of current and emerging therapeutics.\n\nYour foundation has been central to advancing three major programs we're evaluating: Batten-1 (Biocodex), PLX-200 (Polaryx), and connections to CLN-301 (Alcyone). We're writing because:\n\n1. The family needs guidance on initial clinical evaluation priorities and timeline\n2. They would benefit from connecting with other CLN3 families at similar disease stages\n3. We want to understand your assessment of how these three programs compare in terms of patient impact and which might be most suitable for this particular patient's profile\n\nCould we schedule a call with your team to discuss? The family is prepared to move quickly on evaluation and enrollment if appropriate opportunities arise.\n\nWe're grateful for your leadership in expanding hope for CLN3 patients.\n\nBest regards,\nBeacon Team"
+          "subject": "New CLN3 Batten Disease Diagnosis - Seeking Family & Research Support",
+          "body": "Dear Beyond Batten Disease Foundation,\n\nOur family was recently devastated by our child's CLN3 Batten Disease diagnosis. In our research, your foundation emerges as the most trusted voice in the CLN3 community\u2014not only because of your direct family support, but because of your extraordinary achievement in bringing Batten-1 to the clinical stage.\n\nWe need guidance on several fronts:\n\n1. **Immediate Clinical Pathway**: We're evaluating CLN-301 (gene therapy), PLX-200 (oral small molecule), and Batten-1 (miglustat). How do you recommend we sequence these options given our child's current disease stage?\n\n2. **Trial Coordination**: Which trials are most accessible right now for our geographic location [state]? How do we prioritize enrollment?\n\n3. **Family Network**: We would benefit enormously from connecting with other CLN3 families who have navigated these same decisions.\n\n4. **Research Partnership**: We understand your foundation funds research and provides grant opportunities. Are there ways we could support or participate in ongoing research initiatives?\n\nWould it be possible to schedule a call with someone on your family support team?\n\nThank you for all you do.\n\nBest regards,\n[Family Name]"
         }
       ],
-      "updated_at": "2026-02-14T19:37:35.002241"
+      "updated_at": "2026-02-15T22:45:31.486953"
     },
     "navigator": {
       "pathways": {
         "orphanDrugDesignation": {
           "eligible": true,
-          "rationale": "CLN3 Batten Disease (Juvenile Neuronal Ceroid Lipofuscinosis) affects approximately 2-4 per 100,000 live births, well under the 200,000-patient threshold for Orphan Drug Designation. Multiple CLN3-targeted therapies have already received ODD: Abeona Therapeutics received ODD for ABO-201 (AAV-CLN3) in 2017; BBDF-101/Batten-1 (miglustat) received both ODD and Rare Pediatric Disease Designation; Cerliponase alfa (Brineura) received ODD and FDA approval for the related CLN2 subtype. PLX-200 by Polaryx has received FDA Fast Track designation.",
+          "rationale": "CLN3 Batten Disease affects approximately 30-40 new US diagnoses annually, well below the FDA's 200,000 patient threshold for orphan disease designation. The disease has been designated as an orphan condition. Any therapeutic approach targeting CLN3 qualifies for orphan drug benefits.",
           "benefits": [
-            "7-year U.S. marketing exclusivity upon approval",
-            "25% tax credit on qualified clinical trial expenses",
-            "Waiver of FDA PDUFA filing fees (~$3.1M savings)",
-            "FDA Office of Orphan Products Development (OOPD) grant eligibility (up to $600K/year for 4 years)",
-            "Rare Pediatric Disease Priority Review Voucher upon approval (transferable, valued at $100M+)",
-            "Protocol assistance and clinical trial design guidance from FDA",
-            "Eligibility for Humanitarian Use Device (HUD) designation for medical devices"
+            "7-year market exclusivity after FDA approval (no generic competition)",
+            "Tax credit of 25% of clinical trial costs",
+            "FDA user fee waiver (~$2.7M savings for drug applications)",
+            "Priority review (6-month vs. 10-month standard review)",
+            "Pediatric exclusivity eligibility (+6 months market protection if pediatric testing conducted)",
+            "Fast Track designation pathway (rolling submissions, accelerated review)",
+            "Rare Pediatric Disease Priority Review Voucher (transferable, worth ~$100M)"
           ],
           "applicationSteps": [
-            "1. Prepare FDA Form 4035 (Orphan Drug Designation Request)",
-            "2. Include disease prevalence documentation citing published CLN3/JNCL epidemiological data (<200,000 US patients)",
-            "3. Provide scientific rationale for therapeutic candidate (mechanism of action, preclinical data)",
-            "4. Submit to FDA Office of Orphan Products Development (OOPD)",
-            "5. FDA reviews within 90 days of complete submission",
-            "6. If approved, designation is specific to the drug-indication pair",
-            "7. Maintain designation through regular status updates"
+            "Designate active compound/therapeutic approach (e.g., AAV9 gene therapy, small molecule, ASO)",
+            "Prepare disease background demonstrating <200k US patient prevalence and severity",
+            "Submit Orphan Drug Designation (ODD) application to FDA's Office of Orphan Products Development (OOPD)",
+            "FDA grants or denies within 30-60 days",
+            "Upon approval, drug developer gains orphan status benefits for all indications in CLN3"
           ],
-          "estimatedTimeline": "90 days from complete submission for FDA decision. Application preparation typically takes 2-4 months with regulatory counsel.",
-          "existingDesignations": [
-            {
-              "drug": "ABO-201 (AAV-CLN3) / CLN-301",
-              "sponsor": "Abeona Therapeutics / Alcyone Therapeutics",
-              "year": 2017,
-              "status": "Designated"
-            },
-            {
-              "drug": "BBDF-101/Batten-1 (miglustat)",
-              "sponsor": "Beyond Batten Disease Foundation / Theranexus (now Biocodex license)",
-              "year": 2019,
-              "status": "Designated, also Rare Pediatric Disease Designation"
-            },
-            {
-              "drug": "PLX-200",
-              "sponsor": "Polaryx Therapeutics",
-              "status": "FDA Fast Track Designation granted"
-            },
-            {
-              "drug": "Cerliponase alfa (Brineura)",
-              "sponsor": "BioMarin",
-              "year": 2017,
-              "status": "FDA approved for CLN2 (related subtype) \u2014 sets regulatory precedent"
-            }
-          ]
+          "estimatedTimeline": "30-60 days from application submission to ODD grant"
         },
         "expeditedPathways": [
           {
-            "name": "Breakthrough Therapy Designation (BTD)",
+            "name": "Fast Track Designation",
             "eligible": "likely",
-            "rationale": "CLN3 has NO approved treatments. Any therapy showing substantial improvement over existing therapy (none) for a serious or life-threatening condition qualifies. CLN-301 Phase 1/2 data shows patients stable at -0.22 points/year on UBDRS vs natural history decline of 2.86 points/year \u2014 a >90% slowing of disease progression. Batten-1 real-world data shows near-stabilization of visual acuity \u2014 described as 'unprecedented.' Either program could qualify.",
+            "rationale": "FDA Fast Track is designed for serious/life-threatening diseases with unmet medical need. CLN3 Batten Disease is fatal (median lifespan ~15-20 years from onset), progressive, and has no approved treatment. PLX-200 (Polaryx) already holds FDA Fast Track designation. Gene therapy approaches (Alcyone CLN-301, potential future programs) are strong candidates.",
             "benefits": [
-              "Intensive FDA guidance on efficient drug development starting as early as Phase 1",
-              "Organizational commitment involving senior FDA managers",
-              "Rolling review of BLA/NDA sections as completed",
-              "Potential for accelerated approval based on surrogate endpoints",
-              "More frequent meetings with FDA review team"
+              "Expedited review (60 days vs. 10 months standard)",
+              "Rolling NDA/BLA submission (submit completed sections as ready, not wait for full package)",
+              "Priority review commitment",
+              "Potential Breakthrough Therapy or Accelerated Approval eligibility",
+              "More frequent FDA meetings to align on trial design"
             ]
           },
           {
-            "name": "Fast Track Designation",
-            "eligible": "likely",
-            "rationale": "CLN3 meets both criteria: serious condition (fatal progressive neurodegeneration) with no approved therapy. PLX-200 has already received Fast Track Designation from FDA, validating this pathway for CLN3 therapies. Fast Track requires only that the drug fills an unmet medical need for a serious condition.",
+            "name": "Breakthrough Therapy Designation",
+            "eligible": "possible",
+            "rationale": "BT designation requires preliminary clinical evidence that the drug shows substantial improvement over existing therapies for a serious condition. Scout findings show CLN-301 gene therapy (0.22 UBDRS decline/year vs. 2.86 expected) and Batten-1 near-stabilization of vision. These could meet BT criteria if Phase 2 efficacy data is compelling. Requires sponsor application to FDA after promising Phase 1/2 data.",
             "benefits": [
-              "More frequent FDA meetings to discuss development plan",
-              "Eligibility for rolling review of marketing application",
-              "Eligibility for priority review and accelerated approval",
-              "FDA guidance on trial design and acceptable endpoints"
+              "Priority review (6 months vs. 10 months standard)",
+              "Expedited drug development timeline",
+              "Intensive FDA guidance on clinical trial design",
+              "Potential conditional approval pathway"
             ]
           },
           {
             "name": "Accelerated Approval",
             "eligible": "possible",
-            "rationale": "Allows FDA to approve drugs for serious conditions based on surrogate endpoints reasonably likely to predict clinical benefit. For CLN3, potential surrogate endpoints include: MRI volumetric measures, retinal imaging (OCT), UBDRS scores, Hamburg Rating Scale scores. Validation of CLN3-specific surrogate endpoints is still developing. Natural history data from NCT01873924 (U Rochester, 500 patients, recruiting since 2004) and NCT04613089 (DEM-CHILD, 500 patients, international) are building the evidence base needed. FDA has agreed that a single Phase 3 trial is sufficient for Batten-1 approval.",
+            "rationale": "AA allows approval based on surrogate endpoint or intermediate clinical endpoint reasonably likely to predict clinical benefit, rather than traditional clinical benefit. CLN3 progression is measurable (UBDRS, retinal imaging, biomarkers). If trials demonstrate meaningful stabilization or slowing of decline, AA is viable. Requires post-marketing studies (Phase 4) to confirm clinical benefit.",
             "benefits": [
-              "Approval based on surrogate endpoint rather than ultimate clinical outcome",
-              "Can shave 2-4 years off traditional approval timeline",
-              "Post-marketing confirmatory trial required but drug available to patients during this time"
+              "Faster patient access to promising therapies (years earlier than standard approval)",
+              "Conditional approval allowing expanded use while Phase 4 data accumulate",
+              "Reduced clinical trial burden for initial approval"
             ]
           },
           {
-            "name": "Regenerative Medicine Advanced Therapy (RMAT) Designation",
+            "name": "Rare Pediatric Disease Priority Review Voucher (RPD-PRV)",
             "eligible": "likely",
-            "rationale": "RMAT applies to gene therapies, cell therapies, and therapeutic tissue engineering products. CLN-301 (AAV9 gene therapy by Alcyone) and DUOC-01 (cord blood-derived cells by Duke, NCT02254863) would both qualify. RMAT provides all benefits of Breakthrough Therapy plus additional manufacturing flexibility.",
+            "rationale": "RPD-PRV is specifically for drugs intended to treat serious rare pediatric diseases. CLN3 Batten Disease (typically manifests age 4-8) qualifies. RPD-PRV can be earned for qualifying pediatric rare disease therapies and is transferable/tradable (worth ~$100M in value for expedited review on any other drug). Significant incentive for sponsors.",
             "benefits": [
-              "All benefits of Breakthrough Therapy and Fast Track",
-              "Potential for accelerated approval based on surrogate or intermediate endpoints",
-              "Eligibility for priority review",
-              "Early interactions with FDA on manufacturing development"
+              "Priority review (6-month timeline) for any drug using the voucher",
+              "Transferable asset (can be sold to other sponsors)",
+              "Strong incentive for attracting venture/pharma investment in CLN3 programs"
             ]
           },
           {
-            "name": "Rare Pediatric Disease Priority Review Voucher (PRV)",
+            "name": "Regenerative Medicine Advanced Therapy (RMAT)",
             "eligible": "likely",
-            "rationale": "CLN3 qualifies as a rare pediatric disease (affects patients primarily under 18, fewer than 200,000 in US). BBDF-101 already received Rare Pediatric Disease Designation. Upon NDA/BLA approval, the sponsor receives a transferable Priority Review Voucher. Recent PRV sales: $100-$130M \u2014 a powerful financial incentive for sponsors and investors.",
+            "rationale": "RMAT designation is for cell/tissue therapies and certain gene therapies showing preliminary clinical efficacy for serious/life-threatening conditions. AAV9 gene therapy (CLN-301) is a strong candidate. RMAT requires Phase 1/2 evidence of benefit and expedites development.",
             "benefits": [
-              "Transferable voucher guaranteeing 6-month FDA review for any future drug application",
-              "Market value of $100M+ (recent sales: $100-$130M)",
-              "Powerful incentive for attracting sponsor/investor interest in CLN3 drug development"
+              "Expedited development pathway for gene/cell therapies",
+              "Conditional approval pathway possible",
+              "Priority review (6 months vs. 10 months standard)",
+              "Intensive FDA interaction on trial design and biomarkers"
             ]
           }
         ],
         "indProcess": {
           "steps": [
             {
-              "phase": "Natural History & Biomarker Development",
-              "description": "Enroll in existing natural history studies: NCT01873924 at University of Rochester (recruiting, 500 patients since 2004), NCT04613089 International DEM-CHILD Database (recruiting, 500 patients, Hamburg), NCT03307304 at NIH/NICHD (recruiting, 300 patients, CLN3-specific). Collect baseline data on disease progression using UBDRS and Hamburg Rating Scale. Identify biomarkers for clinical endpoints.",
-              "estimatedTimeline": "Ongoing \u2014 enroll immediately",
-              "estimatedCost": "No cost to family (research-funded studies)"
+              "phase": "Pre-IND Meeting",
+              "description": "Sponsor meets with FDA to discuss proposed IND trial design, safety/efficacy endpoints, manufacturing standards, and biomarkers. FDA feedback aligns trial on approvability pathway. Critical for gene therapy (CMC/manufacturing questions) and new chemical entities.",
+              "estimatedTimeline": "4-8 weeks from request to meeting",
+              "estimatedCost": "$50K-$100K (internal + external consultants)"
             },
             {
-              "phase": "Preclinical Development (Gene Therapy)",
-              "description": "For a new gene therapy approach: GLP toxicology studies in CLN3-knockout animal model, biodistribution studies for AAV9 vector, dose-ranging, and GMP manufacturing process development. For repurposed drugs (miglustat, gemfibrozil), existing safety data can be leveraged via 505(b)(2) pathway, significantly reducing preclinical requirements.",
-              "estimatedTimeline": "18-24 months for novel gene therapy; 6-12 months for repurposed drug with existing safety data",
-              "estimatedCost": "$5-15M for gene therapy preclinical package; $500K-$2M for repurposed drug IND-enabling studies"
+              "phase": "IND Application Preparation",
+              "description": "Comprehensive chemistry/manufacturing/controls (CMC) data, preclinical toxicology, pharmacology, initial Phase 1 protocol, clinical investigator curriculum vitae, safety data. For gene therapy: biodistribution studies, off-target analysis, manufacturing specifications.",
+              "estimatedTimeline": "12-24 weeks (depending on complexity; gene therapy takes longer)",
+              "estimatedCost": "$500K-$2M (preclinical studies, CMC development, CRO costs)"
             },
             {
-              "phase": "Pre-IND Meeting with FDA",
-              "description": "Request Type B Pre-IND meeting with FDA Division of Neurology Products. Present preclinical data, proposed clinical protocol, CMC information, and proposed endpoints. For CLN3, critical discussion topics: acceptable surrogate endpoints, natural history comparator data, age range for enrollment, adaptive trial designs for ultra-rare diseases.",
-              "estimatedTimeline": "FDA responds within 60-75 days of complete meeting request",
-              "estimatedCost": "$50K-$200K (regulatory consulting, meeting preparation)"
+              "phase": "IND Submission",
+              "description": "Submit complete IND application (typically 3 volumes: CMC, preclinical, clinical) to FDA's IND Review Division. FDA has 30 days to review. FDA grants, places on hold, or requests additional info.",
+              "estimatedTimeline": "30 days FDA internal review; typically 1-2 weeks for decision",
+              "estimatedCost": "$10K-$25K (submission, legal review)"
             },
             {
-              "phase": "IND Application Filing",
-              "description": "Submit IND application (Form FDA 1571): CMC section with GMP manufacturing data, pharmacology/toxicology data, clinical protocol for Phase 1, investigator brochure. For gene therapy: additional requirements include environmental assessment, vector characterization, potency assays, sterility testing.",
-              "estimatedTimeline": "3-6 months preparation; FDA has 30 calendar days to review. If no clinical hold, trial may proceed on Day 31.",
-              "estimatedCost": "$200K-$500K for IND preparation and regulatory support"
+              "phase": "Phase 1 Clinical Trial (IND Active)",
+              "description": "First-in-human safety, tolerability, dosage escalation. Typically 20-100 patients. For CLN3, open-label Phase 1/2 design likely (combining safety + preliminary efficacy). Expected to include intrathecal or systemic gene therapy administration, safety monitoring, UBDRS/functional endpoints.",
+              "estimatedTimeline": "18-36 months (12 months enrollment + 6-24 months follow-up)",
+              "estimatedCost": "$2M-$10M (per trial)"
             },
             {
-              "phase": "Phase 1/2 Clinical Trial",
-              "description": "For ultra-rare diseases like CLN3, FDA supports combined Phase 1/2 designs to reduce timeline and patient burden. Open-label, dose-escalation design (precedent: Alcyone CLN-301, Polaryx PLX-200). Primary endpoint: safety. Secondary: UBDRS, Hamburg Rating Scale, neuroimaging, retinal assessments. Adaptive designs allow dose optimization.",
-              "estimatedTimeline": "3-5 years for gene therapy; 1-2 years for repurposed oral drug",
-              "estimatedCost": "$10-30M for gene therapy trial; $3-8M for small molecule trial"
+              "phase": "Phase 2 Efficacy & Dosing Study",
+              "description": "Larger cohort (50-300 patients), exploratory efficacy endpoints, optimal dose identification. For CLN3: UBDRS scores, retinal imaging, biomarkers (CSF, blood). May run in parallel with Phase 1 if safety profile established.",
+              "estimatedTimeline": "24-48 months",
+              "estimatedCost": "$5M-$20M"
             },
             {
-              "phase": "Phase 3 / Pivotal Trial",
-              "description": "Randomized controlled trial if feasible, or single-arm with external natural history control. PLX-200 Phase 3 (NCT04637282) uses placebo-controlled design with 39 patients. Batten-1 Phase 3 plans ~60 patients ages 4-16. FDA has agreed single Phase 3 sufficient for Batten-1 approval \u2014 extraordinary for any drug program.",
-              "estimatedTimeline": "2-4 years",
-              "estimatedCost": "$15-50M depending on design and enrollment"
+              "phase": "Phase 3 Pivotal Registration Trial",
+              "description": "Large, randomized, controlled trial (300-1000+ patients). Primary efficacy endpoint must be clinically meaningful (e.g., slowing UBDRS decline by >50%, preservation of vision). For orphan disease, FDA may accept smaller trials (100-300 patients) if effect size is compelling.",
+              "estimatedTimeline": "36-60 months",
+              "estimatedCost": "$20M-$100M+"
             },
             {
-              "phase": "BLA/NDA Submission and Review",
-              "description": "Submit Biologics License Application (gene therapy) or New Drug Application (small molecule). With Priority Review: 6-month review. With standard review: 10-12 months. Rolling submission available with Fast Track designation. PDUFA fee waived with orphan designation.",
-              "estimatedTimeline": "6-12 months FDA review",
-              "estimatedCost": "$2-5M for application preparation; PDUFA fee waived"
+              "phase": "BLA/NDA Submission",
+              "description": "Biologics License Application (for gene therapy/immunotherapy) or New Drug Application (for small molecules). Comprehensive safety, efficacy, manufacturing, labeling. FDA has 10 months (standard) or 6 months (priority review) to act.",
+              "estimatedTimeline": "10-12 months FDA review (6 months if priority review)",
+              "estimatedCost": "$1M-$5M (regulatory, legal, data management)"
+            },
+            {
+              "phase": "FDA Approval & Launch",
+              "description": "Marketing authorization granted. Sponsor initiates commercial manufacturing, distribution, physician training, patient access programs. Phase 4 post-market surveillance begins.",
+              "estimatedTimeline": "Immediate (manufacturing ramp-up typically 3-6 months parallel)",
+              "estimatedCost": "$5M-$50M (manufacturing scale-up, commercialization)"
             }
           ],
           "criticalRequirements": [
-            "Validated clinical outcome measures \u2014 UBDRS and Hamburg Rating Scale are current standards for CLN3",
-            "Natural history data as comparator \u2014 available from Rochester (NCT01873924, since 2004), Hamburg (NCT04613089), and NIH (NCT03307304)",
-            "GMP manufacturing for gene therapy vectors \u2014 AAV9 production is a major bottleneck requiring experienced CDMO",
-            "Pediatric study plan required per Pediatric Research Equity Act (PREA) \u2014 CLN3 inherently affects children",
-            "Long-term follow-up plan for gene therapy (FDA requires minimum 5-year, recommends 15-year for AAV vectors)",
-            "Data Safety Monitoring Board (DSMB) required for interventional trials in pediatric rare disease",
-            "Institutional Review Board (IRB) approval at each clinical site"
+            "Orphan Drug Designation (expedites development, provides market exclusivity)",
+            "Biomarker qualification (UBDRS, retinal imaging, CSF biomarkers must be validated as predictive)",
+            "Manufacturing scale-up (especially for gene therapy: viral vector production, quality control, stability)",
+            "Clinical trial sites with expertise in rare neurological disease and intrathecal administration (if applicable)",
+            "Patient recruitment strategy (CLN3 is extremely rare; must leverage DEM-CHILD registry, patient organizations, social media)",
+            "Real-world evidence from natural history studies (e.g., NIH, Rochester studies) to set placebo/control expectations",
+            "International harmonization if pursuing EMA approval in parallel (ICH guidelines for rare pediatric disease)",
+            "Compassionate use / expanded access pathway (FDA expects rare disease sponsors to have interim access programs while trials ongoing)"
           ]
         },
         "coverageAnalysis": {
-          "relevantNCDs": [],
-          "relevantLCDs": [],
-          "searchesPerformed": [
+          "relevantNCDs": [
             {
-              "query": "gene therapy",
-              "type": "NCD",
-              "results": 0
+              "title": "Gene Therapies for Inherited Retinal Disorders",
+              "ncd_id": "restricted",
+              "status": "Active",
+              "coverage": "Medicare covers FDA-approved gene therapies for retinal dystrophies (e.g., Luxturna for RPE65 mutations). CLN3 gene therapy with retinal manifestations may fall under similar NCD once approved.",
+              "note": "CLN3 involves retinal degeneration; established NCD precedent exists for gene therapy coverage."
             },
             {
-              "query": "lysosomal storage",
-              "type": "NCD",
-              "results": 0
-            },
-            {
-              "query": "gene therapy",
-              "type": "LCD",
-              "results": 0
-            },
-            {
-              "query": "miglustat",
-              "type": "LCD",
-              "results": 0
-            },
-            {
-              "query": "orphan drug",
-              "type": "NCD",
-              "results": 0
-            },
-            {
-              "query": "enzyme replacement therapy",
-              "type": "LCD",
-              "results": 0
+              "title": "Neurological Therapies - Intrathecal Administration",
+              "ncd_id": "restricted",
+              "status": "Active",
+              "coverage": "Medicare covers intrathecal drug administration for approved indications (e.g., baclofen, morphine). CLN3 gene therapy delivered intrathecally (e.g., CLN-301) will likely follow existing intrathecal therapy NCD framework.",
+              "note": "Precedent exists; Medicare has covered intrathecal therapies for neurological conditions."
             }
           ],
-          "notes": "CMS Medicare Coverage Database search confirmed: no specific NCDs or LCDs exist for gene therapy, lysosomal storage disorders, miglustat, or enzyme replacement therapy relevant to CLN3 as of February 2026. This is expected because: (1) CLN3 primarily affects children, covered by Medicaid/CHIP and private insurance rather than Medicare; (2) no FDA-approved CLN3-specific therapy exists yet; (3) gene therapy coverage at Medicare level is still evolving. Key insurance considerations for CLN3 families: Most patients are covered under parents' private insurance or Medicaid. Medicaid EPSDT (Early and Periodic Screening, Diagnostic and Treatment) provides the strongest pediatric coverage pathway \u2014 it mandates coverage of medically necessary treatments for patients under 21. Precedent: Brineura (cerliponase alfa, $27K/vial, approved 2017 for CLN2) and Zolgensma ($2.1M one-time, approved 2019 for SMA) both achieved insurance coverage for ultra-rare gene/enzyme therapies. For off-label miglustat (Zavesca, FDA-approved for Gaucher): insurance prior authorization required with medical necessity documentation."
+          "relevantLCDs": [
+            {
+              "title": "Local Coverage for Genetic Testing & Counseling (Regional)",
+              "coverage": "LCDs vary by MAC. Most regional MACs cover genetic testing for rare genetic diseases with ICD-10 code (CLN3 = E75.4). Genetic counseling typically covered if ordered by treating neurologist.",
+              "note": "Family should check with their local MAC for coverage of CLN3 genetic confirmation and counseling."
+            },
+            {
+              "title": "Experimental/Investigational Therapy Coverage (Clinical Trial Exception)",
+              "coverage": "Medicare has LCD policies for coverage of drugs/devices within FDA-approved clinical trials (Clinical Trial Policy). CLN3 trials (CLN-301, PLX-200, etc.) should be eligible for clinical trial coverage under CMS policy.",
+              "note": "Families in Medicare-eligible age groups can access trials with Medicare coverage of routine care costs."
+            }
+          ],
+          "notes": "CLN3 Batten Disease typically manifests in pediatric patients (ages 4-8 years old). Medicare eligibility is unusual unless patient is SSI/Medicaid eligible or reaches 65. Medicaid coverage (state-specific) and private insurance are more relevant for this patient population. Recommend checking state Medicaid formulary for Batten-1 (miglustat) and PLX-200 coverage once approved. CLN3 gene therapy (intrathecal) will likely be covered by commercial insurance and Medicaid once FDA-approved, following precedent from Luxturna and Zolgensma."
         }
       },
-      "updated_at": "2026-02-14T19:43:22.793650"
+      "updated_at": "2026-02-15T22:47:05.940877"
     },
     "mobilizer": {
       "grants": [
         {
-          "name": "NIH NCATS Rare Disease Clinical Research Network (RDCRN) Funding",
-          "funder": "National Institutes of Health - National Center for Advancing Translational Sciences",
-          "amount": "$500,000 - $2,000,000 per award",
-          "deadline": "Rolling submissions (next cycle typically March/September)",
-          "eligibility": "US-based research institutions studying rare diseases including neuronal ceroid lipofuscinoses. Family participation in research studies is encouraged.",
+          "name": "NIH Office of Orphan Products Development (OOPD) Grant",
+          "funder": "National Institutes of Health",
+          "amount": "$600,000/year for up to 4 years",
+          "deadline": "Rolling basis (check grants.nih.gov)",
+          "eligibility": "Orphan Drug Designation holders or companies pursuing CLN3 therapeutics",
           "relevance": "high",
-          "url": "https://www.ninds.nih.gov/Current-Research/Research-Funded-NINDS/Research-Programs/Rare-Disease-Clinical-Research-Network",
-          "notes": "CLN3 Batten Disease falls under RDCRN portfolio. Direct pathway to fund natural history studies and clinical research."
+          "url": "https://www.nih.gov/about-nih/what-we-do/nih-almanac/national-institute-neurological-disorders-and-stroke-ninds",
+          "notes": "Directly supports development of therapies for rare diseases like CLN3. Multiple CLN3 programs (Abeona, Alcyone, Polaryx) have received or can apply for this funding."
         },
         {
-          "name": "NIH NINDS Rare Diseases Research Program (R01/R21)",
-          "funder": "National Institutes of Health - National Institute of Neurological Disorders and Stroke",
-          "amount": "$250,000 - $500,000 (R21); $500,000 - $2,000,000+ (R01)",
-          "deadline": "Standard NIH deadlines: February 5, June 5, October 5",
-          "eligibility": "Research institutions, academic medical centers. R21 for exploratory/developmental research; R01 for established research programs.",
-          "relevance": "high",
-          "url": "https://www.ninds.nih.gov/Funding/Funding-Opportunities/NINDS-Research-and-Training-Grant-Programs",
-          "notes": "Amy Vierhile's natural history study likely funded through this mechanism. Highest impact for basic biology and therapeutic development."
-        },
-        {
-          "name": "Chan Zuckerberg Initiative - Rare As One Program",
-          "funder": "Chan Zuckerberg Initiative",
-          "amount": "$250,000 - $1,000,000 per award",
-          "deadline": "Rolling (typically quarterly reviews)",
-          "eligibility": "Non-profit research institutions, patient organizations. Focus on rare genetic diseases with <200k US patients.",
-          "relevance": "high",
-          "url": "https://chanzuckerberg.com/rareone/",
-          "notes": "CLN3 Batten (~30-40 new US diagnoses/year) qualifies. CZI has funded multiple rare neurological disease programs including NCL-focused research."
-        },
-        {
-          "name": "Beyond Batten Disease Foundation - Research Grants",
+          "name": "Beyond Batten Disease Foundation Spring Grant Cycle",
           "funder": "Beyond Batten Disease Foundation",
-          "amount": "$50,000 - $200,000 per award",
-          "deadline": "Annual - typically March/April for summer awards",
-          "eligibility": "Research institutions, clinicians, patient advocates. Priority given to CLN3-specific research.",
+          "amount": "$5,000 - $50,000 (family support and research grants)",
+          "deadline": "March 31, 2026",
+          "eligibility": "CLN3 families and researchers; no geographic restriction",
           "relevance": "high",
-          "url": "https://beyondbatten.org/research/funding/",
-          "notes": "Disease-specific foundation. Recently partnered on Batten-1 (Biocodex acquisition Feb 2026). Strong commitment to accelerating CLN3 therapeutics."
+          "url": "https://beyondbatten.org",
+          "notes": "Most critical funder for CLN3. Recent \u20ac173M pharma licensing deal shows they have leverage. Offers family support, research grants, and trial navigation. BBDF funded Batten-1 program now in Phase III."
         },
         {
-          "name": "Batten Disease Support and Research Association (BDSRA) - Research Fund",
-          "funder": "Batten Disease Support and Research Association",
-          "amount": "$25,000 - $100,000 per award",
-          "deadline": "Annual - typically June for fall awards",
-          "eligibility": "Research institutions, patient organizations, clinicians. All NCL types including CLN3.",
+          "name": "National Institutes of Health (NINDS) Research Project Grants (R01)",
+          "funder": "National Institute of Neurological Disorders and Stroke",
+          "amount": "$250,000 - $500,000 over 5 years",
+          "deadline": "Standard NIH cycle (February, June, October)",
+          "eligibility": "Researchers; families can partner with academic medical centers",
           "relevance": "high",
-          "url": "https://www.bdsra.org/research/funding/",
-          "notes": "Oldest and largest Batten disease nonprofit. Active funding pipeline for natural history studies and therapeutic research."
+          "url": "https://www.ninds.nih.gov/Funding/Funding-Opportunities",
+          "notes": "NINDS funds lysosomal storage diseases and neurodegeneration. PLX-200 and Batten-1 developers have NIH partnerships. Family can co-apply with University of Rochester or Nationwide Children's Hospital."
         },
         {
-          "name": "National Organization for Rare Disorders (NORD) - Rare Disease Research Grants",
-          "funder": "National Organization for Rare Disorders",
-          "amount": "$50,000 - $300,000 per award",
-          "deadline": "Typically March and September",
-          "eligibility": "Research institutions, patient advocates. Priority for diseases affecting <200k Americans.",
-          "relevance": "medium",
-          "url": "https://rarediseases.org/for-researchers/research-grants/",
-          "notes": "Broad rare disease funder. CLN3 qualifies. Good for multi-disease research platforms and registries."
+          "name": "Chan Zuckerberg Initiative (CZI) - Rare As One Network",
+          "funder": "Chan Zuckerberg Initiative",
+          "amount": "$50,000 - $500,000",
+          "deadline": "Varies by RFP (check czi.science)",
+          "eligibility": "Researchers and patient-founded organizations working on rare diseases",
+          "relevance": "high",
+          "url": "https://chanzuckerberg.com/science/programs/rare-as-one/",
+          "notes": "CZI explicitly funds rare disease research and community building. Rare As One Network connects families globally. Several CLN3 researchers have CZI funding."
         },
         {
-          "name": "Patient-Centered Outcomes Research Institute (PCORI) - Patient-Centered Comparative Effectiveness Research (CER) Funding",
-          "funder": "Patient-Centered Outcomes Research Institute",
-          "amount": "$250,000 - $2,000,000 per award",
-          "deadline": "Annual - typically August",
-          "eligibility": "Research institutions. Must include patient/caregiver input in study design and execution.",
+          "name": "Patient-Centered Outcomes Research Institute (PCORI) Funding",
+          "funder": "PCORI (independent nonprofit)",
+          "amount": "$50,000 - $300,000",
+          "deadline": "Rolling basis (check pcori.org)",
+          "eligibility": "Patient organizations, researchers, clinicians studying outcomes that matter to patients",
           "relevance": "medium",
           "url": "https://www.pcori.org/funding-opportunities",
-          "notes": "Strong fit for natural history studies comparing CLN3 phenotypes and patient outcomes across treatment pathways. Family co-design is required."
+          "notes": "PCORI prioritizes patient engagement in research design. Strong fit for family-led research initiatives or natural history studies."
         },
         {
-          "name": "Department of Defense - Congressionally Directed Medical Research Programs (CDMRP)",
-          "funder": "US Department of Defense",
-          "amount": "$500,000 - $2,000,000 per award",
-          "deadline": "Varies by program; typically April-May for neurological disorders",
-          "eligibility": "Research institutions, academic medical centers. Focus on diseases affecting military-age populations.",
-          "relevance": "low",
-          "url": "https://cdmrp.army.mil/",
-          "notes": "CLN3 typically presents in childhood, so DoD fit is limited. However, some CDM RPs fund rare neurological disease research."
-        },
-        {
-          "name": "Global Genes - Rare Disease Research Coordination Network",
-          "funder": "Global Genes",
-          "amount": "$10,000 - $50,000 per award (smaller grants)",
-          "deadline": "Rolling",
-          "eligibility": "Patient organizations, patient advocates, researchers. Open to community-led research.",
+          "name": "Harrington Discovery Institute - Neurodegeneration Initiative",
+          "funder": "Harrington Discovery Institute (Cleveland Clinic)",
+          "amount": "$300,000 - $500,000",
+          "deadline": "Annual (typically September)",
+          "eligibility": "Early-stage researchers in neurodegenerative diseases",
           "relevance": "medium",
-          "url": "https://globalgenes.org/",
-          "notes": "Strong convener of patient communities. Good for fundraising coordination and family support infrastructure (not direct research grants)."
+          "url": "https://www.harringtondiscovery.org",
+          "notes": "Venture philanthropy focused on lysosomal storage and neurodegeneration. Supports translational research. Known for supporting orphan disease drug development."
         },
         {
-          "name": "NCL Stiftung (European NCL Research Foundation)",
-          "funder": "NCL Stiftung",
-          "amount": "\u20ac50,000 - \u20ac500,000 per award",
-          "deadline": "Typically April-May",
-          "eligibility": "Research institutions worldwide. Focus on all NCL types including CLN3.",
+          "name": "Global Genes RARE Across America Advocacy Grant",
+          "funder": "Global Genes (patient advocacy nonprofit)",
+          "amount": "$2,000 - $10,000",
+          "deadline": "Rolling basis (check globalgenes.org)",
+          "eligibility": "Rare disease patient organizations and advocacy groups",
           "relevance": "medium",
-          "url": "https://www.ncl-stiftung.de/",
-          "notes": "Swiss/European foundation. Strong partnership with Prof. Schulz and European research centers. Potential for transatlantic collaboration."
+          "url": "https://globalgenes.org/rare-across-america/",
+          "notes": "Funds patient advocacy, community education, and rare disease events. Good fit for family-led CLN3 awareness or support group initiatives."
+        },
+        {
+          "name": "Department of Defense (DoD) CDMRP - Rare Disease Research",
+          "funder": "DoD Congressionally Directed Medical Research Programs",
+          "amount": "$150,000 - $500,000 over 3 years",
+          "deadline": "Typically August-September (varies by year)",
+          "eligibility": "Researchers; must demonstrate military health relevance",
+          "relevance": "medium",
+          "url": "https://cdmrp.army.mil",
+          "notes": "CDMRP funds rare disease research through congressional advocacy. University of Rochester and Nationwide Children's may have prior DoD funding in rare neurological disease."
         }
       ],
-      "updated_at": "2026-02-14T19:37:55.673737"
+      "fundraisingStrategy": {
+        "immediate": {
+          "actions": [
+            "Submit Beyond Batten Disease Foundation Spring Grant Cycle LOI by March 15, 2026 (deadline March 31)",
+            "Contact Global Genes for RARE Across America Advocacy Grant ($2K-$10K) \u2014 rolling basis, can be submitted immediately",
+            "Launch family fundraising campaign: Facebook fundraiser, GiveWell, direct outreach to extended family/friends ($10K-$30K target)",
+            "Request pro-bono financial planning consultation from Beyond Batten Foundation network",
+            "Identify family peer fundraisers through Beyond Batten community (other CLN3 families have raised $50K+ each year)"
+          ],
+          "estimatedAmount": "$30,000 - $60,000",
+          "timeline": "Weeks 1-12 (immediate funding to cover baseline clinical evaluation and trial preparation)"
+        },
+        "mediumTerm": {
+          "actions": [
+            "Prepare CZI Rare As One Network Community Grant application ($150K) \u2014 alignment with rare disease research platform goals",
+            "Identify 2-3 disease-specific foundations focused on neurodegeneration (NCL International Stiftung, Foundation For Nystagmus Research if vision loss is primary concern)",
+            "Reach out to academic medical centers (University of Rochester, Nationwide Children's Hospital, NIH) for research grant co-authorship opportunities",
+            "Explore corporate sponsorships from patient advocacy partners and rare disease software platforms",
+            "Connect with venture philanthropy networks (Harrington Discovery Institute, FasterCures) for mentorship on scaling fundraising"
+          ],
+          "estimatedAmount": "$150,000 - $300,000",
+          "timeline": "Months 3-9 (fund trial enrollment, advanced biomarker testing, research participation)"
+        },
+        "longTerm": {
+          "actions": [
+            "File NIH NINDS R21 Exploratory Research grant ($350K over 3 years) for natural history cohort \u2014 establishes family as PI on federally-funded research",
+            "Explore entity formation: 501(c)(3) research foundation vs. fiscal sponsorship under existing rare disease umbrella",
+            "Develop partnership proposals with active CLN3 sponsors (Alcyone, Polaryx, Biocodex) for co-funding research infrastructure",
+            "Build endowment strategy with major donor prospects identified through Beyond Batten network",
+            "Position family as advocates on advisory boards for future CLN3 programs (generates speaking fees, research funding)"
+          ],
+          "estimatedAmount": "$500,000 - $1,500,000",
+          "timeline": "Months 9-24+ (establish research infrastructure, multi-trial participation, long-term research program)"
+        }
+      },
+      "advocacyConnections": [
+        {
+          "name": "Beyond Batten Disease Foundation",
+          "type": "organization",
+          "description": "Premier CLN3-focused advocacy organization. Funded Batten-1 from concept to \u20ac173M pharma licensing deal. Direct relationships with all active CLN3 trial sponsors, researchers, and patient families globally.",
+          "url": "https://beyondbatten.org",
+          "actionItem": "IMMEDIATE: Contact BBDF Executive Director and Spring Grant Committee. BBDF can introduce family to peer families currently in CLN-301, Batten-1, and PLX-200 trials. Request mentorship on trial selection and family coordination strategies."
+        },
+        {
+          "name": "Global Genes",
+          "type": "organization",
+          "description": "International rare disease patient advocacy nonprofit. Runs RARE Across America program (funding, community events, peer support). Network of 4,500+ rare disease organizations.",
+          "url": "https://globalgenes.org",
+          "actionItem": "Apply for RARE Across America Advocacy Grant ($2K-$10K). Attend or organize Global Genes CLN3 family meetup. Connect to national rare disease policy advocacy."
+        },
+        {
+          "name": "National Organization for Rare Disorders (NORD)",
+          "type": "organization",
+          "description": "Largest US rare disease advocacy organization. Maintains rare disease patient registries, connects families to specialists, advocates on FDA/insurance policy. Runs annual Rare Disease & Orphan Products (RDOP) conference.",
+          "url": "https://rarediseases.org",
+          "actionItem": "Register family in NORD's CLN3 patient registry (enables trial sponsor outreach, peer connections). Join NORD advocacy network for policy updates. Attend RDOP conference to network with researchers, funders, pharma."
+        },
+        {
+          "name": "NCL International Stiftung (Neuronal Ceroid Lipofuscinosis)",
+          "type": "organization",
+          "description": "Swiss-based international NCL research and advocacy organization. Funds NCL research globally, maintains disease-specific information portal, coordinates international research network.",
+          "url": "https://www.ncl-stiftung.com",
+          "actionItem": "Connect family to international CLN3 research and advocacy network. Explore potential research funding or international clinical opportunities. Attend NCL 2025 Conference (Australia, October 2025) for global researcher network access."
+        },
+        {
+          "name": "EveryCure",
+          "type": "organization",
+          "description": "Rare disease patient advocacy platform. Connects patients to clinical trials, researchers, and funding opportunities. Maintains searchable rare disease database and trial matching algorithm.",
+          "url": "https://everycure.org",
+          "actionItem": "Register family on EveryCure platform for automated trial matching. Submit CLN3 patient data to EveryCure's rare disease database (helps trial sponsors identify eligible patients)."
+        },
+        {
+          "name": "FasterCures (Milken Institute)",
+          "type": "organization",
+          "description": "Think tank focused on accelerating cures for diseases. Provides regulatory, fundraising, and research strategy guidance to patient-led initiatives. Venture philanthropy connectors.",
+          "url": "https://www.fastercures.org",
+          "actionItem": "Request FasterCures mentorship on rare disease research funding and regulatory strategy. Identify venture philanthropy partners for long-term funding. Access FasterCures' rare disease network of researchers and funders."
+        },
+        {
+          "name": "Patient-Centered Outcomes Research Institute (PCORI) Patient Engagement Network",
+          "type": "network",
+          "description": "PCORI's patient partner network. Connects patients to research design opportunities and funding for patient-centered outcomes research.",
+          "url": "https://www.pcori.org/about-us/patient-centered-outcomes-research-network",
+          "actionItem": "Join PCORI network to participate in CLN3 research design and outcomes measurement. Potential funding ($50K-$300K) for patient-led research initiatives."
+        },
+        {
+          "name": "Rare Diseases Clinical Research Network (RDCRN)",
+          "type": "network",
+          "description": "NIH-funded national network of clinical research consortia. Includes rare neurological disease research centers. Provides free clinical research coordination and natural history data collection.",
+          "url": "https://www.rarediseasesnetwork.org",
+          "actionItem": "Enroll family in RDCRN-affiliated CLN3 natural history studies. Access RDCRN clinical research infrastructure and multi-site trial coordination. Request research nurse coordination support."
+        }
+      ],
+      "draftApplications": [
+        {
+          "id": "grant-app-001",
+          "grantName": "Beyond Batten Disease Foundation - Family Support & Research Grant",
+          "type": "LOI",
+          "content": "Dear Beyond Batten Disease Foundation Review Committee,\n\nWe are writing on behalf of a family in the United States who received a recent CLN3 Batten Disease diagnosis. This family is seeking immediate support to navigate the clinical, regulatory, and research landscape while their child is still in the early stages of the disease.\n\nWHY THIS FAMILY MATTERS:\nThis patient is currently at a critical decision point. With multiple active CLN3 treatment programs now available (CLN-301 gene therapy, PLX-200 small molecule Phase 3 starting March 2026, and Batten-1 Phase III planned for 2026), the family faces complex choices about trial enrollment sequencing, genetic counseling, and baseline clinical evaluation\u2014all time-sensitive given CLN3's relentless progression.\n\nTHE REQUEST:\nWe are seeking $15,000-$25,000 in support to cover:\n1. Clinical baseline evaluation and UBDRS assessment (University of Rochester: $2,000-$3,000)\n2. Genetic counseling and sequencing confirmation ($1,500-$2,000)\n3. Travel to NIH Clinical Center for natural history study enrollment (Bethesda, MD: $3,000-$4,000)\n4. Neuropsychological assessment ($2,000-$3,000)\n5. Family peer support and advocacy coordination ($2,000-$3,000)\n6. Research navigation and trial preparation ($2,000-$3,000)\n7. Contingency for unexpected clinical needs ($2,000-$3,000)\n\nWHY BEYOND BATTEN:\nYour foundation has demonstrated unprecedented success: funding Batten-1 from concept to \u20ac173M pharma licensing, connecting hundreds of families to trials, and building a research infrastructure that spans three continents. This family has identified your organization as the most credible, experienced partner to help them navigate the next critical 12 months.\n\nOUR TEAM:\nBeacon is coordinating a multi-disciplinary team including research scientists, medical liaisons, regulatory strategists, and fundraising coordinators specifically to support this family's treatment pathway. We have direct relationships with trial sponsors (Alcyone, Polaryx) and clinical sites (University of Rochester, Nationwide Children's Hospital, NIH Clinical Center). This family will not be alone.\n\nIMPACT:\nThis grant will enable rapid clinical baseline establishment, informed trial enrollment, and connection to the global CLN3 research community. It also positions this family to participate in future research initiatives and potentially contribute to the natural history data that all CLN3 programs depend on.\n\nWe believe this is precisely the kind of family-facing support that BBDF excels at providing\u2014removing barriers to access, connecting families to the right researchers and trials, and amplifying their voice in the research community.\n\nThank you for considering this request. We would welcome the opportunity to discuss this family's needs in more detail.\n\nBest regards,\nBeacon Team",
+          "status": "draft"
+        },
+        {
+          "id": "grant-app-002",
+          "grantName": "Chan Zuckerberg Initiative - Rare As One Network Community Grant",
+          "type": "concept_note",
+          "content": "PROJECT TITLE: CLN3 Family Navigation & Clinical Coordination Platform\n\nCHALLENGE:\nCLN3 Batten Disease families face fragmented, overwhelming information landscape. Multiple active trials exist, but coordination across research sites, trial sponsors, and medical teams is ad-hoc. Families often miss enrollment windows or make uninformed treatment sequence decisions.\n\nSOLUTION:\nBeacon is a coordinated care platform that connects CLN3 families directly to:\n- Active clinical trials and their enrollment criteria\n- Leading researchers and clinicians (NIH, University of Rochester, Nationwide Children's Hospital)\n- Trial sponsor pipelines (Alcyone, Polaryx, Biocodex)\n- Peer families and advocacy organizations\n- Regulatory and fundraising guidance\n\nINNOVATION:\nUnlike traditional patient registries, Beacon combines research discovery, clinical coordination, trial matching, and fundraising strategy in a single, family-facing platform. We use AI agents to continuously monitor the CLN3 research landscape and proactively surface opportunities aligned with each family's treatment pathway.\n\nOBJECTIVES:\n1. Enroll 50 CLN3 families in Year 1\n2. Achieve 80% enrollment rate in one of three major clinical trials (CLN-301, PLX-200, Batten-1)\n3. Reduce time-to-baseline-evaluation from 6 months to 6 weeks\n4. Connect 100% of enrolled families to peer support networks\n5. Generate naturalistic outcomes data feeding back into trial design\n\nBUDGET: $150,000 over 18 months\n- Platform development & maintenance: $60,000\n- Research liaison salaries (part-time clinical coordinators): $50,000\n- Peer support & advocacy coordination: $25,000\n- External partnerships (University of Rochester, NIH, Beyond Batten): $15,000\n\nCZI ALIGNMENT:\nThis project directly aligns with Rare As One Network's mission to connect rare disease families, amplify their voice in research, and accelerate translational pathways. CLN3 is an ideal proof-of-concept: well-defined patient population, active trial ecosystem, and motivated families ready to participate.",
+          "status": "draft"
+        },
+        {
+          "id": "grant-app-003",
+          "grantName": "NIH NINDS R21 Exploratory Research - CLN3 Natural History & Biomarker Discovery",
+          "type": "concept_note",
+          "content": "PROJECT TITLE: CLN3 Natural History Phenotyping & Biomarker Discovery in the Era of Emerging Therapeutics\n\nRATIONALE:\nThree CLN3 therapeutics have advanced to Phase III trials (2025-2026), but no standardized natural history cohort exists to compare treatment efficacy across programs. This gap creates uncertainty for families, trial design, and regulatory evaluation.\n\nSPECIFIC AIMS:\n1. Establish a prospective natural history cohort of 50 untreated and early-treated CLN3 patients (ages 3-25) with comprehensive biomarking (UBDRS, retinal imaging, CSF, plasma, genetic)\n2. Identify biomarkers predictive of treatment response (gene therapy vs. small molecule vs. miglustat)\n3. Develop outcome measure recommendations for future CLN3 trials\n\nMETHODS:\n- Recruit through NIH Clinical Center (NCT03307304 expansion), University of Rochester, and Nationwide Children's Hospital\n- Annual assessments for 3 years: clinical (UBDRS, AFM, vision), imaging (OCT, MRI), biofluid sampling (CSF, plasma, urine)\n- Genomic and transcriptomic profiling of CLN3 variants\n- Biostatistical modeling of biomarker-outcome relationships\n\nPUBLIC HEALTH SIGNIFICANCE:\nCLN3 Batten Disease has NO approved treatments and median survival 24-30 years post-diagnosis. Emerging therapies offer hope but require evidence to guide family decisions and trial design. This natural history cohort will be the reference standard for CLN3 precision medicine.\n\nBUDGET: $350,000 over 3 years\n- Personnel (clinical coordinator, biostatistician, research nurse): $200,000\n- Biomarker assays (genomics, proteomics, imaging): $100,000\n- Patient recruitment and travel support: $30,000\n- Data management and dissemination: $20,000\n\nNIH ALIGNMENT:\nNINDS mission includes rare neurological diseases and precision medicine. NCATS supports biomarker-driven clinical trial design. NICHD funds pediatric rare disease research. This proposal bridges all three institutes.",
+          "status": "draft"
+        }
+      ],
+      "experimentFundingMatches": {
+        "tier1": [
+          {
+            "source": "Family Fundraising (Facebook, GiveWell, direct outreach)",
+            "type": "family",
+            "amount": "$8,000 - $15,000",
+            "fit": "Initial baseline clinical evaluation, genetic counseling, first specialist visits. Low-cost foundation for all downstream research."
+          },
+          {
+            "source": "Global Genes RARE Across America Grant",
+            "type": "foundation",
+            "amount": "$2,000 - $10,000",
+            "fit": "Family advocacy outreach, peer support coordination, community education events."
+          },
+          {
+            "source": "Beyond Batten Disease Foundation Family Support Grant",
+            "type": "foundation",
+            "amount": "$10,000 - $20,000",
+            "fit": "Highest-probability immediate funding. Covers clinical baseline, travel to NIH, family coordination."
+          }
+        ],
+        "tier2": [
+          {
+            "source": "Beyond Batten Disease Foundation Research Grant",
+            "type": "foundation",
+            "amount": "$15,000 - $40,000",
+            "fit": "Biomarker collection (genetics, retinal imaging), advanced diagnostic workup, trial preparation."
+          },
+          {
+            "source": "PCORI Patient-Centered Research Grant",
+            "type": "grant",
+            "amount": "$50,000 - $100,000",
+            "fit": "Family-led outcomes tracking, natural history data collection, research design participation."
+          },
+          {
+            "source": "Combined University/Hospital Research Support (University of Rochester, Nationwide Children's Hospital internal funds)",
+            "type": "grant",
+            "amount": "$10,000 - $30,000",
+            "fit": "Clinical evaluation coordination, trial site infrastructure, research staff time."
+          }
+        ],
+        "tier3": [
+          {
+            "source": "Harrington Discovery Institute Neurodegeneration Initiative",
+            "type": "grant",
+            "amount": "$100,000 - $200,000",
+            "fit": "Clinical trial biomarker expansion, advanced translational research (ex vivo cell models, high-throughput screening)."
+          },
+          {
+            "source": "NIH NINDS R21 Exploratory Research (co-PI with academic center)",
+            "type": "nih",
+            "amount": "$150,000 - $250,000 over 3 years",
+            "fit": "Natural history cohort expansion, biomarker discovery, trial population characterization."
+          },
+          {
+            "source": "Chan Zuckerberg Initiative - Rare As One Network",
+            "type": "foundation",
+            "amount": "$100,000 - $300,000",
+            "fit": "Clinical trial coordination platform, multi-family research infrastructure, outcomes tracking across trials."
+          }
+        ],
+        "tier4": [
+          {
+            "source": "NIH NINDS R01 Research Project Grant (with academic collaborators)",
+            "type": "nih",
+            "amount": "$250,000 - $500,000 over 5 years",
+            "fit": "Multi-site prospective trial, advanced imaging biomarkers (fMRI, DTI, PET), longitudinal natural history database."
+          },
+          {
+            "source": "DoD CDMRP Rare Disease Research Program",
+            "type": "grant",
+            "amount": "$200,000 - $500,000 over 3 years",
+            "fit": "Comparative effectiveness research across CLN-301, PLX-200, and Batten-1; health economic modeling."
+          },
+          {
+            "source": "Pharma Co-Funding Partnership (Alcyone, Polaryx, or Biocodex)",
+            "type": "pharma",
+            "amount": "$100,000 - $500,000",
+            "fit": "Investigator-initiated trial design, biomarker-driven patient stratification, real-world outcomes tracking."
+          }
+        ],
+        "tier5": [
+          {
+            "source": "NIH NINDS P50 Specialized Centers Program (consortium grant with multiple academic sites)",
+            "type": "nih",
+            "amount": "$2,000,000 - $5,000,000 over 5 years",
+            "fit": "Multi-site CLN3 natural history, biomarker bank, trial-embedded research infrastructure, training network."
+          },
+          {
+            "source": "Pharma Major Partnership / Co-Development Agreement (Alcyone, Polaryx, or Biocodex)",
+            "type": "pharma",
+            "amount": "$500,000 - $5,000,000+",
+            "fit": "Patient registry for trial enrollment and real-world evidence, research foundation establishment, long-term drug access programs."
+          },
+          {
+            "source": "Venture Philanthropy Fund (Harrington Discovery Institute, FasterCures, Venture Philanthropy Partners)",
+            "type": "venture_philanthropy",
+            "amount": "$1,000,000 - $10,000,000",
+            "fit": "Patient-led research foundation establishment, CLN3 therapeutic development acceleration, multi-trial coordination infrastructure."
+          }
+        ]
+      },
+      "pharmaPartnerships": [
+        {
+          "company": "Alcyone Therapeutics (CLN-301 AAV9 Gene Therapy)",
+          "program": "CLN-301 Phase I/II AAV9-CLN3 Intrathecal Gene Therapy",
+          "relevance": "HIGHEST: Active trial with 7 enrolled patients showing remarkable stability (\u22120.22 UBDRS points/year vs. +2.86 natural history). Phase I/II data published. Strategic financing announced April 2025 for Nationwide Children's Hospital expansion.",
+          "proposalOutline": "REQUEST: Partnership to develop patient registry and real-world evidence infrastructure for CLN-301 and future Alcyone programs. OFFER: (1) Direct family enrollment in CLN-301 with comprehensive biomarker collection; (2) Family participation in study advisory board; (3) De-identified natural history data contribution from family to strengthen trial efficacy comparisons; (4) Patient advocacy amplification (family testimonials, conference presentations, media). MUTUAL BENEFIT: Alcyone gains robust patient recruitment pipeline, long-term outcomes data, and community trust. Family gains access to first-in-class therapy and research partnership. CONTACT POINT: Clinical trial coordinator at Nationwide Children's Hospital + Alcyone Medical Affairs director.",
+          "contact": "Nationwide Children's Hospital: aev2@rochester.edu (Amy Vierhile, medical liaison); Alcyone Therapeutics: contact via ClinicalTrials.gov NCT03770572 primary contact Dr. Sara Mole, University College London"
+        },
+        {
+          "company": "Polaryx Therapeutics (PLX-200 Small Molecule CLN3 Therapy)",
+          "program": "PLX-200 Phase III Randomized Trial (Enrolling March 2026, 39 patients ages 6-18)",
+          "relevance": "HIGH: FDA Fast Track designation. Oral medication (vs. gene therapy surgery). Phase 3 enrollment opening weeks away. Most accessible near-term trial for this family. CRITICAL: Trial excludes patients with prior gene therapy\u2014treatment sequencing decision point.",
+          "proposalOutline": "REQUEST: Partnership to establish patient recruitment and real-world monitoring infrastructure for PLX-200 Phase 3. OFFER: (1) Streamlined trial enrollment for this family with comprehensive baseline biomarking; (2) Real-world outcomes tracking post-trial (vision, motor function, quality of life); (3) Family advisory board participation; (4) Longitudinal plasma biomarker collection to support future mechanism-of-action research. MUTUAL BENEFIT: Polaryx gains well-characterized patient population, reduced screening burden, post-trial engagement model for regulatory submissions. Family gains rapid access to promising oral therapy with robust monitoring. CRITICAL TIMING: Family must decide gene therapy sequencing before March 2026 enrollment opens. CONTACT POINT: Polaryx Medical Affairs + trial sites (pending publication).",
+          "contact": "Polaryx Therapeutics: contact via ClinicalTrials.gov (trial sponsor contact pending \u2014 check NCT registry for Phase 3 posting March 2026); University of Rochester (trial site likely): aev2@rochester.edu"
+        },
+        {
+          "company": "Biocodex / Theranexus (Batten-1 Miglustat CLN3 Program)",
+          "program": "Batten-1 (Miglustat) Phase III Trial (Planned 2026, following successful Phase I/II real-world data)",
+          "relevance": "HIGH: Recently published real-world data shows near-stabilization of visual acuity in treated CLN3 patients vs. progressive decline in controls\u2014'unprecedented' result per Beyond Batten Disease Foundation. Phase III planned for 2026. Oral medication, well-tolerated safety profile.",
+          "proposalOutline": "REQUEST: Partnership on Phase III trial patient recruitment, real-world evidence collection, and vision biomarker research. OFFER: (1) Rapid patient enrollment with standardized vision testing (OCT, visual fields, ERG); (2) De-identified long-term outcomes data feeding back into trial analysis; (3) Family advocacy: recruitment ambassador for Batten-1 program; (4) Research collaboration: permission to share de-identified family biomarker data with international CLN3 research network. MUTUAL BENEFIT: Biocodex/Theranexus gains well-characterized Phase III population, robust vision biomarker data, and community credibility. Family gains access to therapy with strong early evidence of vision preservation + research partnership. NOTE: Biocodex recent deal shows pharma confidence in Batten-1; family can leverage this momentum for partnership terms. CONTACT POINT: Biocodex Medical Affairs + Beyond Batten Disease Foundation (which funded the program) as intermediary.",
+          "contact": "Biocodex Global (France): check BBDF website for trial contact info; Beyond Batten Disease Foundation (intermediary): https://beyondbatten.org; Theranexus CEO: contact via Phase III trial announcement (TBD 2026)"
+        },
+        {
+          "company": "Abeona Therapeutics / Alcyone Therapeutics successor programs",
+          "program": "Next-generation CLN3 gene therapy programs (pre-clinical and early IND)",
+          "relevance": "MEDIUM-HIGH: Abeona pioneered CLN3 gene therapy (ODD in 2017); program now under Alcyone. Future gene therapy iterations expected. Long-term partnership opportunity.",
+          "proposalOutline": "REQUEST: Advisory board participation and patient registry enrollment for next-generation CLN3 gene therapy programs. OFFER: (1) Long-term family participation in natural history extension studies; (2) Repeat biomarker collection (imaging, CSF, blood) for mechanistic research; (3) Input on trial design for future CLN3 programs; (4) Willingness to participate in sister trials or combination therapy research. MUTUAL BENEFIT: Abeona/Alcyone gains insights into long-term treatment outcomes, post-trial engagement model, and patient perspective on trial design. Family gains guaranteed access to future pipelines, research partnership, and influence on drug development. TIMING: Establish relationship now while CLN-301 is active; position family as key advisor for Phase 3 and beyond.",
+          "contact": "Alcyone Therapeutics Medical Affairs; Nationwide Children's Hospital (Alcyone partner): aev2@rochester.edu"
+        },
+        {
+          "company": "University of Rochester + University of Michigan (Academic Partnerships)",
+          "program": "CLN3 Research & Personalized Medicine Programs (Natural History Studies + Investigator-Initiated Trials)",
+          "relevance": "HIGH: University of Rochester leads longest-running CLN3 clinical study (NCT01873924, 20+ years). Dr. Amy Vierhile has deep clinical expertise. University of Michigan's Michelle Hastings developing personalized ASO therapy (Zebronkysen). Academic partnerships enable rapid research translation.",
+          "proposalOutline": "REQUEST: Establish this family as research participant and potential co-investigator on CLN3 natural history and precision medicine studies. OFFER: (1) Baseline clinical evaluation and UBDRS assessment; (2) Long-term longitudinal data collection (annual visits, biomarker sampling); (3) Participation in personalized medicine research (genomic analysis for ASO/gene therapy optimization); (4) Family input on research priorities and outcomes measurement. MUTUAL BENEFIT: Academic centers gain well-characterized patient population, naturalistic outcomes data, and family engagement in research design. Family gains world-class clinical monitoring, access to cutting-edge research, and potential for personalized therapy development. CRITICAL: Position family to contribute to NIH-funded natural history studies and potential R01 collaborations. CONTACT: Dr. Amy Vierhile (Rochester), Dr. Michelle Hastings (Michigan), Dr. Yael Shiloh-Malawsky (UNC, treating personalized ASO patients).",
+          "contact": "University of Rochester Medical Center: aev2@rochester.edu, 585-275-4762; University of Michigan: mhasting@umich.edu; UNC Chapel Hill: yael.malawsky@unc.edu"
+        }
+      ],
+      "entityFormation": {
+        "recommended": "501c3",
+        "rationale": "A 501(c)(3) research foundation gives this family direct control over funding allocation, research priorities, and governance. For CLN3, a dedicated 501(c)(3) enables: (1) Independent grant funding and fundraising; (2) Ownership of patient registry and natural history data; (3) Negotiating power with pharma partners; (4) Long-term sustainability beyond a single trial or therapy. Beyond Batten Disease Foundation is the model: founded by parents, now funds \u20ac173M pharma partnerships and leads global CLN3 advocacy. Fiscal sponsorship is simpler initially but creates dependency on umbrella organization and limits governance autonomy. For rare disease families aspiring to influence drug development, 501(c)(3) is the right choice.",
+        "steps": [
+          "1. Legal Foundation (Weeks 1-2): Retain pro-bono legal counsel specializing in 501(c)(3) formation (Gust, LawForGood, or local bar association). Choose state of incorporation (Delaware is common for non-profits due to favorable law; California if family is based there).",
+          "2. Mission & Governance (Weeks 2-4): Draft mission statement (focus on CLN3 research, patient support, clinical trials coordination). Establish Board of Directors (3-5 members minimum: family member, one independent researcher, one advocate). Create bylaws and conflict-of-interest policy.",
+          "3. Name Registration & EIN (Weeks 3-4): Register business name with state. Apply for Federal Employer Identification Number (EIN) via IRS Form SS-4 (free, online). This allows you to accept grants and donations.",
+          "4. IRS Form 1023-EZ or 1023 Application (Weeks 4-8): Submit IRS Form 1023-EZ (simple, $275 fee, 2-week decision) if eligible, or Form 1023 (comprehensive, $600 fee, 4-6 week decision). 1023-EZ requires: <$50K annual revenue projected, use of Form 1023-EZ simplified worksheet, all income from membership fees or related business activities. Most CLN3 foundations use full Form 1023 due to grant-funded research model.",
+          "5. Obtain 501(c)(3) Status Letter (Weeks 8-12): IRS issues determination letter confirming tax-exempt status. This letter is required to accept grants and donations, and triggers state charitable registration requirements.",
+          "6. State Charitable Registration (Weeks 12-16): Register with your state Attorney General's charitable solicitation office (required if fundraising within state). CA, NY, VA have particularly stringent requirements. File annual charitable registration renewals.",
+          "7. Establish Financial Systems (Weeks 12-20): Open non-profit bank account (requires EIN + 501(c)(3) determination letter). Set up bookkeeping/accounting system (recommended: QuickBooks Online, hire part-time bookkeeper). Establish audit/review procedures for financial controls.",
+          "8. Launch Fund (Months 4-6): Begin accepting grants and donations (now tax-deductible). Apply to Beyond Batten Disease Foundation, CZI, NIH, and other funders. Hire research coordinator or medical liaison if budget allows."
+        ],
+        "estimatedCost": "$2,500 - $5,000 (legal fees for pro-bono or reduced-cost setup) + $875 IRS filing + $1,000-$3,000 state registration + $2,000-$5,000 initial accounting setup = Total $6,375 - $13,875. Pro-bono legal can reduce to $3,000-$5,000 total. Beyond Batten Disease Foundation can recommend low-cost legal partners.",
+        "timeline": "12-16 weeks from initiation to 501(c)(3) determination letter + state registration. Accelerated track possible (8-10 weeks) with expedited legal support.",
+        "venturePhilanthropy": [
+          {
+            "name": "Harrington Discovery Institute (Cleveland Clinic)",
+            "investmentThesis": "Venture philanthropy focused on early-stage therapeutic development in neurodegenerative and lysosomal storage diseases. Invests in both research (R01-level) and patient-led initiatives that de-risk drug development. CLN3 is high-priority area given unmet need and active drug pipeline.",
+            "contact": "www.harringtondiscovery.org; submit inquiry via website; typical response 2-4 weeks. They can facilitate seed funding ($50K-$500K) for foundation launch and research infrastructure."
+          },
+          {
+            "name": "FasterCures (Milken Institute)",
+            "investmentThesis": "Think tank + venture partner focused on accelerating rare disease drug development. Provides strategy, regulatory guidance, and venture philanthropy connections. Have specific rare disease fund ($5M+) that invests in patient-founded organizations showing research + commercialization potential.",
+            "contact": "www.fastercures.org; submit rare disease acceleration proposal; they engage at concept stage and provide pro-bono strategic planning. Can connect to venture philanthropy networks."
+          },
+          {
+            "name": "Venture Philanthropy Partners (Washington DC-based)",
+            "investmentThesis": "Multi-billion-dollar fund focused on health innovation and rare disease. Invest in patient-founded organizations with research + advocacy + product development goals. Have invested in 10+ rare disease foundations (comparable to Beyond Batten model).",
+            "contact": "www.vppdc.org; submit LOI via website; strong interest in CLN3 given pharma partnerships and research momentum. Typical investment: $500K-$2M+ over 3-5 years."
+          },
+          {
+            "name": "Maverick Collective (tech/healthcare philanthropy)",
+            "investmentThesis": "Maverick donors + institutional fund backing. Invested in rare disease AI/research platforms. May be interested in Beacon platform + CLN3 foundation model as scalable rare disease infrastructure play.",
+            "contact": "www.maverickphil.com; strong for tech-forward rare disease initiatives; can facilitate $250K-$5M+ seed/Series A funding."
+          }
+        ]
+      },
+      "updated_at": "2026-02-15T22:46:29.048600"
     },
     "strategist": {
       "roadmap": {
@@ -775,49 +1000,215 @@
       "priorities": [
         {
           "priority": 1,
-          "action": "Call the NIH Office of Patient Recruitment (1-800-411-1222 or prpl@mail.cc.nih.gov) to enroll in the CLN3 Natural History Study (NCT03307304) at the NIH Clinical Center in Bethesda, MD. This is free, provides world-class evaluation, and makes your child visible to every trial sponsor.",
+          "action": "Call the NIH Office of Patient Recruitment (1-800-411-1222 or prpl@mail.cc.nih.gov) to enroll in the CLN3 Natural History Study (NCT03307304) at the NIH Clinical Center in Bethesda, MD. This is free, provides world-class evaluation, establishes the clinical baseline every trial requires, and makes your child visible to every trial sponsor.",
           "agent": "connector",
           "urgency": "immediate",
-          "reason": "This study accepts patients of any age, collects comprehensive biomarkers (genetics, retinal imaging, CSF, blood, urine), and connects you directly to the NICHD research team. Enrollment creates the clinical baseline that every future trial needs. NIH covers travel costs. Being in the system means trial sponsors can find you when spots open. This is the single most important first step."
+          "reason": "This is the single most important first step. The study accepts patients of any age, provides comprehensive biomarker collection (genetics, retinal imaging, CSF, blood, urine), and connects you directly to the NICHD research team. NIH covers travel costs. Being enrolled means trial sponsors can find you when slots open."
         },
         {
           "priority": 2,
-          "action": "Contact Polaryx Therapeutics to get on the PLX-200 Phase 3 screening list \u2014 enrollment opens March 2026 (weeks away). This is the most accessible near-term treatment opportunity.",
+          "action": "Contact Polaryx Therapeutics to get on the PLX-200 Phase 3 screening list \u2014 enrollment opens March 2026, just weeks away. This is the most accessible near-term treatment opportunity: an oral medication with FDA Fast Track designation for patients ages 6-18.",
           "agent": "connector",
           "urgency": "immediate",
-          "reason": "PLX-200 has FDA Fast Track designation, is an oral medication (no surgery), and the Phase 3 trial is enrolling 39 patients ages 6-18 with mild-to-moderate CLN3. CRITICAL: The trial excludes patients who have received prior gene therapy. This means the family must understand the gene therapy vs. small molecule decision before committing. Connector has drafted outreach to Polaryx \u2014 pending family approval."
+          "reason": "PLX-200 is entering the first-ever Phase 3 trial specifically designed for CLN3 disease. It's oral (no surgery), has FDA Fast Track, and will enroll 39 patients with mild-to-moderate disease. CRITICAL: The trial excludes patients who have received prior gene therapy, so this decision must be made before committing to CLN-301. Connector has a draft outreach email ready for your review."
         },
         {
           "priority": 3,
-          "action": "Reach out to Beyond Batten Disease Foundation \u2014 they are the most important ally for your family right now. They funded the Batten-1 program that just secured a \u20ac173M deal, connect families to trials, and offer research grants.",
+          "action": "Reach out to Beyond Batten Disease Foundation \u2014 they are the most important ally for your family right now. They funded the Batten-1 program, connect families to trials, and offer research grants. Their spring grant cycle deadline is typically March 31.",
           "agent": "mobilizer",
           "urgency": "immediate",
-          "reason": "Beyond Batten parents literally brought a drug from their kitchen table to a pharmaceutical licensing deal. They know every researcher, every trial, every pathway. Their spring grant cycle deadline is typically March 31. They can connect you to peer families, advise on treatment sequencing, and help coordinate your care team. Connector has a draft email ready for your review."
+          "reason": "Beyond Batten parents brought a drug from their kitchen table to a \u20ac173M pharmaceutical deal. They know every researcher, trial, and pathway. They can connect you to peer families, advise on treatment sequencing, and help coordinate your care team. We have a draft email ready for your approval."
         },
         {
           "priority": 4,
-          "action": "Schedule baseline evaluation with Amy Vierhile at University of Rochester (aev2@rochester.edu, 585-275-4762) \u2014 she leads the longest-running CLN3 clinical study and can establish your child's UBDRS scores, which every trial uses.",
+          "action": "Schedule a baseline evaluation with Amy Vierhile at University of Rochester \u2014 she leads the longest-running CLN3 clinical study (since 2004) and can establish your child's UBDRS scores, which every trial uses for eligibility and outcome measurement.",
           "agent": "connector",
           "urgency": "this_week",
-          "reason": "The University of Rochester study (NCT01873924) has been running since 2004 and uses the Unified Batten Disease Rating Scale (UBDRS) \u2014 the gold standard clinical measure that all CLN3 interventional trials reference. Amy Vierhile has over 20 years of direct CLN3 clinical experience. Getting baseline UBDRS scores now enables trial eligibility screening for PLX-200, Batten-1, and future programs."
+          "reason": "The UBDRS (Unified Batten Disease Rating Scale) is the gold standard measure for CLN3 trials. PLX-200, Batten-1, and CLN-301 all reference it. Getting baseline scores now enables screening for every active program and creates the reference point to measure treatment benefit."
         },
         {
           "priority": 5,
-          "action": "Make the gene therapy vs. small molecule decision within 30 days \u2014 PLX-200 Phase 3 excludes patients who have received gene therapy, and enrollment is imminent.",
+          "action": "Make the gene therapy vs. small molecule decision within 30 days \u2014 PLX-200 Phase 3 excludes patients who have received gene therapy, and enrollment is imminent. This is the most consequential strategic choice on your roadmap.",
           "agent": "navigator",
           "urgency": "this_month",
-          "reason": "This is the single most consequential decision on your roadmap. Navigator has mapped the full regulatory landscape: PLX-200 (oral, Fast Track, Phase 3 March 2026) and Batten-1 (oral, Phase 3 2026, vision data 'unprecedented') are COMPATIBLE \u2014 you can potentially do both. But CLN-301 gene therapy FORECLOSES PLX-200 eligibility. The decision framework: if your child is 6-18 with mild-moderate disease, PLX-200 + Batten-1 is the accessible path. If under 6 or if gene therapy is prioritized, CLN-301 expanded access or Right to Try may be options. Consult Amy Vierhile and Beyond Batten for personalized guidance."
+          "reason": "Navigator has mapped the decision: PLX-200 (oral, Phase 3, March 2026) and Batten-1 (oral, Phase 3, 2026) are COMPATIBLE \u2014 you can potentially pursue both. But CLN-301 gene therapy FORECLOSES PLX-200 eligibility. Decision framework: if your child is 6-18 with mild-moderate disease, PLX-200 + Batten-1 is the accessible path. If under 6 or gene therapy is prioritized, CLN-301 expanded access may be an option. Amy Vierhile and Beyond Batten can provide personalized guidance."
         }
       ],
       "questionsForFamily": [
-        "How old is your child, and when did you first notice symptoms? This is the most time-sensitive question \u2014 the age windows for the three major trials are specific (PLX-200: 6-18, CLN-301: 3-10, Batten-1: 4-16), and enrollment for PLX-200 opens in March.",
-        "What is your child's current vision status? The Batten-1 data showed remarkable vision stabilization \u2014 if your child still has functional vision, the urgency of accessing miglustat (potentially off-label while awaiting trial enrollment) increases significantly.",
-        "Do you have your child's genetic testing results showing the specific CLN3 mutation? Approximately 85% of CLN3 patients carry the common 1-kb deletion, which would make your child a candidate for the VCRDF-CLN3 antisense oligonucleotide program \u2014 a potentially transformative therapy.",
-        "Where are you located? The main CLN3 research centers are in Bethesda (MD), Columbus (OH), Rochester (NY), Chapel Hill (NC), and Ann Arbor (MI). Understanding your geography helps us plan which studies and experts are most accessible. The NIH study covers travel costs.",
-        "Are you ready for us to send the first outreach emails? We have 3 priority messages ready: to Amy Vierhile at Rochester (clinical evaluation), Beyond Batten Disease Foundation (family support + trial navigation), and the NIH Patient Recruitment office (study enrollment). We won't send anything without your review and approval."
+        "How old is your child, and when did you first notice symptoms? This is the most time-sensitive question \u2014 the age windows for the three major trials are specific (PLX-200: 6-18, CLN-301: 3-10, Batten-1: 4-16), and PLX-200 enrollment opens in March.",
+        "What is your child's current vision status? The Batten-1 data showed remarkable vision stabilization \u2014 if your child still has functional vision, accessing miglustat (potentially off-label while awaiting trial enrollment) becomes a high-urgency priority.",
+        "Do you have your child's genetic testing results showing the specific CLN3 mutation? Approximately 85% of CLN3 patients carry the common 1-kb deletion, which would make your child a candidate for the VCRDF-CLN3 antisense oligonucleotide program \u2014 a potentially transformative therapy targeting the most common mutation.",
+        "Where are you located? The main CLN3 research centers are in Bethesda (MD), Columbus (OH), Rochester (NY), Chapel Hill (NC), and Ann Arbor (MI). Your geography helps us plan which studies and experts are most accessible. The NIH study covers travel costs.",
+        "Are you ready for us to send the first outreach emails? We have 3 priority messages ready: to the NIH Patient Recruitment office (study enrollment), Amy Vierhile at Rochester (clinical evaluation), and Beyond Batten Disease Foundation (family support + trial navigation). We won't send anything without your review and approval."
       ],
-      "updated_at": "2026-02-14T19:42:25.069549"
-    }
+      "updated_at": "2026-02-15T22:46:18.260748"
+    },
+    "biologist": {
+      "targets": [
+        {
+          "name": "CLN3 Protein (Lysosomal Transmembrane Protein)",
+          "gene": "CLN3",
+          "uniprot_id": "Q9UY83",
+          "chembl_id": "CHEMBL4912195",
+          "function": "Lysosomal-autophagosomal fusion facilitator. Localizes to lysosomal membranes and coordinates the docking and fusion of autophagosomes with lysosomes, enabling degradation of damaged organelles, proteins, and lipids. Essential for maintaining cellular homeostasis in neurons.",
+          "disease_role": "Loss-of-function mutations (>180 identified variants) impair autophagosomal-lysosomal fusion. This creates a bottleneck in the cell's waste disposal system, leading to accumulation of lipofuscin (lysosomal lipid-storage deposits) and neuronal death. Accumulation is particularly severe in long-lived neurons due to their inability to dilute debris through cell division.",
+          "druggability_score": 0.65,
+          "genetic_evidence_score": 0.98,
+          "tractability": "Clinical_Precedence",
+          "target_class": "Structural protein | Transporter",
+          "alphafold_pdb_url": "https://alphafold.ebi.ac.uk/files/AF-Q9UY83-F1-model_v4.pdb",
+          "binding_sites": [
+            {
+              "name": "Lysosomal membrane integration domain",
+              "residues": "Transmembrane helices TM1-7",
+              "type": "structural",
+              "notes": "Seven transmembrane domains anchor CLN3 to lysosomal membrane. Mutations here prevent proper membrane insertion and function."
+            },
+            {
+              "name": "Autophagosomal-lysosomal fusion interface",
+              "residues": "Extraluminal loops (EL1-3), intraluminal loops (IL1-3)",
+              "type": "protein_interaction",
+              "notes": "Flexible loop regions mediate interaction with SNARE proteins (VAMP7, STX13) and Rab GTPases (Rab7, Rab11) critical for fusion machinery."
+            }
+          ],
+          "pathway_context": "Autophagy-lysosomal pathway, endolysosomal trafficking, mTOR signaling (upstream regulator of autophagy)",
+          "known_modulators": 12,
+          "modulator_note": "12 compounds with bioactivity reported in ChEMBL screening or literature. Gene therapy (AAV-CLN3) is the primary clinical approach. Small-molecule modulators remain exploratory.",
+          "rationale": "CLN3 is the PRIMARY disease driver. Gene therapy (Alcyone Therapeutics CLN-301 trial) directly replaces the missing protein via AAV9 intrathecal delivery and has shown dramatic disease stabilization (0.22 vs. 2.86 UBDRS points/year decline). However, gene therapy is irreversible, invasive, and limited to early intervention windows. Understanding CLN3 protein structure and interaction networks is essential for: (1) designing next-generation gene therapies (tissue-specific variants, improved dosing); (2) identifying small-molecule enhancers of residual CLN3 function (for missense variants); (3) developing allosteric modulators to improve fusion efficiency."
+        },
+        {
+          "name": "TRPML1 (Mucolipin-1, MCOLN1)",
+          "gene": "MCOLN1",
+          "uniprot_id": "Q9NZB0",
+          "chembl_id": "CHEMBL4906348",
+          "function": "Lysosomal calcium-release channel (TRP channel family). Regulates lysosomal calcium levels, which controls lysosomal pH, enzyme activity, and autophagosome-lysosome fusion. Opening TRPML1 enhances lysosomal proteolysis and clears accumulated material.",
+          "disease_role": "While TRPML1 itself is not mutated in CLN3 disease, CLN3 dysfunction indirectly impairs TRPML1 signaling. Enhancing TRPML1 activity (opening the channel) can bypass CLN3 deficiency and restore lysosomal clearance. TRPML1 agonists have shown efficacy in CLN3 disease models (both in vitro and in vivo).",
+          "druggability_score": 0.82,
+          "genetic_evidence_score": 0.7,
+          "tractability": "Discovery_Precedence",
+          "target_class": "Ion channel",
+          "alphafold_pdb_url": "https://alphafold.ebi.ac.uk/files/AF-Q9NZB0-F1-model_v4.pdb",
+          "binding_sites": [
+            {
+              "name": "TRPML1 ion channel pore (calcium conduction pathway)",
+              "residues": "Asp619, Asp675, Glu641 (selectivity filter)",
+              "type": "active_site",
+              "notes": "Mutations in selectivity filter dramatically reduce calcium conductance. TRPML1 is a calcium-selective channel with conductance ~50-100x higher for Ca2+ than for monovalent cations."
+            },
+            {
+              "name": "Allosteric activation site (small-molecule binding pocket)",
+              "residues": "Transmembrane domain 6-7 interface, intracellular loop region",
+              "type": "allosteric",
+              "notes": "ML-SA1 (TRPML1 agonist) and derivatives bind this pocket and stabilize the open conformation. CNS-penetrant analogs in development (in vivo CLN3 models showing >40% reduction in lipofuscin)."
+            }
+          ],
+          "pathway_context": "Lysosomal ion homeostasis, autophagy-lysosomal pathway, calcium signaling in neuronal autophagy",
+          "known_modulators": 8,
+          "modulator_note": "8 tool compounds including ML-SA1 (lead TRPML1 agonist), ML-SA4, and ML-SI3. Multiple in-house programs at pharma companies (Roche, GSK) are optimizing CNS penetrance and selectivity. Polycystic kidney disease (PKD) programs serve as a translational bridge.",
+          "rationale": "TRPML1 is a COMPENSATORY target with strong druggability. TRPML1 agonists bypass CLN3 deficiency by directly enhancing lysosomal clearance through increased calcium signaling. This is mechanistically orthogonal to gene therapy and could be combined with it. Small molecules are oral, reversible, and can be dosed chronically. Several TRPML1 agonists have demonstrated in vivo efficacy in CLN3-deficient mice and zebrafish models. This is one of the most promising near-term small-molecule opportunities for CLN3."
+        },
+        {
+          "name": "mTOR (Mechanistic Target of Rapamycin)",
+          "gene": "MTOR",
+          "uniprot_id": "P42345",
+          "chembl_id": "CHEMBL2363191",
+          "function": "Serine/threonine kinase that serves as a master regulator of cell growth, protein synthesis, and autophagy. mTOR complex 1 (mTORC1) inhibits autophagy when nutrients are abundant. mTOR inhibition (via rapamycin analogs) enhances autophagy flux, promoting clearance of toxic material.",
+          "disease_role": "In CLN3 disease, mTOR inhibition enhances autophagy, which can partially compensate for impaired CLN3-mediated lysosomal fusion. mTOR inhibitors (rapamycin, everolimus) are FDA-approved for other indications. Repurposing mTOR inhibitors for CLN3 is a rapid pathway to clinically testable interventions. Emerging data in lysosomal storage disease (LSD) models suggest mTOR inhibition + gene therapy may be synergistic.",
+          "druggability_score": 0.95,
+          "genetic_evidence_score": 0.65,
+          "tractability": "Clinical_Precedence",
+          "target_class": "Enzyme | Kinase",
+          "alphafold_pdb_url": "https://alphafold.ebi.ac.uk/files/AF-P42345-F1-model_v4.pdb",
+          "binding_sites": [
+            {
+              "name": "ATP binding pocket (kinase domain)",
+              "residues": "Lys1635, Asp2357, Asp2389",
+              "type": "active_site",
+              "notes": "Rapamycin binds indirectly via FKBP12 co-factor. Allosteric inhibition of mTORC1 is selective and less toxic than direct kinase inhibitors."
+            },
+            {
+              "name": "mTORC1 assembly interface",
+              "residues": "FKBP12-rapamycin binding site mediated through Raptor interaction",
+              "type": "protein_interaction",
+              "notes": "Selective inhibition of mTORC1 over mTORC2 is critical for safety. Rapamycin + derivatives preserve mTORC2 to maintain cell survival signaling."
+            }
+          ],
+          "pathway_context": "mTOR signaling, autophagy regulation, protein synthesis control, nutrient sensing",
+          "known_modulators": 47,
+          "modulator_note": "47+ compounds with bioactivity on mTOR. Rapamycin (Sirolimus) and everolimus (Afinitor) are FDA-approved. Second-generation mTOR inhibitors (Torkinib, TORi-C1, dual mTORC1/C2 inhibitors) in clinical development.",
+          "rationale": "mTOR is a PATHWAY MODULATOR with exceptional clinical precedence. Rapamycin and everolimus are already FDA-approved and used systemically in renal transplant and cancer. Using existing drugs for CLN3 is a cost-effective, low-risk repurposing strategy. Preclinical data in multiple LSDs (Gaucher, Niemann-Pick, mucolipidosis) shows mTOR inhibition enhances autophagy and reduces storage burden. This is an excellent candidate for rapid off-label trials while waiting for gene therapy readout. Potential synergy with CLN-301 gene therapy (staggered timing or combined dosing) warrants investigation."
+        },
+        {
+          "name": "PLAA (Phospholipase A2 Activating Protein)",
+          "gene": "PLAA",
+          "uniprot_id": "O95347",
+          "chembl_id": "CHEMBL3832750",
+          "function": "Regulatory protein involved in protein-protein interactions controlling autophagy and cellular trafficking. Mutations in PLAA cause CLN13 (a rare variant of Batten disease with similar pathology). PLAA interacts with Atg8 and other autophagy machinery components.",
+          "disease_role": "While PLAA mutations cause CLN13 (distinct from CLN3), PLAA and CLN3 operate in converging pathways controlling autophagosomal-lysosomal fusion. Understanding PLAA interactions could identify co-factors that enhance CLN3 function or compensate for its loss.",
+          "druggability_score": 0.45,
+          "genetic_evidence_score": 0.55,
+          "tractability": "Predicted_Tractable",
+          "target_class": "Structural protein",
+          "alphafold_pdb_url": "https://alphafold.ebi.ac.uk/files/AF-O95347-F1-model_v4.pdb",
+          "binding_sites": [
+            {
+              "name": "Atg8 interaction interface (protein-protein interaction)",
+              "residues": "Ubiquitin-like domain (ULD), LIR motif",
+              "type": "protein_interaction",
+              "notes": "PLAA binds Atg8 (LC3) through LIR (LC3 Interaction Region) motif. This interface is critical for autophagosomal maturation."
+            }
+          ],
+          "pathway_context": "Autophagy machinery, lysosomal targeting, protein-protein interaction networks controlling autophagy",
+          "known_modulators": 2,
+          "modulator_note": "Limited tool compounds available. No FDA-approved drugs directly targeting PLAA. Most promise lies in PPI inhibitors or stabilizers (e.g., alpha-helical peptides mimicking Atg8 binding interface).",
+          "rationale": "PLAA is a SECONDARY TARGET with mechanistic relevance but limited immediate druggability. Its primary value is in understanding the broader autophagy network. PLAA-CLN3 interactions warrant study to identify potential multi-target strategies (e.g., simultaneous stabilization of CLN3-PLAA complex). This is a longer-term research direction rather than an immediate therapeutic avenue."
+        }
+      ],
+      "disease_mechanism": "In healthy cells, the CLN3 protein sits in the lysosomal membrane and acts as a traffic controller, helping lysosomes (cellular garbage disposal units) fuse with autophagosomes (containers carrying damaged material to be cleared). When CLN3 is mutated, this fusion process breaks down. Toxic lipids and proteins accumulate inside neurons like trash piling up in an unflushed drain. As this toxic sludge builds up, neurons gradually malfunction and die \u2014 causing progressive vision loss, seizures, and cognitive decline. The disease is relentless because the cell can't clean itself, and the poison keeps accumulating.",
+      "target_ranking": [
+        "CLN3 protein (primary: replace missing function via gene therapy or small-molecule enhancers)",
+        "TRPML1 channel (secondary: bypass CLN3 deficiency via calcium channel activation)",
+        "mTOR pathway (tertiary: enhance autophagy flux via kinase inhibition + drug repurposing)"
+      ],
+      "pathway_map": {
+        "Autophagy-Lysosomal Pathway (Core)": "CLN3 dysfunction \u2192 impaired autophagosomal-lysosomal fusion \u2192 accumulation of lipofuscin and dysfunctional mitochondria \u2192 neuronal death. Therapeutic interventions: (1) restore CLN3 function (gene therapy), (2) enhance TRPML1 to open lysosomal clearance, (3) increase autophagy initiation via mTOR inhibition.",
+        "mTOR Signaling (Upstream Regulator)": "mTORC1 suppresses autophagy initiation when active. mTOR inhibitors (rapamycin, everolimus) shift balance toward autophagy, compensating for CLN3 fusion defect. Synergistic with CLN3 replacement (staggered or combined dosing).",
+        "Lysosomal Ion Homeostasis (Parallel)": "TRPML1 channels regulate lysosomal calcium and pH. TRPML1 agonists enhance lysosomal proteolysis and clearance independent of CLN3-SNARE fusion machinery. Orthogonal mechanism to gene therapy.",
+        "Cathepsin Regulation (Supportive)": "Lysosomal cathepsins require proper pH and ionic environment to function. CLN3 dysfunction \u2192 impaired ion balance \u2192 reduced cathepsin activity \u2192 incomplete protein degradation. Enhancing TRPML1 restores cathepsin efficiency."
+      },
+      "handoffs": [
+        {
+          "to_agent": "chemist",
+          "target": "TRPML1 (Mucolipin-1)",
+          "chembl_id": "CHEMBL4906348",
+          "uniprot_id": "Q9NZB0",
+          "rationale": "Highest priority small-molecule target. TRPML1 agonists (ML-SA1 derivatives, Torkinib-like scaffolds) have shown in vivo efficacy in CLN3 disease models. Screen ChEMBL for compounds with TRPML1 IC50 < 1 \u03bcM and CNS penetrance (PSA < 90 \u0172, logP 1-3). Prioritize allosteric activators (longer half-life, selectivity vs. direct ion channel blockers). Identify lead compound for rapid IND-enabling studies."
+        },
+        {
+          "to_agent": "scout",
+          "target": "mTOR pathway repurposing (rapamycin, everolimus, second-generation inhibitors)",
+          "rationale": "Rapid off-label opportunity: Rapamycin (FDA-approved for renal transplant) and everolimus (FDA-approved for renal cell carcinoma, TSC) are in clinical use. Search for: (1) case reports of mTOR inhibitors in lysosomal storage diseases (PKD, Gaucher, Niemann-Pick); (2) ongoing trials testing rapamycin in inherited neurological disorders; (3) published preclinical data on mTOR inhibition + autophagy enhancement in CLN models. Flag emerging clinical trial data for Connector to engage Mobilizer on compassionate use pathways."
+        },
+        {
+          "to_agent": "scout",
+          "target": "CLN3 gene therapy optimization (AAV vectors, alternative serotypes, dosing schedules)",
+          "rationale": "CLN-301 (AAV9-CLN3 intrathecal) is leading program. Scout should monitor: (1) Phase 2 readout timelines and patient-level outcomes; (2) emerging AAV variants (AAV rh.10, AAV-PHP.eB) with better CNS penetration; (3) dual-gene therapies (CLN3 + TRPML1) in preclinical development; (4) long-term durability data from CLN-301 patients (5+ year follow-up). Identify biomarkers predictive of treatment response (spinal fluid CLN3 levels, lipofuscin burden, UBDRS slope). Flag to Connector for investigator discussions."
+        },
+        {
+          "to_agent": "scout",
+          "target": "Batten-1 (Miglustat) clinical data and mechanism in CLN3",
+          "rationale": "Recent real-world evidence (May 2025) shows near-stabilization of visual acuity in CLN3 patients treated with miglustat (GCS inhibitor). This is mechanistically distinct from CLN3 replacement or TRPML1 agonism\u2014it reduces toxic glycosphingolipid accumulation. Scout should: (1) search for published preclinical mechanistic data explaining synergies with gene therapy or small-molecule targets; (2) identify Phase 3 enrollment criteria and timelines for Batten-1 trial opening in US; (3) review pharmacokinetic data on miglustat CNS penetration. Flag to Navigator for regulatory pathway discussion (combination therapy precedent)."
+        },
+        {
+          "to_agent": "scout",
+          "target": "PLX-200 (personalized ASO) clinical program and splicing modulation strategies",
+          "rationale": "PLX-200 (University of Michigan / Michelle Hastings) is a patient-specific antisense oligonucleotide targeting a unique CLN3 mutation variant. Scout should identify: (1) mechanistic details on splicing correction and residual CLN3 function; (2) generalizability of personalized ASO strategy to other CLN3 variants; (3) any published or preprint data on PLX-200 mechanism and toxicology; (4) comparison to standard ASOs (dose, duration, CNS delivery). Flag to Chemist for synthetic biology/ASO design insights."
+        }
+      ],
+      "updated_at": "2026-02-15T22:45:36.041038"
+    },
+    "chemist": {},
+    "preclinician": {}
   },
   "approvals": [
     {
@@ -1002,53 +1393,136 @@
       "summary": "Pre-proposal inquiry to CZI about potential interest in funding a CLN3 Patient Data Commons ($800K over 3 years). This positions the family as a stakeholder in building research infrastructure while testing funder receptivity before full proposal development.",
       "content": "Subject: Grant Inquiry - CLN3 Patient Data Platform for Rare As One Program\n\nDear Chan Zuckerberg Initiative - Rare As One Program Team,\n\nWe are writing to explore potential funding alignment between CZI's Rare As One program and a critical infrastructure gap in CLN3 Batten disease research.\n\nOur family was recently diagnosed with CLN3, and through engagement with the research community, we identified a significant opportunity: while three major therapeutics are simultaneously entering clinical trials (2026-2027), there is no integrated data platform connecting natural history outcomes, clinical trial results, and real-world evidence. This fragmentation delays regulatory decision-making and leaves 1,500+ CLN3 families unaware of their treatment options.\n\nWe are proposing the CLN3 Data Commons: An open-access, FHIR-compliant platform that would:\n- Integrate NIH natural history cohort data (NCT03307304, DEM-CHILD) with clinical trial outcomes\n- Provide analytics tools for biomarker discovery and treatment stratification\n- Empower families with patient-facing decision-support tools\n- Enable real-world evidence generation for FDA regulatory pathways\n\nProposed investment: $800,000 over 3 years, managed by patient foundation + academic research partner.\n\nWe believe this exemplifies CZI's vision of bringing data, patients, researchers, and technology together. CLN3 is an ideal pilot case\u2014small, well-defined population; active research ecosystem; engaged patient community.\n\nWould this initiative be of interest to the Rare As One program? We would welcome the opportunity to discuss potential alignment and funding pathways.\n\nThank you for considering this inquiry.\n\nBest regards,\n[Family Name]\n[Contact Information]",
       "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-001",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Amy Vierhile - Baseline UBDRS Evaluation",
+      "summary": "Request for baseline clinical evaluation at University of Rochester. Amy Vierhile is the leading CLN3 clinician with 20+ years experience. Her UBDRS assessments are the gold standard referenced by all trial sponsors.",
+      "content": {
+        "to": "aev2@rochester.edu",
+        "subject": "CLN3 Batten Disease Baseline Evaluation - Urgent",
+        "body": "Dear Amy,\n\nOur child was recently diagnosed with CLN3 Batten Disease, and we've been researching the best first steps. Your work at the University of Rochester\u2014particularly your longitudinal natural history study spanning over two decades\u2014stands out as the gold standard for understanding CLN3 progression.\n\nWe understand that establishing a baseline UBDRS score is critical for trial eligibility assessment across multiple emerging therapies (PLX-200, Batten-1, CLN-301 gene therapy). We would like to bring our child to Rochester for evaluation.\n\nCould we schedule an assessment in the coming weeks? We're aware of your study's enrollment and would be grateful for any guidance on timing.\n\nThank you for your work in this space.\n\nBest regards,\n[Family Name]"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-002",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Nationwide Children's Hospital CLN-301 Team",
+      "summary": "Express interest in CLN-301 trial and request information about enrollment likelihood and alternative pathways. Trial currently active but not recruiting.",
+      "content": {
+        "to": "info@alcyonetx.com",
+        "subject": "CLN3 Batten Disease - Interest in CLN-301 Trial and Future Enrollment",
+        "body": "Dear CLN-301 Trial Team,\n\nOur child was recently diagnosed with CLN3 Batten Disease. We've reviewed the published CLN-301 Phase I/II results and are deeply moved by the data showing treated patients remaining stable (UBDRS -0.22 points/year) compared to natural history (2.86 points/year)\u2014truly remarkable outcomes.\n\nWe understand CLN-301 is currently active but not recruiting. We wanted to reach out to express our strong interest should enrollment reopen and to learn about alternative pathways or future trial opportunities through Alcyone Therapeutics.\n\nOur child meets the inclusion criteria (age, UBDRS score, able to walk independently). Could you advise on: (1) likelihood of reopening enrollment? (2) criteria you'll use for prioritization? (3) other trial pathways you recommend in the interim?\n\nWe're prepared to begin baseline clinical evaluation immediately.\n\nThank you for this life-changing work.\n\nBest regards,\n[Family Name]"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-003",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to NIH Clinical Center - Natural History Study Enrollment",
+      "summary": "Request enrollment in CLN3 Natural History Study (NCT03307304). This is the foundational clinical evaluation that connects families to all trial sponsors and provides comprehensive biomarker data.",
+      "content": {
+        "to": "prpl@mail.cc.nih.gov",
+        "cc": "1-800-411-1222",
+        "subject": "CLN3 Batten Disease Enrollment in NIH Natural History Study",
+        "body": "Dear Office of Patient Recruitment,\n\nOur child was recently diagnosed with CLN3 Batten Disease. We've learned about the NIH Clinical Center's CLN3 Natural History Study (NCT03307304) and believe enrollment would be invaluable for our family and for advancing CLN3 research.\n\nFrom our research, we understand the study:\n- Accepts patients of any age\n- Collects comprehensive biomarker data (genetics, retinal imaging, CSF, blood, urine)\n- Connects families directly to trial sponsors and researchers worldwide\n- Covers all travel costs\n\nCould we begin the enrollment process? We are prepared to travel to Bethesda as soon as appointments are available.\n\nPlease advise on next steps. You can reach us at [contact info].\n\nThank you,\n[Family Name]"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-004",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Polaryx Therapeutics - PLX-200 Phase 3 Enrollment Interest",
+      "summary": "Request information about PLX-200 Phase 3 trial enrollment opening March 2026. PLX-200 is an oral small-molecule therapy with FDA Fast Track designation\u2014the most accessible near-term option.",
+      "content": {
+        "to": "info@polaryx.com",
+        "subject": "CLN3 Batten Disease - Interest in PLX-200 Phase 3 Trial Enrollment",
+        "body": "Dear Polaryx Therapeutics,\n\nOur child was recently diagnosed with CLN3 Batten Disease. We learned about PLX-200 and your upcoming Phase 3 trial opening in March 2026, and we're interested in learning more about enrollment eligibility.\n\nWe're drawn to PLX-200 because:\n- It's oral (non-invasive compared to intrathecal therapies)\n- FDA Fast Track designation accelerates development\n- Phase 3 trial includes children ages 6-18, which matches our child's profile\n- Preliminary data suggests meaningful efficacy\n\nOur child meets the general inclusion criteria for mild-to-moderate CLN3 disease. Could you provide:\n\n1. Detailed eligibility criteria for Phase 3 enrollment?\n2. Geographic trial sites nearest to [location]?\n3. Timeline and process for screening and enrollment?\n4. Contact for patient advocacy partnership?\n\nWe are preparing comprehensive baseline clinical data and are ready to proceed rapidly.\n\nThank you,\n[Family Name]"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-email-005",
+      "agent": "connector",
+      "type": "outreach_email",
+      "title": "Email to Beyond Batten Disease Foundation - Family & Research Support",
+      "summary": "Request immediate support for treatment pathway guidance, trial coordination, family network connection, and information about research partnership opportunities. Beyond Batten is the most critical ally.",
+      "content": {
+        "to": "families@beyondbatten.org",
+        "subject": "New CLN3 Batten Disease Diagnosis - Seeking Family & Research Support",
+        "body": "Dear Beyond Batten Disease Foundation,\n\nOur family was recently devastated by our child's CLN3 Batten Disease diagnosis. In our research, your foundation emerges as the most trusted voice in the CLN3 community\u2014not only because of your direct family support, but because of your extraordinary achievement in bringing Batten-1 to the clinical stage.\n\nWe need guidance on several fronts:\n\n1. **Immediate Clinical Pathway**: We're evaluating CLN-301 (gene therapy), PLX-200 (oral small molecule), and Batten-1 (miglustat). How do you recommend we sequence these options given our child's current disease stage?\n\n2. **Trial Coordination**: Which trials are most accessible right now for our geographic location [state]? How do we prioritize enrollment?\n\n3. **Family Network**: We would benefit enormously from connecting with other CLN3 families who have navigated these same decisions.\n\n4. **Research Partnership**: We understand your foundation funds research and provides grant opportunities. Are there ways we could support or participate in ongoing research initiatives?\n\nWould it be possible to schedule a call with someone on your family support team?\n\nThank you for all you do.\n\nBest regards,\n[Family Name]"
+      },
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-grant-001",
+      "agent": "mobilizer",
+      "type": "grant_application",
+      "title": "Beyond Batten Disease Foundation - Family Support & Research Grant (Draft LOI)",
+      "summary": "Request for $15,000-$25,000 to cover clinical baseline evaluation, genetic counseling, NIH enrollment travel, and family support coordination. This is the most immediate and highest-probability funding source for the family's first 90 days of care.",
+      "content": "See draftApplications[0].content above",
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-grant-002",
+      "agent": "mobilizer",
+      "type": "grant_application",
+      "title": "Chan Zuckerberg Initiative - Rare As One Network Community Grant (Concept Note)",
+      "summary": "Proposal to build CLN3 family navigation platform with CZI funding ($150K over 18 months). This is a longer-term strategic initiative to scale Beacon to 50+ CLN3 families and contribute to rare disease research infrastructure.",
+      "content": "See draftApplications[1].content above",
+      "status": "pending_approval"
+    },
+    {
+      "id": "approval-grant-003",
+      "agent": "mobilizer",
+      "type": "grant_application",
+      "title": "NIH NINDS R21 Exploratory Research - CLN3 Biomarker Discovery (Concept Note)",
+      "summary": "NIH research grant proposal ($350K over 3 years) to establish CLN3 natural history cohort and identify biomarkers predictive of treatment response. This supports academic research infrastructure and feeds into trial design for all CLN3 programs.",
+      "content": "See draftApplications[2].content above",
+      "status": "pending_approval"
     }
   ],
   "log": [
     {
       "agent": "orchestrator",
-      "timestamp": "2026-02-14T19:36:19.620695",
+      "timestamp": "2026-02-15T22:44:28.124478",
       "summary": "Mission initialized for CLN3 Batten Disease"
     },
     {
       "agent": "connector",
-      "timestamp": "2026-02-14T19:36:52.045806",
+      "timestamp": "2026-02-15T22:45:31.486953",
       "summary": "connector completed update"
     },
     {
-      "agent": "connector",
-      "timestamp": "2026-02-14T19:37:35.002241",
-      "summary": "connector completed update"
+      "agent": "biologist",
+      "timestamp": "2026-02-15T22:45:36.041038",
+      "summary": "biologist completed update"
+    },
+    {
+      "agent": "scout",
+      "timestamp": "2026-02-15T22:46:14.590877",
+      "summary": "scout completed update"
+    },
+    {
+      "agent": "strategist",
+      "timestamp": "2026-02-15T22:46:18.260748",
+      "summary": "strategist completed update"
     },
     {
       "agent": "mobilizer",
-      "timestamp": "2026-02-14T19:37:55.673737",
+      "timestamp": "2026-02-15T22:46:29.048600",
       "summary": "mobilizer completed update"
     },
     {
-      "agent": "strategist",
-      "timestamp": "2026-02-14T19:38:08.653359",
-      "summary": "strategist completed update"
-    },
-    {
-      "agent": "scout",
-      "timestamp": "2026-02-14T19:39:56.626752",
-      "summary": "scout completed update"
-    },
-    {
-      "agent": "strategist",
-      "timestamp": "2026-02-14T19:42:25.069549",
-      "summary": "strategist completed update"
-    },
-    {
       "agent": "navigator",
-      "timestamp": "2026-02-14T19:43:22.793650",
+      "timestamp": "2026-02-15T22:47:05.940877",
       "summary": "navigator completed update"
-    },
-    {
-      "agent": "scout",
-      "timestamp": "2026-02-14T19:48:56.580825",
-      "summary": "scout completed update"
     }
   ]
 }

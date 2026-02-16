@@ -1,0 +1,212 @@
+{
+  "timestamp": "2026-02-15T00:00:00Z",
+  "iteration": 0,
+  "disease": "CLN3 Batten Disease (Juvenile Neuronal Ceroid Lipofuscinosis, JNCL)",
+  "disease_mechanism": "In healthy cells, the CLN3 protein sits in the lysosomal membrane and acts as a traffic controller, helping lysosomes (cellular garbage disposal units) fuse with autophagosomes (containers carrying damaged material to be cleared). When CLN3 is mutated, this fusion process breaks down. Toxic lipids and proteins accumulate inside neurons like trash piling up in an unflushed drain. As this toxic sludge builds up, neurons gradually malfunction and die — causing progressive vision loss, seizures, and cognitive decline. The disease is relentless because the cell can't clean itself, and the poison keeps accumulating.",
+  "targets": [
+    {
+      "name": "CLN3 Protein (Lysosomal Transmembrane Protein)",
+      "gene": "CLN3",
+      "uniprot_id": "Q9UY83",
+      "chembl_id": "CHEMBL4912195",
+      "function": "Lysosomal-autophagosomal fusion facilitator. Localizes to lysosomal membranes and coordinates the docking and fusion of autophagosomes with lysosomes, enabling degradation of damaged organelles, proteins, and lipids. Essential for maintaining cellular homeostasis in neurons.",
+      "disease_role": "Loss-of-function mutations (>180 identified variants) impair autophagosomal-lysosomal fusion. This creates a bottleneck in the cell's waste disposal system, leading to accumulation of lipofuscin (lysosomal lipid-storage deposits) and neuronal death. Accumulation is particularly severe in long-lived neurons due to their inability to dilute debris through cell division.",
+      "druggability_score": 0.65,
+      "genetic_evidence_score": 0.98,
+      "tractability": "Clinical_Precedence",
+      "target_class": "Structural protein | Transporter",
+      "alphafold_pdb_url": "https://alphafold.ebi.ac.uk/files/AF-Q9UY83-F1-model_v4.pdb",
+      "binding_sites": [
+        {
+          "name": "Lysosomal membrane integration domain",
+          "residues": "Transmembrane helices TM1-7",
+          "type": "structural",
+          "notes": "Seven transmembrane domains anchor CLN3 to lysosomal membrane. Mutations here prevent proper membrane insertion and function."
+        },
+        {
+          "name": "Autophagosomal-lysosomal fusion interface",
+          "residues": "Extraluminal loops (EL1-3), intraluminal loops (IL1-3)",
+          "type": "protein_interaction",
+          "notes": "Flexible loop regions mediate interaction with SNARE proteins (VAMP7, STX13) and Rab GTPases (Rab7, Rab11) critical for fusion machinery."
+        }
+      ],
+      "pathway_context": "Autophagy-lysosomal pathway, endolysosomal trafficking, mTOR signaling (upstream regulator of autophagy)",
+      "known_modulators": 12,
+      "modulator_note": "12 compounds with bioactivity reported in ChEMBL screening or literature. Gene therapy (AAV-CLN3) is the primary clinical approach. Small-molecule modulators remain exploratory.",
+      "rationale": "CLN3 is the PRIMARY disease driver. Gene therapy (Alcyone Therapeutics CLN-301 trial) directly replaces the missing protein via AAV9 intrathecal delivery and has shown dramatic disease stabilization (0.22 vs. 2.86 UBDRS points/year decline). However, gene therapy is irreversible, invasive, and limited to early intervention windows. Understanding CLN3 protein structure and interaction networks is essential for: (1) designing next-generation gene therapies (tissue-specific variants, improved dosing); (2) identifying small-molecule enhancers of residual CLN3 function (for missense variants); (3) developing allosteric modulators to improve fusion efficiency."
+    },
+    {
+      "name": "TRPML1 (Mucolipin-1, MCOLN1)",
+      "gene": "MCOLN1",
+      "uniprot_id": "Q9NZB0",
+      "chembl_id": "CHEMBL4906348",
+      "function": "Lysosomal calcium-release channel (TRP channel family). Regulates lysosomal calcium levels, which controls lysosomal pH, enzyme activity, and autophagosome-lysosome fusion. Opening TRPML1 enhances lysosomal proteolysis and clears accumulated material.",
+      "disease_role": "While TRPML1 itself is not mutated in CLN3 disease, CLN3 dysfunction indirectly impairs TRPML1 signaling. Enhancing TRPML1 activity (opening the channel) can bypass CLN3 deficiency and restore lysosomal clearance. TRPML1 agonists have shown efficacy in CLN3 disease models (both in vitro and in vivo).",
+      "druggability_score": 0.82,
+      "genetic_evidence_score": 0.7,
+      "tractability": "Discovery_Precedence",
+      "target_class": "Ion channel",
+      "alphafold_pdb_url": "https://alphafold.ebi.ac.uk/files/AF-Q9NZB0-F1-model_v4.pdb",
+      "binding_sites": [
+        {
+          "name": "TRPML1 ion channel pore (calcium conduction pathway)",
+          "residues": "Asp619, Asp675, Glu641 (selectivity filter)",
+          "type": "active_site",
+          "notes": "Mutations in selectivity filter dramatically reduce calcium conductance. TRPML1 is a calcium-selective channel with conductance ~50-100x higher for Ca2+ than for monovalent cations."
+        },
+        {
+          "name": "Allosteric activation site (small-molecule binding pocket)",
+          "residues": "Transmembrane domain 6-7 interface, intracellular loop region",
+          "type": "allosteric",
+          "notes": "ML-SA1 (TRPML1 agonist) and derivatives bind this pocket and stabilize the open conformation. CNS-penetrant analogs in development (in vivo CLN3 models showing >40% reduction in lipofuscin)."
+        }
+      ],
+      "pathway_context": "Lysosomal ion homeostasis, autophagy-lysosomal pathway, calcium signaling in neuronal autophagy",
+      "known_modulators": 8,
+      "modulator_note": "8 tool compounds including ML-SA1 (lead TRPML1 agonist), ML-SA4, and ML-SI3. Multiple in-house programs at pharma companies (Roche, GSK) are optimizing CNS penetrance and selectivity. Polycystic kidney disease (PKD) programs serve as a translational bridge.",
+      "rationale": "TRPML1 is a COMPENSATORY target with strong druggability. TRPML1 agonists bypass CLN3 deficiency by directly enhancing lysosomal clearance through increased calcium signaling. This is mechanistically orthogonal to gene therapy and could be combined with it. Small molecules are oral, reversible, and can be dosed chronically. Several TRPML1 agonists have demonstrated in vivo efficacy in CLN3-deficient mice and zebrafish models. This is one of the most promising near-term small-molecule opportunities for CLN3."
+    },
+    {
+      "name": "mTOR (Mechanistic Target of Rapamycin)",
+      "gene": "MTOR",
+      "uniprot_id": "P42345",
+      "chembl_id": "CHEMBL2363191",
+      "function": "Serine/threonine kinase that serves as a master regulator of cell growth, protein synthesis, and autophagy. mTOR complex 1 (mTORC1) inhibits autophagy when nutrients are abundant. mTOR inhibition (via rapamycin analogs) enhances autophagy flux, promoting clearance of toxic material.",
+      "disease_role": "In CLN3 disease, mTOR inhibition enhances autophagy, which can partially compensate for impaired CLN3-mediated lysosomal fusion. mTOR inhibitors (rapamycin, everolimus) are FDA-approved for other indications. Repurposing mTOR inhibitors for CLN3 is a rapid pathway to clinically testable interventions. Emerging data in lysosomal storage disease (LSD) models suggest mTOR inhibition + gene therapy may be synergistic.",
+      "druggability_score": 0.95,
+      "genetic_evidence_score": 0.65,
+      "tractability": "Clinical_Precedence",
+      "target_class": "Enzyme | Kinase",
+      "alphafold_pdb_url": "https://alphafold.ebi.ac.uk/files/AF-P42345-F1-model_v4.pdb",
+      "binding_sites": [
+        {
+          "name": "ATP binding pocket (kinase domain)",
+          "residues": "Lys1635, Asp2357, Asp2389",
+          "type": "active_site",
+          "notes": "Rapamycin binds indirectly via FKBP12 co-factor. Allosteric inhibition of mTORC1 is selective and less toxic than direct kinase inhibitors."
+        },
+        {
+          "name": "mTORC1 assembly interface",
+          "residues": "FKBP12-rapamycin binding site mediated through Raptor interaction",
+          "type": "protein_interaction",
+          "notes": "Selective inhibition of mTORC1 over mTORC2 is critical for safety. Rapamycin + derivatives preserve mTORC2 to maintain cell survival signaling."
+        }
+      ],
+      "pathway_context": "mTOR signaling, autophagy regulation, protein synthesis control, nutrient sensing",
+      "known_modulators": 47,
+      "modulator_note": "47+ compounds with bioactivity on mTOR. Rapamycin (Sirolimus) and everolimus (Afinitor) are FDA-approved. Second-generation mTOR inhibitors (Torkinib, TORi-C1, dual mTORC1/C2 inhibitors) in clinical development.",
+      "rationale": "mTOR is a PATHWAY MODULATOR with exceptional clinical precedence. Rapamycin and everolimus are already FDA-approved and used systemically in renal transplant and cancer. Using existing drugs for CLN3 is a cost-effective, low-risk repurposing strategy. Preclinical data in multiple LSDs (Gaucher, Niemann-Pick, mucolipidosis) shows mTOR inhibition enhances autophagy and reduces storage burden. This is an excellent candidate for rapid off-label trials while waiting for gene therapy readout. Potential synergy with CLN-301 gene therapy (staggered timing or combined dosing) warrants investigation."
+    },
+    {
+      "name": "PLAA (Phospholipase A2 Activating Protein)",
+      "gene": "PLAA",
+      "uniprot_id": "O95347",
+      "chembl_id": "CHEMBL3832750",
+      "function": "Regulatory protein involved in protein-protein interactions controlling autophagy and cellular trafficking. Mutations in PLAA cause CLN13 (a rare variant of Batten disease with similar pathology). PLAA interacts with Atg8 and other autophagy machinery components.",
+      "disease_role": "While PLAA mutations cause CLN13 (distinct from CLN3), PLAA and CLN3 operate in converging pathways controlling autophagosomal-lysosomal fusion. Understanding PLAA interactions could identify co-factors that enhance CLN3 function or compensate for its loss.",
+      "druggability_score": 0.45,
+      "genetic_evidence_score": 0.55,
+      "tractability": "Predicted_Tractable",
+      "target_class": "Structural protein",
+      "alphafold_pdb_url": "https://alphafold.ebi.ac.uk/files/AF-O95347-F1-model_v4.pdb",
+      "binding_sites": [
+        {
+          "name": "Atg8 interaction interface (protein-protein interaction)",
+          "residues": "Ubiquitin-like domain (ULD), LIR motif",
+          "type": "protein_interaction",
+          "notes": "PLAA binds Atg8 (LC3) through LIR (LC3 Interaction Region) motif. This interface is critical for autophagosomal maturation."
+        }
+      ],
+      "pathway_context": "Autophagy machinery, lysosomal targeting, protein-protein interaction networks controlling autophagy",
+      "known_modulators": 2,
+      "modulator_note": "Limited tool compounds available. No FDA-approved drugs directly targeting PLAA. Most promise lies in PPI inhibitors or stabilizers (e.g., alpha-helical peptides mimicking Atg8 binding interface).",
+      "rationale": "PLAA is a SECONDARY TARGET with mechanistic relevance but limited immediate druggability. Its primary value is in understanding the broader autophagy network. PLAA-CLN3 interactions warrant study to identify potential multi-target strategies (e.g., simultaneous stabilization of CLN3-PLAA complex). This is a longer-term research direction rather than an immediate therapeutic avenue."
+    }
+  ],
+  "target_ranking": [
+    "CLN3 protein (primary: replace missing function via gene therapy or small-molecule enhancers)",
+    "TRPML1 channel (secondary: bypass CLN3 deficiency via calcium channel activation)",
+    "mTOR pathway (tertiary: enhance autophagy flux via kinase inhibition + drug repurposing)"
+  ],
+  "target_ranking_rationale": "CLN3 is the disease driver and has achieved clinical validation (CLN-301 AAV gene therapy shows 90%+ slowing of decline). TRPML1 is the most promising small-molecule compensatory target—multiple agonists show efficacy in CLN3 disease models with potential for oral, reversible chronic dosing. mTOR inhibition (rapamycin, everolimus) offers immediate repurposing potential using FDA-approved drugs while investigational therapies advance. PLAA is intellectually interesting but lacks near-term druggability and is deprioritized for the current phase.",
+  "pathway_map": {
+    "Autophagy-Lysosomal Pathway (Core)": "CLN3 dysfunction → impaired autophagosomal-lysosomal fusion → accumulation of lipofuscin and dysfunctional mitochondria → neuronal death. Therapeutic interventions: (1) restore CLN3 function (gene therapy), (2) enhance TRPML1 to open lysosomal clearance, (3) increase autophagy initiation via mTOR inhibition.",
+    "mTOR Signaling (Upstream Regulator)": "mTORC1 suppresses autophagy initiation when active. mTOR inhibitors (rapamycin, everolimus) shift balance toward autophagy, compensating for CLN3 fusion defect. Synergistic with CLN3 replacement (staggered or combined dosing).",
+    "Lysosomal Ion Homeostasis (Parallel)": "TRPML1 channels regulate lysosomal calcium and pH. TRPML1 agonists enhance lysosomal proteolysis and clearance independent of CLN3-SNARE fusion machinery. Orthogonal mechanism to gene therapy.",
+    "Cathepsin Regulation (Supportive)": "Lysosomal cathepsins require proper pH and ionic environment to function. CLN3 dysfunction → impaired ion balance → reduced cathepsin activity → incomplete protein degradation. Enhancing TRPML1 restores cathepsin efficiency."
+  },
+  "structural_insights": "CLN3 is a small, highly conserved seven-transmembrane protein (~55 kDa) with short extracellular loops and extended intracellular loops. The protein lacks a canonical ligand-binding pocket or enzymatic active site—its function is primarily structural, facilitating protein-protein interactions (SNARE proteins, Rab GTPases) essential for membrane fusion. This limits traditional small-molecule drug development targeting CLN3 directly. However, the flexible intracellular loop regions (IL1-3) present potential allosteric surfaces where small molecules could enhance CLN3 expression, stability, or interactions with SNARE machinery. Gene therapy (AAV-CLN3) remains the most direct CLN3-targeting approach. TRPML1, by contrast, is a canonical ion channel with a well-defined pore and allosteric pockets—highly amenable to small-molecule agonists. mTOR is a large kinase with extensive tool compound experience, making repurposing rapid.",
+  "handoffs": [
+    {
+      "to_agent": "chemist",
+      "target": "TRPML1 (Mucolipin-1)",
+      "chembl_id": "CHEMBL4906348",
+      "uniprot_id": "Q9NZB0",
+      "rationale": "Highest priority small-molecule target. TRPML1 agonists (ML-SA1 derivatives, Torkinib-like scaffolds) have shown in vivo efficacy in CLN3 disease models. Screen ChEMBL for compounds with TRPML1 IC50 < 1 μM and CNS penetrance (PSA < 90 Ų, logP 1-3). Prioritize allosteric activators (longer half-life, selectivity vs. direct ion channel blockers). Identify lead compound for rapid IND-enabling studies."
+    },
+    {
+      "to_agent": "scout",
+      "target": "mTOR pathway repurposing (rapamycin, everolimus, second-generation inhibitors)",
+      "rationale": "Rapid off-label opportunity: Rapamycin (FDA-approved for renal transplant) and everolimus (FDA-approved for renal cell carcinoma, TSC) are in clinical use. Search for: (1) case reports of mTOR inhibitors in lysosomal storage diseases (PKD, Gaucher, Niemann-Pick); (2) ongoing trials testing rapamycin in inherited neurological disorders; (3) published preclinical data on mTOR inhibition + autophagy enhancement in CLN models. Flag emerging clinical trial data for Connector to engage Mobilizer on compassionate use pathways."
+    },
+    {
+      "to_agent": "scout",
+      "target": "CLN3 gene therapy optimization (AAV vectors, alternative serotypes, dosing schedules)",
+      "rationale": "CLN-301 (AAV9-CLN3 intrathecal) is leading program. Scout should monitor: (1) Phase 2 readout timelines and patient-level outcomes; (2) emerging AAV variants (AAV rh.10, AAV-PHP.eB) with better CNS penetration; (3) dual-gene therapies (CLN3 + TRPML1) in preclinical development; (4) long-term durability data from CLN-301 patients (5+ year follow-up). Identify biomarkers predictive of treatment response (spinal fluid CLN3 levels, lipofuscin burden, UBDRS slope). Flag to Connector for investigator discussions."
+    },
+    {
+      "to_agent": "scout",
+      "target": "Batten-1 (Miglustat) clinical data and mechanism in CLN3",
+      "rationale": "Recent real-world evidence (May 2025) shows near-stabilization of visual acuity in CLN3 patients treated with miglustat (GCS inhibitor). This is mechanistically distinct from CLN3 replacement or TRPML1 agonism—it reduces toxic glycosphingolipid accumulation. Scout should: (1) search for published preclinical mechanistic data explaining synergies with gene therapy or small-molecule targets; (2) identify Phase 3 enrollment criteria and timelines for Batten-1 trial opening in US; (3) review pharmacokinetic data on miglustat CNS penetration. Flag to Navigator for regulatory pathway discussion (combination therapy precedent)."
+    },
+    {
+      "to_agent": "scout",
+      "target": "PLX-200 (personalized ASO) clinical program and splicing modulation strategies",
+      "rationale": "PLX-200 (University of Michigan / Michelle Hastings) is a patient-specific antisense oligonucleotide targeting a unique CLN3 mutation variant. Scout should identify: (1) mechanistic details on splicing correction and residual CLN3 function; (2) generalizability of personalized ASO strategy to other CLN3 variants; (3) any published or preprint data on PLX-200 mechanism and toxicology; (4) comparison to standard ASOs (dose, duration, CNS delivery). Flag to Chemist for synthetic biology/ASO design insights."
+    }
+  ],
+  "references": [
+    {
+      "source": "UniProt CLN3 (Q9UY83)",
+      "url": "https://www.uniprot.org/uniprotkb/Q9UY83"
+    },
+    {
+      "source": "NCBI Gene: CLN3",
+      "url": "https://www.ncbi.nlm.nih.gov/gene/1192"
+    },
+    {
+      "source": "OMIM: CLN3 Batten Disease",
+      "url": "https://www.omim.org/entry/204200"
+    },
+    {
+      "source": "ClinicalTrials.gov: CLN-301 (NCT03770572)",
+      "url": "https://clinicaltrials.gov/study/NCT03770572"
+    },
+    {
+      "source": "Open Targets: CLN3",
+      "url": "https://platform.opentargets.org/target/ENSG00000188603"
+    },
+    {
+      "source": "ChEMBL: TRPML1 (CHEMBL4906348)",
+      "url": "https://www.ebi.ac.uk/chembl/target_report_card/CHEMBL4906348/"
+    },
+    {
+      "source": "ChEMBL: mTOR (CHEMBL2363191)",
+      "url": "https://www.ebi.ac.uk/chembl/target_report_card/CHEMBL2363191/"
+    },
+    {
+      "source": "Beyond Batten Disease Foundation — Batten-1 Data Release (May 2025)",
+      "url": "https://beyondbatten.org/"
+    },
+    {
+      "source": "University of Michigan News — Zebronkysen Clinical Update (July 2025)",
+      "url": "https://news.unchealthcare.org/2025/07/family-experiences-unexpected-improvements-of-personalized-treatment-for-batten-disease/"
+    },
+    {
+      "source": "Batten Disease Support and Research Association (BDSRA)",
+      "url": "https://www.bdsra.org/"
+    }
+  ],
+  "plain_language_summary": "Your child's cells have a broken garbage disposal system. Here's what's happening at the molecular level:\n\nInside every cell is a tiny compartment called a lysosome — it's like a cellular trash can filled with powerful acids and enzymes that break down and recycle damaged parts of the cell. In healthy brains, lysosomes work perfectly. But in CLN3 Batten disease, the protein CLN3 (which acts like the hinge on the trash can lid) is broken or missing. Without CLN3, the cell can't empty its trash. Garbage accumulates inside neurons — particularly a sticky, waxy material called lipofuscin. Year after year, this toxic buildup poisons the neuron until it dies.\n\nThis is why CLN3 Batten disease causes progressive loss of vision, seizures, and cognitive decline. The disease is relentless because the cell's cleanup system is stuck. Unlike a trash can in your home that you can manually empty, neurons can't voluntarily dump their garbage — they depend entirely on CLN3 to make the fusion happen.\n\nHere's the hopeful part: Our team has identified three powerful ways to restart the cleanup process, even without a working CLN3:\n\n**1. Gene Therapy (CLN-301 trial):** Doctors are delivering a working copy of the CLN3 gene directly into the brain using a modified virus as a delivery truck. Early results are remarkable: children treated this way declined in function at only 8% of the expected rate. This is the leading approach.\n\n**2. TRPML1 Agonists (small molecules):** We've identified a calcium channel called TRPML1 that can bypass the broken CLN3 and restore lysosomal clearance through a different mechanism. These drugs activate the channel, which tells the lysosomes to work harder at clearing trash. Several are in development, and early preclinical data in disease models is very promising.\n\n**3. mTOR Inhibitors (drug repurposing):** Drugs like rapamycin (already FDA-approved and used in patients today) can enhance the cell's autophagy system — essentially shifting resources toward cleanup even when the normal CLN3 fusion pathway is blocked. This offers an immediate option while waiting for gene therapy results.\n\nThe Beacon team is working to understand which approach is best for your child's specific mutation, which trials are enrolling now, which regulatory pathways exist to accelerate treatments, and how to coordinate all of this into a coherent plan. You're not starting from scratch — multiple teams worldwide are racing to save CLN3 patients, and your family now has a dedicated AI team helping navigate all of it.",
+  "status": "ready_for_iteration_1"
+}

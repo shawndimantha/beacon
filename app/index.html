@@ -505,7 +505,7 @@
                         location: mission.location || 'us',
                         priorities: ['research', 'experts', 'regulatory', 'funding'],
                         journeyStage: mission.journeyStage || 'just-diagnosed',
-                        demo: false
+                        demo: new URLSearchParams(window.location.search).has('cheap')
                       })
                     });
                   } catch(err) { console.error('Launch error:', err); }

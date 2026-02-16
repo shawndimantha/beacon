@@ -24,7 +24,6 @@ Beacon assembles a team of AI agents, each specialized in a critical domain:
 | 🧬 **Biologist** | Drug Discovery | Identifies protein targets and disease mechanisms. Searches ChEMBL for bioactive compounds. |
 | ⚗️ **Chemist** | Compound Screening | Retrieves IC50/EC50 values, evaluates binding affinity, screens compound libraries via ChEMBL. |
 | 🧪 **Preclinician** | Safety & ADMET | Evaluates pharmacokinetic properties, safety profiles, and clinical precedent for candidate compounds. |
-| 💡 **Guide** | Contextual Narrator | Demo mode: narrates the hackathon presentation. Product mode: contextual tips based on current view. |
 
 ## User Journey
 
@@ -47,7 +46,7 @@ Beacon assembles a team of AI agents, each specialized in a critical domain:
 
 - **Frontend:** Single-page React app (CDN-loaded, no build step), deployed on Vercel
 - **Backend:** FastAPI server using Anthropic API directly (Opus 4.6 for live, Haiku for cheap/demo), deployed on Railway
-- **Agents:** 8 specialized AI agents + 1 Guide narrator, each with a domain-specific system prompt
+- **Agents:** 8 specialized AI agents, each with a domain-specific system prompt
 - **MCP Connectors:** ClinicalTrials.gov, ChEMBL, bioRxiv, CMS Coverage, NPI Registry
 - **Narration:** Cartesia TTS (Sonic 2) for Guide agent voiceover
 - **State:** Backend JSON state polled by frontend in real time
@@ -75,7 +74,7 @@ CARTESIA_API_KEY=... node scripts/generate-narration.js
 
 ```
 beacon/
-├── agents/           # Agent system prompts (9 agents)
+├── agents/           # Agent system prompts (8 agents)
 │   ├── scout.md
 │   ├── connector.md
 │   ├── navigator.md
@@ -83,14 +82,14 @@ beacon/
 │   ├── strategist.md
 │   ├── biologist.md
 │   ├── chemist.md
-│   ├── preclinician.md
-│   └── guide.md
+│   └── preclinician.md
+├── backend/          # FastAPI server (main.py, Dockerfile, requirements.txt)
 ├── app/              # Single-page app (all 5 stages)
 │   ├── index.html
 │   ├── audio/        # Generated narration MP3s
 │   └── data/         # Agent output files (polled by frontend)
 ├── orchestrator/     # run.sh, orchestrate.py, state.json
-├── scripts/          # Narration generation script
+├── scripts/          # Narration generation
 ├── outputs/          # Agent outputs by type
 ├── prototypes/       # UI prototypes
 ├── CLAUDE.md
@@ -100,7 +99,7 @@ beacon/
 
 ## Built With
 
-- [Claude Opus 4.6](https://anthropic.com) — Powers all 9 agents
+- [Claude Opus 4.6](https://anthropic.com) — Powers all 8 agents
 - [Claude Code](https://claude.com/claude-code) — Agent orchestration, sub-agent management, and primary development tool
 - Anthropic Healthcare & Life Sciences MCP connectors (bioRxiv, ClinicalTrials.gov, ChEMBL, CMS Coverage, NPI Registry)
 - [Cartesia Sonic 2](https://cartesia.ai) — TTS for Guide agent narration

@@ -1912,8 +1912,20 @@
                     Discovery Pipeline
                   </h4>
                   <div className="space-y-2">
-                    {LAB_PIPELINE_FUNNEL.map((s, i) => {
-                      const maxCount = LAB_PIPELINE_FUNNEL[1].count; // largest for width scale
+                    {(() => {
+                      const ss = livePlan?.knowledge?.chemist?.screening_summary;
+                      const bioTargets = livePlan?.knowledge?.biologist?.targets;
+                      const precEvals = livePlan?.knowledge?.preclinician?.candidate_evaluations;
+                      const pipeline = (ss && bioTargets) ? [
+                        { stage: 'Targets Identified', count: bioTargets.length, color: 'cyan' },
+                        { stage: 'Compounds Screened', count: ss.total_compounds_found || 0, color: 'blue' },
+                        { stage: 'Hits (pChEMBL ≥ 6)', count: ss.hits_above_threshold || 0, color: 'indigo' },
+                        { stage: 'Lead Candidates', count: (ss.approved_drugs_found || 0) + (ss.phase3_compounds || 0), color: 'violet' },
+                        { stage: 'Lab Testing Queue', count: precEvals?.length || 0, color: 'emerald' },
+                      ] : LAB_PIPELINE_FUNNEL;
+                      return pipeline;
+                    })().map((s, i, arr) => {
+                      const maxCount = Math.max(...arr.map(x => x.count), 1);
                       const pct = Math.max(15, (s.count / maxCount) * 100);
                       return (
                         <div key={i} className="flex items-center gap-3">
@@ -1931,7 +1943,12 @@
                   </div>
                   <div className="mt-3 flex items-center gap-2 text-[10px] text-slate-400">
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-                    847 compounds screened → 2 ready for lab testing
+                    {(() => {
+                      const ss = livePlan?.knowledge?.chemist?.screening_summary;
+                      const precEvals = livePlan?.knowledge?.preclinician?.candidate_evaluations;
+                      if (ss) return `${ss.total_compounds_found || 0} compounds screened → ${precEvals?.length || 0} ready for lab testing`;
+                      return '847 compounds screened → 2 ready for lab testing';
+                    })()}
                   </div>
                 </div>
               </div>

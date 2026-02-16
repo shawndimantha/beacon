@@ -1097,6 +1097,119 @@ async def get_plan():
         return shared_plan
 
 
+lab_summary_cache = {"mission_id": None, "result": None, "status": "idle"}
+
+@app.get("/api/lab-summary")
+async def lab_summary():
+    """Generate a family-friendly summary of the Drug Discovery Lab findings."""
+    global lab_summary_cache
+
+    # Return cached if same mission
+    if lab_summary_cache["mission_id"] == current_mission_id and lab_summary_cache["result"]:
+        return lab_summary_cache
+
+    # Check if lab agents have data
+    async with state_lock:
+        knowledge = shared_plan.get("knowledge", {})
+        disease = shared_plan.get("mission", {}).get("disease", "the condition")
+
+    bio = knowledge.get("biologist", {})
+    chem = knowledge.get("chemist", {})
+    prec = knowledge.get("preclinician", {})
+
+    if not bio.get("targets") and not chem.get("repurposing_candidates"):
+        return {"status": "waiting", "result": None, "mission_id": current_mission_id}
+
+    lab_summary_cache = {"mission_id": current_mission_id, "result": None, "status": "generating"}
+
+    lab_data = json.dumps({"biologist": bio, "chemist": chem, "preclinician": prec}, indent=1, default=str)[:50000]
+
+    client = anthropic.AsyncAnthropic()
+    try:
+        response = await client.messages.create(
+            model="claude-sonnet-4-5-20250929",
+            max_tokens=1500,
+            messages=[{"role": "user", "content": f"""You are writing for a family member (non-scientist) whose child has {disease}.
+
+Below is technical data from our Drug Discovery Lab agents (biologist, chemist, preclinician) about potential treatments.
+
+Write a warm, clear 3-4 paragraph summary that:
+1. Explains what our lab team found in plain language (what targets were identified, what drugs look promising)
+2. Highlights the most actionable finding (the best drug candidate and why)
+3. Lists 2-3 concrete next steps the family could take
+4. Notes any safety considerations in reassuring language
+
+Keep it under 300 words. No jargon. No markdown headers. Write as if you're a kind doctor explaining results to a worried parent.
+
+=== LAB DATA ===
+{lab_data}"""}],
+        )
+        result = "\n".join(b.text for b in response.content if b.type == "text")
+        lab_summary_cache = {"mission_id": current_mission_id, "result": result, "status": "complete"}
+    except Exception as e:
+        traceback.print_exc()
+        lab_summary_cache = {"mission_id": current_mission_id, "result": f"Summary unavailable: {str(e)[:100]}", "status": "error"}
+
+    return lab_summary_cache
+
+
+researcher_briefing_cache = {"mission_id": None, "result": None, "status": "idle"}
+
+@app.get("/api/researcher-briefing")
+async def researcher_briefing():
+    """Generate a technical briefing a family can forward to a researcher identified by Connector."""
+    global researcher_briefing_cache
+
+    if researcher_briefing_cache["mission_id"] == current_mission_id and researcher_briefing_cache["result"]:
+        return researcher_briefing_cache
+
+    async with state_lock:
+        knowledge = shared_plan.get("knowledge", {})
+        disease = shared_plan.get("mission", {}).get("disease", "the condition")
+
+    bio = knowledge.get("biologist", {})
+    chem = knowledge.get("chemist", {})
+    prec = knowledge.get("preclinician", {})
+    scout = knowledge.get("scout", {})
+    connector = knowledge.get("connector", {})
+
+    if not bio.get("targets") and not scout.get("findings"):
+        return {"status": "waiting", "result": None, "mission_id": current_mission_id}
+
+    researcher_briefing_cache = {"mission_id": current_mission_id, "result": None, "status": "generating"}
+
+    all_data = json.dumps({"scout": scout, "biologist": bio, "chemist": chem, "preclinician": prec, "connector": connector}, indent=1, default=str)[:60000]
+
+    client = anthropic.AsyncAnthropic()
+    try:
+        response = await client.messages.create(
+            model="claude-sonnet-4-5-20250929",
+            max_tokens=2000,
+            messages=[{"role": "user", "content": f"""Write a professional research briefing document about {disease} that a patient's family can forward to a researcher or specialist they've been connected with.
+
+The briefing should:
+1. Open with a concise clinical summary of the patient's condition ({disease})
+2. Summarize the computational drug discovery analysis performed (targets identified, compounds screened, top candidates)
+3. Present the top 2-3 drug repurposing candidates with their mechanisms, evidence, and safety profiles
+4. Include relevant clinical trial matches
+5. End with specific questions the family would like the researcher's input on
+
+Write in professional scientific language appropriate for a PhD/MD researcher. Include data points (pChEMBL values, IC50s, gene names) where available. Format with clear sections.
+
+Start with: "RESEARCH BRIEFING: {disease} — Computational Drug Discovery Analysis"
+
+=== AGENT DATA ===
+{all_data}"""}],
+        )
+        result = "\n".join(b.text for b in response.content if b.type == "text")
+        researcher_briefing_cache = {"mission_id": current_mission_id, "result": result, "status": "complete"}
+    except Exception as e:
+        traceback.print_exc()
+        researcher_briefing_cache = {"mission_id": current_mission_id, "result": f"Briefing unavailable: {str(e)[:100]}", "status": "error"}
+
+    return researcher_briefing_cache
+
+
 @app.get("/api/health")
 async def health():
     return {"status": "ok", "tools": len(mcp_tool_schemas)}

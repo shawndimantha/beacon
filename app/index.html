@@ -1731,6 +1731,38 @@
       const viewerInstanceRef = useRef(null);
       const [pdbLoaded, setPdbLoaded] = useState(false);
       const [labSection, setLabSection] = useState('overview'); // 'overview' | 'candidates' | 'experiments'
+      const [labSummary, setLabSummary] = useState(null);
+      const [researcherBriefing, setResearcherBriefing] = useState(null);
+      const [showResearcherBriefing, setShowResearcherBriefing] = useState(false);
+      const summaryFetched = useRef(false);
+
+      useEffect(() => {
+        if (!livePlan || summaryFetched.current) return;
+        summaryFetched.current = true;
+        fetch(`${BACKEND_URL}/api/lab-summary`).then(r => r.json()).then(d => {
+          if (d.status === 'complete') setLabSummary(d.result);
+          else if (d.status === 'generating' || d.status === 'waiting') {
+            // Poll until ready
+            const iv = setInterval(() => {
+              fetch(`${BACKEND_URL}/api/lab-summary`).then(r => r.json()).then(d2 => {
+                if (d2.status === 'complete') { setLabSummary(d2.result); clearInterval(iv); }
+              }).catch(() => {});
+            }, 5000);
+            setTimeout(() => clearInterval(iv), 60000);
+          }
+        }).catch(() => {});
+        fetch(`${BACKEND_URL}/api/researcher-briefing`).then(r => r.json()).then(d => {
+          if (d.status === 'complete') setResearcherBriefing(d.result);
+          else if (d.status === 'generating' || d.status === 'waiting') {
+            const iv = setInterval(() => {
+              fetch(`${BACKEND_URL}/api/researcher-briefing`).then(r => r.json()).then(d2 => {
+                if (d2.status === 'complete') { setResearcherBriefing(d2.result); clearInterval(iv); }
+              }).catch(() => {});
+            }, 5000);
+            setTimeout(() => clearInterval(iv), 60000);
+          }
+        }).catch(() => {});
+      }, [livePlan]);
 
       const liveTargets = useMemo(() => {
         if (!livePlan) return null;
@@ -1876,6 +1908,77 @@
 
           {/* OVERVIEW SECTION */}
           {labSection === 'overview' && (
+            <div className="space-y-6">
+
+            {/* Family Summary */}
+            {livePlan && (
+              <div className="bg-gradient-to-r from-indigo-50 to-violet-50 rounded-3xl p-6 border border-indigo-200 shadow-sm">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-indigo-900">What Our Lab Team Found</h3>
+                      <p className="text-[11px] text-indigo-500">AI-generated summary for your family</p>
+                    </div>
+                  </div>
+                  {researcherBriefing && (
+                    <button onClick={() => setShowResearcherBriefing(true)}
+                      className="px-3 py-1.5 bg-white border border-indigo-200 rounded-lg text-[11px] font-bold text-indigo-600 hover:bg-indigo-100 transition-colors flex items-center gap-1.5">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg>
+                      Researcher Briefing
+                    </button>
+                  )}
+                </div>
+                {labSummary ? (
+                  <div className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">{labSummary}</div>
+                ) : (
+                  <div className="flex items-center gap-2 text-sm text-indigo-400">
+                    <div className="w-4 h-4 border-2 border-indigo-300 border-t-transparent rounded-full animate-spin"></div>
+                    Generating family-friendly summary...
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Researcher Briefing Modal */}
+            {showResearcherBriefing && researcherBriefing && (
+              <div className="modal-overlay" onClick={() => setShowResearcherBriefing(false)}>
+                <div className="modal" onClick={e => e.stopPropagation()} style={{maxWidth: '750px', maxHeight: '85vh'}}>
+                  <div className="flex justify-between items-center mb-4">
+                    <div>
+                      <span className="bg-violet-100 text-violet-700 text-[10px] font-black px-2 py-0.5 rounded uppercase">Researcher Briefing</span>
+                      <h2 className="text-lg font-bold mt-1.5">Forward to Your Specialist</h2>
+                      <p className="text-[11px] text-slate-400">Technical briefing suitable for researchers and physicians</p>
+                    </div>
+                    <button onClick={() => setShowResearcherBriefing(false)} className="text-slate-400 hover:text-slate-800 text-2xl leading-none">&times;</button>
+                  </div>
+                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 mb-4 max-h-[55vh] overflow-y-auto">
+                    <pre className="text-xs text-slate-700 whitespace-pre-wrap font-mono leading-relaxed">{researcherBriefing}</pre>
+                  </div>
+                  <div className="flex gap-3">
+                    <button onClick={() => { navigator.clipboard.writeText(researcherBriefing); }}
+                      className="px-5 py-2.5 bg-indigo-600 text-white rounded-xl font-bold text-sm hover:bg-indigo-700 transition-colors shadow-md flex items-center gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                      Copy to Clipboard
+                    </button>
+                    <button onClick={() => {
+                        const blob = new Blob([researcherBriefing], { type: 'text/plain' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a'); a.href = url; a.download = 'researcher-briefing.txt'; a.click();
+                        URL.revokeObjectURL(url);
+                      }}
+                      className="px-5 py-2.5 bg-emerald-500 text-white rounded-xl font-bold text-sm hover:bg-emerald-600 transition-colors shadow-md flex items-center gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                      Download
+                    </button>
+                    <button onClick={() => setShowResearcherBriefing(false)} className="px-5 py-2.5 bg-slate-200 text-slate-700 rounded-xl font-bold text-sm hover:bg-slate-300 transition-colors">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div className="grid grid-cols-12 gap-8">
 
               {/* 3D Viewer */}
@@ -1977,6 +2080,7 @@
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           )}
 

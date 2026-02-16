@@ -435,6 +435,8 @@
       },
     ];
 
+    const BACKEND_URL = 'https://beacon-backend-production-bbf8.up.railway.app';
+
     function isDemo() {
       return new URLSearchParams(window.location.search).has('demo');
     }
@@ -486,11 +488,30 @@
               setStep={setOnboardingStep}
               mission={mission}
               setMission={setMission}
-              onEnterDashboard={() => setView('dashboard')}
+              onEnterDashboard={async () => {
+                if (!isDemo()) {
+                  try {
+                    await fetch(`${BACKEND_URL}/api/launch`, {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        disease: mission.disease,
+                        patient: mission.patient || 'child',
+                        location: mission.location || 'us',
+                        priorities: ['research', 'experts', 'regulatory', 'funding'],
+                        journeyStage: mission.journeyStage || 'just-diagnosed',
+                        demo: false
+                      })
+                    });
+                  } catch(err) { console.error('Launch error:', err); }
+                }
+                setView('dashboard');
+              }}
               demo={demo}
             />
           ) : (
             <DashboardView
+              key={mission.disease || 'default'}
               mission={mission}
               demo={demo}
               setModalOpen={setModalOpen}
@@ -780,9 +801,20 @@
     // ==========================================
     // DELEGATION INBOX (Tinder-style)
     // ==========================================
-    function DelegationInbox({ expandedId, onToggle, onApprove, onLater }) {
-      const [queue, setQueue] = useState([...DECISION_QUEUE]);
+    function DelegationInbox({ expandedId, onToggle, onApprove, onLater, cards }) {
+      const [queue, setQueue] = useState([...(cards || DECISION_QUEUE)]);
       const [animating, setAnimating] = useState(null);
+      const prevCardsRef = useRef(cards);
+      useEffect(() => {
+        if (cards && cards.length > 0 && cards !== prevCardsRef.current) {
+          prevCardsRef.current = cards;
+          setQueue(prev => {
+            const existingIds = new Set(prev.map(q => q.id));
+            const newCards = cards.filter(c => !existingIds.has(c.id));
+            return newCards.length > 0 ? [...prev, ...newCards] : prev;
+          });
+        }
+      }, [cards]);
 
       const handleAction = (action) => {
         const current = queue[0];
@@ -849,9 +881,11 @@
       const [expandedSections, setExpandedSections] = useState({});
       const [expandedId, setExpandedId] = useState(null);
       const [laterItems, setLaterItems] = useState([]);
+      const [liveInsightCards, setLiveInsightCards] = useState([]);
+      const [liveDecisionCards, setLiveDecisionCards] = useState([]);
       const [showToast, setShowToast] = useState(null);
       const [state, setState] = useState(null);
-      const [summaryText, setSummaryText] = useState('Analyzing CLN3 Batten Disease...');
+      const [summaryText, setSummaryText] = useState(`Analyzing ${mission.disease || 'your condition'}...`);
       const [summaryDone, setSummaryDone] = useState(false);
       const [achievements, setAchievements] = useState([]);
       const [visibleInsights, setVisibleInsights] = useState(new Set());
@@ -860,6 +894,9 @@
       const [labReady, setLabReady] = useState(false);
       const [actionModal, setActionModal] = useState(null);
       const [showArch, setShowArch] = useState(false);
+      const [liveTimeline, setLiveTimeline] = useState([]);
+      const [liveRoadmap, setLiveRoadmap] = useState([]);
+      const [launchReady, setLaunchReady] = useState(demo ? true : false);
       const [agentStatuses, setAgentStatuses] = useState(
         Object.fromEntries(['Scout','Connector','Navigator','Mobilizer','Strategist','Biologist','Chemist','Preclinician'].map(n => [n, { status: 'Initializing...', done: false }]))
       );
@@ -905,14 +942,20 @@
 
       // Data polling (non-demo) — consume live agent state
       const prevFindingCountRef = useRef({});
+      const expectedDisease = mission.disease;
       useEffect(() => {
         if (demo) return;
+        // Reset stale state refs on mount
+        prevFindingCountRef.current = {};
         const AGENT_NAME_MAP = { scout: 'Scout', connector: 'Connector', navigator: 'Navigator', mobilizer: 'Mobilizer', strategist: 'Strategist', biologist: 'Biologist', chemist: 'Chemist', preclinician: 'Preclinician' };
         const poll = async () => {
           try {
-            const res = await fetch('data/state.json');
+            const res = await fetch(`${BACKEND_URL}/api/state`);
             if (!res.ok) return;
             const data = await res.json();
+            // Skip stale data from a different disease
+            const backendDisease = data.mission?.disease;
+            if (expectedDisease && backendDisease && backendDisease.toLowerCase() !== expectedDisease.toLowerCase()) return;
             setState(data);
 
             const agents = data.agents || {};
@@ -980,6 +1023,84 @@
               });
             }
 
+            // Build dynamic insight & decision cards from backend approvals
+            const approvals = data.approvals || [];
+            if (approvals.length > 0) {
+              const emailApprovals = approvals.filter(a => a.type === 'outreach_email');
+              const otherApprovals = approvals.filter(a => a.type !== 'outreach_email');
+
+              // First email approval becomes the decision card
+              if (emailApprovals.length > 0) {
+                const decCards = emailApprovals.slice(0, 4).map((a, i) => ({
+                  id: a.id || `email-${i}`,
+                  badge: 'Needs Your Approval', badgeColor: 'amber',
+                  title: a.title,
+                  subtitle: `${a.agent} agent`,
+                  description: a.summary || a.content?.body?.slice(0, 150) + '...',
+                  cta: 'Review & Approve',
+                  approval: a,
+                  whatItMeans: {
+                    summary: `Your ${a.agent} agent drafted a professional outreach email to connect your family with this expert.`,
+                    proceed: "You'll see the full email and can edit before sending.",
+                    timeline: "Researchers typically respond within 1-2 weeks.",
+                    caveat: "This is an introduction, not a commitment.",
+                  },
+                }));
+                setLiveDecisionCards(decCards);
+              }
+
+              // Scout findings become insight cards
+              const scoutFindings = (agents.scout?.updates || []).filter(u => u.type === 'finding');
+              if (scoutFindings.length > 0) {
+                const insCards = scoutFindings.slice(0, 2).map((f, i) => ({
+                  id: i === 0 ? 'trial' : 'repurpose',
+                  badge: i === 0 ? 'Clinical Trial Match' : 'Research Finding',
+                  badgeColor: 'indigo',
+                  title: f.message,
+                  subtitle: 'Scout agent',
+                  description: `Discovered by your Scout agent during live research on ${data.mission?.disease || 'your condition'}.`,
+                  cta: i === 0 ? 'Start Pre-Screening' : 'Generate Specialist Briefing',
+                  whatItMeans: {
+                    summary: f.message,
+                    proceed: "We can help you explore this finding further with your care team.",
+                    timeline: "Next steps depend on your specialist's review.",
+                    caveat: "All findings should be discussed with your medical team.",
+                  },
+                }));
+                setLiveInsightCards(insCards);
+              }
+            }
+
+            // Build live timeline milestones from agent findings
+            const allFindings = [];
+            for (const [key, agent] of Object.entries(agents)) {
+              const findings = (agent.updates || []).filter(u => u.type === 'finding');
+              findings.forEach(f => allFindings.push({ agent: AGENT_NAME_MAP[key] || key, message: f.message }));
+            }
+            if (allFindings.length > 0) {
+              const icons = ['file-check', 'microscope', 'flask-conical', 'mail'];
+              const colors = ['emerald', 'indigo', 'blue', 'pink'];
+              const timeline = allFindings.slice(0, 6).map((f, i) => ({
+                icon: icons[i % icons.length],
+                color: colors[i % colors.length],
+                title: f.message,
+                desc: `Discovered by ${f.agent} agent`,
+                major: i === 0,
+              }));
+              setLiveTimeline(timeline);
+            }
+
+            // Build live roadmap from agent completion status
+            const disease = data.mission?.disease || 'your condition';
+            const roadmapSteps = [
+              { name: 'Disease Analysis', desc: hasScout ? `Research complete for ${disease}` : 'Researching...', done: hasScout, active: !hasScout },
+              { name: 'Expert Identification', desc: hasConnector ? 'Outreach targets identified' : 'Searching...', done: hasConnector, active: !hasConnector && hasScout },
+              { name: 'Regulatory Mapping', desc: agents.navigator?.status === 'complete' ? 'Pathways mapped' : 'Analyzing...', done: agents.navigator?.status === 'complete', active: agents.navigator?.status !== 'complete' },
+              { name: 'Treatment Evaluation', desc: hasPreclinician ? 'Candidates evaluated' : (hasChemist ? 'Screening compounds...' : 'Identifying targets...'), done: hasPreclinician, active: !hasPreclinician },
+              { name: 'Family Briefing', desc: allComplete ? 'Briefing ready' : 'Awaiting agent completion', done: allComplete && Object.keys(agents).length > 0 },
+            ];
+            setLiveRoadmap(roadmapSteps);
+
             // Progress bars from agent completion
             const agentCount = Object.keys(agents).length || 1;
             const completeCount = Object.values(agents).filter(a => a.status === 'complete').length;
@@ -1040,13 +1161,29 @@
 
       const handleInsightAction = (insight) => {
         if (insight.id === 'trial') {
-          setActionModal({ type: 'pre-screening' });
+          setActionModal({ type: 'pre-screening', title: insight.title, subtitle: insight.subtitle, description: insight.description, disease: mission.disease });
         } else if (insight.id === 'repurpose') {
-          setActionModal({ type: 'briefing' });
+          setActionModal({ type: 'briefing', title: insight.title, subtitle: insight.subtitle, description: insight.description, disease: mission.disease });
         }
       };
 
       const handleApproveDecision = (decision) => {
+        // Live mode: decision cards carry backend approval data
+        if (decision.approval && decision.approval.content) {
+          const a = decision.approval;
+          setSelectedApproval({
+            type: 'Outreach Email',
+            title: a.title,
+            summary: a.summary,
+            to: a.content.to,
+            subject: a.content.subject,
+            body: a.content.body,
+            note: `Drafted by ${a.agent} agent. Review and approve before sending.`,
+          });
+          setModalOpen(true);
+          return;
+        }
+        // Demo mode fallbacks
         if (decision.id === 'email') {
           setSelectedApproval(demoApproval);
           setModalOpen(true);
@@ -1063,7 +1200,8 @@
 
       // Which insight cards are visible (not later'd)
       const laterIds = laterItems.map(i => i.id);
-      const activeInsightCards = INSIGHT_CARDS.filter(c =>
+      const insightSource = (!demo && liveInsightCards.length > 0) ? liveInsightCards : INSIGHT_CARDS;
+      const activeInsightCards = insightSource.filter(c =>
         !laterIds.includes(c.id) &&
         ((c.id === 'trial' && visibleInsights.has('trial_match')) || (c.id === 'repurpose' && visibleInsights.has('repurposing')))
       );
@@ -1269,6 +1407,7 @@
                         onToggle={toggleAccordion}
                         onApprove={handleApproveDecision}
                         onLater={handleLaterDecision}
+                        cards={(!demo && liveDecisionCards.length > 0) ? liveDecisionCards : null}
                       />
                     </div>
                   )}
@@ -1304,7 +1443,7 @@
                         </div>
 
                         <div className="relative pl-10 timeline-line space-y-8">
-                          {TIMELINE_MILESTONES.map((m, i) => (
+                          {((!demo && liveTimeline.length > 0) ? liveTimeline : TIMELINE_MILESTONES).map((m, i) => (
                             <div key={i} className="relative">
                               <div className={`absolute -left-[30px] w-10 h-10 ${m.major ? `bg-${m.color}-600 text-white shadow-lg shadow-${m.color}-200` : `bg-white border-2 border-${m.color}-500 text-${m.color}-500`} rounded-full flex items-center justify-center z-10`}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -1333,10 +1472,10 @@
                                 )}
                                 {m.major && (
                                   <div className="space-y-2 border-l-2 border-indigo-200 pl-3 py-1 text-xs mt-3">
-                                    {REPURPOSING_DEMO_DATA.council.slice(0, 3).map((msg, j) => (
+                                    {(demo ? REPURPOSING_DEMO_DATA.council.slice(0, 3) : Object.entries(agentStatuses).filter(([,s]) => s.done).slice(0, 3).map(([name, s]) => ({ agent: name, text: s.status }))).map((msg, j) => (
                                       <div key={j} className="flex gap-2">
-                                        <span className={`font-bold text-${AGENT_COLORS[msg.agent]}-600 uppercase w-16 shrink-0 text-[9px]`}>{msg.agent}</span>
-                                        <p className="text-slate-600">"{msg.text.substring(0, 80)}..."</p>
+                                        <span className={`font-bold text-${AGENT_COLORS[msg.agent] || 'slate'}-600 uppercase w-16 shrink-0 text-[9px]`}>{msg.agent}</span>
+                                        <p className="text-slate-600">"{(msg.text || '').substring(0, 80)}{msg.text && msg.text.length > 80 ? '...' : ''}"</p>
                                       </div>
                                     ))}
                                   </div>
@@ -1354,13 +1493,13 @@
                         <div className="bg-white p-5 rounded-2xl border border-slate-200">
                           <h4 className="font-bold text-sm mb-1 flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
-                            Repurposing ROADMAP
+                            {demo ? 'Repurposing ROADMAP' : 'Mission Progress'}
                           </h4>
-                          <p className="text-[10px] text-slate-400 mb-4">EveryCure Framework</p>
+                          <p className="text-[10px] text-slate-400 mb-4">{demo ? 'EveryCure Framework' : `${mission.disease || 'Disease'} Research Pipeline`}</p>
 
                           <div className="space-y-3 relative">
                             <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-slate-200"></div>
-                            {REPURPOSING_DEMO_DATA.steps.map((s, i) => (
+                            {((!demo && liveRoadmap.length > 0) ? liveRoadmap : REPURPOSING_DEMO_DATA.steps).map((s, i) => (
                               <div key={i} className={`flex items-start gap-3 relative ${!s.done && !s.active ? 'opacity-40' : ''}`}>
                                 {s.done ? (
                                   <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center z-10 shrink-0">
@@ -2244,8 +2383,17 @@
     function PreScreeningModal({ action, onClose, onSuccess }) {
       const [checks, setChecks] = useState({});
       const toggle = (k) => setChecks(prev => ({ ...prev, [k]: !prev[k] }));
+      const disease = action.disease || 'CLN3 Batten Disease';
+      const isLive = !!action.disease && action.disease !== 'CLN3 Batten Disease';
 
-      const criteria = [
+      const criteria = isLive ? [
+        { key: 'age', label: 'Patient meets age requirements' },
+        { key: 'diagnosis', label: `Confirmed ${disease} diagnosis` },
+        { key: 'functional', label: 'Meets functional status requirements' },
+        { key: 'records', label: 'Medical records available within 6 months' },
+        { key: 'noother', label: 'Not enrolled in another interventional trial' },
+        { key: 'travel', label: 'Able to travel to trial site' },
+      ] : [
         { key: 'age', label: 'Patient age 3-18 years' },
         { key: 'diagnosis', label: 'Confirmed CLN3 genetic diagnosis' },
         { key: 'ambulatory', label: 'Ambulatory or semi-ambulatory' },
@@ -2254,7 +2402,12 @@
         { key: 'travel', label: 'Able to travel to Weill Cornell (New York, NY)' },
       ];
 
-      const docs = [
+      const docs = isLive ? [
+        `Genetic/diagnostic testing report (${disease} confirmation)`,
+        'Recent medical records & specialist evaluations',
+        'Insurance information & pre-authorization',
+        'List of current medications',
+      ] : [
         'Genetic testing report (CLN3 mutation confirmation)',
         'Recent medical records & neuropsych evaluation',
         'Insurance information & pre-authorization',
@@ -2267,8 +2420,8 @@
             <div className="flex justify-between items-center mb-6">
               <div>
                 <span className="bg-indigo-100 text-indigo-700 text-[10px] font-black px-2 py-0.5 rounded uppercase">Pre-Screening</span>
-                <h2 className="text-xl font-bold mt-2">Phase I/II AAV9-CLN3 Gene Therapy</h2>
-                <p className="text-xs text-slate-400 mt-1">NCT-2024-CLN3-001 · Weill Cornell Medical Center</p>
+                <h2 className="text-xl font-bold mt-2">{action.title || 'Phase I/II AAV9-CLN3 Gene Therapy'}</h2>
+                <p className="text-xs text-slate-400 mt-1">{action.subtitle || 'NCT-2024-CLN3-001 · Weill Cornell Medical Center'}</p>
               </div>
               <button onClick={onClose} className="text-slate-400 hover:text-slate-800 text-2xl leading-none">&times;</button>
             </div>
@@ -2308,7 +2461,32 @@
     }
 
     function BriefingModal({ action, onClose, onSuccess }) {
-      const briefingText = `SPECIALIST BRIEFING: Drug Repurposing Candidate
+      const disease = action.disease || 'CLN3 Batten Disease';
+      const isLive = !!action.disease && action.disease !== 'CLN3 Batten Disease';
+      const finding = action.title || 'Tamoxifen';
+
+      const briefingText = isLive ? `SPECIALIST BRIEFING: Research Finding
+══════════════════════════════════════════════
+
+Patient Condition: ${disease}
+
+FINDING: ${finding}
+
+${action.description || ''}
+
+DETAILS:
+This finding was identified by Beacon's Scout agent through systematic analysis of clinical trials, medical literature, and drug databases for ${disease}.
+
+RECOMMENDED NEXT STEPS:
+1. Review this finding with the patient's treating physician
+2. Request relevant baseline biomarker panel
+3. Discuss potential risk/benefit with family
+4. If applicable, contact trial coordinator or prescribing physician
+
+REGULATORY NOTE:
+Any treatment decisions should be made in consultation with the patient's medical team. Off-label use, where applicable, is legal and common but requires physician supervision.
+
+Generated by Beacon AI · Scout + Navigator agents` : `SPECIALIST BRIEFING: Drug Repurposing Candidate
 ══════════════════════════════════════════════
 
 Patient: CLN3 Batten Disease (Juvenile Neuronal Ceroid Lipofuscinosis)
@@ -2337,6 +2515,8 @@ RECOMMENDED NEXT STEPS:
 
 Generated by Beacon AI · Scout + Navigator agents`;
 
+      const filename = isLive ? `${disease.replace(/\s+/g, '-')}-Specialist-Briefing.txt` : 'CLN3-Tamoxifen-Specialist-Briefing.txt';
+
       const handleCopy = () => {
         navigator.clipboard.writeText(briefingText);
         onSuccess('Copied to clipboard!');
@@ -2347,7 +2527,7 @@ Generated by Beacon AI · Scout + Navigator agents`;
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'CLN3-Tamoxifen-Specialist-Briefing.txt';
+        a.download = filename;
         a.click();
         URL.revokeObjectURL(url);
         onSuccess('Briefing downloaded!');
@@ -2359,8 +2539,8 @@ Generated by Beacon AI · Scout + Navigator agents`;
             <div className="flex justify-between items-center mb-6">
               <div>
                 <span className="bg-indigo-100 text-indigo-700 text-[10px] font-black px-2 py-0.5 rounded uppercase">Specialist Briefing</span>
-                <h2 className="text-xl font-bold mt-2">Drug Repurposing: Tamoxifen for CLN3</h2>
-                <p className="text-xs text-slate-400 mt-1">For your child's neurologist or treating physician</p>
+                <h2 className="text-xl font-bold mt-2">{isLive ? finding : 'Drug Repurposing: Tamoxifen for CLN3'}</h2>
+                <p className="text-xs text-slate-400 mt-1">For your child's treating physician</p>
               </div>
               <button onClick={onClose} className="text-slate-400 hover:text-slate-800 text-2xl leading-none">&times;</button>
             </div>

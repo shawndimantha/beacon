@@ -436,7 +436,11 @@
     ];
 
     function isDemo() {
-      return new URLSearchParams(window.location.search).has('demo');
+      // Default to demo mode unless ?live is set
+      return !new URLSearchParams(window.location.search).has('live');
+    }
+    function isLive() {
+      return new URLSearchParams(window.location.search).has('live');
     }
 
     // Helper to fetch and unwrap JSON
@@ -462,7 +466,7 @@
     // ==========================================
 
     function App() {
-      const [view, setView] = useState('onboarding'); // 'onboarding' | 'dashboard'
+      const [view, setView] = useState(isLive() ? 'dashboard' : 'onboarding'); // 'onboarding' | 'dashboard'
       const [onboardingStep, setOnboardingStep] = useState(1);
       const [mission, setMission] = useState({
         disease: '', journeyStage: 'just-diagnosed', patient: 'child', location: 'us',
@@ -471,12 +475,13 @@
       const [selectedApproval, setSelectedApproval] = useState(null);
 
       const demo = isDemo();
+      const live = isLive();
 
       useEffect(() => {
-        if (demo && !mission.disease) {
+        if ((demo || live) && !mission.disease) {
           setMission({ disease: 'Batten Disease (CLN3)', journeyStage: 'just-diagnosed', patient: 'child', location: 'us' });
         }
-      }, [demo]);
+      }, [demo, live]);
 
       return (
         <>

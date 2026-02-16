@@ -699,8 +699,8 @@ async def add_agent_update(agent_name: str, message: str, update_type: str = "st
             "message": message,
             "completed": completed,
         })
-    return True
         app_state["agents"][agent_name] = agent
+    return True
 
 
 async def update_agent_status(agent_name: str, status: str, current_task: str = "", mission_id: str = None):

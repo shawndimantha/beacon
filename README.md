@@ -34,36 +34,40 @@ Beacon assembles a team of AI agents, each specialized in a critical domain:
 4. **Roadmap** — A phased plan from diagnosis to clinical trial, with this week's priorities.
 5. **Mission Control** — Ongoing dashboard with approval queue, discovery feed, agent status, drug discovery lab, and community network.
 
-## Demo Mode
+## URL Modes
 
-Append `?demo=true` to the URL to run a scripted simulation that demonstrates the full flow without running actual agents. The Guide agent narrates the experience with auto-playing voiceover and subtitles.
+| URL | Mode | Description |
+|-----|------|-------------|
+| `beacondemo.vercel.app` | **Live** | Full experience — enters disease, launches Opus 4.6 agents on Railway backend |
+| `beacondemo.vercel.app?demo` | **Demo** | Scripted CLN3 Batten Disease simulation with Guide agent narration. No backend needed. |
+| `beacondemo.vercel.app?cheap` | **Cheap** | Like live mode but uses Haiku models (~10x cheaper). Good for testing. |
+| `beacondemo.vercel.app?disease=Myositis` | **Reconnect** | Skips onboarding, polls existing backend data for the given disease. Zero cost. |
 
 ## Tech Stack
 
-- **Frontend:** Single-page React app (CDN-loaded, no build step)
-- **Agents:** 9 Claude Code sub-agents, each with a specialized system prompt (Opus 4.6)
-- **Orchestration:** Python orchestrator that launches and coordinates agents in parallel
-- **MCP Connectors:** bioRxiv, ClinicalTrials.gov, ChEMBL, CMS Coverage, NPI Registry
+- **Frontend:** Single-page React app (CDN-loaded, no build step), deployed on Vercel
+- **Backend:** FastAPI server using Anthropic API directly (Opus 4.6 for live, Haiku for cheap/demo), deployed on Railway
+- **Agents:** 8 specialized AI agents + 1 Guide narrator, each with a domain-specific system prompt
+- **MCP Connectors:** ClinicalTrials.gov, ChEMBL, bioRxiv, CMS Coverage, NPI Registry
 - **Narration:** Cartesia TTS (Sonic 2) for Guide agent voiceover
-- **State:** Shared JSON files polled by the frontend in real time
-- **Deployment:** Vercel (static)
+- **State:** Backend JSON state polled by frontend in real time
+- **Deployment:** Vercel (frontend) + Railway (backend)
 
 ## Running Locally
 
 ```bash
-# Serve the app
+# Frontend
 cd app && python3 -m http.server 3333
-
-# Open in browser
 open http://localhost:3333
 
-# For demo mode
-open http://localhost:3333?demo=true
+# Backend (requires ANTHROPIC_API_KEY)
+cd backend && pip install -r requirements.txt
+ANTHROPIC_API_KEY=sk-... uvicorn main:app --port 8000
 
-# To run actual agents (requires Claude Code CLI)
-cd orchestrator && ./run.sh "CLN3 Batten Disease"
+# Demo mode (no backend needed)
+open http://localhost:3333?demo
 
-# To regenerate narration audio
+# Regenerate narration audio
 CARTESIA_API_KEY=... node scripts/generate-narration.js
 ```
 
